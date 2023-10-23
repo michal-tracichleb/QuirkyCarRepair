@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuirkyCarRepair.API", "QuirkyCarRepair.API\QuirkyCarRepair.API.csproj", "{21618B0F-D018-486D-AF01-4C214058FFE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuirkyCarRepair.BLL", "QuirkyCarRepair.BLL\QuirkyCarRepair.BLL.csproj", "{55CBE6C7-4370-42F9-9DB6-505951096F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuirkyCarRepair.DAL", "QuirkyCarRepair.DAL\QuirkyCarRepair.DAL.csproj", "{36C914A6-E188-44E3-8FE4-016F6540D21E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuirkyCarRepair.Tests", "QuirkyCarRepair.Tests\QuirkyCarRepair.Tests.csproj", "{1989FC85-2121-48C2-9245-59EF278FEB14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21618B0F-D018-486D-AF01-4C214058FFE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21618B0F-D018-486D-AF01-4C214058FFE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21618B0F-D018-486D-AF01-4C214058FFE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21618B0F-D018-486D-AF01-4C214058FFE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55CBE6C7-4370-42F9-9DB6-505951096F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55CBE6C7-4370-42F9-9DB6-505951096F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55CBE6C7-4370-42F9-9DB6-505951096F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55CBE6C7-4370-42F9-9DB6-505951096F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C914A6-E188-44E3-8FE4-016F6540D21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C914A6-E188-44E3-8FE4-016F6540D21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C914A6-E188-44E3-8FE4-016F6540D21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C914A6-E188-44E3-8FE4-016F6540D21E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1989FC85-2121-48C2-9245-59EF278FEB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1989FC85-2121-48C2-9245-59EF278FEB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1989FC85-2121-48C2-9245-59EF278FEB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1989FC85-2121-48C2-9245-59EF278FEB14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1FD0E62-7BEC-4261-9F14-49246F57B9E5}
+	EndGlobalSection
+EndGlobal
