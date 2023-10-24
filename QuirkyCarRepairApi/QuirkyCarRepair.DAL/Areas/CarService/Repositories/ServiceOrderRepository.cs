@@ -1,9 +1,9 @@
 ﻿using QuirkyCarRepair.DAL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
 
-namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
+namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
 {
-    public class ServiceOrderRepository : IServiceOrderRepository
+    internal class ServiceOrderRepository : IServiceOrderRepository
     {
         private readonly QuirkyCarRepairContext _context;
 
