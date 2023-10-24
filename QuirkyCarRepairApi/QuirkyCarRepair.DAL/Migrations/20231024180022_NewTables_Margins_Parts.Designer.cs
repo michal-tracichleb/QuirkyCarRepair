@@ -12,7 +12,7 @@ using QuirkyCarRepair.DAL;
 namespace QuirkyCarRepair.DAL.Migrations
 {
     [DbContext(typeof(QuirkyCarRepairContext))]
-    [Migration("20231024165611_NewTables_Margins_Parts")]
+    [Migration("20231024180022_NewTables_Margins_Parts")]
     partial class NewTables_Margins_Parts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
