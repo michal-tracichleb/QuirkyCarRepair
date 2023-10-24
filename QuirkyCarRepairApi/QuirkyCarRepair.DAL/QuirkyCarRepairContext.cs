@@ -19,6 +19,8 @@ namespace QuirkyCarRepair.DAL
         #region CarService
 
         public virtual DbSet<ServiceOrder> ServiceOrders { get; set; }
+        public virtual DbSet<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
 
         #endregion CarService
 
@@ -45,6 +47,58 @@ namespace QuirkyCarRepair.DAL
                 entity.Property(e => e.OrderNumber)
                     .HasMaxLength(64)
                     .IsRequired();
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.ServiceOrders)
+                    .HasForeignKey(p => p.VehicleId)
+                    .HasConstraintName("FK_ServiceOrder_Vehicle");
+            });
+
+            modelBuilder.Entity<ServiceOrderStatus>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.StartDate).IsRequired();
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(512)
+                    .IsRequired(false);
+
+                entity.HasOne(d => d.ServiceOrder)
+                    .WithMany(p => p.ServiceOrderStatuses)
+                    .HasForeignKey(p => p.ServiceOrderId)
+                    .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
+            });
+
+            modelBuilder.Entity<Vehicle>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.VIN)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.PlateNumber)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.Brand)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.Model)
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.Year)
+                    .IsRequired(false);
             });
 
             #endregion CarService

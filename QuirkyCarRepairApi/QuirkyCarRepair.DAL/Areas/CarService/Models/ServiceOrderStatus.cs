@@ -7,7 +7,7 @@
 
         public DateTime StartDate { get; set; }
         public string Status { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public virtual ServiceOrder ServiceOrder { get; set; }
     }
