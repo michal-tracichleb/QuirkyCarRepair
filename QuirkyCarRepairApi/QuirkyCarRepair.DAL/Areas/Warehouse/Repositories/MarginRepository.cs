@@ -3,7 +3,7 @@ using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
 {
-    public class MarginRepository : IMarginRepository
+    internal class MarginRepository : IMarginRepository
     {
         private readonly QuirkyCarRepairContext _context;
 

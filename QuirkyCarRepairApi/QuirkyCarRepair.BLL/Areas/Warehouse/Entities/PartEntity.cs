@@ -1,6 +1,6 @@
 ﻿namespace QuirkyCarRepair.BLL.Areas.Warehouse.Entities
 {
-    public class PartCategoryEntity
+    public class PartEntity
     {
         public int Id { get; set; }
 

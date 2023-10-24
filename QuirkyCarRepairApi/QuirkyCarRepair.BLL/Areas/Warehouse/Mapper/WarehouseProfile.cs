@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using QuirkyCarRepair.BLL.Areas.Warehouse.Entites;
+using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.BLL.Areas.Shared
@@ -9,6 +9,12 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
         public PartCategoryProfile()
         {
             CreateMap<PartCategory, PartCategoryEntity>()
+                .ReverseMap();
+
+            CreateMap<Part, PartEntity>()
+                .ReverseMap();
+
+            CreateMap<Margin, MarginEntity>()
                 .ReverseMap();
         }
     }

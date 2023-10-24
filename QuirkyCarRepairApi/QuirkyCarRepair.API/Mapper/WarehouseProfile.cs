@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.API.DTO.Warehouse;
-using QuirkyCarRepair.BLL.Areas.Warehouse.Entites;
+using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 
 namespace QuirkyCarRepair.API.Mapper
 {
