@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using QuirkyCarRepair.BLL.Areas.Warehouse.Entites;
+using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
@@ -7,7 +7,7 @@ using QuirkyCarRepair.DAL.Exceptions;
 
 namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 {
-    public class PartCategoryService : IPartCategoryService
+    internal class PartCategoryService : IPartCategoryService
     {
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IMapper _mapper;

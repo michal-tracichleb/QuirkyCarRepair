@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.API.DTO.Warehouse;
-using QuirkyCarRepair.BLL.Areas.Warehouse.Entites;
+using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 
 namespace QuirkyCarRepair.API.Mapper
 {
@@ -9,6 +9,12 @@ namespace QuirkyCarRepair.API.Mapper
         public WarehouseProfile()
         {
             CreateMap<PartCategoryEntity, PartCategoryDTO>()
+                .ReverseMap();
+
+            CreateMap<PartEntity, PartDTO>()
+                .ReverseMap();
+
+            CreateMap<MarginEntity, MarginDTO>()
                 .ReverseMap();
         }
     }

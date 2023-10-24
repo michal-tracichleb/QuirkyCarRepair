@@ -3,7 +3,7 @@ using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 
 namespace QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces
 {
-    public interface IPartCategoryService : IService<PartCategoryEntity>
+    public interface IMarginService : IService<MarginEntity>
     {
     }
 }

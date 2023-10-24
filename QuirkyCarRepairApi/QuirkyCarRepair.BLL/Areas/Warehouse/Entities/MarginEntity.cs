@@ -1,10 +1,10 @@
 ﻿namespace QuirkyCarRepair.BLL.Areas.Warehouse.Entities
 {
-    public class PartCategoryEntity
+    public class MarginEntity
     {
         public int Id { get; set; }
 
-        public int? ParentCategoryId { get; set; }
         public string Name { get; set; }
+        public decimal Value { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
 {
-    public class PartCategoryRepository : IPartCategoryRepository
+    internal class PartCategoryRepository : IPartCategoryRepository
     {
         private readonly QuirkyCarRepairContext _context;
 
