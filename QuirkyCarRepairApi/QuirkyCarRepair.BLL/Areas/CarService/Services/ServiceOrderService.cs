@@ -21,8 +21,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
         public ServiceOrderEntity Creat(ServiceOrderEntity serviceOrder)
         {
-            var newPartCategory = _serviceOrderRepository.Creat(_mapper.Map<ServiceOrder>(serviceOrder));
-            return _mapper.Map<ServiceOrderEntity>(newPartCategory);
+            var newServiceOrder = _serviceOrderRepository.Creat(_mapper.Map<ServiceOrder>(serviceOrder));
+            return _mapper.Map<ServiceOrderEntity>(newServiceOrder);
         }
 
         public void Delete(int id)
