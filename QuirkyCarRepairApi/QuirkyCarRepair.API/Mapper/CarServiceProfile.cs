@@ -10,6 +10,12 @@ namespace QuirkyCarRepair.API.Mapper
         {
             CreateMap<ServiceOrderEntity, ServiceOrderDTO>()
                 .ReverseMap();
+
+            CreateMap<ServiceOrderStatusEntity, ServiceOrderStatusDTO>()
+                .ReverseMap();
+
+            CreateMap<VehicleEntity, VehicleDTO>()
+                .ReverseMap();
         }
     }
 }
