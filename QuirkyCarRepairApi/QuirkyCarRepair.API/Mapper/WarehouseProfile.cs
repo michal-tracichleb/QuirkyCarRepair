@@ -10,6 +10,12 @@ namespace QuirkyCarRepair.API.Mapper
         {
             CreateMap<PartCategoryEntity, PartCategoryDTO>()
                 .ReverseMap();
+
+            CreateMap<PartEntity, PartDTO>()
+                .ReverseMap();
+
+            CreateMap<MarginEntity, MarginDTO>()
+                .ReverseMap();
         }
     }
 }

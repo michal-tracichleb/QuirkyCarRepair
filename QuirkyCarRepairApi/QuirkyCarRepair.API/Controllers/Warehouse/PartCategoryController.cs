@@ -4,9 +4,9 @@ using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 
-namespace QuirkyCarRepair.API.Controllers
+namespace QuirkyCarRepair.API.Controllers.Warehouse
 {
-    [Route("api/[controller]")]
+    [Route("api/Warehouse/[controller]")]
     [ApiController]
     public class PartCategoryController : ControllerBase
     {

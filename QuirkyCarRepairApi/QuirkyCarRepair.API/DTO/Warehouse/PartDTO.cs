@@ -1,6 +1,6 @@
-﻿namespace QuirkyCarRepair.BLL.Areas.Warehouse.Entities
+﻿namespace QuirkyCarRepair.API.DTO.Warehouse
 {
-    public class PartEntity
+    public class PartDTO
     {
         public int Id { get; set; }
         public int PartCategoryId { get; set; }
