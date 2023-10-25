@@ -10,6 +10,12 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
         {
             CreateMap<ServiceOrder, ServiceOrderEntity>()
                 .ReverseMap();
+
+            CreateMap<ServiceOrderStatus, ServiceOrderStatusEntity>()
+                .ReverseMap();
+
+            CreateMap<Vehicle, VehicleEntity>()
+                .ReverseMap();
         }
     }
 }
