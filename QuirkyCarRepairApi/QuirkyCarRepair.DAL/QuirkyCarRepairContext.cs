@@ -28,7 +28,9 @@ namespace QuirkyCarRepair.DAL
 
         public virtual DbSet<Part> Parts { get; set; }
         public virtual DbSet<PartCategory> PartCategories { get; set; }
+        public virtual DbSet<PartTransaction> PartTransactions { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
+        public virtual DbSet<OperationalDocument> OperationalDocuments { get; set; }
 
         #endregion WarehouseManagement
 
@@ -105,49 +107,6 @@ namespace QuirkyCarRepair.DAL
 
             #region WarehouseManagement
 
-            modelBuilder.Entity<PartCategory>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(128)
-                    .IsRequired();
-
-                entity.HasOne(d => d.ParentCategory)
-                    .WithMany(p => p.Subcategories)
-                    .HasForeignKey(d => d.ParentCategoryId)
-                    .IsRequired(false)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ParentCategory_Subcategories");
-
-                entity.HasMany(d => d.Parts)
-                    .WithOne(p => p.PartCategory)
-                    .HasForeignKey(p => p.PartCategoryId)
-                    .HasConstraintName("FK_PartCategory_Part");
-            });
-
-            modelBuilder.Entity<Margin>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(64)
-                    .IsRequired();
-
-                entity.Property(e => e.Value)
-                    .HasColumnType("decimal(18, 2)")
-                    .IsRequired();
-
-                entity.HasMany(d => d.Parts)
-                    .WithOne(p => p.Margin)
-                    .HasForeignKey(p => p.MarginId)
-                    .HasConstraintName("FK_Margin_Parts");
-            });
-
             modelBuilder.Entity<Part>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -177,6 +136,103 @@ namespace QuirkyCarRepair.DAL
                 entity.Property(e => e.UnitPrice)
                     .HasColumnType("decimal(18, 2)")
                     .IsRequired();
+            });
+
+            modelBuilder.Entity<PartCategory>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(128)
+                    .IsRequired();
+
+                entity.HasOne(d => d.ParentCategory)
+                    .WithMany(p => p.Subcategories)
+                    .HasForeignKey(d => d.ParentCategoryId)
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ParentCategory_Subcategories");
+
+                entity.HasMany(d => d.Parts)
+                    .WithOne(p => p.PartCategory)
+                    .HasForeignKey(p => p.PartCategoryId)
+                    .HasConstraintName("FK_PartCategory_Part");
+            });
+
+            modelBuilder.Entity<PartTransaction>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Quantity)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.Property(e => e.UnitPrice)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.Property(e => e.MarginValue)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.HasOne(d => d.Part)
+                    .WithMany(p => p.PartTransactions)
+                    .HasForeignKey(d => d.PartId)
+                    .HasConstraintName("FK_Part_PartTransaction");
+
+                entity.HasOne(d => d.OperationalDocument)
+                    .WithMany(p => p.PartTransactions)
+                    .HasForeignKey(d => d.OperationalDocumentId)
+                    .HasConstraintName("FK_OperationalDocument_PartTransaction");
+            });
+
+            modelBuilder.Entity<Margin>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.Value)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.HasMany(d => d.Parts)
+                    .WithOne(p => p.Margin)
+                    .HasForeignKey(p => p.MarginId)
+                    .HasConstraintName("FK_Margin_Parts");
+            });
+
+            modelBuilder.Entity<OperationalDocument>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.DocumentNumber)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.TransactionDate)
+                    .IsRequired();
+
+                entity.Property(e => e.Type)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.HasOne(d => d.ServiceOrder)
+                    .WithMany(p => p.OperationalDocuments)
+                    .HasForeignKey(d => d.ServiceOrderId)
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ServiceOrder_OperationalDocument");
             });
 
             #endregion WarehouseManagement
