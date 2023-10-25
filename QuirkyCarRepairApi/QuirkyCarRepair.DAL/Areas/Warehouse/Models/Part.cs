@@ -2,6 +2,11 @@
 {
     public class Part
     {
+        public Part()
+        {
+            PartTransactions = new HashSet<PartTransaction>();
+        }
+
         public int Id { get; set; }
         public int PartCategoryId { get; set; }
         public int? MarginId { get; set; }
@@ -13,7 +18,8 @@
         public string UnitType { get; set; }
         public decimal UnitPrice { get; set; }
 
-        public PartCategory PartCategory { get; set; }
-        public Margin Margin { get; set; }
+        public virtual PartCategory PartCategory { get; set; }
+        public virtual Margin Margin { get; set; }
+        public virtual ICollection<PartTransaction> PartTransactions { get; set; }
     }
 }

@@ -13,8 +13,8 @@
         public int? ParentCategoryId { get; set; }
         public string Name { get; set; }
 
+        public virtual PartCategory ParentCategory { get; set; }
         public virtual ICollection<Part> Parts { get; set; }
         public virtual ICollection<PartCategory> Subcategories { get; set; }
-        public virtual PartCategory ParentCategory { get; set; }
     }
 }
