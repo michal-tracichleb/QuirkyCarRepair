@@ -8,13 +8,19 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
     {
         public PartCategoryProfile()
         {
-            CreateMap<PartCategory, PartCategoryEntity>()
+            CreateMap<Margin, MarginEntity>()
+                .ReverseMap();
+
+            CreateMap<OperationalDocument, OperationalDocumentEntity>()
                 .ReverseMap();
 
             CreateMap<Part, PartEntity>()
                 .ReverseMap();
 
-            CreateMap<Margin, MarginEntity>()
+            CreateMap<PartCategory, PartCategoryEntity>()
+                .ReverseMap();
+
+            CreateMap<PartTransaction, PartTransactionEntity>()
                 .ReverseMap();
         }
     }
