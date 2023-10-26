@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.BLL.ServicesRegistration;
 using QuirkyCarRepair.DAL;
 using QuirkyCarRepair.DAL.RepositoriesRegistration;
+using QuirkyCarRepair.DAL.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,5 +38,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<QuirkyCarRepairContext>();
+    var seeder = new DataSeeder(context);
+    seeder.SeedDatabase();
+}
 
 app.Run();
