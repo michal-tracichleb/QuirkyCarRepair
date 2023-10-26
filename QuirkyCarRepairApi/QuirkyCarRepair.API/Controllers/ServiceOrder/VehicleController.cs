@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.CarService;
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
@@ -8,6 +9,7 @@ namespace QuirkyCarRepair.API.Controllers.Vehicle
 {
     [Route("api/CarService/[controller]")]
     [ApiController]
+    [Authorize]
     public class VehicleController : ControllerBase
     {
         private readonly IMapper _mapper;
