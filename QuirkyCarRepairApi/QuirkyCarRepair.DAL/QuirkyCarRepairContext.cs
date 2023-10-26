@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
+using QuirkyCarRepair.DAL.Areas.Identity;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL
 {
-    public class QuirkyCarRepairContext : DbContext
+    public class QuirkyCarRepairContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public QuirkyCarRepairContext()
         {
@@ -16,27 +19,48 @@ namespace QuirkyCarRepair.DAL
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
+        public DbSet<User> Users { get; set; }
+
         #region CarService
 
-        public virtual DbSet<ServiceOrder> ServiceOrders { get; set; }
-        public virtual DbSet<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
-        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<ServiceOrder> ServiceOrders { get; set; }
+        public DbSet<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         #endregion CarService
 
         #region WarehouseManagement
 
-        public virtual DbSet<Margin> Margins { get; set; }
-        public virtual DbSet<OperationalDocument> OperationalDocuments { get; set; }
-        public virtual DbSet<Part> Parts { get; set; }
-        public virtual DbSet<PartCategory> PartCategories { get; set; }
-        public virtual DbSet<PartTransaction> PartTransactions { get; set; }
+        public DbSet<Margin> Margins { get; set; }
+        public DbSet<OperationalDocument> OperationalDocuments { get; set; }
+        public DbSet<Part> Parts { get; set; }
+        public DbSet<PartCategory> PartCategories { get; set; }
+        public DbSet<PartTransaction> PartTransactions { get; set; }
 
         #endregion WarehouseManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseCollation("Polish_100_CI_AI");
+
+            #region Identity
+
+            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
+            {
+                entity.HasKey(l => new { l.LoginProvider, l.ProviderKey, l.ProviderDisplayName });
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
+            {
+                entity.HasKey(ur => new { ur.UserId, ur.RoleId });
+            });
+
+            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
+            {
+                entity.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+            });
+
+            #endregion Identity
 
             #region CarService
 
@@ -54,6 +78,11 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.ServiceOrders)
                     .HasForeignKey(p => p.VehicleId)
                     .HasConstraintName("FK_ServiceOrder_Vehicle");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ServiceOrders)
+                .HasForeignKey(p => p.UserId)
+                .HasConstraintName("FK_ServiceOrder_User");
             });
 
             modelBuilder.Entity<ServiceOrderStatus>(entity =>
@@ -76,6 +105,11 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.ServiceOrderStatuses)
                     .HasForeignKey(p => p.ServiceOrderId)
                     .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ServiceOrderStatuses)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_ServiceOrderStatus_User");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
@@ -101,6 +135,11 @@ namespace QuirkyCarRepair.DAL
 
                 entity.Property(e => e.Year)
                     .IsRequired(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Vehicles)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_Vehicle_User");
             });
 
             #endregion CarService
@@ -150,6 +189,11 @@ namespace QuirkyCarRepair.DAL
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceOrder_OperationalDocument");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.OperationalDocuments)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_OperationalDocument_User");
             });
 
             modelBuilder.Entity<Part>(entity =>
