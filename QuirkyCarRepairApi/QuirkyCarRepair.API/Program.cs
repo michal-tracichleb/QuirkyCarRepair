@@ -16,8 +16,9 @@ builder.Services.AddDbContext<QuirkyCarRepairContext>(options =>
     options.EnableSensitiveDataLogging(false);
 });
 
-builder.Services.AddIdentityCore<User>()
+builder.Services.AddIdentity<User, IdentityRole<int>>()
     .AddEntityFrameworkStores<QuirkyCarRepairContext>()
+    .AddRoles<IdentityRole<int>>()
     .AddApiEndpoints();
 
 builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
@@ -50,8 +51,16 @@ app.MapControllers();
 
 using (var serviceScope = app.Services.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<QuirkyCarRepairContext>();
-    var seeder = new DataSeeder(context);
+    var services = serviceScope.ServiceProvider;
+
+    var context = services.GetRequiredService<QuirkyCarRepairContext>();
+
+    context.Database.Migrate();
+    var userManager = services.GetRequiredService<UserManager<User>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+
+    var seeder = new DataSeeder(context, roleManager, userManager);
+    await seeder.SeedUsers();
     seeder.SeedDatabase();
 }
 
