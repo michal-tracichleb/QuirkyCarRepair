@@ -8,13 +8,19 @@ namespace QuirkyCarRepair.API.Mapper
     {
         public WarehouseProfile()
         {
-            CreateMap<PartCategoryEntity, PartCategoryDTO>()
+            CreateMap<MarginEntity, MarginDTO>()
+                .ReverseMap();
+
+            CreateMap<OperationalDocumentEntity, OperationalDocumentDTO>()
                 .ReverseMap();
 
             CreateMap<PartEntity, PartDTO>()
                 .ReverseMap();
 
-            CreateMap<MarginEntity, MarginDTO>()
+            CreateMap<PartCategoryEntity, PartCategoryDTO>()
+                .ReverseMap();
+
+            CreateMap<PartTransactionEntity, PartTransactionDTO>()
                 .ReverseMap();
         }
     }
