@@ -42,7 +42,7 @@ namespace QuirkyCarRepair.DAL.Seeder
 
         public async Task SeedUsers()
         {
-            string adminRole = "admin";
+            string adminRole = "Admin";
             string adminPassword = "Admin123!";
             var admin = new User
             {
@@ -52,7 +52,7 @@ namespace QuirkyCarRepair.DAL.Seeder
                 EmailConfirmed = true
             };
 
-            string userRole = "user";
+            string userRole = "User";
             string userPassword = "User123!";
             var user = new User
             {
@@ -62,7 +62,7 @@ namespace QuirkyCarRepair.DAL.Seeder
                 EmailConfirmed = true
             };
 
-            string mechanicRole = "mechanic";
+            string mechanicRole = "Mechanic";
             string mechanicPassword = "Mechanic123!";
             var mechanic = new User
             {
@@ -72,7 +72,7 @@ namespace QuirkyCarRepair.DAL.Seeder
                 EmailConfirmed = true
             };
 
-            string storekeeperRole = "storekeeper";
+            string storekeeperRole = "Storekeeper";
             string storekeeperPassword = "Storekeeper123!";
             var storekeeper = new User
             {

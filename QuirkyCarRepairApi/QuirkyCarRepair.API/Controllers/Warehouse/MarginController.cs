@@ -9,7 +9,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 {
     [Route("api/Warehouse/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin, Storekeeper")]
     public class MarginController : ControllerBase
     {
         private readonly IMapper _mapper;
