@@ -98,9 +98,6 @@ namespace QuirkyCarRepair.DAL
                 entity.Property<string>("SecurityStamp")
                     .HasColumnType("nvarchar(max)");
 
-                entity.Property<int>("StoriesCompletedTotal")
-                    .HasColumnType("int");
-
                 entity.Property<bool>("TwoFactorEnabled")
                     .HasColumnType("bit");
 
