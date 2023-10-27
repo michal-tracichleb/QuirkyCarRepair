@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
         public VehicleEntity Creat(VehicleEntity vehicle)
         {
-            var newVehicle = _vehicleRepository.Creat(_mapper.Map<Vehicle>(vehicle));
+            var newVehicle = _vehicleRepository.Add(_mapper.Map<Vehicle>(vehicle));
             return _mapper.Map<VehicleEntity>(newVehicle);
         }
 
