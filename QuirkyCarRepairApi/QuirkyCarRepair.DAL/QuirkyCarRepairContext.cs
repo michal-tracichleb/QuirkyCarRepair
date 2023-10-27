@@ -41,23 +41,257 @@ namespace QuirkyCarRepair.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.UseCollation("Polish_100_CI_AI");
 
             #region Identity
 
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(u => u.Id);
+
+                entity.Property(u => u.Id)
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("int")
+                      .HasColumnName("Id");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
+
+                entity.Property<int>("AccessFailedCount")
+                    .HasColumnType("int");
+
+                entity.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<string>("Email")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.Property<bool>("EmailConfirmed")
+                    .HasColumnType("bit");
+
+                entity.Property<bool>("LockoutEnabled")
+                    .HasColumnType("bit");
+
+                entity.Property<DateTimeOffset?>("LockoutEnd")
+                    .HasColumnType("datetimeoffset");
+
+                entity.Property<string>("NormalizedEmail")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.Property<string>("NormalizedUserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.Property<string>("PasswordHash")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<string>("PhoneNumber")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<bool>("PhoneNumberConfirmed")
+                    .HasColumnType("bit");
+
+                entity.Property<string>("SecurityStamp")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<int>("StoriesCompletedTotal")
+                    .HasColumnType("int");
+
+                entity.Property<bool>("TwoFactorEnabled")
+                    .HasColumnType("bit");
+
+                entity.Property<string>("UserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.HasKey("Id");
+
+                entity.HasIndex("NormalizedEmail")
+                    .HasDatabaseName("EmailIndex");
+
+                entity.HasIndex("NormalizedUserName")
+                    .IsUnique()
+                    .HasDatabaseName("UserNameIndex")
+                    .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                entity.ToTable("AspNetUsers", (string)null);
+            });
+
+            modelBuilder.Entity<IdentityRole<int>>(entity =>
+            {
+                entity.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
+
+                entity.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<string>("Name")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.Property<string>("NormalizedName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                entity.HasKey("Id");
+
+                entity.HasIndex("NormalizedName")
+                    .IsUnique()
+                    .HasDatabaseName("RoleNameIndex")
+                    .HasFilter("[NormalizedName] IS NOT NULL");
+
+                entity.ToTable("AspNetRoles", (string)null);
+            });
+
+            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
+            {
+                entity.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
+
+                entity.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<int>("RoleId")
+                    .HasColumnType("int");
+
+                entity.HasKey("Id");
+
+                entity.HasIndex("RoleId");
+
+                entity.ToTable("AspNetRoleClaims", (string)null);
+
+                entity.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
+            {
+                entity.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
+
+                entity.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<int>("UserId")
+                    .HasColumnType("int");
+
+                entity.HasKey("Id");
+
+                entity.HasIndex("UserId");
+
+                entity.ToTable("AspNetUserClaims", (string)null);
+
+                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
             modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
             {
-                entity.HasKey(l => new { l.LoginProvider, l.ProviderKey, l.ProviderDisplayName });
+                entity.Property<string>("LoginProvider")
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
+
+                entity.Property<string>("ProviderKey")
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
+
+                entity.Property<string>("ProviderDisplayName")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.Property<int>("UserId")
+                    .HasColumnType("int");
+
+                entity.HasKey("LoginProvider", "ProviderKey");
+
+                entity.HasIndex("UserId");
+
+                entity.ToTable("AspNetUserLogins", (string)null);
+
+                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                     .WithMany()
+                     .HasForeignKey("UserId")
+                     .OnDelete(DeleteBehavior.Cascade)
+                     .IsRequired();
             });
 
             modelBuilder.Entity<IdentityUserRole<int>>(entity =>
             {
-                entity.HasKey(ur => new { ur.UserId, ur.RoleId });
+                entity.Property<int>("UserId")
+                    .HasColumnType("int");
+
+                entity.Property<int>("RoleId")
+                    .HasColumnType("int");
+
+                entity.HasKey("UserId", "RoleId");
+
+                entity.HasIndex("RoleId");
+
+                entity.ToTable("AspNetUserRoles", (string)null);
+
+                entity.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
             });
 
             modelBuilder.Entity<IdentityUserToken<int>>(entity =>
             {
-                entity.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+                entity.Property<int>("UserId")
+                    .HasColumnType("int");
+
+                entity.Property<string>("LoginProvider")
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
+
+                entity.Property<string>("Name")
+                    .HasMaxLength(128)
+                    .HasColumnType("nvarchar(128)");
+
+                entity.Property<string>("Value")
+                    .HasColumnType("nvarchar(max)");
+
+                entity.HasKey("UserId", "LoginProvider", "Name");
+
+                entity.ToTable("AspNetUserTokens", (string)null);
+
+                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
             });
 
             #endregion Identity

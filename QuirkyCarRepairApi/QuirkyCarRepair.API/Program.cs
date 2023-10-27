@@ -16,9 +16,9 @@ builder.Services.AddDbContext<QuirkyCarRepairContext>(options =>
     options.EnableSensitiveDataLogging(false);
 });
 
-builder.Services.AddIdentity<User, IdentityRole<int>>()
-    .AddEntityFrameworkStores<QuirkyCarRepairContext>()
+builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole<int>>()
+    .AddEntityFrameworkStores<QuirkyCarRepairContext>()
     .AddApiEndpoints();
 
 builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
