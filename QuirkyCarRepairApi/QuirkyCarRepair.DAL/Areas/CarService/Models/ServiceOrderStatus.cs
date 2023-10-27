@@ -1,8 +1,9 @@
 ﻿using QuirkyCarRepair.DAL.Areas.Identity;
+using QuirkyCarRepair.DAL.Areas.Shared;
 
 namespace QuirkyCarRepair.DAL.Areas.CarService.Models
 {
-    public class ServiceOrderStatus
+    public class ServiceOrderStatus : IModelBase
     {
         public int Id { get; set; }
         public int ServiceOrderId { get; set; }

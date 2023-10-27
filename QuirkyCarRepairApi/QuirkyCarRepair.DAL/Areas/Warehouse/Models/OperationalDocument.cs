@@ -1,9 +1,10 @@
-﻿using QuirkyCarRepair.DAL.Areas.Identity;
-using QuirkyCarRepair.DAL.Areas.CarService.Models;
+﻿using QuirkyCarRepair.DAL.Areas.CarService.Models;
+using QuirkyCarRepair.DAL.Areas.Identity;
+using QuirkyCarRepair.DAL.Areas.Shared;
 
 namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
 {
-    public class OperationalDocument
+    public class OperationalDocument : IModelBase
     {
         public OperationalDocument()
         {

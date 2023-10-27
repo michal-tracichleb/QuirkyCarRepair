@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
+using QuirkyCarRepair.DAL.Areas.Shared;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.Identity
 {
-    public class User : IdentityUser<int>
+    public class User : IdentityUser<int>, IModelBase
     {
         public User() : base()
         {

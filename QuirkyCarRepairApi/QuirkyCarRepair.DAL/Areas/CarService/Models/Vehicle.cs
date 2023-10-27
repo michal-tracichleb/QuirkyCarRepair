@@ -1,8 +1,9 @@
 ﻿using QuirkyCarRepair.DAL.Areas.Identity;
+using QuirkyCarRepair.DAL.Areas.Shared;
 
 namespace QuirkyCarRepair.DAL.Areas.CarService.Models
 {
-    public class Vehicle
+    public class Vehicle : IModelBase
     {
         public Vehicle()
         {

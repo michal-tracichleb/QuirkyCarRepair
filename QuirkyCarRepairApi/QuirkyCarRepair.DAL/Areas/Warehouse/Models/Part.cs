@@ -1,6 +1,8 @@
-﻿namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
+﻿using QuirkyCarRepair.DAL.Areas.Shared;
+
+namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
 {
-    public class Part
+    public class Part : IModelBase
     {
         public Part()
         {

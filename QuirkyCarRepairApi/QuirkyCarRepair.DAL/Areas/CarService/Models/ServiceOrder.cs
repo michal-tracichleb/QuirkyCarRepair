@@ -1,9 +1,10 @@
 ﻿using QuirkyCarRepair.DAL.Areas.Identity;
+using QuirkyCarRepair.DAL.Areas.Shared;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.CarService.Models
 {
-    public class ServiceOrder
+    public class ServiceOrder : IModelBase
     {
         public ServiceOrder()
         {

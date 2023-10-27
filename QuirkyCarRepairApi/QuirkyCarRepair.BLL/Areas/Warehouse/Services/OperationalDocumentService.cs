@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public OperationalDocumentEntity Creat(OperationalDocumentEntity operationalDocument)
         {
-            var newOperationalDocument = _operationalDocumentRepository.Creat(_mapper.Map<OperationalDocument>(operationalDocument));
+            var newOperationalDocument = _operationalDocumentRepository.Add(_mapper.Map<OperationalDocument>(operationalDocument));
             return _mapper.Map<OperationalDocumentEntity>(newOperationalDocument);
         }
 

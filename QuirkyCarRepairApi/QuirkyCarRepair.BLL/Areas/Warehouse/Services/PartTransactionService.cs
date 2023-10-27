@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public PartTransactionEntity Creat(PartTransactionEntity partTransaction)
         {
-            var newPartTransaction = _partTransactionRepository.Creat(_mapper.Map<PartTransaction>(partTransaction));
+            var newPartTransaction = _partTransactionRepository.Add(_mapper.Map<PartTransaction>(partTransaction));
             return _mapper.Map<PartTransactionEntity>(newPartTransaction);
         }
 
