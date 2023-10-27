@@ -60,8 +60,7 @@ using (var serviceScope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
     var seeder = new DataSeeder(context, roleManager, userManager);
-    await seeder.SeedUsers();
-    seeder.SeedDatabase();
+    await seeder.SeedDatabase();
 }
 
 app.MapIdentityApi<User>();

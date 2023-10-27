@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using QuirkyCarRepair.DAL.Areas.Identity;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
@@ -27,20 +28,25 @@ namespace QuirkyCarRepair.DAL.Seeder
             return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
 
-        public void SeedDatabase()
+        public async Task SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
+            await SeedPartCategory(folderPath);
+            await SeedUsers();
+        }
 
-            if (!_context.PartCategories.Any())
+        private async Task SeedPartCategory(string folderPath)
+        {
+            if (!await _context.PartCategories.AnyAsync())
             {
                 string filePath = Path.Combine(folderPath, "PartCategory.json");
-                var data = LoadDataFromJsonFile<PartCategory>(filePath);
-                _context.PartCategories.AddRange(data);
-                _context.SaveChanges();
+                var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
+                await _context.AddRangeAsync(partCategories);
+                await _context.SaveChangesAsync();
             }
         }
 
-        public async Task SeedUsers()
+        private async Task SeedUsers()
         {
             string adminRole = "Admin";
             string adminPassword = "Admin123!";
