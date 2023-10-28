@@ -31,15 +31,15 @@ namespace QuirkyCarRepair.DAL.Seeder
         public async Task SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
-            await SeedPartCategory(folderPath);
+            await SeedPartCategoryWithParts(folderPath);
             await SeedUsers();
         }
 
-        private async Task SeedPartCategory(string folderPath)
+        private async Task SeedPartCategoryWithParts(string folderPath)
         {
             if (!await _context.PartCategories.AnyAsync())
             {
-                string filePath = Path.Combine(folderPath, "PartCategory.json");
+                string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
                 var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
                 await _context.AddRangeAsync(partCategories);
                 await _context.SaveChangesAsync();

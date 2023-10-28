@@ -456,6 +456,38 @@ namespace QuirkyCarRepair.DAL
                 entity.Property(e => e.UnitPrice)
                     .HasColumnType("decimal(18, 2)")
                     .IsRequired();
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.Model)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.ProductCode)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.CountryOfOrigin)
+                    .HasMaxLength(64)
+                    .IsRequired(false);
+
+                entity.Property(e => e.Weight)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired(false);
+
+                entity.Property(e => e.Height)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired(false);
+
+                entity.Property(e => e.Width)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired(false);
+
+                entity.Property(e => e.Depth)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired(false);
             });
 
             modelBuilder.Entity<PartCategory>(entity =>
