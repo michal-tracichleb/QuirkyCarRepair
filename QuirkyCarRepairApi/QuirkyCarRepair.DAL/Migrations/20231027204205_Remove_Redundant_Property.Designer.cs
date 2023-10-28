@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuirkyCarRepair.DAL;
 
@@ -11,9 +12,11 @@ using QuirkyCarRepair.DAL;
 namespace QuirkyCarRepair.DAL.Migrations
 {
     [DbContext(typeof(QuirkyCarRepairContext))]
-    partial class QuirkyCarRepairContextModelSnapshot : ModelSnapshot
+    [Migration("20231027204205_Remove_Redundant_Property")]
+    partial class Remove_Redundant_Property
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,33 +404,15 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CountryOfOrigin")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<decimal?>("Depth")
-                        .HasColumnType("decimal(18, 2)");
-
                     b.Property<string>("Description")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
-
-                    b.Property<decimal?>("Height")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Manufacturer")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
 
                     b.Property<int?>("MarginId")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("MinimumQuantity")
                         .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Model")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -436,10 +421,6 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     b.Property<int>("PartCategoryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ProductCode")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
 
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18, 2)");
@@ -451,12 +432,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<decimal?>("Weight")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<decimal?>("Width")
-                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

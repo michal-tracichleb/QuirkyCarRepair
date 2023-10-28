@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -8,6 +9,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 {
     [Route("api/Warehouse/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin, Storekeeper")]
     public class MarginController : ControllerBase
     {
         private readonly IMapper _mapper;
