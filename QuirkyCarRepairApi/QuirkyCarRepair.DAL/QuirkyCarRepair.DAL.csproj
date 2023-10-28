@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Seeder\Data\PartCategory.json">
+	  <None Update="Seeder\Data\PartCategoryWithParts.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

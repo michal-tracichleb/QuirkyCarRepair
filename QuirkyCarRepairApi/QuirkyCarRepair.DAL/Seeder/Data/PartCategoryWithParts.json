@@ -1,0 +1,3966 @@
+[
+  {
+    "name": "Części samochodowe",
+    "subcategories": [
+      {
+        "name": "Części karoserii",
+        "subcategories": [
+          {
+            "name": "Atrapy chłodnicy",
+            "parts": [
+              {
+                "Name": "Atrapa chłodnicy XYZ",
+                "Quantity": 50,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 30.50,
+                "Manufacturer": "ABC Manufacturing",
+                "Model": "XYZ123",
+                "ProductCode": "AC-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.5,
+                "Height": 50.0,
+                "Width": 30.0,
+                "Depth": 10.0
+              },
+              {
+                "Name": "Atrapa chłodnicy ABC",
+                "Quantity": 30,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 25.75,
+                "Manufacturer": "DEF Inc.",
+                "Model": "ABC789",
+                "ProductCode": "AC-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.0,
+                "Height": 55.0,
+                "Width": 35.0,
+                "Depth": 12.5
+              },
+              {
+                "Name": "Atrapa chłodnicy 123",
+                "Quantity": 25,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "GHI Ltd.",
+                "Model": "123XYZ",
+                "ProductCode": "AC-003",
+                "CountryOfOrigin": "USA",
+                "Weight": 2.2,
+                "Height": 48.0,
+                "Width": 28.0,
+                "Depth": 11.0
+              },
+              {
+                "Name": "Atrapa chłodnicy QWE",
+                "Quantity": 40,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 27.20,
+                "Manufacturer": "JKL Manufacturing",
+                "Model": "QWE456",
+                "ProductCode": "AC-004",
+                "CountryOfOrigin": "Canada",
+                "Weight": 2.3,
+                "Height": 52.0,
+                "Width": 32.0,
+                "Depth": 11.5
+              },
+              {
+                "Name": "Atrapa chłodnicy ASD",
+                "Quantity": 35,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 29.75,
+                "Manufacturer": "MNO Corp.",
+                "Model": "ASD789",
+                "ProductCode": "AC-005",
+                "CountryOfOrigin": "France",
+                "Weight": 2.4,
+                "Height": 53.0,
+                "Width": 31.0,
+                "Depth": 12.0
+              },
+              {
+                "Name": "Atrapa chłodnicy ZXC",
+                "Quantity": 60,
+                "MinimumQuantity": 12,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.10,
+                "Manufacturer": "PQR Industries",
+                "Model": "ZXC321",
+                "ProductCode": "AC-006",
+                "CountryOfOrigin": "Japan",
+                "Weight": 2.6,
+                "Height": 56.0,
+                "Width": 33.0,
+                "Depth": 11.8
+              },
+              {
+                "Name": "Atrapa chłodnicy RTY",
+                "Quantity": 45,
+                "MinimumQuantity": 9,
+                "UnitType": "sztuki",
+                "UnitPrice": 26.50,
+                "Manufacturer": "STU Ltd.",
+                "Model": "RTY654",
+                "ProductCode": "AC-007",
+                "CountryOfOrigin": "China",
+                "Weight": 2.7,
+                "Height": 57.0,
+                "Width": 34.0,
+                "Depth": 11.2
+              },
+              {
+                "Name": "Atrapa chłodnicy FGH",
+                "Quantity": 55,
+                "MinimumQuantity": 11,
+                "UnitType": "sztuki",
+                "UnitPrice": 31.25,
+                "Manufacturer": "VWX Manufacturing",
+                "Model": "FGH987",
+                "ProductCode": "AC-008",
+                "CountryOfOrigin": "South Korea",
+                "Weight": 2.8,
+                "Height": 58.0,
+                "Width": 35.0,
+                "Depth": 11.5
+              },
+              {
+                "Name": "Atrapa chłodnicy VBN",
+                "Quantity": 70,
+                "MinimumQuantity": 14,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.75,
+                "Manufacturer": "YZA Corp.",
+                "Model": "VBN654",
+                "ProductCode": "AC-009",
+                "CountryOfOrigin": "Brazil",
+                "Weight": 2.9,
+                "Height": 59.0,
+                "Width": 36.0,
+                "Depth": 11.0
+              },
+              {
+                "Name": "Atrapa chłodnicy UIO",
+                "Quantity": 38,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 30.80,
+                "Manufacturer": "123 Manufacturing",
+                "Model": "UIO321",
+                "ProductCode": "AC-010",
+                "CountryOfOrigin": "Mexico",
+                "Weight": 3.0,
+                "Height": 60.0,
+                "Width": 37.0,
+                "Depth": 10.5
+              }
+            ]
+          },
+          {
+            "name": "Belki",
+            "parts": [
+              {
+                "Name": "Belka przednia XYZ",
+                "Quantity": 20,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 45.90,
+                "Manufacturer": "ABC Manufacturing",
+                "Model": "XYZ001",
+                "ProductCode": "BLK-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 3.2,
+                "Height": 40.0,
+                "Width": 25.0,
+                "Depth": null
+              },
+              {
+                "Name": "Belka tylna ABC",
+                "Quantity": 15,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 35.25,
+                "Manufacturer": "DEF Inc.",
+                "Model": "ABC002",
+                "ProductCode": "BLK-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 3.0,
+                "Height": 38.0,
+                "Width": 22.5,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Belka lewa QWE",
+                "Quantity": 18,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.70,
+                "Manufacturer": "GHI Corp.",
+                "Model": "QWE003",
+                "ProductCode": "BLK-003",
+                "CountryOfOrigin": "Italy",
+                "Weight": 3.1,
+                "Height": 42.0,
+                "Width": 24.0,
+                "Depth": 10.0
+              },
+              {
+                "Name": "Belka prawa ASD",
+                "Quantity": 22,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 38.50,
+                "Manufacturer": "JKL Industries",
+                "Model": "ASD004",
+                "ProductCode": "BLK-004",
+                "CountryOfOrigin": "France",
+                "Weight": 3.3,
+                "Height": 44.0,
+                "Width": 23.5,
+                "Depth": 9.5
+              },
+              {
+                "Name": "Belka górna ZXC",
+                "Quantity": 25,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 41.20,
+                "Manufacturer": "MNO Corp.",
+                "Model": "ZXC005",
+                "ProductCode": "BLK-005",
+                "CountryOfOrigin": "Spain",
+                "Weight": 3.4,
+                "Height": 46.0,
+                "Width": 26.0,
+                "Depth": 9.0
+              },
+              {
+                "Name": "Belka dolna RTY",
+                "Quantity": 30,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 36.90,
+                "Manufacturer": "PQR Industries",
+                "Model": "RTY006",
+                "ProductCode": "BLK-006",
+                "CountryOfOrigin": "Portugal",
+                "Weight": 3.5,
+                "Height": 45.0,
+                "Width": 27.5,
+                "Depth": 8.5
+              },
+              {
+                "Name": "Belka środkowa FGH",
+                "Quantity": 28,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 39.75,
+                "Manufacturer": "STU Ltd.",
+                "Model": "FGH007",
+                "ProductCode": "BLK-007",
+                "CountryOfOrigin": "UK",
+                "Weight": 3.6,
+                "Height": 48.0,
+                "Width": 28.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Belka tylno-boczna VBN",
+                "Quantity": 26,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 37.60,
+                "Manufacturer": "YZA Corp.",
+                "Model": "VBN008",
+                "ProductCode": "BLK-008",
+                "CountryOfOrigin": "Netherlands",
+                "Weight": 3.7,
+                "Height": 49.0,
+                "Width": 29.0,
+                "Depth": 7.5
+              },
+              {
+                "Name": "Belka dolno-boczna UIO",
+                "Quantity": 24,
+                "MinimumQuantity": null,
+                "UnitType": "sztuki",
+                "UnitPrice": 40.45,
+                "Manufacturer": "123 Manufacturing",
+                "Model": "UIO009",
+                "ProductCode": "BLK-009",
+                "CountryOfOrigin": "Australia",
+                "Weight": 3.8,
+                "Height": 50.0,
+                "Width": 30.0,
+                "Depth": 7.0
+              },
+              {
+                "Name": "Belka górno-boczna 456",
+                "Quantity": 22,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.30,
+                "Manufacturer": "789 Industries",
+                "Model": "456010",
+                "ProductCode": "BLK-010",
+                "CountryOfOrigin": "Brazil",
+                "Weight": 3.9,
+                "Height": 51.0,
+                "Width": 31.0,
+                "Depth": 6.5
+              }
+            ]
+          },
+          {
+            "name": "Blachy",
+            "parts": [
+              {
+                "Name": "Blacha stalowa gr. 2mm",
+                "Quantity": 100,
+                "MinimumQuantity": 50,
+                "UnitType": "arkusze",
+                "UnitPrice": 15.90,
+                "Manufacturer": "MetalWorks Ltd.",
+                "Model": null,
+                "ProductCode": "BL-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 10.0,
+                "Height": 100.0,
+                "Width": 50.0,
+                "Depth": null
+              },
+              {
+                "Name": "Blacha aluminiowa gr. 1.5mm",
+                "Quantity": 80,
+                "MinimumQuantity": 40,
+                "UnitType": "arkusze",
+                "UnitPrice": 20.50,
+                "Manufacturer": "AluTech Inc.",
+                "Model": null,
+                "ProductCode": "BL-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 8.0,
+                "Height": 90.0,
+                "Width": 45.0,
+                "Depth": null
+              }
+            ]
+          },
+          {
+            "name": "Błotniki",
+            "parts": [
+              {
+                "Name": "Błotnik przedni lewy XYZ",
+                "Quantity": 30,
+                "MinimumQuantity": 15,
+                "UnitType": "sztuki",
+                "UnitPrice": 55.75,
+                "Manufacturer": "CarBody Parts Ltd.",
+                "Model": "XYZ123",
+                "ProductCode": "BLT-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 6.5,
+                "Height": 60.0,
+                "Width": 25.0,
+                "Depth": 10.0
+              },
+              {
+                "Name": "Błotnik przedni prawy ABC",
+                "Quantity": 25,
+                "MinimumQuantity": 12,
+                "UnitType": "sztuki",
+                "UnitPrice": 52.90,
+                "Manufacturer": "AutoMasters Inc.",
+                "Model": "ABC789",
+                "ProductCode": "BLT-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 7.0,
+                "Height": 58.0,
+                "Width": 23.0,
+                "Depth": 9.0
+              }
+            ]
+          },
+          {
+            "name": "Części montażowe",
+            "parts": [
+              {
+                "Name": "Śruba montażowa M6x20",
+                "Quantity": 500,
+                "MinimumQuantity": 200,
+                "UnitType": "sztuki",
+                "UnitPrice": 0.50,
+                "Manufacturer": "FastenIt Inc.",
+                "Model": null,
+                "ProductCode": "CM-001",
+                "CountryOfOrigin": "China",
+                "Weight": 0.02,
+                "Height": null,
+                "Width": null,
+                "Depth": null
+              },
+              {
+                "Name": "Złączka plastikowa do rur ø10mm",
+                "Quantity": 300,
+                "MinimumQuantity": 150,
+                "UnitType": "sztuki",
+                "UnitPrice": 0.35,
+                "Manufacturer": "PlasticTech Ltd.",
+                "Model": null,
+                "ProductCode": "CM-002",
+                "CountryOfOrigin": "Taiwan",
+                "Weight": 0.015,
+                "Height": null,
+                "Width": null,
+                "Depth": null
+              }
+            ]
+          },
+          {
+            "name": "Dachy",
+            "parts": [
+              {
+                "Name": "Dach stalowy do samochodu małego",
+                "Quantity": 12,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 280.00,
+                "Manufacturer": "RoofMaster Inc.",
+                "Model": "SM001",
+                "ProductCode": "DC-001",
+                "CountryOfOrigin": "USA",
+                "Weight": 25.0,
+                "Height": 150.0,
+                "Width": 100.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Dach aluminiowy do samochodu dużego",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 325.00,
+                "Manufacturer": "AluRoof Ltd.",
+                "Model": "LG002",
+                "ProductCode": "DC-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 28.0,
+                "Height": 160.0,
+                "Width": 110.0,
+                "Depth": 8.5
+              }
+            ]
+          },
+          {
+            "name": "Drzwi",
+            "parts": [
+              {
+                "Name": "Drzwi przednie lewe metalowe",
+                "Quantity": 18,
+                "MinimumQuantity": 9,
+                "UnitType": "sztuki",
+                "UnitPrice": 110.50,
+                "Manufacturer": "DoorTech Inc.",
+                "Model": "ML001",
+                "ProductCode": "DR-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 18.0,
+                "Height": 120.0,
+                "Width": 70.0,
+                "Depth": 6.5
+              },
+              {
+                "Name": "Drzwi tylne prawe plastikowe",
+                "Quantity": 15,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 95.25,
+                "Manufacturer": "PlasDoor Ltd.",
+                "Model": "PL002",
+                "ProductCode": "DR-002",
+                "CountryOfOrigin": "Italy",
+                "Weight": 16.0,
+                "Height": 110.0,
+                "Width": 65.0,
+                "Depth": 6.0
+              }
+            ]
+          },
+          {
+            "name": "Kabiny",
+            "parts": [
+              {
+                "Name": "Kabina kierowcy metalowa do małego samochodu",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 470.00,
+                "Manufacturer": "CabinMasters Inc.",
+                "Model": "SM001",
+                "ProductCode": "KB-001",
+                "CountryOfOrigin": "Germany",
+                "Weight": 55.0,
+                "Height": 140.0,
+                "Width": 80.0,
+                "Depth": 7.0
+              },
+              {
+                "Name": "Kabina pasażera plastikowa do dużego samochodu",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 510.00,
+                "Manufacturer": "PlasCabin Ltd.",
+                "Model": "LG002",
+                "ProductCode": "KB-002",
+                "CountryOfOrigin": "France",
+                "Weight": 60.0,
+                "Height": 150.0,
+                "Width": 85.0,
+                "Depth": 7.5
+              }
+            ]
+          },
+          {
+            "name": "Klapki wlewu paliwa",
+            "parts": [
+              {
+                "Name": "Klapka wlewu paliwa metalowa do samochodów osobowych",
+                "Quantity": 45,
+                "MinimumQuantity": 20,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.75,
+                "Manufacturer": "FuelTech Inc.",
+                "Model": null,
+                "ProductCode": "FWP-001",
+                "CountryOfOrigin": "Italy",
+                "Weight": 1.2,
+                "Height": 15.0,
+                "Width": 10.0,
+                "Depth": 3.0
+              },
+              {
+                "Name": "Klapka wlewu paliwa plastikowa do samochodów ciężarowych",
+                "Quantity": 30,
+                "MinimumQuantity": 15,
+                "UnitType": "sztuki",
+                "UnitPrice": 6.50,
+                "Manufacturer": "TruckFuel Ltd.",
+                "Model": null,
+                "ProductCode": "FWP-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.0,
+                "Height": 14.0,
+                "Width": 9.0,
+                "Depth": 2.5
+              }
+            ]
+          },
+          {
+            "name": "Klapy bagażnika",
+            "parts": [
+              {
+                "Name": "Klapa bagażnika metalowa do samochodów kompaktowych",
+                "Quantity": 20,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 95.50,
+                "Manufacturer": "TrunkMasters Inc.",
+                "Model": null,
+                "ProductCode": "TB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 12.0,
+                "Height": 70.0,
+                "Width": 120.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Klapa bagażnika plastikowa do samochodów SUV",
+                "Quantity": 18,
+                "MinimumQuantity": 9,
+                "UnitType": "sztuki",
+                "UnitPrice": 87.25,
+                "Manufacturer": "PlasTrunk Ltd.",
+                "Model": null,
+                "ProductCode": "TB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 11.0,
+                "Height": 65.0,
+                "Width": 110.0,
+                "Depth": 7.0
+              }
+            ]
+          },
+          {
+            "name": "Listwy",
+            "parts": [
+              {
+                "Name": "Listwa ozdobna chromowana",
+                "Quantity": 50,
+                "MinimumQuantity": 20,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.75,
+                "Manufacturer": "AutoStyle Accessories",
+                "Model": "LSTW001",
+                "ProductCode": "LT-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.2,
+                "Height": 10.0,
+                "Width": 2.0,
+                "Depth": null
+              },
+              {
+                "Name": "Listwa progowa aluminium",
+                "Quantity": 35,
+                "MinimumQuantity": 15,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "CarCrafters Ltd.",
+                "Model": "LSTW002",
+                "ProductCode": "LT-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.5,
+                "Height": 12.0,
+                "Width": 3.0,
+                "Depth": null
+              }
+            ]
+          },
+          {
+            "name": "Lusterka zewnętrzne",
+            "parts": [
+              {
+                "Name": "Lusterko zewnętrzne lewe elektryczne",
+                "Quantity": 40,
+                "MinimumQuantity": 18,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.50,
+                "Manufacturer": "MirrorTech Inc.",
+                "Model": "LTZ001",
+                "ProductCode": "LZ-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.8,
+                "Height": 15.0,
+                "Width": 10.0,
+                "Depth": 5.0
+              },
+              {
+                "Name": "Lusterko zewnętrzne prawe mechaniczne",
+                "Quantity": 30,
+                "MinimumQuantity": 12,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "ViewMax Parts",
+                "Model": "LTZ002",
+                "ProductCode": "LZ-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.6,
+                "Height": 14.0,
+                "Width": 9.0,
+                "Depth": 4.5
+              }
+            ]
+          },
+          {
+            "name": "Maski",
+            "parts": [
+              {
+                "Name": "Maska przednia zderzaka XYZ",
+                "Quantity": 25,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 65.20,
+                "Manufacturer": "BumperMasters Ltd.",
+                "Model": "MSK001",
+                "ProductCode": "MK-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 5.0,
+                "Height": 30.0,
+                "Width": 60.0,
+                "Depth": 20.0
+              },
+              {
+                "Name": "Maska przednia zderzaka ABC",
+                "Quantity": 20,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 72.50,
+                "Manufacturer": "FrontGuard Industries",
+                "Model": "MSK002",
+                "ProductCode": "MK-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 5.5,
+                "Height": 32.0,
+                "Width": 62.0,
+                "Depth": 22.0
+              }
+            ]
+          },
+          {
+            "name": "Nadkola",
+            "parts": [
+              {
+                "Name": "Nadkole przednie lewe",
+                "Quantity": 15,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 38.90,
+                "Manufacturer": "WheelGuard Ltd.",
+                "Model": "NDK001",
+                "ProductCode": "NDK-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 3.2,
+                "Height": 18.0,
+                "Width": 50.0,
+                "Depth": 15.0
+              },
+              {
+                "Name": "Nadkole przednie prawe",
+                "Quantity": 12,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.75,
+                "Manufacturer": "Guardian Wheels Inc.",
+                "Model": "NDK002",
+                "ProductCode": "NDK-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 3.5,
+                "Height": 19.0,
+                "Width": 52.0,
+                "Depth": 16.0
+              }
+            ]
+          },
+          {
+            "name": "Osłony przeciwbłotne",
+            "parts": [
+              {
+                "Name": "Osłona przeciwbłotna przednia lewa",
+                "Quantity": 18,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 26.50,
+                "Manufacturer": "MudStopper Ltd.",
+                "Model": "OSL001",
+                "ProductCode": "OSL-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.0,
+                "Height": 14.0,
+                "Width": 48.0,
+                "Depth": 12.0
+              },
+              {
+                "Name": "Osłona przeciwbłotna przednia prawa",
+                "Quantity": 14,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 29.90,
+                "Manufacturer": "Guardian Shields Inc.",
+                "Model": "OSL002",
+                "ProductCode": "OSL-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.2,
+                "Height": 15.0,
+                "Width": 50.0,
+                "Depth": 11.0
+              }
+            ]
+          },
+          {
+            "name": "Pasy przednie",
+            "parts": [
+              {
+                "Name": "Pas przedni zderzaka XYZ",
+                "Quantity": 22,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 35.75,
+                "Manufacturer": "BumperSavers Ltd.",
+                "Model": "PSY001",
+                "ProductCode": "PSY-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.5,
+                "Height": 13.0,
+                "Width": 55.0,
+                "Depth": 18.0
+              },
+              {
+                "Name": "Pas przedni zderzaka ABC",
+                "Quantity": 20,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 39.60,
+                "Manufacturer": "Guardian Bumpers Inc.",
+                "Model": "PSY002",
+                "ProductCode": "PSY-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.8,
+                "Height": 14.0,
+                "Width": 58.0,
+                "Depth": 19.0
+              }
+            ]
+          },
+          {
+            "name": "Pasy tylne",
+            "parts": [
+              {
+                "Name": "Pas tylny zderzaka XYZ",
+                "Quantity": 18,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.50,
+                "Manufacturer": "RearGuard Ltd.",
+                "Model": "PTY001",
+                "ProductCode": "PTY-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.3,
+                "Height": 12.0,
+                "Width": 54.0,
+                "Depth": 16.0
+              },
+              {
+                "Name": "Pas tylny zderzaka ABC",
+                "Quantity": 16,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 36.20,
+                "Manufacturer": "RearDefender Inc.",
+                "Model": "PTY002",
+                "ProductCode": "PTY-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.6,
+                "Height": 11.0,
+                "Width": 56.0,
+                "Depth": 17.0
+              }
+            ]
+          },
+          {
+            "name": "Podłogi",
+            "parts": [
+              {
+                "Name": "Podłoga przednia stalowa XYZ",
+                "Quantity": 28,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "FloorMasters Ltd.",
+                "Model": "PDG001",
+                "ProductCode": "PD-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 3.8,
+                "Height": 12.0,
+                "Width": 60.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Podłoga przednia aluminium ABC",
+                "Quantity": 25,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.50,
+                "Manufacturer": "AluFloor Inc.",
+                "Model": "PDG002",
+                "ProductCode": "PD-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 4.2,
+                "Height": 11.0,
+                "Width": 58.0,
+                "Depth": 7.5
+              }
+            ]
+          },
+          {
+            "name": "Podszybia",
+            "parts": [
+              {
+                "Name": "Podszybie przednie lewe plastikowe XYZ",
+                "Quantity": 20,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.75,
+                "Manufacturer": "UnderGuard Ltd.",
+                "Model": "PDS001",
+                "ProductCode": "PSB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.0,
+                "Height": 8.0,
+                "Width": 55.0,
+                "Depth": 6.0
+              },
+              {
+                "Name": "Podszybie przednie prawe plastikowe ABC",
+                "Quantity": 18,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 21.50,
+                "Manufacturer": "Guardian Shields Inc.",
+                "Model": "PDS002",
+                "ProductCode": "PSB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.2,
+                "Height": 7.5,
+                "Width": 53.0,
+                "Depth": 5.5
+              }
+            ]
+          },
+          {
+            "name": "Progi",
+            "parts": [
+              {
+                "Name": "Progi boczne lewe stalowe XYZ",
+                "Quantity": 16,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 24.90,
+                "Manufacturer": "SideGuard Ltd.",
+                "Model": "PRG001",
+                "ProductCode": "PR-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.5,
+                "Height": 7.0,
+                "Width": 50.0,
+                "Depth": 5.0
+              },
+              {
+                "Name": "Progi boczne prawe stalowe ABC",
+                "Quantity": 14,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.60,
+                "Manufacturer": "Guardian Bars Inc.",
+                "Model": "PRG002",
+                "ProductCode": "PR-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.7,
+                "Height": 6.5,
+                "Width": 48.0,
+                "Depth": 4.5
+              }
+            ]
+          },
+          {
+            "name": "Ramy",
+            "parts": [
+              {
+                "Name": "Rama przednia stalowa XYZ",
+                "Quantity": 12,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 45.75,
+                "Manufacturer": "FrameMasters Ltd.",
+                "Model": "RM001",
+                "ProductCode": "RM-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 5.0,
+                "Height": 20.0,
+                "Width": 70.0,
+                "Depth": 10.0
+              },
+              {
+                "Name": "Rama tylna stalowa ABC",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 49.90,
+                "Manufacturer": "Guardian Frames Inc.",
+                "Model": "RM002",
+                "ProductCode": "RM-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 5.2,
+                "Height": 19.0,
+                "Width": 68.0,
+                "Depth": 9.0
+              }
+            ]
+          },
+          {
+            "name": "Słupki",
+            "parts": [
+              {
+                "Name": "Słupki boczne przednie lewe stalowe XYZ",
+                "Quantity": 14,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 29.90,
+                "Manufacturer": "PillarMasters Ltd.",
+                "Model": "SLP001",
+                "ProductCode": "SLP-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 3.0,
+                "Height": 15.0,
+                "Width": 6.0,
+                "Depth": 4.0
+              },
+              {
+                "Name": "Słupki boczne przednie prawe stalowe ABC",
+                "Quantity": 12,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.50,
+                "Manufacturer": "Guardian Pillars Inc.",
+                "Model": "SLP002",
+                "ProductCode": "SLP-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 3.2,
+                "Height": 14.0,
+                "Width": 5.5,
+                "Depth": 3.5
+              }
+            ]
+          },
+          {
+            "name": "Spoilery",
+            "parts": [
+              {
+                "Name": "Spoiler tylny stalowy XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 58.90,
+                "Manufacturer": "SpoilerTech Ltd.",
+                "Model": "SPL001",
+                "ProductCode": "SP-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 4.5,
+                "Height": 12.0,
+                "Width": 58.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Spoiler przedni plastikowy ABC",
+                "Quantity": 9,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 63.75,
+                "Manufacturer": "AeroSpoilers Inc.",
+                "Model": "SPL002",
+                "ProductCode": "SP-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 4.8,
+                "Height": 11.0,
+                "Width": 56.0,
+                "Depth": 7.5
+              }
+            ]
+          },
+          {
+            "name": "Stopnie",
+            "parts": [
+              {
+                "Name": "Stopnie boczne stalowe XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.90,
+                "Manufacturer": "StepMasters Ltd.",
+                "Model": "STP001",
+                "ProductCode": "ST-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 3.2,
+                "Height": 8.0,
+                "Width": 45.0,
+                "Depth": 6.0
+              },
+              {
+                "Name": "Stopnie boczne aluminium ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 46.50,
+                "Manufacturer": "AluSteps Inc.",
+                "Model": "STP002",
+                "ProductCode": "ST-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 3.5,
+                "Height": 7.5,
+                "Width": 43.0,
+                "Depth": 5.5
+              }
+            ]
+          },
+          {
+            "name": "Szyby",
+            "parts": [
+              {
+                "Name": "Szyba przednia samochodu XYZ",
+                "Quantity": 25,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 75.90,
+                "Manufacturer": "GlassMasters Ltd.",
+                "Model": "SZB001",
+                "ProductCode": "SZ-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 6.0,
+                "Height": 20.0,
+                "Width": 60.0,
+                "Depth": 5.0
+              },
+              {
+                "Name": "Szyba tylna samochodu ABC",
+                "Quantity": 22,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 82.50,
+                "Manufacturer": "AutoGlass Inc.",
+                "Model": "SZB002",
+                "ProductCode": "SZ-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 6.5,
+                "Height": 21.0,
+                "Width": 58.0,
+                "Depth": 5.5
+              }
+            ]
+          },
+          {
+            "name": "Ściany, panele",
+            "parts": [
+              {
+                "Name": "Ściana boczna lewa stalowa XYZ",
+                "Quantity": 18,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 49.90,
+                "Manufacturer": "WallMasters Ltd.",
+                "Model": "SCP001",
+                "ProductCode": "SP-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 4.0,
+                "Height": 18.0,
+                "Width": 70.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Ściana boczna prawa stalowa ABC",
+                "Quantity": 15,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 54.75,
+                "Manufacturer": "PanelTech Inc.",
+                "Model": "SCP002",
+                "ProductCode": "SP-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 4.2,
+                "Height": 17.0,
+                "Width": 68.0,
+                "Depth": 7.5
+              }
+            ]
+          },
+          {
+            "name": "Wsporniki, mocowania",
+            "parts": [
+              {
+                "Name": "Wspornik silnika lewy stalowy XYZ",
+                "Quantity": 12,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 36.90,
+                "Manufacturer": "EngineSupport Ltd.",
+                "Model": "WSM001",
+                "ProductCode": "WS-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 2.5,
+                "Height": 10.0,
+                "Width": 35.0,
+                "Depth": 5.0
+              },
+              {
+                "Name": "Wspornik skrzyni biegów prawy stalowy ABC",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.50,
+                "Manufacturer": "GearMount Inc.",
+                "Model": "WSM002",
+                "ProductCode": "WS-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 2.8,
+                "Height": 11.0,
+                "Width": 38.0,
+                "Depth": 5.5
+              }
+            ]
+          },
+          {
+            "name": "Zabudowy",
+            "parts": [
+              {
+                "Name": "Zabudowa przestrzeni ładunkowej stalowa XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 65.90,
+                "Manufacturer": "CargoCovers Ltd.",
+                "Model": "ZBD001",
+                "ProductCode": "ZB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 7.0,
+                "Height": 20.0,
+                "Width": 80.0,
+                "Depth": 10.0
+              },
+              {
+                "Name": "Zabudowa przestrzeni ładunkowej aluminiowa ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 72.25,
+                "Manufacturer": "CargoTech Inc.",
+                "Model": "ZBD002",
+                "ProductCode": "ZB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 6.5,
+                "Height": 18.0,
+                "Width": 78.0,
+                "Depth": 9.0
+              }
+            ]
+          },
+          {
+            "name": "Zderzaki",
+            "parts": [
+              {
+                "Name": "Zderzak przedni stalowy XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 88.90,
+                "Manufacturer": "BumperMasters Ltd.",
+                "Model": "ZDK001",
+                "ProductCode": "ZD-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 9.0,
+                "Height": 15.0,
+                "Width": 70.0,
+                "Depth": 8.0
+              },
+              {
+                "Name": "Zderzak tylny plastikowy ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 92.75,
+                "Manufacturer": "Guardian Bumpers Inc.",
+                "Model": "ZDK002",
+                "ProductCode": "ZD-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 8.5,
+                "Height": 14.0,
+                "Width": 68.0,
+                "Depth": 7.5
+              }
+            ]
+          },
+          {
+            "name": "Zestawy części blacharskich",
+            "parts": [
+              {
+                "Name": "Zestaw blacharski do naprawy XYZ",
+                "Quantity": 4,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 110.90,
+                "Manufacturer": "SheetMetalWorks Ltd.",
+                "Model": "ZCB001",
+                "ProductCode": "ZCB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 10.0,
+                "Height": 12.0,
+                "Width": 50.0,
+                "Depth": 6.0
+              },
+              {
+                "Name": "Zestaw blacharski do naprawy ABC",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 115.50,
+                "Manufacturer": "MetalTech Inc.",
+                "Model": "ZCB002",
+                "ProductCode": "ZCB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 9.5,
+                "Height": 11.0,
+                "Width": 48.0,
+                "Depth": 5.5
+              }
+            ]
+          },
+          {
+            "name": "Pozostałe",
+            "parts": [
+              {
+                "Name": "Pozostała część numer jeden",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 125.90,
+                "Manufacturer": "Miscellaneous Parts Ltd.",
+                "Model": "OTH001",
+                "ProductCode": "OTH-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 11.0,
+                "Height": 10.0,
+                "Width": 45.0,
+                "Depth": 4.0
+              },
+              {
+                "Name": "Pozostała część numer dwa",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 135.75,
+                "Manufacturer": "Miscellaneous Parts Inc.",
+                "Model": "OTH002",
+                "ProductCode": "OTH-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 10.5,
+                "Height": 9.0,
+                "Width": 43.0,
+                "Depth": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Filtry",
+        "subcategories": [
+          {
+            "name": "Filtry hydrauliczne",
+            "parts": [
+              {
+                "Name": "Filtr hydrauliczny standardowy XYZ",
+                "Quantity": 35,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 15.90,
+                "Manufacturer": "HydraFilters Ltd.",
+                "Model": "FHY001",
+                "ProductCode": "FHY-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.5,
+                "Height": 5.0,
+                "Width": 10.0,
+                "Depth": 3.0
+              },
+              {
+                "Name": "Filtr hydrauliczny duży ABC",
+                "Quantity": 30,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.50,
+                "Manufacturer": "HydraTech Inc.",
+                "Model": "FHY002",
+                "ProductCode": "FHY-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.8,
+                "Height": 6.0,
+                "Width": 12.0,
+                "Depth": 3.5
+              }
+            ]
+          },
+          {
+            "name": "Filtry kabinowe",
+            "parts": [
+              {
+                "Name": "Filtr kabinowy standardowy XYZ",
+                "Quantity": 28,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.90,
+                "Manufacturer": "CabinGuard Ltd.",
+                "Model": "FKB001",
+                "ProductCode": "FKB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.2,
+                "Height": 4.0,
+                "Width": 9.0,
+                "Depth": 2.5
+              },
+              {
+                "Name": "Filtr kabinowy premium ABC",
+                "Quantity": 25,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 14.50,
+                "Manufacturer": "AirPure Inc.",
+                "Model": "FKB002",
+                "ProductCode": "FKB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.5,
+                "Height": 4.5,
+                "Width": 10.0,
+                "Depth": 3.0
+              }
+            ]
+          },
+          {
+            "name": "Filtry odmy",
+            "parts": [
+              {
+                "Name": "Filtr odmy standardowy XYZ",
+                "Quantity": 22,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 10.75,
+                "Manufacturer": "VentGuard Ltd.",
+                "Model": "FOD001",
+                "ProductCode": "FOD-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.0,
+                "Height": 3.0,
+                "Width": 8.0,
+                "Depth": 2.0
+              },
+              {
+                "Name": "Filtr odmy premium ABC",
+                "Quantity": 20,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.20,
+                "Manufacturer": "PureVent Inc.",
+                "Model": "FOD002",
+                "ProductCode": "FOD-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.1,
+                "Height": 3.5,
+                "Width": 9.0,
+                "Depth": 2.5
+              }
+            ]
+          },
+          {
+            "name": "Filtry oleju",
+            "parts": [
+              {
+                "Name": "Filtr oleju standardowy XYZ",
+                "Quantity": 18,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.90,
+                "Manufacturer": "OilGuard Ltd.",
+                "Model": "FOL001",
+                "ProductCode": "FOL-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 0.8,
+                "Height": 2.5,
+                "Width": 7.0,
+                "Depth": 1.5
+              },
+              {
+                "Name": "Filtr oleju premium ABC",
+                "Quantity": 15,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 10.25,
+                "Manufacturer": "PureOil Inc.",
+                "Model": "FOL002",
+                "ProductCode": "FOL-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 0.9,
+                "Height": 3.0,
+                "Width": 7.5,
+                "Depth": 1.8
+              }
+            ]
+          },
+          {
+            "name": "Filtry paliwa",
+            "parts": [
+              {
+                "Name": "Filtr paliwa standardowy XYZ",
+                "Quantity": 12,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 7.50,
+                "Manufacturer": "FuelGuard Ltd.",
+                "Model": "FP001",
+                "ProductCode": "FP-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 0.6,
+                "Height": 2.0,
+                "Width": 6.0,
+                "Depth": 1.2
+              },
+              {
+                "Name": "Filtr paliwa premium ABC",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.90,
+                "Manufacturer": "PureFuel Inc.",
+                "Model": "FP002",
+                "ProductCode": "FP-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 0.7,
+                "Height": 2.2,
+                "Width": 6.5,
+                "Depth": 1.5
+              }
+            ]
+          },
+          {
+            "name": "Filtry powietrza",
+            "parts": [
+              {
+                "Name": "Filtr powietrza standardowy XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 6.75,
+                "Manufacturer": "AirGuard Ltd.",
+                "Model": "FPA001",
+                "ProductCode": "FPA-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 0.5,
+                "Height": 1.8,
+                "Width": 5.5,
+                "Depth": 1.0
+              },
+              {
+                "Name": "Filtr powietrza premium ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 7.50,
+                "Manufacturer": "PureAir Inc.",
+                "Model": "FPA002",
+                "ProductCode": "FPA-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 0.6,
+                "Height": 2.0,
+                "Width": 6.0,
+                "Depth": 1.2
+              }
+            ]
+          },
+          {
+            "name": "Filtry skrzyni biegów",
+            "parts": [
+              {
+                "Name": "Filtr skrzyni biegów standardowy XYZ",
+                "Quantity": 5,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 5.90,
+                "Manufacturer": "GearGuard Ltd.",
+                "Model": "FSB001",
+                "ProductCode": "FSB-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 0.4,
+                "Height": 1.5,
+                "Width": 4.5,
+                "Depth": 0.8
+              },
+              {
+                "Name": "Filtr skrzyni biegów premium ABC",
+                "Quantity": 4,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 6.25,
+                "Manufacturer": "PureGear Inc.",
+                "Model": "FSB002",
+                "ProductCode": "FSB-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 0.5,
+                "Height": 1.7,
+                "Width": 5.0,
+                "Depth": 1.0
+              }
+            ]
+          },
+          {
+            "name": "Inne filtry",
+            "parts": [
+              {
+                "Name": "Filtr inne zastosowanie XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 4.90,
+                "Manufacturer": "MultiGuard Ltd.",
+                "Model": "FIN001",
+                "ProductCode": "FIN-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 0.3,
+                "Height": 1.2,
+                "Width": 4.0,
+                "Depth": 0.7
+              },
+              {
+                "Name": "Filtr inne zastosowanie ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 5.50,
+                "Manufacturer": "Universal Filters Inc.",
+                "Model": "FIN002",
+                "ProductCode": "FIN-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 0.4,
+                "Height": 1.3,
+                "Width": 4.2,
+                "Depth": 0.8
+              }
+            ]
+          },
+          {
+            "name": "Zestawy filtrów",
+            "parts": [
+              {
+                "Name": "Zestaw filtrów standardowy XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "FilterMasters Ltd.",
+                "Model": "ZFX001",
+                "ProductCode": "ZFX-001",
+                "CountryOfOrigin": "Poland",
+                "Weight": 1.0,
+                "Height": 3.0,
+                "Width": 8.0,
+                "Depth": 2.0
+              },
+              {
+                "Name": "Zestaw filtrów premium ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.50,
+                "Manufacturer": "PureFilters Inc.",
+                "Model": "ZFX002",
+                "ProductCode": "ZFX-002",
+                "CountryOfOrigin": "Germany",
+                "Weight": 1.2,
+                "Height": 3.5,
+                "Width": 8.5,
+                "Depth": 2.2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Oświetlenie",
+        "subcategories": [
+          {
+            "name": "Części montażowe",
+            "parts": [
+              {
+                "Name": "Zestaw śrub i nakrętek do montażu XYZ",
+                "Quantity": 30,
+                "MinimumQuantity": 10,
+                "UnitType": "sztuki",
+                "UnitPrice": 3.90,
+                "Manufacturer": "MountingParts Ltd.",
+                "Model": "CMP001",
+                "ProductCode": "CMP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Klamry montażowe metalowe ABC",
+                "Quantity": 25,
+                "MinimumQuantity": 8,
+                "UnitType": "sztuki",
+                "UnitPrice": 4.50,
+                "Manufacturer": "FastenTech Inc.",
+                "Model": "CMP002",
+                "ProductCode": "CMP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Gniazda żarówek",
+            "parts": [
+              {
+                "Name": "Gniazdo żarówki standardowe XYZ",
+                "Quantity": 20,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 2.90,
+                "Manufacturer": "LightSocket Ltd.",
+                "Model": "GS001",
+                "ProductCode": "GS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Gniazdo żarówki metalowe ABC",
+                "Quantity": 18,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 3.25,
+                "Manufacturer": "BulbTech Inc.",
+                "Model": "GS002",
+                "ProductCode": "GS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampy przednie i elementy",
+            "parts": [
+              {
+                "Name": "Lampa przednia lewa halogenowa XYZ",
+                "Quantity": 15,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "HeadlightMasters Ltd.",
+                "Model": "LP001",
+                "ProductCode": "LP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Soczewka do lampy przedniej ABC",
+                "Quantity": 12,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 15.50,
+                "Manufacturer": "LensTech Inc.",
+                "Model": "LP002",
+                "ProductCode": "LP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampy tylne i elementy",
+            "parts": [
+              {
+                "Name": "Lampa tylna prawa LED XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 35.90,
+                "Manufacturer": "TailLightTech Ltd.",
+                "Model": "LT001",
+                "ProductCode": "LT-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Obudowa lampy tylnej metalowa ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "HousingSolutions Inc.",
+                "Model": "LT002",
+                "ProductCode": "LT-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Uszczelki",
+            "parts": [
+              {
+                "Name": "Uszczelka gumowa okrągła XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 5.90,
+                "Manufacturer": "SealTech Ltd.",
+                "Model": "US001",
+                "ProductCode": "US-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Uszczelka płaska metalowa ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 6.25,
+                "Manufacturer": "MetalSeal Inc.",
+                "Model": "US002",
+                "ProductCode": "US-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Wsporniki, mocowania, obudowy",
+            "parts": [
+              {
+                "Name": "Wspornik metalowy XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.90,
+                "Manufacturer": "BracketMasters Ltd.",
+                "Model": "WMO001",
+                "ProductCode": "WMO-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Obudowa plastikowa ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 9.50,
+                "Manufacturer": "PlasticTech Inc.",
+                "Model": "WMO002",
+                "ProductCode": "WMO-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Kierunkowskazy",
+            "parts": [
+              {
+                "Name": "Kierunkowskaz przedni lewy LED XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "TurnSignalTech Ltd.",
+                "Model": "KS001",
+                "ProductCode": "KS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Kierunkowskaz tylny prawy LED ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 16.75,
+                "Manufacturer": "SignalSolutions Inc.",
+                "Model": "KS002",
+                "ProductCode": "KS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampki tablicy rejestracyjnej",
+            "parts": [
+              {
+                "Name": "Lampka tablicy rejestracyjnej LED XYZ",
+                "Quantity": 20,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.90,
+                "Manufacturer": "PlateLightTech Ltd.",
+                "Model": "LTR001",
+                "ProductCode": "LTR-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Lampka tablicy rejestracyjnej halogenowa ABC",
+                "Quantity": 18,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 9.25,
+                "Manufacturer": "PlateLite Inc.",
+                "Model": "LTR002",
+                "ProductCode": "LTR-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampy obrysowe",
+            "parts": [
+              {
+                "Name": "Lampa obrysowa LED czerwona XYZ",
+                "Quantity": 15,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 14.90,
+                "Manufacturer": "OutlineLight Ltd.",
+                "Model": "LO001",
+                "ProductCode": "LO-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Lampa obrysowa pomarańczowa ABC",
+                "Quantity": 12,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.50,
+                "Manufacturer": "OutlineTech Inc.",
+                "Model": "LO002",
+                "ProductCode": "LO-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampy ostrzegawcze, koguty",
+            "parts": [
+              {
+                "Name": "Lampa ostrzegawcza LED z kogutem XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 45.90,
+                "Manufacturer": "WarningLightMasters Ltd.",
+                "Model": "LOW001",
+                "ProductCode": "LOW-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Lampa ostrzegawcza kogut halogenowa ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 39.75,
+                "Manufacturer": "WarningLite Inc.",
+                "Model": "LOW002",
+                "ProductCode": "LOW-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Lampy robocze",
+            "parts": [
+              {
+                "Name": "Lampa robocza LED duża XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.90,
+                "Manufacturer": "WorkLightTech Ltd.",
+                "Model": "LR001",
+                "ProductCode": "LR-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Lampa robocza kompaktowa halogenowa ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.50,
+                "Manufacturer": "WorkLite Inc.",
+                "Model": "LR002",
+                "ProductCode": "LR-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Odblaski",
+            "parts": [
+              {
+                "Name": "Odblask prostokątny czerwony XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 5.90,
+                "Manufacturer": "ReflectGuard Ltd.",
+                "Model": "OB001",
+                "ProductCode": "OB-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Odblask okrągły biały ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 4.75,
+                "Manufacturer": "ReflectTech Inc.",
+                "Model": "OB002",
+                "ProductCode": "OB-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Czujniki",
+            "parts": [
+              {
+                "Name": "Czujnik parkowania ultradźwiękowy XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "SensorTech Ltd.",
+                "Model": "CJ001",
+                "ProductCode": "CJ-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Czujnik ruchu mikrofalowy ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "MotionSensor Inc.",
+                "Model": "CJ002",
+                "ProductCode": "CJ-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Sterowniki świateł",
+            "parts": [
+              {
+                "Name": "Sterownik świateł LED XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.90,
+                "Manufacturer": "LightControlTech Ltd.",
+                "Model": "SS001",
+                "ProductCode": "SS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Sterownik świateł halogenowych ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.50,
+                "Manufacturer": "LightControl Inc.",
+                "Model": "SS002",
+                "ProductCode": "SS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Pozostałe",
+            "parts": [
+              {
+                "Name": "Elementy elektryczne różne XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.90,
+                "Manufacturer": "ElectroTech Ltd.",
+                "Model": "PE001",
+                "ProductCode": "PE-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Akcesoria elektroniczne ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 9.50,
+                "Manufacturer": "ElectronicSolutions Inc.",
+                "Model": "PE002",
+                "ProductCode": "PE-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Silniki i osprzęt",
+        "subcategories": [
+          {
+            "name": "Blok silnika",
+            "parts": [
+              {
+                "Name": "Blok silnika aluminiowy XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 280.90,
+                "Manufacturer": "EngineBlockMasters Ltd.",
+                "Model": "BS001",
+                "ProductCode": "BS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Blok silnika żeliwny ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 310.75,
+                "Manufacturer": "EngineBlockTech Inc.",
+                "Model": "BS002",
+                "ProductCode": "BS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Czujniki ciśnienia w kolektorze (MAP)",
+            "parts": [
+              {
+                "Name": "Czujnik ciśnienia MAP standardowy XYZ",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 46.90,
+                "Manufacturer": "SensorMasters Ltd.",
+                "Model": "CC001",
+                "ProductCode": "CC-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Czujnik ciśnienia MAP premium ABC",
+                "Quantity": 4,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 52.50,
+                "Manufacturer": "SensorTech Inc.",
+                "Model": "CC002",
+                "ProductCode": "CC-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Czujniki spalania stukowego",
+            "parts": [
+              {
+                "Name": "Czujnik spalania stukowego standardowy XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 38.90,
+                "Manufacturer": "KnockSensorMasters Ltd.",
+                "Model": "CS001",
+                "ProductCode": "CS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Czujnik spalania stukowego premium ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.75,
+                "Manufacturer": "KnockSensorTech Inc.",
+                "Model": "CS002",
+                "ProductCode": "CS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Elementy napędu paska osprzętu",
+            "parts": [
+              {
+                "Name": "Napinacz paska osprzętu metalowy XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "BeltDriveMasters Ltd.",
+                "Model": "ENP001",
+                "ProductCode": "ENP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Koło pasowe osprzętu plastikowe ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "DriveWheelTech Inc.",
+                "Model": "ENP002",
+                "ProductCode": "ENP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Głowice cylindrów",
+            "parts": [
+              {
+                "Name": "Głowica cylindra aluminiowa XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 145.90,
+                "Manufacturer": "CylinderHeadMasters Ltd.",
+                "Model": "GCM001",
+                "ProductCode": "GCM-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Głowica cylindra żeliwna ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 160.50,
+                "Manufacturer": "CylinderHeadTech Inc.",
+                "Model": "GCM002",
+                "ProductCode": "GCM-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Kolektory ssące",
+            "parts": [
+              {
+                "Name": "Kolektor ssący plastikowy XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 68.90,
+                "Manufacturer": "IntakeManifoldMasters Ltd.",
+                "Model": "KSM001",
+                "ProductCode": "KSM-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Kolektor ssący metalowy ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 75.25,
+                "Manufacturer": "IntakeManifoldTech Inc.",
+                "Model": "KSM002",
+                "ProductCode": "KSM-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Linki gazu",
+            "parts": [
+              {
+                "Name": "Linka gazu standardowa XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "ThrottleCableMasters Ltd.",
+                "Model": "LG001",
+                "ProductCode": "LG-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Linka gazu metalowa ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.75,
+                "Manufacturer": "ThrottleCableTech Inc.",
+                "Model": "LG002",
+                "ProductCode": "LG-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Obudowy filtrów powietrza",
+            "parts": [
+              {
+                "Name": "Obudowa filtra powietrza plastikowa XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.90,
+                "Manufacturer": "AirFilterHousingMasters Ltd.",
+                "Model": "OFP001",
+                "ProductCode": "OFP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Obudowa filtra powietrza metalowa ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 26.50,
+                "Manufacturer": "AirFilterHousingTech Inc.",
+                "Model": "OFP002",
+                "ProductCode": "OFP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Osłony silnika",
+            "parts": [
+              {
+                "Name": "Osłona silnika plastikowa XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 35.90,
+                "Manufacturer": "EngineShieldMasters Ltd.",
+                "Model": "OS001",
+                "ProductCode": "OS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Osłona silnika metalowa ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 40.75,
+                "Manufacturer": "EngineShieldTech Inc.",
+                "Model": "OS002",
+                "ProductCode": "OS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Pompy podciśnieniowe",
+            "parts": [
+              {
+                "Name": "Pompa podciśnieniowa plastikowa XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.90,
+                "Manufacturer": "VacuumPumpMasters Ltd.",
+                "Model": "PP001",
+                "ProductCode": "PP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Pompa podciśnieniowa metalowa ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 46.50,
+                "Manufacturer": "VacuumPumpTech Inc.",
+                "Model": "PP002",
+                "ProductCode": "PP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Przepływomierze",
+            "parts": [
+              {
+                "Name": "Przepływomierz powietrza standardowy XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 48.90,
+                "Manufacturer": "AirFlowMeterMasters Ltd.",
+                "Model": "PF001",
+                "ProductCode": "PF-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Przepływomierz powietrza premium ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 52.75,
+                "Manufacturer": "AirFlowMeterTech Inc.",
+                "Model": "PF002",
+                "ProductCode": "PF-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Przepustnice",
+            "parts": [
+              {
+                "Name": "Przepustnica standardowa XYZ",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 78.90,
+                "Manufacturer": "ThrottleBodyMasters Ltd.",
+                "Model": "PT001",
+                "ProductCode": "PT-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Przepustnica wydajna ABC",
+                "Quantity": 4,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 85.50,
+                "Manufacturer": "ThrottleBodyTech Inc.",
+                "Model": "PT002",
+                "ProductCode": "PT-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Przewody powietrza",
+            "parts": [
+              {
+                "Name": "Przewód powietrza standardowy XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.90,
+                "Manufacturer": "AirHoseMasters Ltd.",
+                "Model": "PP001",
+                "ProductCode": "PP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Przewód powietrza wzmocniony ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 36.75,
+                "Manufacturer": "AirHoseTech Inc.",
+                "Model": "PP002",
+                "ProductCode": "PP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Recyrkulacja spalin EGR",
+            "parts": [
+              {
+                "Name": "Zestaw recyrkulacji spalin EGR XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 115.90,
+                "Manufacturer": "EGRSystemMasters Ltd.",
+                "Model": "REGR001",
+                "ProductCode": "REGR-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Moduł recyrkulacji spalin EGR ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 122.50,
+                "Manufacturer": "EGRSystemTech Inc.",
+                "Model": "REGR002",
+                "ProductCode": "REGR-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Rozrząd",
+            "parts": [
+              {
+                "Name": "Zestaw rozrządu standardowy XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 92.90,
+                "Manufacturer": "TimingBeltMasters Ltd.",
+                "Model": "RTB001",
+                "ProductCode": "RTB-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Zestaw rozrządu wydajny ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 98.50,
+                "Manufacturer": "TimingBeltTech Inc.",
+                "Model": "RTB002",
+                "ProductCode": "RTB-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Silniki kompletne",
+            "parts": [
+              {
+                "Name": "Silnik kompletny benzynowy XYZ",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 1250.90,
+                "Manufacturer": "CompleteEngineMasters Ltd.",
+                "Model": "SE001",
+                "ProductCode": "SE-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Silnik kompletny diesel ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 1350.50,
+                "Manufacturer": "CompleteEngineTech Inc.",
+                "Model": "SE002",
+                "ProductCode": "SE-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Silniki krokowe",
+            "parts": [
+              {
+                "Name": "Silnik krokowy mały XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 62.90,
+                "Manufacturer": "StepperMotorMasters Ltd.",
+                "Model": "SK001",
+                "ProductCode": "SK-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Silnik krokowy duży ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 68.50,
+                "Manufacturer": "StepperMotorTech Inc.",
+                "Model": "SK002",
+                "ProductCode": "SK-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Smarowanie silnika",
+            "parts": [
+              {
+                "Name": "Zestaw smarowania silnika XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 35.90,
+                "Manufacturer": "EngineLubricationMasters Ltd.",
+                "Model": "SS001",
+                "ProductCode": "SS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Zestaw smarowania silnika ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 40.75,
+                "Manufacturer": "EngineLubricationTech Inc.",
+                "Model": "SS002",
+                "ProductCode": "SS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Turbosprężarki",
+            "parts": [
+              {
+                "Name": "Turbosprężarka mała XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 280.90,
+                "Manufacturer": "TurbochargerMasters Ltd.",
+                "Model": "TS001",
+                "ProductCode": "TS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Turbosprężarka duża ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 310.75,
+                "Manufacturer": "TurbochargerTech Inc.",
+                "Model": "TS002",
+                "ProductCode": "TS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Zawieszenie silnika",
+            "parts": [
+              {
+                "Name": "Zestaw zawieszenia silnika XYZ",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 88.90,
+                "Manufacturer": "EngineSuspensionMasters Ltd.",
+                "Model": "ZS001",
+                "ProductCode": "ZS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Zestaw zawieszenia silnika ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 92.50,
+                "Manufacturer": "EngineSuspensionTech Inc.",
+                "Model": "ZS002",
+                "ProductCode": "ZS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Zawory podciśnienia",
+            "parts": [
+              {
+                "Name": "Zawór podciśnienia standardowy XYZ",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "VacuumValveMasters Ltd.",
+                "Model": "ZP001",
+                "ProductCode": "ZP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Zawór podciśnienia wydajny ABC",
+                "Quantity": 1,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "VacuumValveTech Inc.",
+                "Model": "ZP002",
+                "ProductCode": "ZP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Pozostałe",
+            "parts": [
+              {
+                "Name": "Elementy silnikowe różne XYZ",
+                "Quantity": 3,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.90,
+                "Manufacturer": "EngineComponents Ltd.",
+                "Model": "PS001",
+                "ProductCode": "PS-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Akcesoria silnikowe ABC",
+                "Quantity": 2,
+                "MinimumQuantity": 1,
+                "UnitType": "sztuki",
+                "UnitPrice": 9.50,
+                "Manufacturer": "EngineAccessories Inc.",
+                "Model": "PS002",
+                "ProductCode": "PS-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Układ chłodzenia silnika",
+        "subcategories": [
+          {
+            "name": "Chłodnice",
+            "parts": [
+              {
+                "Name": "Chłodnica standardowa XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 180.90,
+                "Manufacturer": "RadiatorMasters Ltd.",
+                "Model": "CH001",
+                "ProductCode": "CH-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Chłodnica wydajna ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 198.50,
+                "Manufacturer": "RadiatorTech Inc.",
+                "Model": "CH002",
+                "ProductCode": "CH-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Czujniki poziomu płynu",
+            "parts": [
+              {
+                "Name": "Czujnik poziomu płynu standardowy XYZ",
+                "Quantity": 12,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 25.90,
+                "Manufacturer": "LevelSensorMasters Ltd.",
+                "Model": "CZP001",
+                "ProductCode": "CZP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Czujnik poziomu płynu precyzyjny ABC",
+                "Quantity": 10,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.50,
+                "Manufacturer": "LevelSensorTech Inc.",
+                "Model": "CZP002",
+                "ProductCode": "CZP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Czujniki temperatury płynu",
+            "parts": [
+              {
+                "Name": "Czujnik temperatury płynu standardowy XYZ",
+                "Quantity": 15,
+                "MinimumQuantity": 7,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "TemperatureSensorMasters Ltd.",
+                "Model": "CZT001",
+                "ProductCode": "CZT-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Czujnik temperatury płynu precyzyjny ABC",
+                "Quantity": 12,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.75,
+                "Manufacturer": "TemperatureSensorTech Inc.",
+                "Model": "CZT002",
+                "ProductCode": "CZT-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Kierownice powietrza",
+            "parts": [
+              {
+                "Name": "Kierownica powietrza standardowa XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 48.90,
+                "Manufacturer": "AirValveMasters Ltd.",
+                "Model": "KP001",
+                "ProductCode": "KP-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Kierownica powietrza precyzyjna ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 52.50,
+                "Manufacturer": "AirValveTech Inc.",
+                "Model": "KP002",
+                "ProductCode": "KP-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Korki zbiorników wyrównawczych",
+            "parts": [
+              {
+                "Name": "Korek zbiornika wyrównawczego standardowy XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.90,
+                "Manufacturer": "TankCapMasters Ltd.",
+                "Model": "KW001",
+                "ProductCode": "KW-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Korek zbiornika wyrównawczego precyzyjny ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 11.25,
+                "Manufacturer": "TankCapTech Inc.",
+                "Model": "KW002",
+                "ProductCode": "KW-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Króćce głowicy",
+            "parts": [
+              {
+                "Name": "Króciec głowicy standardowy XYZ",
+                "Quantity": 4,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 12.90,
+                "Manufacturer": "HeadNippleMasters Ltd.",
+                "Model": "KG001",
+                "ProductCode": "KG-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Króciec głowicy precyzyjny ABC",
+                "Quantity": 3,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 15.50,
+                "Manufacturer": "HeadNippleTech Inc.",
+                "Model": "KG002",
+                "ProductCode": "KG-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Pompy wody",
+            "parts": [
+              {
+                "Name": "Pompa wody standardowa XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 58.90,
+                "Manufacturer": "WaterPumpMasters Ltd.",
+                "Model": "PW001",
+                "ProductCode": "PW-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Pompa wody precyzyjna ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 65.25,
+                "Manufacturer": "WaterPumpTech Inc.",
+                "Model": "PW002",
+                "ProductCode": "PW-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Przewody układów chłodzenia",
+            "parts": [
+              {
+                "Name": "Przewód chłodzenia standardowy XYZ",
+                "Quantity": 12,
+                "MinimumQuantity": 6,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.90,
+                "Manufacturer": "CoolantHoseMasters Ltd.",
+                "Model": "PC001",
+                "ProductCode": "PC-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Przewód chłodzenia precyzyjny ABC",
+                "Quantity": 10,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.75,
+                "Manufacturer": "CoolantHoseTech Inc.",
+                "Model": "PC002",
+                "ProductCode": "PC-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Termostaty",
+            "parts": [
+              {
+                "Name": "Termostat standardowy XYZ",
+                "Quantity": 6,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 18.90,
+                "Manufacturer": "ThermostatMasters Ltd.",
+                "Model": "TH001",
+                "ProductCode": "TH-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Termostat precyzyjny ABC",
+                "Quantity": 5,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 22.50,
+                "Manufacturer": "ThermostatTech Inc.",
+                "Model": "TH002",
+                "ProductCode": "TH-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Uszczelki",
+            "parts": [
+              {
+                "Name": "Uszczelka standardowa XYZ",
+                "Quantity": 10,
+                "MinimumQuantity": 5,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.90,
+                "Manufacturer": "GasketMasters Ltd.",
+                "Model": "US001",
+                "ProductCode": "US-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Uszczelka precyzyjna ABC",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 11.25,
+                "Manufacturer": "GasketTech Inc.",
+                "Model": "US002",
+                "ProductCode": "US-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Wentylatory chłodnicy",
+            "parts": [
+              {
+                "Name": "Wentylator chłodnicy standardowy XYZ",
+                "Quantity": 7,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 42.90,
+                "Manufacturer": "FanMasters Ltd.",
+                "Model": "WC001",
+                "ProductCode": "WC-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Wentylator chłodnicy precyzyjny ABC",
+                "Quantity": 6,
+                "MinimumQuantity": 3,
+                "UnitType": "sztuki",
+                "UnitPrice": 46.50,
+                "Manufacturer": "FanTech Inc.",
+                "Model": "WC002",
+                "ProductCode": "WC-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Zbiorniki wyrównawcze",
+            "parts": [
+              {
+                "Name": "Zbiornik wyrównawczy standardowy XYZ",
+                "Quantity": 8,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 28.90,
+                "Manufacturer": "ExpansionTankMasters Ltd.",
+                "Model": "ZW001",
+                "ProductCode": "ZW-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Zbiornik wyrównawczy precyzyjny ABC",
+                "Quantity": 7,
+                "MinimumQuantity": 4,
+                "UnitType": "sztuki",
+                "UnitPrice": 32.75,
+                "Manufacturer": "ExpansionTankTech Inc.",
+                "Model": "ZW002",
+                "ProductCode": "ZW-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          },
+          {
+            "name": "Pozostałe",
+            "parts": [
+              {
+                "Name": "Akcesoria chłodzenia różne XYZ",
+                "Quantity": 5,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 6.90,
+                "Manufacturer": "CoolingAccessories Ltd.",
+                "Model": "PA001",
+                "ProductCode": "PA-001",
+                "CountryOfOrigin": "Poland"
+              },
+              {
+                "Name": "Elementy układu chłodzenia ABC",
+                "Quantity": 4,
+                "MinimumQuantity": 2,
+                "UnitType": "sztuki",
+                "UnitPrice": 8.50,
+                "Manufacturer": "CoolingSystemParts Inc.",
+                "Model": "PA002",
+                "ProductCode": "PA-002",
+                "CountryOfOrigin": "Germany"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Układ elektryczny, zapłon",
+        "subcategories": [
+          { "name": "Akumulatory" },
+          { "name": "Centralne zamki" },
+          { "name": "Chip tuning" },
+          { "name": "Czujniki" },
+          { "name": "Materiały instalacyjne" },
+          { "name": "Obudowy akumulatorów" },
+          { "name": "Oporniki" },
+          { "name": "Potencjometry" },
+          { "name": "Przekaźniki" },
+          { "name": "Przewody ładowania" },
+          { "name": "Skrzynki bezpieczników" },
+          { "name": "Stacyjki i kluczyki" },
+          { "name": "Sterowniki ASR" },
+          { "name": "Sterowniki silnika" },
+          { "name": "Świece" },
+          { "name": "Układ elektryczny silnika" },
+          { "name": "Wyposażenie elektryczne" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ hamulcowy",
+        "subcategories": [
+          { "name": "Hamulce bębnowe" },
+          { "name": "Hamulce pneumatyczne" },
+          { "name": "Hamulce postojowe" },
+          { "name": "Hamulce tarczowe" },
+          { "name": "Korektory siły hamowania" },
+          { "name": "Pompy hamulcowe" },
+          { "name": "Przewody hamulcowe" },
+          { "name": "Układ ABS i ESP" },
+          { "name": "Wspomaganie hamulca" },
+          { "name": "Zbiorniki płynu hamulcowego" },
+          { "name": "Zestawy montażowe i naprawcze" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ kierowniczy",
+        "subcategories": [
+          { "name": "Amortyzatory" },
+          { "name": "Chłodnice wspomagania" },
+          { "name": "Części montażowe" },
+          { "name": "Czujniki kąta skrętu" },
+          { "name": "Drążki kierownicze" },
+          { "name": "Kolumny kierownicze" },
+          { "name": "Końcówki drążków kierowniczych" },
+          { "name": "Osłony przekładni kierowniczych" },
+          { "name": "Pompy wspomagania" },
+          { "name": "Przekładnie kierownicze" },
+          { "name": "Przewody układu wspomagania" },
+          { "name": "Sterowniki" },
+          { "name": "Uszczelki" },
+          { "name": "Zbiorniki płynu wspomagania" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ klimatyzacji",
+        "subcategories": [
+          { "name": "Chłodnice klimatyzacji (skraplacze)" },
+          { "name": "Części montażowe" },
+          { "name": "Czujniki" },
+          { "name": "Dysze" },
+          { "name": "Kompletne instalacje" },
+          { "name": "Kompresory klimatyzacji" },
+          { "name": "Osuszacze" },
+          { "name": "Parowniki" },
+          { "name": "Przewody klimatyzacji" },
+          { "name": "Sterowniki i elementy elektryczne" },
+          { "name": "Uszczelki" },
+          { "name": "Wentylatory chłodnic klimatyzacji" },
+          { "name": "Zawory rozprężne" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ napędowy",
+        "subcategories": [
+          { "name": "Dyferencjały" },
+          { "name": "Mosty" },
+          { "name": "Napęd hybrydowy, elektryczny" },
+          { "name": "Półosie, przeguby, wały" },
+          { "name": "Skrzynie biegów" },
+          { "name": "Sprzęgła" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ paliwowy",
+        "subcategories": [
+          { "name": "AdBlue" },
+          { "name": "Chłodnice paliwa" },
+          { "name": "Części montażowe" },
+          { "name": "Czujniki poziomu paliwa" },
+          { "name": "Czujniki temperatury paliwa" },
+          { "name": "Gaźniki" },
+          { "name": "Końcówki wtryskiwaczy" },
+          { "name": "Korki wlewu" },
+          { "name": "Listwy wtryskowe" },
+          { "name": "LPG" },
+          { "name": "Monowtryski" },
+          { "name": "Obudowy filtrów paliwa" },
+          { "name": "Podgrzewacze" },
+          { "name": "Pompowtryskiwacze" },
+          { "name": "Pompy paliwa" },
+          { "name": "Pompy wtryskowe" },
+          { "name": "Przewody paliwa" },
+          { "name": "Przewody wtryskowe" },
+          { "name": "Regulatory ciśnienia paliwa" },
+          { "name": "Rozdzielacze" },
+          { "name": "Sterowniki" },
+          { "name": "Uszczelki" },
+          { "name": "Wlewy paliwa" },
+          { "name": "Wtryskiwacze" },
+          { "name": "Zawory" },
+          { "name": "Zbiorniki" },
+          { "name": "Zestawy naprawcze" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ pneumatyczny",
+        "subcategories": [
+          { "name": "Części montażowe" },
+          { "name": "Czujniki" },
+          { "name": "Kompresory i części" },
+          { "name": "Osuszacze" },
+          { "name": "Przewody spiralne" },
+          { "name": "Regulatory" },
+          { "name": "Zawory" },
+          { "name": "Zbiorniki" },
+          { "name": "Zestawy naprawcze" },
+          { "name": "Złączki i przewody" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ wentylacji",
+        "subcategories": [
+          { "name": "Dmuchawy" },
+          { "name": "Kanały powietrza" },
+          { "name": "Nagrzewnice" },
+          { "name": "Obudowy filtrów kabinowych" },
+          { "name": "Przewody nagrzewnic" },
+          { "name": "Rezystory dmuchaw" },
+          { "name": "Silniki dmuchaw" },
+          { "name": "Zawory nagrzewnic" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ wydechowy",
+        "subcategories": [
+          { "name": "Czujniki ciśnienia spalin" },
+          { "name": "Czujniki temperatury spalin" },
+          { "name": "Filtry cząstek stałych DPF/FAP" },
+          { "name": "Katalizatory" },
+          { "name": "Kolektory wydechowe" },
+          { "name": "Końcówki wydechu" },
+          { "name": "Łączniki elastyczne" },
+          { "name": "Obejmy" },
+          { "name": "Osłony" },
+          { "name": "Przepustnice wydechu" },
+          { "name": "Rury wydechowe" },
+          { "name": "Sondy lambda" },
+          { "name": "Strumienice" },
+          { "name": "Tłumiki" },
+          { "name": "Uszczelki" },
+          { "name": "Wieszaki" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Układ zawieszenia",
+        "subcategories": [
+          { "name": "Amortyzatory i elementy" },
+          { "name": "Belki zawieszenia" },
+          { "name": "Zawieszenie kabiny kierowcy" },
+          { "name": "Części montażowe" },
+          { "name": "Łożyska i piasty kół" },
+          { "name": "Podkładki sprężyn zawieszenia" },
+          { "name": "Resory i elementy" },
+          { "name": "Sprężyny zawieszenia" },
+          { "name": "Stabilizatory i elementy" },
+          { "name": "Wahacze i elementy" },
+          { "name": "Zawieszenie hydrauliczne i pneumatyczne" },
+          { "name": "Zestawy zawieszenia (amortyzatory i sprężyny)" },
+          { "name": "Zwrotnice" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Wycieraczki i spryskiwacze",
+        "subcategories": [
+          { "name": "Części montażowe" },
+          { "name": "Czujniki deszczu" },
+          { "name": "Dysze spryskiwaczy" },
+          { "name": "Korki zbiornika" },
+          { "name": "Mechanizmy wycieraczek" },
+          { "name": "Pompki spryskiwaczy" },
+          { "name": "Przewody, złączki" },
+          { "name": "Ramiona wycieraczek" },
+          { "name": "Silniki wycieraczek" },
+          { "name": "Spryskiwacze reflektorów" },
+          { "name": "Uszczelki" },
+          { "name": "Zbiorniki płynu do spryskiwaczy" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Wyposażenie wnętrza",
+        "subcategories": [
+          { "name": "Boczki bagażnika" },
+          { "name": "Boczki drzwi" },
+          { "name": "Części kabiny kierowcy" },
+          { "name": "Deski rozdzielcze, konsole" },
+          { "name": "Elementy mocujące" },
+          { "name": "Fotele, kanapy" },
+          { "name": "Gałki i mieszki" },
+          { "name": "Kierownice" },
+          { "name": "Klamki wewnętrzne" },
+          { "name": "Korbki szyb" },
+          { "name": "Kratki nawiewu" },
+          { "name": "Liczniki, zegary" },
+          { "name": "Lusterka wewnętrzne" },
+          { "name": "Mocowanie koła zapasowego" },
+          { "name": "Nawigacje GPS fabryczne" },
+          { "name": "Osłony, zaślepki" },
+          { "name": "Osłony przeciwsłoneczne" },
+          { "name": "Oświetlenie kabiny" },
+          { "name": "Panele sterowania, przełączniki" },
+          { "name": "Pasy bezpieczeństwa" },
+          { "name": "Pedały" },
+          { "name": "Podłokietniki" },
+          { "name": "Podsufitki" },
+          { "name": "Poduszki powietrzne" },
+          { "name": "Popielniczki" },
+          { "name": "Poszycia słupków" },
+          { "name": "Półki tylne" },
+          { "name": "Rolety bagażnika" },
+          { "name": "Schowki, półki" },
+          { "name": "Sprężyny gazowe" },
+          { "name": "Sprzęt audio fabryczny" },
+          { "name": "Tunele środkowe" },
+          { "name": "Uchwyty fabryczne" },
+          { "name": "Wykładzina" },
+          { "name": "Zagłówki" },
+          { "name": "Zapalniczki samochodowe" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      {
+        "name": "Ogrzewanie postojowe i chłodnictwo samochodowe",
+        "subcategories": [
+          { "name": "Chłodnictwo samochodowe" },
+          { "name": "Ogrzewanie postojowe" }
+        ]
+      },
+      {
+        "name": "Tuning mechaniczny",
+        "subcategories": [
+          { "name": "Adaptery tuningowe" },
+          { "name": "Filtry i obudowy" },
+          { "name": "Podzespoły elektroniczne" },
+          { "name": "Silnik i osprzęt" },
+          { "name": "Układ hamulcowy" },
+          { "name": "Układ wydechowy" },
+          { "name": "Układ zawieszenia" },
+          { "name": "Pozostałe" }
+        ]
+      },
+      { "name": "Pozostałe" }
+    ]
+  },
+  {
+    "name": "Akcesoria samochodowe",
+    "subcategories": [
+      { "name": "Apteczki, gaśnice, kamizelki, trójkąty" },
+      { "name": "Bagażniki" },
+      { "name": "Chlapacze" },
+      { "name": "Czujniki i kamery cofania" },
+      { "name": "Dywaniki" },
+      { "name": "Elektronika samochodowa" },
+      { "name": "Emblematy" },
+      { "name": "Foteliki samochodowe" },
+      { "name": "Gadżety motoryzacyjne" },
+      { "name": "Holowanie" },
+      { "name": "Kanistry, lejki i pompki do paliwa" },
+      { "name": "Literatura motoryzacyjna" },
+      { "name": "Tuning wizualny" },
+      { "name": "Off-road" },
+      { "name": "Organizery i siatki do bagażnika" },
+      { "name": "Osłony na szyby" },
+      { "name": "Pióra wycieraczek" },
+      { "name": "Pokrowce" },
+      { "name": "Prostowniki i kable rozruchowe" },
+      { "name": "Ramki do tablic rejestracyjnych" },
+      { "name": "Skrobaczki do szyb" },
+      { "name": "Uchwyty, wieszaki" },
+      { "name": "Zabezpieczenia" },
+      { "name": "Żarówki" },
+      { "name": "Pozostałe" }
+    ]
+  },
+  {
+    "name": "Opony i felgi",
+    "subcategories": [
+      {
+        "name": "Opony do aut osobowych",
+        "parts": [
+          {
+            "Name": "Opona letnia XYZ 195/65 R15",
+            "Quantity": 50,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 85.90,
+            "Manufacturer": "TireMasters Ltd.",
+            "Model": "OL001",
+            "ProductCode": "OL-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Opona zimowa ABC 205/55 R16",
+            "Quantity": 45,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 92.50,
+            "Manufacturer": "TireTech Inc.",
+            "Model": "OZ001",
+            "ProductCode": "OZ-001",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Opona letnia XYZ 225/50 R17",
+            "Quantity": 55,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 98.90,
+            "Manufacturer": "TireMasters Ltd.",
+            "Model": "OL002",
+            "ProductCode": "OL-002",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Opona zimowa ABC 215/60 R16",
+            "Quantity": 48,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 105.75,
+            "Manufacturer": "TireTech Inc.",
+            "Model": "OZ002",
+            "ProductCode": "OZ-002",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Koła (opony + felgi)",
+        "parts": [
+          {
+            "Name": "Koło letnie 195/65 R15 + stalowa felga 15 cali",
+            "Quantity": 40,
+            "MinimumQuantity": 8,
+            "UnitType": "sztuki",
+            "UnitPrice": 155.90,
+            "Manufacturer": "WheelMasters Ltd.",
+            "Model": "KW001",
+            "ProductCode": "KW-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Koło zimowe 205/55 R16 + aluminiowa felga 16 cali",
+            "Quantity": 35,
+            "MinimumQuantity": 8,
+            "UnitType": "sztuki",
+            "UnitPrice": 172.50,
+            "Manufacturer": "WheelTech Inc.",
+            "Model": "KZ001",
+            "ProductCode": "KZ-001",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Koło letnie 225/50 R17 + aluminiowa felga 17 cali",
+            "Quantity": 42,
+            "MinimumQuantity": 8,
+            "UnitType": "sztuki",
+            "UnitPrice": 185.90,
+            "Manufacturer": "WheelMasters Ltd.",
+            "Model": "KW002",
+            "ProductCode": "KW-002",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Koło zimowe 215/60 R16 + stalowa felga 16 cali",
+            "Quantity": 38,
+            "MinimumQuantity": 8,
+            "UnitType": "sztuki",
+            "UnitPrice": 198.75,
+            "Manufacturer": "WheelTech Inc.",
+            "Model": "KZ002",
+            "ProductCode": "KZ-002",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Felgi aluminiowe i stalowe",
+        "parts": [
+          {
+            "Name": "Felga aluminiowa 16 cali",
+            "Quantity": 60,
+            "MinimumQuantity": 12,
+            "UnitType": "sztuki",
+            "UnitPrice": 78.90,
+            "Manufacturer": "WheelMasters Ltd.",
+            "Model": "FA001",
+            "ProductCode": "FA-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Felga stalowa 15 cali",
+            "Quantity": 55,
+            "MinimumQuantity": 12,
+            "UnitType": "sztuki",
+            "UnitPrice": 65.50,
+            "Manufacturer": "WheelTech Inc.",
+            "Model": "FS001",
+            "ProductCode": "FS-001",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Felga aluminiowa 17 cali",
+            "Quantity": 62,
+            "MinimumQuantity": 12,
+            "UnitType": "sztuki",
+            "UnitPrice": 82.90,
+            "Manufacturer": "WheelMasters Ltd.",
+            "Model": "FA002",
+            "ProductCode": "FA-002",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Felga stalowa 16 cali",
+            "Quantity": 58,
+            "MinimumQuantity": 12,
+            "UnitType": "sztuki",
+            "UnitPrice": 75.75,
+            "Manufacturer": "WheelTech Inc.",
+            "Model": "FS002",
+            "ProductCode": "FS-002",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Osprzęt i akcesoria",
+        "parts": [
+          {
+            "Name": "Zestaw śrub i nakrętek do kół",
+            "Quantity": 150,
+            "MinimumQuantity": 30,
+            "UnitType": "sztuki",
+            "UnitPrice": 12.90,
+            "Manufacturer": "AccessoryMasters Ltd.",
+            "Model": "ZA001",
+            "ProductCode": "ZA-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Zawleczki do felg aluminiowych",
+            "Quantity": 140,
+            "MinimumQuantity": 30,
+            "UnitType": "sztuki",
+            "UnitPrice": 8.50,
+            "Manufacturer": "AccessoryTech Inc.",
+            "Model": "ZA002",
+            "ProductCode": "ZA-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Zestaw do naprawy przebitej opony",
+            "Quantity": 130,
+            "MinimumQuantity": 30,
+            "UnitType": "sztuki",
+            "UnitPrice": 22.90,
+            "Manufacturer": "AccessoryMasters Ltd.",
+            "Model": "ZA003",
+            "ProductCode": "ZA-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Zawleczki do felg stalowych",
+            "Quantity": 125,
+            "MinimumQuantity": 30,
+            "UnitType": "sztuki",
+            "UnitPrice": 10.75,
+            "Manufacturer": "AccessoryTech Inc.",
+            "Model": "ZA004",
+            "ProductCode": "ZA-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Pozostałe",
+        "parts": [
+          {
+            "Name": "Zabezpieczenia antykradzieżowe do kół",
+            "Quantity": 70,
+            "MinimumQuantity": 15,
+            "UnitType": "sztuki",
+            "UnitPrice": 28.90,
+            "Manufacturer": "SecurityMasters Ltd.",
+            "Model": "ZP001",
+            "ProductCode": "ZP-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Nakrętki do śrub kół",
+            "Quantity": 65,
+            "MinimumQuantity": 15,
+            "UnitType": "sztuki",
+            "UnitPrice": 14.50,
+            "Manufacturer": "SecurityTech Inc.",
+            "Model": "ZP002",
+            "ProductCode": "ZP-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Zestaw do regulacji ciśnienia w oponach",
+            "Quantity": 60,
+            "MinimumQuantity": 15,
+            "UnitType": "sztuki",
+            "UnitPrice": 18.90,
+            "Manufacturer": "SecurityMasters Ltd.",
+            "Model": "ZP003",
+            "ProductCode": "ZP-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Zestaw do wymiany wentyli w oponach",
+            "Quantity": 55,
+            "MinimumQuantity": 15,
+            "UnitType": "sztuki",
+            "UnitPrice": 20.75,
+            "Manufacturer": "SecurityTech Inc.",
+            "Model": "ZP004",
+            "ProductCode": "ZP-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Warsztat",
+    "subcategories": [
+      { "name": "Blacharstwo i lakiernictwo" },
+      { "name": "Diagnostyka i pomiary" },
+      { "name": "Klucze" },
+      { "name": "Klucze udarowe" },
+      { "name": "Kompresory i akcesoria" },
+      { "name": "Mycie i czyszczenie" },
+      { "name": "Narzędzia ręczne" },
+      { "name": "Normalia" },
+      { "name": "Obsługa akumulatorów i układu elektrycznego" },
+      { "name": "Obsługa klimatyzacji" },
+      { "name": "Obsługa kół i ogumienia" },
+      { "name": "Obsługa olejów, paliw i smarów" },
+      { "name": "Obsługa pojazdów elektrycznych" },
+      { "name": "Obsługa silnika" },
+      { "name": "Obsługa układu hamulcowego" },
+      { "name": "Obsługa układu napędowego" },
+      { "name": "Obsługa zawieszenia" },
+      { "name": "Odzież i obuwie robocze" },
+      { "name": "Osprzęt do elektronarzędzi" },
+      { "name": "Polerki" },
+      { "name": "Szlifierki" },
+      { "name": "Wiertarki i wkrętarki" },
+      { "name": "Wózki, skrzynki i organizery na narzędzia" },
+      { "name": "Wyposażenie warsztatu" },
+      { "name": "Pozostałe" }
+    ]
+  },
+  {
+    "name": "Motocykle i quady",
+    "subcategories": [
+      { "name": "Części motocyklowe" },
+      { "name": "Części do quadów" },
+      { "name": "Kaski motocyklowe" },
+      { "name": "Odzież motocyklowa" },
+      { "name": "Wyposażenie i akcesoria motocyklowe" }
+    ]
+  },
+  {
+    "name": "Chemia",
+    "subcategories": [
+      {
+        "name": "Chemia blacharsko-lakiernicza",
+        "parts": [
+          {
+            "Name": "Podkład antykorozyjny do blachy",
+            "Quantity": 30,
+            "MinimumQuantity": 5,
+            "UnitType": "litry",
+            "UnitPrice": 32.90,
+            "Manufacturer": "PaintMasters Ltd.",
+            "Model": "CB001",
+            "ProductCode": "CB-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Lakier do blachy samochodowej",
+            "Quantity": 25,
+            "MinimumQuantity": 5,
+            "UnitType": "litry",
+            "UnitPrice": 38.50,
+            "Manufacturer": "PaintTech Inc.",
+            "Model": "CB002",
+            "ProductCode": "CB-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Rozcieńczalnik do farb i lakierów",
+            "Quantity": 20,
+            "MinimumQuantity": 5,
+            "UnitType": "litry",
+            "UnitPrice": 24.90,
+            "Manufacturer": "PaintMasters Ltd.",
+            "Model": "CB003",
+            "ProductCode": "CB-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Wosk do konsolidacji powłoki lakierowej",
+            "Quantity": 15,
+            "MinimumQuantity": 5,
+            "UnitType": "litry",
+            "UnitPrice": 28.75,
+            "Manufacturer": "PaintTech Inc.",
+            "Model": "CB004",
+            "ProductCode": "CB-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Chemia motocyklowa",
+        "parts": [
+          {
+            "Name": "Olej silnikowy do motocykla 10W-40",
+            "Quantity": 40,
+            "MinimumQuantity": 8,
+            "UnitType": "litry",
+            "UnitPrice": 18.90,
+            "Manufacturer": "MotorOilMasters Ltd.",
+            "Model": "CM001",
+            "ProductCode": "CM-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Środek do czyszczenia gaźników",
+            "Quantity": 35,
+            "MinimumQuantity": 8,
+            "UnitType": "litry",
+            "UnitPrice": 15.50,
+            "Manufacturer": "MotorOilTech Inc.",
+            "Model": "CM002",
+            "ProductCode": "CM-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Olej przekładniowy do motocykla",
+            "Quantity": 38,
+            "MinimumQuantity": 8,
+            "UnitType": "litry",
+            "UnitPrice": 22.90,
+            "Manufacturer": "MotorOilMasters Ltd.",
+            "Model": "CM003",
+            "ProductCode": "CM-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Płyn do chłodzenia motocykla",
+            "Quantity": 32,
+            "MinimumQuantity": 8,
+            "UnitType": "litry",
+            "UnitPrice": 20.75,
+            "Manufacturer": "MotorOilTech Inc.",
+            "Model": "CM004",
+            "ProductCode": "CM-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Mycie i pielęgnacja",
+        "parts": [
+          {
+            "Name": "Szampon do mycia karoserii",
+            "Quantity": 50,
+            "MinimumQuantity": 10,
+            "UnitType": "litry",
+            "UnitPrice": 12.90,
+            "Manufacturer": "CarCareMasters Ltd.",
+            "Model": "MP001",
+            "ProductCode": "MP-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Pasta polerska do lakieru",
+            "Quantity": 45,
+            "MinimumQuantity": 10,
+            "UnitType": "litry",
+            "UnitPrice": 16.50,
+            "Manufacturer": "CarCareTech Inc.",
+            "Model": "MP002",
+            "ProductCode": "MP-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Odmrażacz do szyb",
+            "Quantity": 48,
+            "MinimumQuantity": 10,
+            "UnitType": "litry",
+            "UnitPrice": 9.90,
+            "Manufacturer": "CarCareMasters Ltd.",
+            "Model": "MP003",
+            "ProductCode": "MP-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Płyn do czyszczenia felg aluminiowych",
+            "Quantity": 42,
+            "MinimumQuantity": 10,
+            "UnitType": "litry",
+            "UnitPrice": 14.75,
+            "Manufacturer": "CarCareTech Inc.",
+            "Model": "MP004",
+            "ProductCode": "MP-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Oleje silnikowe",
+        "parts": [
+          {
+            "Name": "Olej silnikowy 5W-30",
+            "Quantity": 60,
+            "MinimumQuantity": 12,
+            "UnitType": "litry",
+            "UnitPrice": 28.90,
+            "Manufacturer": "OilMasters Ltd.",
+            "Model": "OS001",
+            "ProductCode": "OS-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Olej silnikowy 10W-40",
+            "Quantity": 55,
+            "MinimumQuantity": 12,
+            "UnitType": "litry",
+            "UnitPrice": 25.50,
+            "Manufacturer": "OilTech Inc.",
+            "Model": "OS002",
+            "ProductCode": "OS-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Olej silnikowy 5W-40",
+            "Quantity": 62,
+            "MinimumQuantity": 12,
+            "UnitType": "litry",
+            "UnitPrice": 32.90,
+            "Manufacturer": "OilMasters Ltd.",
+            "Model": "OS003",
+            "ProductCode": "OS-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Olej silnikowy 15W-40",
+            "Quantity": 58,
+            "MinimumQuantity": 12,
+            "UnitType": "litry",
+            "UnitPrice": 29.75,
+            "Manufacturer": "OilTech Inc.",
+            "Model": "OS004",
+            "ProductCode": "OS-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Płyny eksploatacyjne",
+        "parts": [
+          {
+            "Name": "Płyn do spryskiwaczy 5L",
+            "Quantity": 70,
+            "MinimumQuantity": 15,
+            "UnitType": "litry",
+            "UnitPrice": 18.90,
+            "Manufacturer": "FluidMasters Ltd.",
+            "Model": "PE001",
+            "ProductCode": "PE-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Płyn do chłodnic 5L",
+            "Quantity": 65,
+            "MinimumQuantity": 15,
+            "UnitType": "litry",
+            "UnitPrice": 22.50,
+            "Manufacturer": "FluidTech Inc.",
+            "Model": "PE002",
+            "ProductCode": "PE-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Płyn hamulcowy DOT 4 1L",
+            "Quantity": 68,
+            "MinimumQuantity": 15,
+            "UnitType": "litry",
+            "UnitPrice": 16.90,
+            "Manufacturer": "FluidMasters Ltd.",
+            "Model": "PE003",
+            "ProductCode": "PE-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Płyn do sprzęgła 1L",
+            "Quantity": 63,
+            "MinimumQuantity": 15,
+            "UnitType": "litry",
+            "UnitPrice": 14.75,
+            "Manufacturer": "FluidTech Inc.",
+            "Model": "PE004",
+            "ProductCode": "PE-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Środki do napraw i zabezpieczania",
+        "parts": [
+          {
+            "Name": "Pasta do uszczelnień",
+            "Quantity": 45,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 8.90,
+            "Manufacturer": "RepairMasters Ltd.",
+            "Model": "SN001",
+            "ProductCode": "SN-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Nawierzchnia do regeneracji powłok lakierowych",
+            "Quantity": 42,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 12.50,
+            "Manufacturer": "RepairTech Inc.",
+            "Model": "SN002",
+            "ProductCode": "SN-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Pianka do wypełnień",
+            "Quantity": 40,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 10.90,
+            "Manufacturer": "RepairMasters Ltd.",
+            "Model": "SN003",
+            "ProductCode": "SN-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Zabezpieczenie antykorozyjne do podwozia",
+            "Quantity": 38,
+            "MinimumQuantity": 10,
+            "UnitType": "sztuki",
+            "UnitPrice": 14.75,
+            "Manufacturer": "RepairTech Inc.",
+            "Model": "SN004",
+            "ProductCode": "SN-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      },
+      {
+        "name": "Pozostałe",
+        "parts": [
+          {
+            "Name": "Naprawcza taśma klejąca",
+            "Quantity": 25,
+            "MinimumQuantity": 5,
+            "UnitType": "sztuki",
+            "UnitPrice": 6.90,
+            "Manufacturer": "MiscMasters Ltd.",
+            "Model": "PO001",
+            "ProductCode": "PO-001",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Nity aluminiowe",
+            "Quantity": 28,
+            "MinimumQuantity": 5,
+            "UnitType": "sztuki",
+            "UnitPrice": 4.50,
+            "Manufacturer": "MiscTech Inc.",
+            "Model": "PO002",
+            "ProductCode": "PO-002",
+            "CountryOfOrigin": "Germany"
+          },
+          {
+            "Name": "Klamry zaciskowe",
+            "Quantity": 32,
+            "MinimumQuantity": 5,
+            "UnitType": "sztuki",
+            "UnitPrice": 3.90,
+            "Manufacturer": "MiscMasters Ltd.",
+            "Model": "PO003",
+            "ProductCode": "PO-003",
+            "CountryOfOrigin": "Poland"
+          },
+          {
+            "Name": "Śruby i nakrętki różne rozmiary",
+            "Quantity": 35,
+            "MinimumQuantity": 5,
+            "UnitType": "sztuki",
+            "UnitPrice": 2.75,
+            "Manufacturer": "MiscTech Inc.",
+            "Model": "PO004",
+            "ProductCode": "PO-004",
+            "CountryOfOrigin": "Germany"
+          }
+        ]
+      }
+    ]
+  }
+]
