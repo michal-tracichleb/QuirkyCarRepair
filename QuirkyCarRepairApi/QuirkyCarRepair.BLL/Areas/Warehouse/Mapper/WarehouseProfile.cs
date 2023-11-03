@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
@@ -22,6 +23,9 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
 
             CreateMap<PartTransaction, PartTransactionEntity>()
                 .ReverseMap();
+
+            CreateMap<PartCategory, PartCategoryStructure>()
+                .ForMember(x => x.SiblingCategories, opt => opt.Ignore());
         }
     }
 }
