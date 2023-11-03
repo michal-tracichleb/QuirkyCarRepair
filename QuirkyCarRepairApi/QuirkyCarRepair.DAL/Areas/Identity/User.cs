@@ -10,7 +10,7 @@ namespace QuirkyCarRepair.DAL.Areas.Identity
         public User() : base()
         {
             OperationalDocuments = new HashSet<OperationalDocument>();
-            TransactionStatus = new HashSet<TransactionStatus>();
+            TransactionStatuses = new HashSet<TransactionStatus>();
 
             ServiceOrders = new HashSet<ServiceOrder>();
             ServiceOrderStatuses = new HashSet<ServiceOrderStatus>();
@@ -18,7 +18,7 @@ namespace QuirkyCarRepair.DAL.Areas.Identity
         }
 
         public virtual ICollection<OperationalDocument> OperationalDocuments { get; set; }
-        public virtual ICollection<TransactionStatus> TransactionStatus { get; set; }
+        public virtual ICollection<TransactionStatus> TransactionStatuses { get; set; }
 
         public virtual ICollection<ServiceOrder> ServiceOrders { get; set; }
         public virtual ICollection<ServiceOrderStatus> ServiceOrderStatuses { get; set; }

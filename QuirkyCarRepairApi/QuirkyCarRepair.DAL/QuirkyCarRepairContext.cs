@@ -36,6 +36,7 @@ namespace QuirkyCarRepair.DAL
         public DbSet<Part> Parts { get; set; }
         public DbSet<PartCategory> PartCategories { get; set; }
         public DbSet<PartTransaction> PartTransactions { get; set; }
+        public DbSet<TransactionStatus> TransactionStatuses { get; set; }
 
         #endregion WarehouseManagement
 
@@ -540,6 +541,33 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.PartTransactions)
                     .HasForeignKey(d => d.OperationalDocumentId)
                     .HasConstraintName("FK_OperationalDocument_PartTransaction");
+            });
+
+            modelBuilder.Entity<TransactionStatus>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.StartDate).IsRequired();
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(512)
+                    .IsRequired(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TransactionStatuses)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_TransactionStatus_User");
+
+                entity.HasOne(d => d.OperationalDocument)
+                    .WithMany(p => p.TransactionStatuses)
+                    .HasForeignKey(p => p.OperationalDocumentid)
+                    .HasConstraintName("FK_TransactionStatus_OperationalDocument");
             });
 
             #endregion WarehouseManagement

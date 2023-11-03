@@ -9,7 +9,7 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
         public OperationalDocument()
         {
             PartTransactions = new HashSet<PartTransaction>();
-            TransactionStatus = new HashSet<TransactionStatus>();
+            TransactionStatuses = new HashSet<TransactionStatus>();
         }
 
         public int Id { get; set; }
@@ -23,6 +23,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
         public virtual ServiceOrder ServiceOrder { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<PartTransaction> PartTransactions { get; set; }
-        public virtual ICollection<TransactionStatus> TransactionStatus { get; set; }
+        public virtual ICollection<TransactionStatus> TransactionStatuses { get; set; }
     }
 }

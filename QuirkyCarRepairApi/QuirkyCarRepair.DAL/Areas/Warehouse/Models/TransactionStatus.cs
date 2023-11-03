@@ -9,7 +9,7 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
         public int? UserId { get; set; }
         public int OperationalDocumentid { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
 
