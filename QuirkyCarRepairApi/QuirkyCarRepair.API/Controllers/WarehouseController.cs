@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
+using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 
 namespace QuirkyCarRepair.API.Controllers
@@ -13,6 +14,13 @@ namespace QuirkyCarRepair.API.Controllers
         public WarehouseController(IWarehouseService warehouseService)
         {
             _warehouseService = warehouseService;
+        }
+
+        [HttpGet]
+        [Route("GetPrimaryCategories")]
+        public List<PartCategoryEntity> GetPrimaryCategories()
+        {
+            return _warehouseService.GetPrimaryCategories();
         }
 
         [HttpGet]

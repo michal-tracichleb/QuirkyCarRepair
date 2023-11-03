@@ -19,6 +19,11 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             _partCategoryRepository = partCategoryRepository;
         }
 
+        public List<PartCategoryEntity> GetPrimaryCategories()
+        {
+            return _mapper.Map<List<PartCategoryEntity>>(_partCategoryRepository.GetPrimaryCategories());
+        }
+
         public PartCategoryStructure GetPartCategoryStructure(int id)
         {
             if (!_partCategoryRepository.Exist(id))
