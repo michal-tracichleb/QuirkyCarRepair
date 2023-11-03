@@ -22,21 +22,21 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _partTransactionService = partTransactionService;
         }
 
-        // GET: api/<PartTransactionController>
+        // GET: api/Warehouse/<PartTransactionController>
         [HttpGet]
         public IEnumerable<PartTransactionDTO> Get()
         {
             return _mapper.Map<List<PartTransactionDTO>>(_partTransactionService.GetAll());
         }
 
-        // GET api/<PartTransactionController>/5
+        // GET api/Warehouse/<PartTransactionController>/5
         [HttpGet("{id}")]
         public PartTransactionDTO Get(int id)
         {
             return _mapper.Map<PartTransactionDTO>(_partTransactionService.Get(id));
         }
 
-        // POST api/<PartTransactionController>
+        // POST api/Warehouse/<PartTransactionController>
         [HttpPost]
         public ActionResult<PartTransactionDTO> Post([FromBody] PartTransactionDTO model)
         {
@@ -46,14 +46,14 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             return CreatedAtAction(nameof(Get), newPartTransaction.Id, newPartTransaction);
         }
 
-        // PUT api/<PartTransactionController>/5
+        // PUT api/Warehouse/<PartTransactionController>/5
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] PartTransactionDTO model)
         {
             _partTransactionService.Update(id, _mapper.Map<PartTransactionEntity>(model));
         }
 
-        // DELETE api/<PartTransactionController>/5
+        // DELETE api/Warehouse/<PartTransactionController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

@@ -21,21 +21,21 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _operationalDocumentService = operationalDocumentService;
         }
 
-        // GET: api/<OperationalDocumentController>
+        // GET: api/Warehouse/<OperationalDocumentController>
         [HttpGet]
         public IEnumerable<OperationalDocumentDTO> Get()
         {
             return _mapper.Map<List<OperationalDocumentDTO>>(_operationalDocumentService.GetAll());
         }
 
-        // GET api/<OperationalDocumentController>/5
+        // GET api/Warehouse/<OperationalDocumentController>/5
         [HttpGet("{id}")]
         public OperationalDocumentDTO Get(int id)
         {
             return _mapper.Map<OperationalDocumentDTO>(_operationalDocumentService.Get(id));
         }
 
-        // POST api/<OperationalDocumentController>
+        // POST api/Warehouse/<OperationalDocumentController>
         [HttpPost]
         public ActionResult<OperationalDocumentDTO> Post([FromBody] OperationalDocumentDTO model)
         {
@@ -45,7 +45,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             return CreatedAtAction(nameof(Get), newOperationalDocument.Id, newOperationalDocument);
         }
 
-        // PUT api/<OperationalDocumentController>/5
+        // PUT api/Warehouse/<OperationalDocumentController>/5
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] OperationalDocumentDTO model)
@@ -53,7 +53,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _operationalDocumentService.Update(id, _mapper.Map<OperationalDocumentEntity>(model));
         }
 
-        // DELETE api/<OperationalDocumentController>/5
+        // DELETE api/Warehouse/<OperationalDocumentController>/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)

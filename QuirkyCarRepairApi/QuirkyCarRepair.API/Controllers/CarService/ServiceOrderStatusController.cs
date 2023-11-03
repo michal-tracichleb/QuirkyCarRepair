@@ -5,7 +5,7 @@ using QuirkyCarRepair.API.DTO.CarService;
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 
-namespace QuirkyCarRepair.API.Controllers.ServiceOrderStatus
+namespace QuirkyCarRepair.API.Controllers.CarService
 {
     [Route("api/CarService/[controller]")]
     [ApiController]
@@ -22,21 +22,21 @@ namespace QuirkyCarRepair.API.Controllers.ServiceOrderStatus
             _serviceOrderStatusService = serviceOrderStatusService;
         }
 
-        // GET: api/<ServiceOrderStatusController>
+        // GET: api/CarService/<ServiceOrderStatusController>
         [HttpGet]
         public IEnumerable<ServiceOrderStatusDTO> Get()
         {
             return _mapper.Map<List<ServiceOrderStatusDTO>>(_serviceOrderStatusService.GetAll());
         }
 
-        // GET api/<ServiceOrderStatusController>/5
+        // GET api/CarService/<ServiceOrderStatusController>/5
         [HttpGet("{id}")]
         public ServiceOrderStatusDTO Get(int id)
         {
             return _mapper.Map<ServiceOrderStatusDTO>(_serviceOrderStatusService.Get(id));
         }
 
-        // POST api/<ServiceOrderStatusController>
+        // POST api/CarService/<ServiceOrderStatusController>
         [HttpPost]
         public ActionResult<ServiceOrderStatusDTO> Post([FromBody] ServiceOrderStatusDTO model)
         {
@@ -46,14 +46,14 @@ namespace QuirkyCarRepair.API.Controllers.ServiceOrderStatus
             return CreatedAtAction(nameof(Get), newServiceOrderStatus.Id, newServiceOrderStatus);
         }
 
-        // PUT api/<ServiceOrderStatusController>/5
+        // PUT api/CarService/<ServiceOrderStatusController>/5
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] ServiceOrderStatusDTO model)
         {
             _serviceOrderStatusService.Update(id, _mapper.Map<ServiceOrderStatusEntity>(model));
         }
 
-        // DELETE api/<ServiceOrderStatusController>/5
+        // DELETE api/CarService/<ServiceOrderStatusController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
