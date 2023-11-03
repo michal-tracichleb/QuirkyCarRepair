@@ -9,5 +9,12 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
         public PartRepository(QuirkyCarRepairContext context) : base(context)
         {
         }
+
+        public IQueryable<Part> GetPartsByCategories(List<int> categoryIds)
+        {
+            return _context.Parts
+                .Where(x => categoryIds.Contains(x.PartCategoryId))
+                .OrderBy(x => x.Id);
+        }
     }
 }

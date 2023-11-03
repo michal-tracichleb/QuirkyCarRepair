@@ -3,8 +3,7 @@ using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
 {
-    public interface IPartRepository : IRepository<Part>
+    public interface ITransactionStatusRepository : IRepository<TransactionStatus>
     {
-        public IQueryable<Part> GetPartsByCategories(List<int> categoryIds);
     }
 }

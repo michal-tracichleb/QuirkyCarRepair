@@ -22,21 +22,21 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _marginService = marginService;
         }
 
-        // GET: api/<MarginController>
+        // GET: api/Warehouse/<MarginController>
         [HttpGet]
         public IEnumerable<MarginDTO> Get()
         {
             return _mapper.Map<List<MarginDTO>>(_marginService.GetAll());
         }
 
-        // GET api/<MarginController>/5
+        // GET api/Warehouse/<MarginController>/5
         [HttpGet("{id}")]
         public MarginDTO Get(int id)
         {
             return _mapper.Map<MarginDTO>(_marginService.Get(id));
         }
 
-        // POST api/<MarginController>
+        // POST api/Warehouse/<MarginController>
         [HttpPost]
         public ActionResult<MarginDTO> Post([FromBody] MarginDTO model)
         {
@@ -46,14 +46,14 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             return CreatedAtAction(nameof(Get), newMargin.Id, newMargin);
         }
 
-        // PUT api/<MarginController>/5
+        // PUT api/Warehouse/<MarginController>/5
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] MarginDTO model)
         {
             _marginService.Update(id, _mapper.Map<MarginEntity>(model));
         }
 
-        // DELETE api/<MarginController>/5
+        // DELETE api/Warehouse/<MarginController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
