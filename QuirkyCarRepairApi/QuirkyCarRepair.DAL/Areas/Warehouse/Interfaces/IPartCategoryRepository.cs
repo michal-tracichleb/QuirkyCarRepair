@@ -7,6 +7,8 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
     {
         public PartCategory GetWithInclude(int id);
 
+        public PartCategory GetWithSubcategories(int id);
+
         public List<PartCategory> GetPrimaryCategories();
     }
 }

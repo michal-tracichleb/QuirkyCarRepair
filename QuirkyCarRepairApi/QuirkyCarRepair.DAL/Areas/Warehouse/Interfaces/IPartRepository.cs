@@ -5,5 +5,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
 {
     public interface IPartRepository : IRepository<Part>
     {
+        public IQueryable<Part> GetPartsByCategories(List<int> categoryIds);
     }
 }

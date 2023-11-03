@@ -2,7 +2,7 @@
 
 namespace QuirkyCarRepair.BLL.Areas.Warehouse.DTO
 {
-    public class PartCategoryStructure
+    public class PartCategoryStructureDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
-using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 
 namespace QuirkyCarRepair.API.Controllers
@@ -18,16 +17,44 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("GetPrimaryCategories")]
-        public List<PartCategoryEntity> GetPrimaryCategories()
+        public IActionResult GetPrimaryCategories()
         {
-            return _warehouseService.GetPrimaryCategories();
+            try
+            {
+                return Ok(_warehouseService.GetPrimaryCategories());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
         [Route("GetPartCategoryStructure")]
-        public PartCategoryStructure GetPartCategoryStructure(int id)
+        public IActionResult GetPartCategoryStructure(int id)
         {
-            return _warehouseService.GetPartCategoryStructure(id);
+            try
+            {
+                return Ok(_warehouseService.GetPartCategoryStructure(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("GetPartsPage")]
+        public IActionResult GetPartsPage([FromBody] GetPartsPageDTO getPartsPageDTO)
+        {
+            try
+            {
+                return Ok(_warehouseService.GetPartsPage(getPartsPageDTO));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -23,5 +23,15 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
         {
             return _context.PartCategories.Where(x => x.ParentCategoryId == null).ToList();
         }
+
+        public PartCategory GetWithSubcategories(int id)
+        {
+            return _context.PartCategories
+                .Include(x => x.Subcategories)
+                    .ThenInclude(x => x.Subcategories)
+                        .ThenInclude(x => x.Subcategories)
+                            .ThenInclude(x => x.Subcategories)
+                .First(x => x.Id == id);
+        }
     }
 }
