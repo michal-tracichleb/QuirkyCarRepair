@@ -34,6 +34,8 @@ builder.Services.AddRepositories();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(ServicesRegistration));
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
@@ -62,6 +64,11 @@ using (var serviceScope = app.Services.CreateScope())
     var seeder = new DataSeeder(context, roleManager, userManager);
     await seeder.SeedDatabase();
 }
+
+app.UseCors(builder => builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 
 app.MapIdentityApi<User>();
 
