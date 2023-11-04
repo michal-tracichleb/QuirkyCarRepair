@@ -25,6 +25,7 @@ namespace QuirkyCarRepair.BLL.ServicesRegistration
             services.AddScoped<IPartService, PartService>();
             services.AddScoped<IPartCategoryService, PartCategoryService>();
             services.AddScoped<IPartTransactionService, PartTransactionService>();
+            services.AddScoped<IWarehouseService, WarehouseService>();
 
             #endregion WarehouseManagement
         }

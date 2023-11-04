@@ -1,7 +1,9 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.BLL.ServicesRegistration;
 using QuirkyCarRepair.DAL;
+using QuirkyCarRepair.DAL.Areas.Identity;
 using QuirkyCarRepair.DAL.RepositoriesRegistration;
 using QuirkyCarRepair.DAL.Seeder;
 
@@ -13,6 +15,14 @@ builder.Services.AddDbContext<QuirkyCarRepairContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("QuirkyCarRepair"));
     options.EnableSensitiveDataLogging(false);
 });
+
+builder.Services.AddIdentityCore<User>()
+    .AddRoles<IdentityRole<int>>()
+    .AddEntityFrameworkStores<QuirkyCarRepairContext>()
+    .AddApiEndpoints();
+
+builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+builder.Services.AddAuthorizationBuilder();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -41,9 +51,18 @@ app.MapControllers();
 
 using (var serviceScope = app.Services.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<QuirkyCarRepairContext>();
-    var seeder = new DataSeeder(context);
-    seeder.SeedDatabase();
+    var services = serviceScope.ServiceProvider;
+
+    var context = services.GetRequiredService<QuirkyCarRepairContext>();
+
+    context.Database.Migrate();
+    var userManager = services.GetRequiredService<UserManager<User>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+
+    var seeder = new DataSeeder(context, roleManager, userManager);
+    await seeder.SeedDatabase();
 }
+
+app.MapIdentityApi<User>();
 
 app.Run();

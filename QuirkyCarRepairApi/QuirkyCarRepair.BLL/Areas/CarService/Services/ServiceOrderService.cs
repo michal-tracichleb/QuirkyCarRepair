@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
         public ServiceOrderEntity Creat(ServiceOrderEntity serviceOrder)
         {
-            var newServiceOrder = _serviceOrderRepository.Creat(_mapper.Map<ServiceOrder>(serviceOrder));
+            var newServiceOrder = _serviceOrderRepository.Add(_mapper.Map<ServiceOrder>(serviceOrder));
             return _mapper.Map<ServiceOrderEntity>(newServiceOrder);
         }
 

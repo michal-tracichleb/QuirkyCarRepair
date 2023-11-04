@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public PartCategoryEntity Creat(PartCategoryEntity partCategory)
         {
-            var newPartCategory = _partCategoryRepository.Creat(_mapper.Map<PartCategory>(partCategory));
+            var newPartCategory = _partCategoryRepository.Add(_mapper.Map<PartCategory>(partCategory));
             return _mapper.Map<PartCategoryEntity>(newPartCategory);
         }
 

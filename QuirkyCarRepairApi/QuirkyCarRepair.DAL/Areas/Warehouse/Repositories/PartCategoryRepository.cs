@@ -1,50 +1,37 @@
-﻿using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using QuirkyCarRepair.DAL.Areas.Shared;
+using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
 {
-    internal class PartCategoryRepository : IPartCategoryRepository
+    internal class PartCategoryRepository : Repository<PartCategory>, IPartCategoryRepository
     {
-        private readonly QuirkyCarRepairContext _context;
-
-        public PartCategoryRepository(QuirkyCarRepairContext context)
+        public PartCategoryRepository(QuirkyCarRepairContext context) : base(context)
         {
-            _context = context;
         }
 
-        public PartCategory Creat(PartCategory partCategory)
+        public PartCategory GetWithInclude(int id)
         {
-            _context.PartCategories.Add(partCategory);
-            _context.SaveChanges();
-
-            return partCategory;
+            return _context.PartCategories
+                .Include(x => x.Subcategories)
+                .Include(x => x.ParentCategory)
+                .First(x => x.Id == id);
         }
 
-        public void Delete(PartCategory partCategory)
+        public List<PartCategory> GetPrimaryCategories()
         {
-            _context.PartCategories.Remove(partCategory);
-            _context.SaveChanges();
+            return _context.PartCategories.Where(x => x.ParentCategoryId == null).ToList();
         }
 
-        public PartCategory? Get(int id)
+        public PartCategory GetWithSubcategories(int id)
         {
-            return _context.PartCategories.FirstOrDefault(x => x.Id == id);
-        }
-
-        public ICollection<PartCategory> GetAll()
-        {
-            return _context.PartCategories.ToList();
-        }
-
-        public void Update(PartCategory partCategory)
-        {
-            _context.PartCategories.Update(partCategory);
-            _context.SaveChanges();
-        }
-
-        public bool Exist(int id)
-        {
-            return _context.PartCategories.Any(x => x.Id == id);
+            return _context.PartCategories
+                .Include(x => x.Subcategories)
+                    .ThenInclude(x => x.Subcategories)
+                        .ThenInclude(x => x.Subcategories)
+                            .ThenInclude(x => x.Subcategories)
+                .First(x => x.Id == id);
         }
     }
 }

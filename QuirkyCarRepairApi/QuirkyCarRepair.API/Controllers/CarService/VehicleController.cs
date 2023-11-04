@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.CarService;
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 
-namespace QuirkyCarRepair.API.Controllers.Vehicle
+namespace QuirkyCarRepair.API.Controllers.CarService
 {
     [Route("api/CarService/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin, Mechanic, User")]
     public class VehicleController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -20,21 +22,21 @@ namespace QuirkyCarRepair.API.Controllers.Vehicle
             _vehicleService = vehicleService;
         }
 
-        // GET: api/<VehicleController>
+        // GET: api/CarService/<VehicleController>
         [HttpGet]
         public IEnumerable<VehicleDTO> Get()
         {
             return _mapper.Map<List<VehicleDTO>>(_vehicleService.GetAll());
         }
 
-        // GET api/<VehicleController>/5
+        // GET api/CarService/<VehicleController>/5
         [HttpGet("{id}")]
         public VehicleDTO Get(int id)
         {
             return _mapper.Map<VehicleDTO>(_vehicleService.Get(id));
         }
 
-        // POST api/<VehicleController>
+        // POST api/CarService/<VehicleController>
         [HttpPost]
         public ActionResult<VehicleDTO> Post([FromBody] VehicleDTO model)
         {
@@ -44,14 +46,14 @@ namespace QuirkyCarRepair.API.Controllers.Vehicle
             return CreatedAtAction(nameof(Get), newVehicle.Id, newVehicle);
         }
 
-        // PUT api/<VehicleController>/5
+        // PUT api/CarService/<VehicleController>/5
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] VehicleDTO model)
         {
             _vehicleService.Update(id, _mapper.Map<VehicleEntity>(model));
         }
 
-        // DELETE api/<VehicleController>/5
+        // DELETE api/CarService/<VehicleController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

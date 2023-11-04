@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -20,22 +21,23 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _partCategoryService = partCategoryService;
         }
 
-        // GET: api/<PartCategoryController>
+        // GET: api/Warehouse/<PartCategoryController>
         [HttpGet]
         public IEnumerable<PartCategoryDTO> Get()
         {
             return _mapper.Map<List<PartCategoryDTO>>(_partCategoryService.GetAll());
         }
 
-        // GET api/<PartCategoryController>/5
+        // GET api/Warehouse/<PartCategoryController>/5
         [HttpGet("{id}")]
         public PartCategoryDTO Get(int id)
         {
             return _mapper.Map<PartCategoryDTO>(_partCategoryService.Get(id));
         }
 
-        // POST api/<PartCategoryController>
+        // POST api/Warehouse/<PartCategoryController>
         [HttpPost]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public ActionResult<PartCategoryDTO> Post([FromBody] PartCategoryDTO model)
         {
             var partCategoryEntity = _mapper.Map<PartCategoryEntity>(model);
@@ -44,15 +46,17 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             return CreatedAtAction(nameof(Get), newPartCategory.Id, newPartCategory);
         }
 
-        // PUT api/<PartCategoryController>/5
+        // PUT api/Warehouse/<PartCategoryController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] PartCategoryDTO model)
         {
             _partCategoryService.Update(id, _mapper.Map<PartCategoryEntity>(model));
         }
 
-        // DELETE api/<PartCategoryController>/5
+        // DELETE api/Warehouse/<PartCategoryController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)
         {
             _partCategoryService.Delete(id);

@@ -1,6 +1,8 @@
-﻿namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
+﻿using QuirkyCarRepair.DAL.Areas.Shared;
+
+namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
 {
-    public class Margin
+    public class Margin : IModelBase
     {
         public Margin()
         {

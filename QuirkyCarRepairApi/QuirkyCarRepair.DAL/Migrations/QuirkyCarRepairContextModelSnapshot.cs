@@ -18,10 +18,147 @@ namespace QuirkyCarRepair.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("Polish_100_CI_AI")
-                .HasAnnotation("ProductVersion", "6.0.22")
+                .HasAnnotation("ProductVersion", "8.0.0-rc.2.23480.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
@@ -30,17 +167,22 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("OrderNumber")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VehicleId");
 
@@ -54,7 +196,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .HasMaxLength(512)
@@ -71,9 +213,14 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ServiceOrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ServiceOrderStatuses");
                 });
@@ -85,7 +232,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Brand")
                         .HasMaxLength(64)
@@ -100,6 +247,9 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("VIN")
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
@@ -109,7 +259,78 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>
@@ -119,7 +340,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -127,7 +348,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("nvarchar(64)");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -141,7 +362,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DocumentNumber")
                         .IsRequired()
@@ -159,9 +380,14 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ServiceOrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("OperationalDocuments");
                 });
@@ -173,18 +399,35 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryOfOrigin")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<decimal?>("Depth")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
+                    b.Property<decimal?>("Height")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("Manufacturer")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
                     b.Property<int?>("MarginId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<decimal?>("MinimumQuantity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("Model")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -194,16 +437,26 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Property<int>("PartCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductCode")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("UnitType")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<decimal?>("Weight")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<decimal?>("Width")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -221,7 +474,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -245,10 +498,10 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("MarginValue")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("OperationalDocumentId")
                         .HasColumnType("int");
@@ -257,10 +510,10 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -271,14 +524,108 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.ToTable("PartTransactions");
                 });
 
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.TransactionStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int>("OperationalDocumentid")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OperationalDocumentid");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TransactionStatuses");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", "User")
+                        .WithMany("ServiceOrders")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_ServiceOrder_User");
+
                     b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", "Vehicle")
                         .WithMany("ServiceOrders")
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_ServiceOrder_Vehicle");
+
+                    b.Navigation("User");
 
                     b.Navigation("Vehicle");
                 });
@@ -292,7 +639,24 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
 
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", "User")
+                        .WithMany("ServiceOrderStatuses")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_ServiceOrderStatus_User");
+
                     b.Navigation("ServiceOrder");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", "User")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Vehicle_User");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>
@@ -302,7 +666,14 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasForeignKey("ServiceOrderId")
                         .HasConstraintName("FK_ServiceOrder_OperationalDocument");
 
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", "User")
+                        .WithMany("OperationalDocuments")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_OperationalDocument_User");
+
                     b.Navigation("ServiceOrder");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Part", b =>
@@ -310,8 +681,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", "Margin")
                         .WithMany("Parts")
                         .HasForeignKey("MarginId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("FK_Margin_Parts");
 
                     b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.PartCategory", "PartCategory")
@@ -357,6 +726,25 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("Part");
                 });
 
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.TransactionStatus", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", "OperationalDocument")
+                        .WithMany("TransactionStatuses")
+                        .HasForeignKey("OperationalDocumentid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_TransactionStatus_OperationalDocument");
+
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", "User")
+                        .WithMany("TransactionStatuses")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_TransactionStatus_User");
+
+                    b.Navigation("OperationalDocument");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
                     b.Navigation("OperationalDocuments");
@@ -369,6 +757,19 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("ServiceOrders");
                 });
 
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.User", b =>
+                {
+                    b.Navigation("OperationalDocuments");
+
+                    b.Navigation("ServiceOrderStatuses");
+
+                    b.Navigation("ServiceOrders");
+
+                    b.Navigation("TransactionStatuses");
+
+                    b.Navigation("Vehicles");
+                });
+
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>
                 {
                     b.Navigation("Parts");
@@ -377,6 +778,8 @@ namespace QuirkyCarRepair.DAL.Migrations
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>
                 {
                     b.Navigation("PartTransactions");
+
+                    b.Navigation("TransactionStatuses");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Part", b =>

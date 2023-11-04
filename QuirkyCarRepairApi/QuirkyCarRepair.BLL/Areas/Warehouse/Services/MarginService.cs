@@ -21,7 +21,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public MarginEntity Creat(MarginEntity margin)
         {
-            var newMargin = _marginRepository.Creat(_mapper.Map<Margin>(margin));
+            var newMargin = _marginRepository.Add(_mapper.Map<Margin>(margin));
             return _mapper.Map<MarginEntity>(newMargin);
         }
 

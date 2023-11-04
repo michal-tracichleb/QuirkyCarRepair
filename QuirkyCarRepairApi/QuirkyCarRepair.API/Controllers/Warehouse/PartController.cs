@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -20,22 +21,23 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             _partService = partService;
         }
 
-        // GET: api/<PartController>
+        // GET: api/Warehouse/<PartController>
         [HttpGet]
         public IEnumerable<PartDTO> Get()
         {
             return _mapper.Map<List<PartDTO>>(_partService.GetAll());
         }
 
-        // GET api/<PartController>/5
+        // GET api/Warehouse/<PartController>/5
         [HttpGet("{id}")]
         public PartDTO Get(int id)
         {
             return _mapper.Map<PartDTO>(_partService.Get(id));
         }
 
-        // POST api/<PartController>
+        // POST api/Warehouse/<PartController>
         [HttpPost]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public ActionResult<PartDTO> Post([FromBody] PartDTO model)
         {
             var partEntity = _mapper.Map<PartEntity>(model);
@@ -44,15 +46,17 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
             return CreatedAtAction(nameof(Get), newPart.Id, newPart);
         }
 
-        // PUT api/<PartController>/5
+        // PUT api/Warehouse/<PartController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] PartDTO model)
         {
             _partService.Update(id, _mapper.Map<PartEntity>(model));
         }
 
-        // DELETE api/<PartController>/5
+        // DELETE api/Warehouse/<PartController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)
         {
             _partService.Delete(id);

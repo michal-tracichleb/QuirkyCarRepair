@@ -25,6 +25,7 @@ namespace QuirkyCarRepair.DAL.RepositoriesRegistration
             services.AddScoped<IPartRepository, PartRepository>();
             services.AddScoped<IPartCategoryRepository, PartCategoryRepository>();
             services.AddScoped<IPartTransactionRepository, PartTransactionRepository>();
+            services.AddScoped<ITransactionStatusRepository, TransactionStatusRepository>();
 
             #endregion WarehouseManagement
         }
