@@ -2,7 +2,7 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using QuirkyCarRepair.API;
+using QuirkyCarRepair.BLL;
 using QuirkyCarRepair.BLL.ServicesRegistration;
 using QuirkyCarRepair.DAL;
 using QuirkyCarRepair.DAL.RepositoriesRegistration;
@@ -20,6 +20,7 @@ builder.Services.AddDbContext<QuirkyCarRepairContext>(options =>
 
 var authenticationSettings = new AuthenticationSettings();
 builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+builder.Services.AddSingleton(authenticationSettings);
 
 builder.Services.AddAuthentication(option =>
 {

@@ -1,4 +1,4 @@
-﻿namespace QuirkyCarRepair.API
+﻿namespace QuirkyCarRepair.BLL
 {
     public class AuthenticationSettings
     {

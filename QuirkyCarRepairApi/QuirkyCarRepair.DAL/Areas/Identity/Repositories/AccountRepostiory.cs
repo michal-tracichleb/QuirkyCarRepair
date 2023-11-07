@@ -1,4 +1,5 @@
-﻿using QuirkyCarRepair.DAL.Areas.Identity.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using QuirkyCarRepair.DAL.Areas.Identity.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.Areas.Shared;
 
@@ -8,6 +9,13 @@ namespace QuirkyCarRepair.DAL.Areas.Identity.Repositories
     {
         public AccountRepostiory(QuirkyCarRepairContext context) : base(context)
         {
+        }
+
+        public User? GetByEmail(string email)
+        {
+            return _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Email == email);
         }
     }
 }

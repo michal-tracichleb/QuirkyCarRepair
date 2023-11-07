@@ -22,5 +22,13 @@ namespace QuirkyCarRepair.API.Controllers
             _accountService.RegisterUser(dto);
             return Ok();
         }
+
+        [HttpPost]
+        [Route("Login")]
+        public ActionResult Login([FromBody] LoginDto dto)
+        {
+            string token = _accountService.GenerateJwt(dto);
+            return Ok(token);
+        }
     }
 }
