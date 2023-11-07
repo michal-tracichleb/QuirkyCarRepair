@@ -60,12 +60,20 @@ namespace QuirkyCarRepair.DAL
                 entity.Property(e => e.Email)
                     .IsRequired();
 
+                entity.Property(e => e.EmailIsConfirmed)
+                    .HasDefaultValue(false)
+                    .IsRequired();
+
                 entity.Property(e => e.FirstName)
                     .HasMaxLength(128)
                     .IsRequired(false);
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(128)
+                    .IsRequired(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(12)
                     .IsRequired(false);
 
                 entity.Property(e => e.PasswordHash)

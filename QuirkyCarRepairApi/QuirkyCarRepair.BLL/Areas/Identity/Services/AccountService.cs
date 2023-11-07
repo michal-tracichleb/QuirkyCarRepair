@@ -35,10 +35,11 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
             var newUser = new User()
             {
                 Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber,
                 UserName = dto.UserName,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                RoleId = dto.RoleId,
+                RoleId = 1,
             };
 
             newUser.PasswordHash = _passwordHasher.HashPassword(newUser, dto.Password);
@@ -59,8 +60,12 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, $"{user.UserName}"),
                 new Claim(ClaimTypes.Role, $"{user.Role.Name}"),
+                new Claim("UserId", user.Id.ToString()),
+                new Claim("UserName", $"{user.UserName}"),
+                new Claim("Email", $"{user.Email}"),
+                new Claim("PhoneNumber", $"{user.PhoneNumber}"),
+                new Claim("Role", $"{user.Role.Name}"),
                 new Claim("FirstName", user.FirstName ?? ""),
                 new Claim("LastName", user.LastName ?? "")
             };

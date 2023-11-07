@@ -1,10 +1,12 @@
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QuirkyCarRepair.BLL;
 using QuirkyCarRepair.BLL.ServicesRegistration;
 using QuirkyCarRepair.DAL;
+using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.RepositoriesRegistration;
 using QuirkyCarRepair.DAL.Seeder;
 using System.Text;
@@ -65,12 +67,15 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseAuthorization();
+
 app.MapControllers();
 
 using (var serviceScope = app.Services.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<QuirkyCarRepairContext>();
-    var seeder = new DataSeeder(context);
+    var passwordHasher = serviceScope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>();
+    var seeder = new DataSeeder(context, passwordHasher);
     seeder.SeedDatabase();
 }
 
