@@ -1,7 +1,9 @@
+import React, {useState} from "react";
+
 import logo from "../../img/Logo_1.bmp";
 import LogInModal from "./LogInModal";
-import React from "react";
-export default function NavBar() {
+export default function NavBar({userIsLogged, setUserIsLogged, userData, setUserData}) {
+
     return (
         <>
             <div id="navbar">
@@ -31,15 +33,28 @@ export default function NavBar() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Kontakt</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
-                                </li>
+
+                                {!userIsLogged ?
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
+                                    </li>
+                                    :
+                                    <li className="nav-item">
+                                        //TODO: stworzyć panel usera
+                                        <a className="nav-link" href="#">Witaj: </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
-            <LogInModal />
+            {!userIsLogged &&
+                <LogInModal
+                    setUserIsLogged={setUserIsLogged}
+                    setUserData={setUserData}
+                />
+            }
         </>
     );
 }
