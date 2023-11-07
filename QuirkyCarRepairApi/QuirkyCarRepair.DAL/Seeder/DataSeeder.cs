@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using QuirkyCarRepair.DAL.Areas.Identity;
+﻿using Newtonsoft.Json;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Seeder
@@ -10,16 +7,9 @@ namespace QuirkyCarRepair.DAL.Seeder
     {
         private readonly QuirkyCarRepairContext _context;
 
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
-
-        public DataSeeder(QuirkyCarRepairContext context,
-            RoleManager<IdentityRole<int>> roleManager,
-            UserManager<User> userManager)
+        public DataSeeder(QuirkyCarRepairContext context)
         {
             _context = context;
-            _roleManager = roleManager;
-            _userManager = userManager;
         }
 
         public List<T> LoadDataFromJsonFile<T>(string filePath)
@@ -28,140 +18,20 @@ namespace QuirkyCarRepair.DAL.Seeder
             return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
 
-        public async Task SeedDatabase()
+        public void SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
-            await SeedPartCategoryWithParts(folderPath);
-            await SeedUsers();
+            SeedPartCategoryWithParts(folderPath);
         }
 
-        private async Task SeedPartCategoryWithParts(string folderPath)
+        private void SeedPartCategoryWithParts(string folderPath)
         {
-            if (!await _context.PartCategories.AnyAsync())
+            if (!_context.PartCategories.Any())
             {
                 string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
                 var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
-                await _context.AddRangeAsync(partCategories);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        private async Task SeedUsers()
-        {
-            string adminRole = "Admin";
-            string adminPassword = "Admin123!";
-            var admin = new User
-            {
-                UserName = "Admin",
-                Email = "admin@admin.com",
-                PhoneNumber = "999999999",
-                EmailConfirmed = true
-            };
-
-            string userRole = "User";
-            string userPassword = "User123!";
-            var user = new User
-            {
-                UserName = "User",
-                Email = "user@user.com",
-                PhoneNumber = "111222333",
-                EmailConfirmed = true
-            };
-
-            string mechanicRole = "Mechanic";
-            string mechanicPassword = "Mechanic123!";
-            var mechanic = new User
-            {
-                UserName = "Mechanic",
-                Email = "mechanic@mechanic.com",
-                PhoneNumber = "333222333",
-                EmailConfirmed = true
-            };
-
-            string storekeeperRole = "Storekeeper";
-            string storekeeperPassword = "Storekeeper123!";
-            var storekeeper = new User
-            {
-                UserName = "Storekeeper",
-                Email = "storekeeper@storekeeper.com",
-                PhoneNumber = "333333333",
-                EmailConfirmed = true
-            };
-
-            if (await _roleManager.FindByNameAsync(adminRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = adminRole,
-                    NormalizedName = adminRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("Admin") == null)
-            {
-                var result = await _userManager.CreateAsync(admin);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(admin, adminPassword);
-                    await _userManager.AddToRoleAsync(admin, adminRole);
-                }
-            }
-
-            if (await _roleManager.FindByNameAsync(userRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = userRole,
-                    NormalizedName = userRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("User") == null)
-            {
-                var result = await _userManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(user, userPassword);
-                    await _userManager.AddToRoleAsync(user, userRole);
-                }
-            }
-
-            if (await _roleManager.FindByNameAsync(mechanicRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = mechanicRole,
-                    NormalizedName = mechanicRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("Mechanic") == null)
-            {
-                var result = await _userManager.CreateAsync(mechanic);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(mechanic, mechanicPassword);
-                    await _userManager.AddToRoleAsync(mechanic, mechanicRole);
-                }
-            }
-
-            if (await _roleManager.FindByNameAsync(storekeeperRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = storekeeperRole,
-                    NormalizedName = storekeeperRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("Storekeeper") == null)
-            {
-                var result = await _userManager.CreateAsync(storekeeper);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(storekeeper, storekeeperPassword);
-                    await _userManager.AddToRoleAsync(storekeeper, storekeeperRole);
-                }
+                _context.AddRange(partCategories);
+                _context.SaveChanges();
             }
         }
     }

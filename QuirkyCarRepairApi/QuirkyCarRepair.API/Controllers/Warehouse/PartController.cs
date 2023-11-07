@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -37,7 +36,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // POST api/Warehouse/<PartController>
         [HttpPost]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public ActionResult<PartDTO> Post([FromBody] PartDTO model)
         {
             var partEntity = _mapper.Map<PartEntity>(model);
@@ -48,7 +46,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // PUT api/Warehouse/<PartController>/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] PartDTO model)
         {
             _partService.Update(id, _mapper.Map<PartEntity>(model));
@@ -56,7 +53,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // DELETE api/Warehouse/<PartController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)
         {
             _partService.Delete(id);

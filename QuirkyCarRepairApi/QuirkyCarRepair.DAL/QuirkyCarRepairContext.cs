@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
-using QuirkyCarRepair.DAL.Areas.Identity;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL
 {
-    public class QuirkyCarRepairContext : IdentityDbContext<User, IdentityRole<int>, int>
+    public class QuirkyCarRepairContext : DbContext
     {
         public QuirkyCarRepairContext()
         {
@@ -18,8 +15,6 @@ namespace QuirkyCarRepair.DAL
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
-
-        public DbSet<User> Users { get; set; }
 
         #region CarService
 
@@ -46,254 +41,6 @@ namespace QuirkyCarRepair.DAL
 
             modelBuilder.UseCollation("Polish_100_CI_AI");
 
-            #region Identity
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(u => u.Id);
-
-                entity.Property(u => u.Id)
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("int")
-                      .HasColumnName("Id");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
-
-                entity.Property<int>("AccessFailedCount")
-                    .HasColumnType("int");
-
-                entity.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<string>("Email")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.Property<bool>("EmailConfirmed")
-                    .HasColumnType("bit");
-
-                entity.Property<bool>("LockoutEnabled")
-                    .HasColumnType("bit");
-
-                entity.Property<DateTimeOffset?>("LockoutEnd")
-                    .HasColumnType("datetimeoffset");
-
-                entity.Property<string>("NormalizedEmail")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.Property<string>("NormalizedUserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.Property<string>("PasswordHash")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<string>("PhoneNumber")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<bool>("PhoneNumberConfirmed")
-                    .HasColumnType("bit");
-
-                entity.Property<string>("SecurityStamp")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<bool>("TwoFactorEnabled")
-                    .HasColumnType("bit");
-
-                entity.Property<string>("UserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.HasKey("Id");
-
-                entity.HasIndex("NormalizedEmail")
-                    .HasDatabaseName("EmailIndex");
-
-                entity.HasIndex("NormalizedUserName")
-                    .IsUnique()
-                    .HasDatabaseName("UserNameIndex")
-                    .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                entity.ToTable("AspNetUsers", (string)null);
-            });
-
-            modelBuilder.Entity<IdentityRole<int>>(entity =>
-            {
-                entity.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
-
-                entity.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<string>("Name")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.Property<string>("NormalizedName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
-
-                entity.HasKey("Id");
-
-                entity.HasIndex("NormalizedName")
-                    .IsUnique()
-                    .HasDatabaseName("RoleNameIndex")
-                    .HasFilter("[NormalizedName] IS NOT NULL");
-
-                entity.ToTable("AspNetRoles", (string)null);
-            });
-
-            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
-            {
-                entity.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
-
-                entity.Property<string>("ClaimType")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<string>("ClaimValue")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<int>("RoleId")
-                    .HasColumnType("int");
-
-                entity.HasKey("Id");
-
-                entity.HasIndex("RoleId");
-
-                entity.ToTable("AspNetRoleClaims", (string)null);
-
-                entity.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                    .WithMany()
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
-            {
-                entity.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"), 1L, 1);
-
-                entity.Property<string>("ClaimType")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<string>("ClaimValue")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<int>("UserId")
-                    .HasColumnType("int");
-
-                entity.HasKey("Id");
-
-                entity.HasIndex("UserId");
-
-                entity.ToTable("AspNetUserClaims", (string)null);
-
-                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
-            {
-                entity.Property<string>("LoginProvider")
-                    .HasMaxLength(128)
-                    .HasColumnType("nvarchar(128)");
-
-                entity.Property<string>("ProviderKey")
-                    .HasMaxLength(128)
-                    .HasColumnType("nvarchar(128)");
-
-                entity.Property<string>("ProviderDisplayName")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property<int>("UserId")
-                    .HasColumnType("int");
-
-                entity.HasKey("LoginProvider", "ProviderKey");
-
-                entity.HasIndex("UserId");
-
-                entity.ToTable("AspNetUserLogins", (string)null);
-
-                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
-                     .WithMany()
-                     .HasForeignKey("UserId")
-                     .OnDelete(DeleteBehavior.Cascade)
-                     .IsRequired();
-            });
-
-            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
-            {
-                entity.Property<int>("UserId")
-                    .HasColumnType("int");
-
-                entity.Property<int>("RoleId")
-                    .HasColumnType("int");
-
-                entity.HasKey("UserId", "RoleId");
-
-                entity.HasIndex("RoleId");
-
-                entity.ToTable("AspNetUserRoles", (string)null);
-
-                entity.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                    .WithMany()
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
-            {
-                entity.Property<int>("UserId")
-                    .HasColumnType("int");
-
-                entity.Property<string>("LoginProvider")
-                    .HasMaxLength(128)
-                    .HasColumnType("nvarchar(128)");
-
-                entity.Property<string>("Name")
-                    .HasMaxLength(128)
-                    .HasColumnType("nvarchar(128)");
-
-                entity.Property<string>("Value")
-                    .HasColumnType("nvarchar(max)");
-
-                entity.HasKey("UserId", "LoginProvider", "Name");
-
-                entity.ToTable("AspNetUserTokens", (string)null);
-
-                entity.HasOne("QuirkyCarRepair.DAL.Areas.Identity.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            #endregion Identity
-
             #region CarService
 
             modelBuilder.Entity<ServiceOrder>(entity =>
@@ -310,11 +57,6 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.ServiceOrders)
                     .HasForeignKey(p => p.VehicleId)
                     .HasConstraintName("FK_ServiceOrder_Vehicle");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.ServiceOrders)
-                .HasForeignKey(p => p.UserId)
-                .HasConstraintName("FK_ServiceOrder_User");
             });
 
             modelBuilder.Entity<ServiceOrderStatus>(entity =>
@@ -337,11 +79,6 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.ServiceOrderStatuses)
                     .HasForeignKey(p => p.ServiceOrderId)
                     .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.ServiceOrderStatuses)
-                    .HasForeignKey(p => p.UserId)
-                    .HasConstraintName("FK_ServiceOrderStatus_User");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
@@ -367,11 +104,6 @@ namespace QuirkyCarRepair.DAL
 
                 entity.Property(e => e.Year)
                     .IsRequired(false);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Vehicles)
-                    .HasForeignKey(p => p.UserId)
-                    .HasConstraintName("FK_Vehicle_User");
             });
 
             #endregion CarService
@@ -421,11 +153,6 @@ namespace QuirkyCarRepair.DAL
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceOrder_OperationalDocument");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.OperationalDocuments)
-                    .HasForeignKey(p => p.UserId)
-                    .HasConstraintName("FK_OperationalDocument_User");
             });
 
             modelBuilder.Entity<Part>(entity =>
@@ -558,11 +285,6 @@ namespace QuirkyCarRepair.DAL
                 entity.Property(e => e.Description)
                     .HasMaxLength(512)
                     .IsRequired(false);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.TransactionStatuses)
-                    .HasForeignKey(p => p.UserId)
-                    .HasConstraintName("FK_TransactionStatus_User");
 
                 entity.HasOne(d => d.OperationalDocument)
                     .WithMany(p => p.TransactionStatuses)

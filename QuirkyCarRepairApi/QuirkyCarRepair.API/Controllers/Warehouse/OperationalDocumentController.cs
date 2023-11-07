@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.API.DTO.Warehouse;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -47,7 +46,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // PUT api/Warehouse/<OperationalDocumentController>/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] OperationalDocumentDTO model)
         {
             _operationalDocumentService.Update(id, _mapper.Map<OperationalDocumentEntity>(model));
@@ -55,7 +53,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // DELETE api/Warehouse/<OperationalDocumentController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)
         {
             _operationalDocumentService.Delete(id);
