@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
+using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL
@@ -15,6 +16,9 @@ namespace QuirkyCarRepair.DAL
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         #region CarService
 
@@ -41,23 +45,68 @@ namespace QuirkyCarRepair.DAL
 
             modelBuilder.UseCollation("Polish_100_CI_AI");
 
-            #region CarService
+            #region Identity
 
-            modelBuilder.Entity<ServiceOrder>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.OrderNumber)
+                entity.Property(e => e.UserName)
                     .HasMaxLength(64)
                     .IsRequired();
 
-                entity.HasOne(d => d.Vehicle)
-                    .WithMany(p => p.ServiceOrders)
-                    .HasForeignKey(p => p.VehicleId)
-                    .HasConstraintName("FK_ServiceOrder_Vehicle");
+                entity.Property(e => e.Email)
+                    .IsRequired();
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(128)
+                    .IsRequired(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(128)
+                    .IsRequired(false);
+
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired();
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(p => p.RoleId)
+                    .HasConstraintName("FK_User_Role");
             });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(64)
+                    .IsRequired();
+            });
+
+            #endregion Identity
+
+            #region CarService
+
+            modelBuilder.Entity<ServiceOrder>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+
+            entity.Property(e => e.OrderNumber)
+                .HasMaxLength(64)
+                .IsRequired();
+
+            entity.HasOne(d => d.Vehicle)
+                .WithMany(p => p.ServiceOrders)
+                .HasForeignKey(p => p.VehicleId)
+                .HasConstraintName("FK_ServiceOrder_Vehicle");
+        });
 
             modelBuilder.Entity<ServiceOrderStatus>(entity =>
             {

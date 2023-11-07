@@ -1,0 +1,9 @@
+﻿using QuirkyCarRepair.BLL.Areas.Identity.DTO;
+
+namespace QuirkyCarRepair.BLL.Areas.Identity.Interfaces
+{
+    public interface IAccountService
+    {
+        void RegisterUser(RegisterUserDto dto);
+    }
+}
