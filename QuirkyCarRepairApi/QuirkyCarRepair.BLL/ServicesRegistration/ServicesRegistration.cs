@@ -1,8 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.CarService.Services;
+using QuirkyCarRepair.BLL.Areas.Identity.DTO;
+using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
+using QuirkyCarRepair.BLL.Areas.Identity.Services;
+using QuirkyCarRepair.BLL.Areas.Identity.Validators;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Services;
+using QuirkyCarRepair.DAL.Areas.Identity.Models;
 
 namespace QuirkyCarRepair.BLL.ServicesRegistration
 {
@@ -10,6 +17,14 @@ namespace QuirkyCarRepair.BLL.ServicesRegistration
     {
         public static void AddServices(this IServiceCollection services)
         {
+            #region Identity
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+
+            #endregion Identity
+
             #region CarService
 
             services.AddScoped<IServiceOrderService, ServiceOrderService>();

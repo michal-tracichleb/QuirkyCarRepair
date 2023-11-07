@@ -53,7 +53,7 @@ export default function LogInModal({setUserIsLogged, setUserData}) {
     }
 
     function UserLogin(loginData) {
-        const baseURL = "https://localhost:7247/login";
+        const baseURL = "https://localhost:7247/api/Account/Login";
 
         const getResponse = (props)=>{
             let loginResponse = [];

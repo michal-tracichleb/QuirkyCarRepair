@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuirkyCarRepair.DAL;
 
@@ -11,9 +12,11 @@ using QuirkyCarRepair.DAL;
 namespace QuirkyCarRepair.DAL.Migrations
 {
     [DbContext(typeof(QuirkyCarRepairContext))]
-    partial class QuirkyCarRepairContextModelSnapshot : ModelSnapshot
+    [Migration("20231107123230_Remove_AspNet_Identity")]
+    partial class Remove_AspNet_Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,74 +113,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailIsConfirmed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>
@@ -421,18 +356,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("ServiceOrder");
                 });
 
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.User", b =>
-                {
-                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_User_Role");
-
-                    b.Navigation("Role");
-                });
-
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>
                 {
                     b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "ServiceOrder")
@@ -515,11 +438,6 @@ namespace QuirkyCarRepair.DAL.Migrations
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", b =>
                 {
                     b.Navigation("ServiceOrders");
-                });
-
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>

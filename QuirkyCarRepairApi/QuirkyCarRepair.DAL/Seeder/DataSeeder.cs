@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using QuirkyCarRepair.DAL.Areas.Identity;
+using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Seeder
@@ -9,17 +8,12 @@ namespace QuirkyCarRepair.DAL.Seeder
     public class DataSeeder
     {
         private readonly QuirkyCarRepairContext _context;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
-
-        public DataSeeder(QuirkyCarRepairContext context,
-            RoleManager<IdentityRole<int>> roleManager,
-            UserManager<User> userManager)
+        public DataSeeder(QuirkyCarRepairContext context, IPasswordHasher<User> passwordHasher)
         {
             _context = context;
-            _roleManager = roleManager;
-            _userManager = userManager;
+            _passwordHasher = passwordHasher;
         }
 
         public List<T> LoadDataFromJsonFile<T>(string filePath)
@@ -28,141 +22,104 @@ namespace QuirkyCarRepair.DAL.Seeder
             return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
 
-        public async Task SeedDatabase()
+        public void SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
-            await SeedPartCategoryWithParts(folderPath);
-            await SeedUsers();
+            SeedPartCategoryWithParts(folderPath);
         }
 
-        private async Task SeedPartCategoryWithParts(string folderPath)
+        private void SeedPartCategoryWithParts(string folderPath)
         {
-            if (!await _context.PartCategories.AnyAsync())
+            if (_context.Database.CanConnect())
             {
-                string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
-                var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
-                await _context.AddRangeAsync(partCategories);
-                await _context.SaveChangesAsync();
+                if (!_context.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    _context.Roles.AddRange(roles);
+                    _context.SaveChanges();
+                }
+
+                if (!_context.Users.Any())
+                {
+                    var users = GetUsers();
+                    _context.Users.AddRange(users);
+                    _context.SaveChanges();
+                }
+
+                if (!_context.PartCategories.Any())
+                {
+                    string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
+                    var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
+                    _context.AddRange(partCategories);
+                    _context.SaveChanges();
+                }
             }
         }
 
-        private async Task SeedUsers()
+        private IEnumerable<Role> GetRoles()
         {
-            string adminRole = "Admin";
-            string adminPassword = "Admin123!";
-            var admin = new User
+            return new List<Role>()
             {
-                UserName = "Admin",
-                Email = "admin@admin.com",
-                PhoneNumber = "999999999",
-                EmailConfirmed = true
+                new Role()
+                {
+                    Name = "User"
+                },
+                new Role()
+                {
+                    Name = "Storekeeper"
+                },
+                new Role()
+                {
+                    Name = "Mechanic"
+                },
+                new Role()
+                {
+                    Name = "Admin"
+                }
             };
+        }
 
-            string userRole = "User";
-            string userPassword = "User123!";
-            var user = new User
+        private IEnumerable<User> GetUsers()
+        {
+            var user = new User()
             {
                 UserName = "User",
                 Email = "user@user.com",
-                PhoneNumber = "111222333",
-                EmailConfirmed = true
+                EmailIsConfirmed = true,
+                RoleId = 1,
             };
+            user.PasswordHash = _passwordHasher.HashPassword(user, "User123!");
 
-            string mechanicRole = "Mechanic";
-            string mechanicPassword = "Mechanic123!";
-            var mechanic = new User
-            {
-                UserName = "Mechanic",
-                Email = "mechanic@mechanic.com",
-                PhoneNumber = "333222333",
-                EmailConfirmed = true
-            };
-
-            string storekeeperRole = "Storekeeper";
-            string storekeeperPassword = "Storekeeper123!";
-            var storekeeper = new User
+            var storekeeper = new User()
             {
                 UserName = "Storekeeper",
                 Email = "storekeeper@storekeeper.com",
-                PhoneNumber = "333333333",
-                EmailConfirmed = true
+                EmailIsConfirmed = true,
+                RoleId = 2,
             };
+            storekeeper.PasswordHash = _passwordHasher.HashPassword(user, "Storekeeper123!");
 
-            if (await _roleManager.FindByNameAsync(adminRole) == null)
+            var mechanic = new User()
             {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = adminRole,
-                    NormalizedName = adminRole.ToUpper()
-                });
-            }
+                UserName = "Mechanic",
+                Email = "mechanic@mechanic.com",
+                EmailIsConfirmed = true,
+                RoleId = 3,
+            };
+            mechanic.PasswordHash = _passwordHasher.HashPassword(user, "Mechanic123!");
 
-            if (await _userManager.FindByNameAsync("Admin") == null)
+            var admin = new User()
             {
-                var result = await _userManager.CreateAsync(admin);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(admin, adminPassword);
-                    await _userManager.AddToRoleAsync(admin, adminRole);
-                }
-            }
+                UserName = "Admin",
+                Email = "admin@admin.com",
+                EmailIsConfirmed = true,
+                RoleId = 4,
+            };
+            admin.PasswordHash = _passwordHasher.HashPassword(user, "Admin123!");
 
-            if (await _roleManager.FindByNameAsync(userRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = userRole,
-                    NormalizedName = userRole.ToUpper()
-                });
-            }
+            var users = new List<User>() { user, storekeeper, mechanic, admin };
 
-            if (await _userManager.FindByNameAsync("User") == null)
-            {
-                var result = await _userManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(user, userPassword);
-                    await _userManager.AddToRoleAsync(user, userRole);
-                }
-            }
-
-            if (await _roleManager.FindByNameAsync(mechanicRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = mechanicRole,
-                    NormalizedName = mechanicRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("Mechanic") == null)
-            {
-                var result = await _userManager.CreateAsync(mechanic);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(mechanic, mechanicPassword);
-                    await _userManager.AddToRoleAsync(mechanic, mechanicRole);
-                }
-            }
-
-            if (await _roleManager.FindByNameAsync(storekeeperRole) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole<int>
-                {
-                    Name = storekeeperRole,
-                    NormalizedName = storekeeperRole.ToUpper()
-                });
-            }
-
-            if (await _userManager.FindByNameAsync("Storekeeper") == null)
-            {
-                var result = await _userManager.CreateAsync(storekeeper);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddPasswordAsync(storekeeper, storekeeperPassword);
-                    await _userManager.AddToRoleAsync(storekeeper, storekeeperRole);
-                }
-            }
+            return users;
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuirkyCarRepair.DAL;
 
@@ -11,9 +12,11 @@ using QuirkyCarRepair.DAL;
 namespace QuirkyCarRepair.DAL.Migrations
 {
     [DbContext(typeof(QuirkyCarRepairContext))]
-    partial class QuirkyCarRepairContextModelSnapshot : ModelSnapshot
+    [Migration("20231107145031_NewTables_Users_Roles")]
+    partial class NewTables_Users_Roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,11 +147,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EmailIsConfirmed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("FirstName")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
@@ -160,10 +158,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");

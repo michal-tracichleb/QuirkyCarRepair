@@ -9,7 +9,7 @@ namespace QuirkyCarRepair.API.Controllers.CarService
 {
     [Route("api/CarService/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin, Mechanic, User")]
+    [Authorize]
     public class ServiceOrderController : ControllerBase
     {
         private readonly IMapper _mapper;

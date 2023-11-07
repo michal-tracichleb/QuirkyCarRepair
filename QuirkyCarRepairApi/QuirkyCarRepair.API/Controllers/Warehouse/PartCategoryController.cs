@@ -9,6 +9,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 {
     [Route("api/Warehouse/[controller]")]
     [ApiController]
+    [Authorize]
     public class PartCategoryController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -37,7 +38,7 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // POST api/Warehouse/<PartCategoryController>
         [HttpPost]
-        [Authorize(Roles = "Admin, Storekeeper")]
+        [Authorize(Roles = "Admin,Storekeeper")]
         public ActionResult<PartCategoryDTO> Post([FromBody] PartCategoryDTO model)
         {
             var partCategoryEntity = _mapper.Map<PartCategoryEntity>(model);
@@ -48,7 +49,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // PUT api/Warehouse/<PartCategoryController>/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Update(int id, [FromBody] PartCategoryDTO model)
         {
             _partCategoryService.Update(id, _mapper.Map<PartCategoryEntity>(model));
@@ -56,7 +56,6 @@ namespace QuirkyCarRepair.API.Controllers.Warehouse
 
         // DELETE api/Warehouse/<PartCategoryController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, Storekeeper")]
         public void Delete(int id)
         {
             _partCategoryService.Delete(id);
