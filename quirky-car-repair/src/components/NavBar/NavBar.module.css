@@ -1,0 +1,15 @@
+.login_link{
+    color:rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s color;
+    font-family: sans-serif;
+}
+.login_link:hover{
+    color: white;
+}
+.logo{
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+}

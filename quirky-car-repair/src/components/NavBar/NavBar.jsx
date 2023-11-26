@@ -1,15 +1,12 @@
-import React, {useState} from "react";
-
-import logo from "../../img/Logo_1.bmp";
-import LogInModal from "./LogInModal";
-export default function NavBar({userIsLogged, setUserIsLogged, userData, setUserData}) {
-
-    return (
+import logo from "../../assets/Logo_1.jpg"
+import styles from "./NavBar.module.css"
+export function NavBar({userIsLogged, userData}){
+    return(
         <>
             <div id="navbar">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <img src={logo} alt="" width="40" height="40" className="d-inline-block align-text-top"/>
+                        <img src={logo} alt="logo" className={styles.logo}/>
                         <a className="navbar-brand" href="#">
                             Quirky Car Repair
                         </a>
@@ -18,7 +15,7 @@ export default function NavBar({userIsLogged, setUserIsLogged, userData, setUser
                                 aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse" id="navbarNav">
+                        <div className="collapse navbar-collapse col">
                             <ul className="navbar-nav me-auto">
 
                                 <li className="nav-item">
@@ -33,28 +30,19 @@ export default function NavBar({userIsLogged, setUserIsLogged, userData, setUser
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Kontakt</a>
                                 </li>
-
-                                {!userIsLogged ?
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
-                                    </li>
-                                    :
-                                    <li className="nav-item">
-                                        //TODO: stworzyć panel usera
-                                        <a className="nav-link" href="#">Witaj: </a>
-                                    </li>
-                                }
                             </ul>
+                            <div className="col text-end">
+                                {!userIsLogged ?
+                                    <a className={styles.login_link} href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
+                                    :
+                                    <a className={styles.login_link} href="#">Witaj: {userData.userName}</a>
+                                }
+
+                            </div>
                         </div>
                     </div>
                 </nav>
             </div>
-            {!userIsLogged &&
-                <LogInModal
-                    setUserIsLogged={setUserIsLogged}
-                    setUserData={setUserData}
-                />
-            }
         </>
-    );
+    )
 }
