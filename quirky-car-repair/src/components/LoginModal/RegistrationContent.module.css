@@ -1,0 +1,10 @@
+.back_link{
+    cursor: pointer;
+    font-size: 20px;
+    color: grey;
+    padding-right: 8px;
+    transition: 0.3s color;
+}
+.back_link:hover{
+    color: #2a2a2a;
+}
