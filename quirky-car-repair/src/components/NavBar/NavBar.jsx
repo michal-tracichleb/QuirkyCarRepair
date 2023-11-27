@@ -15,9 +15,8 @@ export function NavBar({userIsLogged, userData}){
                                 aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse col">
+                        <div className="collapse navbar-collapse col" id="navbarNav">
                             <ul className="navbar-nav me-auto">
-
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Magazyn</a>
                                 </li>
@@ -37,7 +36,6 @@ export function NavBar({userIsLogged, userData}){
                                     :
                                     <a className={styles.login_link} href="#">Witaj: {userData.userName}</a>
                                 }
-
                             </div>
                         </div>
                     </div>

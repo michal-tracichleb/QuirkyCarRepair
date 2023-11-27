@@ -2,7 +2,7 @@ import {useState} from "react";
 import axios from "axios";
 import {prepareUserData} from "../../utlis/prepareUserData.js";
 
-export function LoginContent({setUserIsLogged}){
+export function LoginContent({setUserIsLogged, setLoginForm}){
     const [passwordIsShown, setPasswordIsShown] = useState(false);
     const [errors, setErrors] = useState([]);
     const onFormSubmit = async e =>{
@@ -86,7 +86,7 @@ export function LoginContent({setUserIsLogged}){
             </div>
             <div className="modal-footer ">
                 <div className="col">
-                    <button type="button" className="btn btn-primary" >Rejestracja</button>
+                    <button type="button" className="btn btn-primary" onClick={()=>setLoginForm(false)}>Rejestracja</button>
                 </div>
                 <div className="col">
                     <button type="submit" form="loginForm" className="btn btn-primary float-end" >Zaloguj</button>
