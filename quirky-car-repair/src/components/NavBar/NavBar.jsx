@@ -1,6 +1,7 @@
 import logo from "../../assets/Logo_1.jpg"
 import styles from "./NavBar.module.css"
 import {UserDropDownMenu} from "../UserDropDownMenu.jsx";
+import {NavLink} from "react-router-dom";
 export function NavBar({userIsLogged, userData, setUserIsLogged}){
     const handleUserLogout=()=>{
         sessionStorage.removeItem('user')
@@ -13,9 +14,9 @@ export function NavBar({userIsLogged, userData, setUserIsLogged}){
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <img src={logo} alt="logo" className={styles.logo}/>
-                        <a className="navbar-brand" href="#">
+                        <NavLink className="navbar-brand" to={"/"}>
                             Quirky Car Repair
-                        </a>
+                        </NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -24,16 +25,16 @@ export function NavBar({userIsLogged, userData, setUserIsLogged}){
                         <div className="collapse navbar-collapse col" id="navbarNav">
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Magazyn</a>
+                                    <NavLink className="nav-link" to="/warehouse">Magazyn</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Serwis</a>
+                                    <NavLink className="nav-link" to="/serwis">Serwis</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">O Nas</a>
+                                    <NavLink className="nav-link" to="/about">O Nas</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Kontakt</a>
+                                    <NavLink className="nav-link" to="/contact">Kontakt</NavLink>
                                 </li>
                             </ul>
                             <div className={`col ${styles.user_panel}`} >

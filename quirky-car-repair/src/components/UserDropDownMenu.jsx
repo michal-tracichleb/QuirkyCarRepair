@@ -1,4 +1,5 @@
 import styles from "./NavBar/NavBar.module.css";
+import {NavLink} from "react-router-dom";
 
 export function UserDropDownMenu({userName, handleUserLogout}){
 
@@ -9,7 +10,7 @@ export function UserDropDownMenu({userName, handleUserLogout}){
             </a>
 
             <ul className="dropdown-menu dropdown-menu-lg-end">
-                <li><a className="dropdown-item" href="#">Twój profil</a></li>
+                <li><NavLink className="dropdown-item" to="/user_profile">Twój profil</NavLink></li>
                 <li><hr className="dropdown-divider" /></li>
                 <li><a className="dropdown-item" href="#" onClick={handleUserLogout}>Wyloguj</a></li>
             </ul>
