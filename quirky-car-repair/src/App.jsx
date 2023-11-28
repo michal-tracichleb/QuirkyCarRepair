@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <>
-        <NavBar userData={userData} userIsLogged={userIsLogged}/>
+        <NavBar userData={userData} userIsLogged={userIsLogged} setUserIsLogged={setUserIsLogged}/>
         {!userIsLogged && <LoginModal setUserIsLogged={setUserIsLogged}/>}
     </>
   )

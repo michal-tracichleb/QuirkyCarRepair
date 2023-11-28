@@ -6,10 +6,17 @@
     font-family: sans-serif;
 }
 .login_link:hover{
-    color: white;
+    color: #cccccc;
 }
 .logo{
     width: 40px;
     margin-right: 10px;
     border-radius: 5px;
+}
+
+.user_panel {
+    @media (min-width: 992px) {
+        justify-content: flex-end !important;
+        display: flex !important;
+    }
 }

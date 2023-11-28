@@ -1,6 +1,12 @@
 import logo from "../../assets/Logo_1.jpg"
 import styles from "./NavBar.module.css"
-export function NavBar({userIsLogged, userData}){
+import {UserDropDownMenu} from "../UserDropDownMenu.jsx";
+export function NavBar({userIsLogged, userData, setUserIsLogged}){
+    const handleUserLogout=()=>{
+        sessionStorage.removeItem('user')
+        setUserIsLogged(false);
+    }
+
     return(
         <>
             <div id="navbar">
@@ -30,11 +36,11 @@ export function NavBar({userIsLogged, userData}){
                                     <a className="nav-link" href="#">Kontakt</a>
                                 </li>
                             </ul>
-                            <div className="col text-end">
+                            <div className={`col ${styles.user_panel}`} >
                                 {!userIsLogged ?
                                     <a className={styles.login_link} href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
                                     :
-                                    <a className={styles.login_link} href="#">Witaj: {userData.userName}</a>
+                                    <UserDropDownMenu userName={userData.userName} handleUserLogout={handleUserLogout}/>
                                 }
                             </div>
                         </div>
