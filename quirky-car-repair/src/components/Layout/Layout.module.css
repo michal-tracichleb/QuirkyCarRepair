@@ -3,4 +3,6 @@
     width: 100vw;
     height: calc(100vh - 56px);
     overflow-y: auto;
+    background-color: #c3c3c3;
+    justify-content: center;
 }
