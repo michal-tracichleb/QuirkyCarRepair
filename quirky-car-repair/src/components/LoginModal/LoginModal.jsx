@@ -1,7 +1,7 @@
 import {LoginContent} from "./LoginContent.jsx";
 import {useState} from "react";
 import {RegistrationContent} from "./RegistrationContent.jsx";
-import {Alert} from "../Alert.jsx";
+import {Alert} from "../Alert/Alert.jsx";
 
 export function LoginModal({setUserIsLogged}){
     const [loginForm, setLoginForm] = useState(true);
