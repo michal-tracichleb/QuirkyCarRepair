@@ -37,7 +37,7 @@ export default function App() {
                       element={<Warehouse />}
                   >
                       <Route index element={<CategoriesPanel />} />
-                      <Route path=":categoryId" element={<ProductsPanel />} />
+                      <Route path=":categoryId/page/:pageId" element={<ProductsPanel />} />
                   </Route>
                   <Route path="/serwis"/>
                   <Route path="/about"/>

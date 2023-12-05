@@ -1,0 +1,8 @@
+.arrow{
+    text-decoration: none;
+    color: #7a7a7a;
+    transition: color 0.3s;
+}
+.arrow:hover{
+    color: black;
+}

@@ -6,7 +6,7 @@ export function CategoriesList({categories}){
             <ul className={styles.parent_list}>
                 {categories && categories.map((category) => (
                     <li key={category.id}>
-                        <NavLink  className={styles.list_item} to={`/warehouse/${category.id}`}>{category.name}</NavLink>
+                        <NavLink  className={styles.list_item} to={`/warehouse/${category.id}/page/1`}>{category.name}</NavLink>
                     </li>
                 ))}
             </ul>

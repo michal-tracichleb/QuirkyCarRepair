@@ -31,7 +31,7 @@ export function CategoriesPanel(){
                         <img src={logo} className={`card-img-top ${styles.img}`} alt="..." />
                         <div className="card bg-dark text-lg-center" style={{color: 'white'}}>
                             <div className="card-body">
-                                <NavLink to={`${category.id}`} className={styles.link}><h5 className="card-title">{category.name}</h5></NavLink>
+                                <NavLink to={`${category.id}/page/1`} className={styles.link}><h5 className="card-title">{category.name}</h5></NavLink>
                             </div>
                         </div>
                     </div>
