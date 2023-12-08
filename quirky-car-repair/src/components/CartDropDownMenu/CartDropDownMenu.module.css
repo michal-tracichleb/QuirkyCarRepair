@@ -1,0 +1,37 @@
+.cart{
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    transition: 0.3s color;
+    cursor: pointer;
+}
+.cart:hover{
+    color: #cccccc;
+}
+.item{
+    padding: 2px;
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.item:hover{
+    background-color: #cccccc;
+}
+.list{
+    min-width: 200px;
+    max-width: 300px;
+}
+p{
+    margin: 0;
+}
+.price{
+    float: right;
+    font-size: 15px;
+    color: #008000;
+}
+.quantity{
+    font-size: 15px;
+    color: #707070;
+}
+.summary{
+    padding: 5px;
+}

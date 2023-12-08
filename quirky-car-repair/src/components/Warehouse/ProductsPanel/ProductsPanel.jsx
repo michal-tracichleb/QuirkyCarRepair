@@ -74,15 +74,23 @@ export function ProductsPanel (){
                             <SideBar listFunction={<CategoriesList categories={subcategories}/>}>Podkategorie</SideBar>
                         </div>
                         <div className="col-9 bg-white p-4" >
-                            <div className="row d-inline float-end mb-3">
-                                <PaginationSmall pageId={pageId} pageCount={productsData.pageCount} path={`/warehouse/${categoryId}`}/>
-                            </div>
-                            <div className="row d-inline">
-                                <ProductsList productsData={productsData.items}/>
-                            </div>
-                            <div className="row d-inline float-end mt-2">
-                                <Pagination pageId={pageId} pageCount={productsData.pageCount} path={`/warehouse/${categoryId}`}/>
-                            </div>
+                            {productsData.itemCount < 1 ?
+                                <div className="row text-center">
+                                    <h2>Brak produktów w kategorii</h2>
+                                </div>
+                            :
+                                <>
+                                    <div className="row d-inline float-end mb-3">
+                                        <PaginationSmall pageId={pageId} pageCount={productsData.pageCount} path={`/warehouse/${categoryId}`}/>
+                                    </div>
+                                    <div className="row d-inline">
+                                        <ProductsList productsData={productsData.items}/>
+                                    </div>
+                                    <div className="row d-inline float-end mt-2">
+                                        <Pagination pageId={pageId} pageCount={productsData.pageCount} path={`/warehouse/${categoryId}`}/>
+                                    </div>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

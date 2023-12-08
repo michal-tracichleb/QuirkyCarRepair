@@ -1,4 +1,5 @@
 import styles from "./ProductsList.module.css";
+import {AddProductToCart} from "../../../utlis/AddProductToCart.js";
 
 export function ProductsList({productsData}){
     return(
@@ -13,7 +14,7 @@ export function ProductsList({productsData}){
                     </div>
                     <div className="col-4 border-start border-1 text-center ">
                         <h3 className={styles.price}>{product.unitPrice} zł /szt.</h3>
-                        <button className={styles.btn}>Dodaj do koszyka</button>
+                        <button className={styles.btn} onClick={()=>AddProductToCart(product.id, product.name, product.unitPrice)}>Dodaj do koszyka</button>
                     </div>
                 </div>
             ))}

@@ -2,6 +2,7 @@ import logo from "../../assets/Logo_1.jpg"
 import styles from "./NavBar.module.css"
 import {UserDropDownMenu} from "../UserDropDownMenu.jsx";
 import {NavLink} from "react-router-dom";
+import {CartDropDownMenu} from "../CartDropDownMenu/CartDropDownMenu.jsx";
 export function NavBar({userIsLogged, userData, setUserIsLogged}){
     const handleUserLogout=()=>{
         sessionStorage.removeItem('user')
@@ -38,11 +39,15 @@ export function NavBar({userIsLogged, userData, setUserIsLogged}){
                                 </li>
                             </ul>
                             <div className={`col ${styles.user_panel}`} >
+
                                 {!userIsLogged ?
                                     <a className={styles.login_link} href="#" data-bs-toggle="modal" data-bs-target="#logInModal">Logowanie</a>
                                     :
                                     <UserDropDownMenu userName={userData.userName} handleUserLogout={handleUserLogout}/>
                                 }
+                            </div>
+                            <div className={`col flex-grow-0 ${styles.cart}`} >
+                                <CartDropDownMenu />
                             </div>
                         </div>
                     </div>

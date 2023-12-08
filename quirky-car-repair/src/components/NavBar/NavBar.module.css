@@ -4,6 +4,7 @@
     font-weight: 400;
     transition: 0.3s color;
     font-family: sans-serif;
+    cursor: pointer;
 }
 .login_link:hover{
     color: #cccccc;
@@ -19,4 +20,7 @@
         justify-content: flex-end !important;
         display: flex !important;
     }
+}
+.cart{
+    margin-left: 15px;
 }
