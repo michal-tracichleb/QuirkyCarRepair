@@ -1,7 +1,7 @@
 import styles from "./CartDropDownMenu.module.css"
 import {faBasketShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {getCartPrice} from "../../utlis/getCartPrice.js";
 
 export function CartDropDownMenu(){
