@@ -5,7 +5,7 @@ export function UserDropDownMenu({userName, handleUserLogout}){
 
     return(
         <div className="dropdown-center">
-            <a className={`dropdown-toggle ${styles.login_link}`} href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <a className={`dropdown-toggle ${styles.login_link}`} data-bs-toggle="dropdown" aria-expanded="false">
                 Witaj: {userName}
             </a>
 
