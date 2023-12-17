@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
+using QuirkyCarRepair.API.Interceptors;
 using QuirkyCarRepair.API.Middleware;
 using QuirkyCarRepair.BLL;
 using QuirkyCarRepair.BLL.ServicesRegistration;
@@ -51,6 +52,8 @@ builder.Services.AddAuthentication(option =>
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddTransient<IValidatorInterceptor, CamelCaseValidatorInterceptor>();
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -91,8 +94,8 @@ using (var serviceScope = app.Services.CreateScope())
 }
 
 app.UseCors(builder => builder
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
+.AllowAnyOrigin()
+.AllowAnyMethod()
         .AllowAnyHeader());
 
 app.Run();
