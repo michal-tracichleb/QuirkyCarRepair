@@ -16,11 +16,13 @@
 }
 
 .user_panel {
-    @media (min-width: 992px) {
-        justify-content: flex-end !important;
-        display: flex !important;
-    }
+    justify-content: end;
+    display: flex ;
 }
 .cart{
     margin-left: 15px;
+    margin-right: 15px;
+}
+.sidebar{
+    max-width: 325px;
 }

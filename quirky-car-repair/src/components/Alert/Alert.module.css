@@ -1,8 +1,10 @@
 .myalert{
+    margin: 25px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     padding: 15px;
     z-index: 1000;
+    text-align: center;
 }
