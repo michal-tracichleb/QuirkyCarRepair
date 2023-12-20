@@ -19,14 +19,20 @@ export function RegistrationContent({setLoginForm , setTextAlert}){
                 registrationData,
             )
             if(response.status === 200){
-                setTextAlert("Logowanie przebiegło pomyślnie, teraz możesz się zalogować.")
+                setTextAlert("Rejestracja przebiegła pomyślnie, teraz możesz się zalogować.")
                 setTimeout(() => {
                     setTextAlert();
                 }, 3000);
                 setLoginForm(true);
             }
         }catch (e){
-            handleAddError('registrationError', 'Wystąpił błąd w trakcie logowania.')
+            if(e.response.data.errors){
+                const responseErrors=e.response.data.errors;
+                Object.keys(responseErrors).forEach((key) => {
+                    handleAddError(key, responseErrors[key][0])
+                });
+            }
+            handleAddError('registrationError', 'Wystąpił błąd w trakcie rejestracji.')
             setTimeout(() => {
                 handleDeleteError('registrationError');
             }, 3000);
@@ -123,9 +129,10 @@ export function RegistrationContent({setLoginForm , setTextAlert}){
         setRegistrationData(newRegistrationData);
     }
     const handleAddError = (index, error) =>{
-        let newErrors = {...errors};
-        newErrors[index] = error;
-        setErrors(newErrors);
+        setErrors(prevState => ({
+            ...prevState,
+            [index]: error
+        }));
     }
     const handleDeleteError = (index) =>{
         let newErrors = {...errors};
@@ -151,12 +158,12 @@ export function RegistrationContent({setLoginForm , setTextAlert}){
                     <div className="mb-3">
                         <label htmlFor="userName" className="col-form-label">Login:</label>
                         <input type="text" className="form-control" name="userName" onBlur={(e) => validRegistrationData("userName",e.target.value)}/>
-                        {errors.userName && <div className="text-danger">{errors.userName}</div>}
+                        {errors.userName && <div className="text-danger text-center">{errors.userName}</div>}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="email" className="col-form-label">Email:</label>
                         <input type="text" className="form-control" name="email" onBlur={(e) => validRegistrationData("email",e.target.value)}/>
-                        {errors.email && <div className="text-danger">{errors.email}</div>}
+                        {errors.email && <div className="text-danger text-center">{errors.email}</div>}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="firstName" className="col-form-label">Imię:</label>
