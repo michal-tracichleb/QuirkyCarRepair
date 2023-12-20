@@ -24,28 +24,28 @@ export default function App() {
         }
     },[userIsLogged]);
 
-  return (
-      <AlertStateContext.Provider value={[alert, setAlert]}>
-          {alert && <Alert color={alert.color}>{alert.text}</Alert>}
-          <Router>
-              <NavBar userData={userData} userIsLogged={userIsLogged} setUserIsLogged={setUserIsLogged}/>
-              {!userIsLogged && <LoginModal setUserIsLogged={setUserIsLogged}/>}
-              <Routes>
-                  <Route path="/" />
-                  <Route
-                      path="/warehouse"
-                      element={<Warehouse />}
-                  >
-                      <Route index element={<CategoriesPanel />} />
-                      <Route path=":categoryId/page/:pageId" element={<ProductsPanel />} />
-                  </Route>
-                  <Route path="/serwis"/>
-                  <Route path="/about"/>
-                  <Route path="/kontakt"/>
-                  <Route path="/user_profile"/>
-              </Routes>
-          </Router>
-      </AlertStateContext.Provider>
+    return (
+        <AlertStateContext.Provider value={[alert, setAlert]}>
+            {alert && <Alert color={alert.color}>{alert.text}</Alert>}
+            <Router>
+                <NavBar userData={userData} userIsLogged={userIsLogged} setUserIsLogged={setUserIsLogged}/>
+                {!userIsLogged && <LoginModal setUserIsLogged={setUserIsLogged}/>}
+                <Routes>
+                    <Route path="/"/>
+                    <Route
+                        path="/warehouse"
+                        element={<Warehouse/>}
+                    >
+                        <Route index element={<CategoriesPanel/>}/>
+                        <Route path=":categoryId/page/:pageId" element={<ProductsPanel/>}/>
+                    </Route>
+                    <Route path="/serwis"/>
+                    <Route path="/about"/>
+                    <Route path="/kontakt"/>
+                    <Route path="/user_profile"/>
+                </Routes>
+            </Router>
+        </AlertStateContext.Provider>
 
-  )
+    );
 }
