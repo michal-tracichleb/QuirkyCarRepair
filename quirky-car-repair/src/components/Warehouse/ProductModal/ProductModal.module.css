@@ -1,0 +1,32 @@
+.btn{
+    margin-top: 10px;
+    background-color: #e55204;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #e55204;
+    transition: background-color 0.4s;
+}
+.btn:hover{
+    background-color: #e76421;
+}
+h6{
+    cursor: pointer;
+}
+.title{
+    width: 50%;
+}
+.data{
+    width: 50%;
+}
+.row{
+    margin-top: 5px;
+    padding-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #cbcbcb;
+}
+.price {
+    font-size: 1.2em;
+    color: #008000;
+}
