@@ -1,12 +1,14 @@
 import styles from "./NavBar/NavBar.module.css";
 import {NavLink} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUser} from "@fortawesome/free-regular-svg-icons";
 
-export function UserDropDownMenu({userName, handleUserLogout}){
+export function UserDropDownMenu({handleUserLogout}){
 
     return(
         <div className="dropdown-center">
             <a className={`dropdown-toggle ${styles.login_link}`} data-bs-toggle="dropdown" aria-expanded="false">
-                Witaj: {userName}
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
             </a>
 
             <ul className="dropdown-menu dropdown-menu-lg-end">
