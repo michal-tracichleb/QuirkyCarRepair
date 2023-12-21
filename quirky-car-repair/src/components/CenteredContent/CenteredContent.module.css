@@ -1,0 +1,12 @@
+.wrapper {
+    width: 100%;
+    max-width: 100vh;
+    margin-left: 1rem;
+    padding: 0 1rem;
+}
+
+@media screen and (max-width: 740px) {
+    .wrapper{
+        margin: 0;
+    }
+}
