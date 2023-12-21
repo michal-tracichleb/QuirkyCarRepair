@@ -1,0 +1,16 @@
+.logo a{
+    display: flex;
+    justify-content: center;
+
+    color: var(--color-text-grey);
+}
+.logo img{
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+@media screen and (max-width: 500px) {
+    .logo h1{
+        display: none;
+    }
+}
