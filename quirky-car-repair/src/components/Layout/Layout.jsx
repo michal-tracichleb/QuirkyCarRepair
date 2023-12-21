@@ -8,7 +8,7 @@ import {useState} from "react";
 import {MainSidebar} from "../MainSidebar/MainSidebar.jsx";
 import {Outlet} from "react-router-dom";
 
-export function Layout({ children }) {
+export function Layout() {
     const [sidebarIsShown, setSidebarIsShown] = useState(false);
     const showSidebar = () => setSidebarIsShown(!sidebarIsShown);
     return(
