@@ -1,0 +1,91 @@
+.authentication{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.authentication form{
+    background-color: #f7f8fd;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px 1px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    row-gap: 1.2rem;
+}
+
+.authentication_container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.authentication_container label{
+    font-weight: 600;
+    font-size: 1rem;
+}
+.authentication_container input{
+    border: 2px solid rgba(0,0,0,0.5);
+    border-radius: 8px;
+    outline: none;
+    padding: 0.3rem 0.6rem;
+    width: 75%;
+}
+.authentication button{
+    width: 100%;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.actions p{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+}
+.actions p a{
+    color: var(--color-orange);
+    font-weight: 700;
+    padding: 0.4rem 0.4rem 0.4rem 0;
+    transition: color 0.3s;
+}
+.actions button{
+    background-color: var(--color-orange);
+    border-radius: 8px;
+    border-color: var(--color-orange);
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.actions button:hover{
+    background-color: #f5a174;
+}
+.actions button:disabled{
+    background-color: #f8d6be;
+}
+
+.toogler{
+    display: flex;
+    gap: 0.5rem;
+}
+.toogler label{
+    font-weight: 500;
+    font-size: 1rem;
+}
+.toogler input{
+    width: auto;
+}
+
+.error{
+    color: var(--color-error);
+    font-weight: 700;
+}
