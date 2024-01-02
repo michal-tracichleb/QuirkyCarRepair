@@ -24,3 +24,9 @@
         flex-direction: column;
     }
 }
+@media screen and (max-width: 386px) {
+    .img{
+        height: 250px;
+        width: 250px;
+    }
+}
