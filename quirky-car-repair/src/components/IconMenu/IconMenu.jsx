@@ -1,22 +1,17 @@
 import styles from "./IconMenu.module.css"
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUser} from "@fortawesome/free-regular-svg-icons";
-import {faShoppingBasket} from "@fortawesome/free-solid-svg-icons";
+import {Account} from "./account/Account.jsx";
+import {Cart} from "./cart/Cart.jsx";
 
 export function IconMenu(){
-    const cartItems = 2;
     return(
         <ul className={styles.iconMenu}>
             <li>
-                <Link to="/userPanel"><FontAwesomeIcon icon={faUser}/></Link>
+                <Account/>
             </li>
             <li>
-                <Link to="/cart">
-                    <FontAwesomeIcon icon={faShoppingBasket}/>
-                    <div className={styles.numberOfProducts}>{cartItems}</div>
-                </Link>
+                <Cart/>
             </li>
         </ul>
+
     )
 }
