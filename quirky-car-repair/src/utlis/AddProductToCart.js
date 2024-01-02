@@ -12,4 +12,5 @@ export function AddProductToCart(id, name, price, quantity = 1){
         cart.push(newItem);
     }
     sessionStorage.setItem('cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event('storage'))
 }
