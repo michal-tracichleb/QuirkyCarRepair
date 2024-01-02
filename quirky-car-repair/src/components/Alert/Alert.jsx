@@ -1,7 +1,7 @@
 import styles from "./Alert.module.css"
 export function Alert({children, color = "primary"}){
     return(
-        <div className={`alert alert-${color} ${styles.myalert}`} role="alert">
+        <div className={`${styles[color]} ${styles.myalert}`}>
             <span>{children}</span>
         </div>
     )
