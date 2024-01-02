@@ -1,0 +1,26 @@
+.sidebarContainer{
+    padding:0.5rem;
+    width:200px;
+    background-color: var(--color-dark);
+
+    transition: width 0.3s ease-in-out;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+}
+.sidebarToggle{
+    border-bottom: 3px solid var(--color-text-grey);
+}
+.sidebarToggle span{
+    color:var(--color-text-grey);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.sidebarContainer.inactive{
+    width:50px;
+}
+.sidebar.inactive{
+    display: none;
+}
