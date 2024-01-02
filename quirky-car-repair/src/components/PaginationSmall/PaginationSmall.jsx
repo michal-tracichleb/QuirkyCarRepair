@@ -9,10 +9,10 @@ export function PaginationSmall({pageId, pageCount, path}){
     const prevPageId = Number(pageId)-1;
 
     return(
-        <>
-            {currentPage > 1 && <NavLink className={styles.arrow} to={`${path}/page/${prevPageId}`}><FontAwesomeIcon icon={faAngleLeft}/></NavLink>}
+        <div className={styles.pagination}>
+            {currentPage > 1 && <NavLink className={styles.arrow} to={`${path}?page=${prevPageId}`}><FontAwesomeIcon icon={faAngleLeft}/></NavLink>}
             <span>{currentPage}</span><span>z</span><span>{pageCount}</span>
-            {currentPage < pageCount && <NavLink className={styles.arrow} to={`${path}/page/${nextPageId}`}><FontAwesomeIcon icon={faAngleRight} /></NavLink>}
-        </>
+            {currentPage < pageCount && <NavLink className={styles.arrow} to={`${path}?page=${nextPageId}`}><FontAwesomeIcon icon={faAngleRight} /></NavLink>}
+        </div>
     )
 }

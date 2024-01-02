@@ -16,17 +16,17 @@ export function Pagination({pageId, pageCount, path}){
             let isActive = currentPage === i;
 
             navLinks.push(
-                <NavLink key={i} className={`${styles.link} ${isActive ? styles.active : ""}`} to={`${path}/page/${i}`}>{i}</NavLink>
+                <NavLink key={i} className={`${styles.link} ${isActive ? styles.active : ""}`} to={`${path}?page=${i}`}>{i}</NavLink>
             );
         }
         return navLinks;
     }
     return(
-        <>
-            {currentPage > 1 && <NavLink className={styles.text} to={`${path}/page/${prevPageId}`}><FontAwesomeIcon icon={faAngleLeft}/>POPRZEDNIA</NavLink>}
+        <div className={styles.pagination}>
+            {currentPage > 1 && <NavLink className={styles.text} to={`${path}?page=${prevPageId}`}><FontAwesomeIcon icon={faAngleLeft}/><span>POPRZEDNIA</span></NavLink>}
             {getPageNumbers()}
             <span>z</span><span>{pageCount}</span>
-            {currentPage < pageCount && <NavLink className={styles.text} to={`${path}/page/${nextPageId}`}>NASTĘPNA<FontAwesomeIcon icon={faAngleRight} /></NavLink>}
-        </>
+            {currentPage < pageCount && <NavLink className={styles.text} to={`${path}?page=${nextPageId}`}><span>NASTĘPNA</span><FontAwesomeIcon icon={faAngleRight} /></NavLink>}
+        </div>
     )
 }
