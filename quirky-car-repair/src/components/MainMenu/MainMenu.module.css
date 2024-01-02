@@ -12,6 +12,11 @@
     padding: 1rem 0;
     display: block;
     font-weight: 700;
+
+    transition: color 0.3s ease;
+}
+.mainMenu li a:hover{
+    color: white;
 }
 
 .mainMenu a:global(.active){
