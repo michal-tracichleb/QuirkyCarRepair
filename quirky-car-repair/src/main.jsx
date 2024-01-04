@@ -13,6 +13,8 @@ import {ProductsPanel} from "./components/Warehouse/ProductsPanel/ProductsPanel.
 import {Authentication} from "./components/Authentication/Authentication.jsx";
 import {ProductDetails} from "./views/ProductDetails.jsx";
 import {productLoader} from "./api/productLoader.js";
+import {ProductManage} from "./components/ProductManage/ProductManage.jsx";
+import {categoriesLoader} from "./api/categoriesLoader.js";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +41,11 @@ const router = createBrowserRouter([
                         path: ':categoryId/product/:productId',
                         element: <ProductDetails/>,
                         loader: productLoader,
+                    },
+                    {
+                        path: 'product/manage',
+                        element: <ProductManage/>,
+                        loader: categoriesLoader,
                     },
                 ]
             },
