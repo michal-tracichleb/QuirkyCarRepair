@@ -3,7 +3,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #e7e7e7;
-    padding:3px
+    padding:3px;
+    gap: 5px
 }
 button{
     width: 10rem;
@@ -25,8 +26,6 @@ button{
         border-left: 4px solid #632ce4;
     }
 }
-
-
 .SidebarLabel {
     margin-left: 0.5rem;
 }
@@ -45,4 +44,14 @@ button{
     &:hover {
         background: #632ce4;
     }
+}
+.toolbox a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid var(--color-orange);
+    background-color: transparent;
 }
