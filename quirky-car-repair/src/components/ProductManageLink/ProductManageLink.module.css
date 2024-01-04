@@ -1,0 +1,15 @@
+.manageLink{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid var(--color-orange);
+    background-color: #e7e7e7;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: var(--color-white);
+    }
+}
