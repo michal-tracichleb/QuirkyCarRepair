@@ -1,25 +1,58 @@
 import styles from "./Details.module.css"
 import {AddProductToCart} from "../../utlis/AddProductToCart.js";
+import {useContext} from "react";
+import {UserStateContext} from "../../context/UserStateContext.js";
+import {ProductQuantity} from "../ProductQuantity/ProductQuantity.jsx";
+import {ProductManageBox} from "../ProductManageBox/ProductManageBox.jsx";
+import {useNavigate} from "react-router-dom";
+import {removeProduct} from "../../api/removeProduct.js";
+import {AlertStateContext} from "../../context/AlertStateContext.js";
 export function Details({product}){
+    const [userData] = useContext(UserStateContext);
+    const [,setAlert] = useContext(AlertStateContext);
+    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
+    const navigate = useNavigate();
     const lengthUnit=" mm.";
     const weightUnit=" kg.";
+
+    const HandleRemoveProduct = async  (id) =>{
+        const userConfirmed = window.confirm('Czy na pewno chcesz usunąć ten produkt?');
+
+        if(userConfirmed) {
+            const response = await removeProduct(id);
+            if(response.success){
+                setAlert({text: response.message, color: 'success'});
+
+                navigate(-1)
+            }else{
+                setAlert({text: response.message, color: 'warning'});
+            }
+            setTimeout(() => {
+                setAlert();
+            }, 3000);
+        }
+    }
+
+
     return(
         <>
             <div className={styles.details}>
                 <h2>{product.name}</h2>
                 <p>{product.manufacturer}</p>
-                <div className={styles.quantity}>
-                    <h3>Ilość: <span className={`${(product.quantity === 0) ? styles.dangerous : (product.quantity < product.minimumQuantity) ? styles.warning : styles.success}`}>{product.quantity}</span></h3>
-                    {product.quantity === 0 &&
-                        <h3 className={styles.dangerous}>Brak na stanie</h3>
-                    }
-                </div>
+                {userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper') &&
+                    <ProductQuantity quantity={product.quantity} minimumQuantity={product.minimumQuantity}/>
+                }
             </div>
             <div className={styles.toolbox}>
                 <p className={styles.price}>{product.unitPrice}zł</p>
-                <button className={styles.btn} onClick={()=> {
-                    AddProductToCart(product.id, product.name, product.unitPrice);
-                }}>Dodaj do koszyka</button>
+                {managementPermissions &&
+                    <ProductManageBox productId={product.id} removeFunction={HandleRemoveProduct}/>
+                }
+                {!managementPermissions &&
+                    <button className={styles.btn} onClick={()=> {
+                        AddProductToCart(product.id, product.name, product.unitPrice);
+                    }}>Dodaj do koszyka</button>
+                }
             </div>
             <div className={styles.specyfication}>
                 <div>

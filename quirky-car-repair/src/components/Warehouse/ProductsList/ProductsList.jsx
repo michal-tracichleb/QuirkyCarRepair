@@ -1,8 +1,15 @@
 import styles from "./ProductsList.module.css";
 import {AddProductToCart} from "../../../utlis/AddProductToCart.js";
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {UserStateContext} from "../../../context/UserStateContext.js";
+import {ProductQuantity} from "../../ProductQuantity/ProductQuantity.jsx";
+import {ProductManageBox} from "../../ProductManageBox/ProductManageBox.jsx";
 
-export function ProductsList({productsData}){
+export function ProductsList({productsData, removeAction}){
+    const [userData] = useContext(UserStateContext);
+    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
+
 
     return(
         <div className={styles.container}>
@@ -15,21 +22,23 @@ export function ProductsList({productsData}){
                                     <p className={styles.manufacturer}>Producent: {product.manufacturer}</p>
                                     <p>Model: {product.model}</p>
                                     <p className={styles.code}>Kod produktu: {product.productCode}</p>
-                                    <div className={styles.quantity}>
-                                        <h3>Ilość: <span className={`${(product.quantity === 0) ? styles.dangerous : (product.quantity < product.minimumQuantity) ? styles.warning : styles.success}`}>{product.quantity}</span></h3>
-                                        {product.quantity === 0 &&
-                                            <h3 className={styles.dangerous}>Brak na stanie</h3>
-                                        }
-                                    </div>
+                                    {userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper') &&
+                                        <ProductQuantity quantity={product.quantity} minimumQuantity={product.minimumQuantity}/>
+                                    }
                                 </div>
                             </Link>
                         </div>
-                        <div className={styles.toolbox}>
-                            <h3 className={styles.price}>{product.unitPrice} zł /szt.</h3>
+                    <div className={styles.toolbox}>
+                        <h3 className={styles.price}>{product.unitPrice} zł /szt.</h3>
+                        {managementPermissions &&
+                            <ProductManageBox productId={product.id} removeFunction={removeAction}/>
+                        }
+                        {!managementPermissions &&
                             <button className={styles.btn} onClick={()=> {
                                 AddProductToCart(product.id, product.name, product.unitPrice);
                             }}>Dodaj do koszyka</button>
-                        </div>
+                        }
+                    </div>
                 </div>
             ))}
         </div>
