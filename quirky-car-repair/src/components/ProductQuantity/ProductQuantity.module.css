@@ -1,0 +1,12 @@
+.quantity{
+    padding-top: 10px;
+}
+.success{
+    color: var(--color-price);
+}
+.warning{
+    color: var(--color-orange);
+}
+.dangerous{
+    color: var(--color-error);
+}
