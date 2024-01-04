@@ -1,0 +1,40 @@
+.pagination{
+    text-align: end;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+.pagination span{
+    padding: 3px;
+}
+.text{
+    color: #7a7a7a;
+    transition: color 0.3s;
+}
+.text:hover{
+    color: black;
+}
+
+.link{
+    color: black;
+    margin-left: 10px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    padding:3px;
+}
+.link:hover{
+    background-color: #c3c3c3;
+}
+
+.active{
+    color: #e56204;
+    font-weight: bold;
+}
+
+@media (max-width: 434px){
+    .text span{
+        display: none;
+    }
+}

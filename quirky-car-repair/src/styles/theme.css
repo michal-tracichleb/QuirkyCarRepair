@@ -1,0 +1,15 @@
+body{
+    --font-size-default: 14px;
+    --font-family-default: Helvetica, Arial, sens-serif;
+
+    --color-text-default: #222020;
+    --color-text-lightgrey: #fcf9f9;
+    --color-text-grey: #707070;
+    --color-white: #ffffff;
+    --color-dark: #212529;
+    --color-orange: #fd6f1f;
+    --color-blue: #0383FAFF;
+    --color-grey: #c3c3c3;
+    --color-price: #008000;
+    --color-error: #fc0202
+}
