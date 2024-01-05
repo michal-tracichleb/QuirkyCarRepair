@@ -2,16 +2,18 @@ import styles from "./Account.module.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser} from "@fortawesome/free-regular-svg-icons";
 import {DropdownList} from "../../DropdownList/DropdownList.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {UserStateContext} from "../../../context/UserStateContext.js";
 
 export function Account(){
+    const navigate = useNavigate();
     const [userData, setUserData] = useContext(UserStateContext);
     const userIsLogged = userData && userData.id;
     const handleUserLogout=()=>{
         setUserData([]);
         sessionStorage.removeItem('user');
+        navigate('/');
     }
 
     const notSignedInContent=(
