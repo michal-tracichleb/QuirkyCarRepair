@@ -4,6 +4,7 @@ using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.BLL.Extensions;
+using QuirkyCarRepair.DAL.Areas.Shared.Enums;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 using QuirkyCarRepair.DAL.Exceptions;
@@ -15,13 +16,17 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IMapper _mapper;
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IPartRepository _partRepository;
+        private readonly ITransactionStatusRepository _transactionStatusRepository;
 
-        public WarehouseService(IMapper mapper, IPartCategoryRepository partCategoryRepository,
-            IPartRepository partRepository)
+        public WarehouseService(IMapper mapper,
+            IPartCategoryRepository partCategoryRepository,
+            IPartRepository partRepository,
+            ITransactionStatusRepository transactionStatusRepository)
         {
             _mapper = mapper;
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
+            _transactionStatusRepository = transactionStatusRepository;
         }
 
         public List<PartCategoryEntity> GetPrimaryCategories()
@@ -89,6 +94,51 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             }
 
             return categoryIds;
+        }
+
+        public void DeliveryParts(List<DeliveryPartsDTO> deliveryPartsDTO)
+        {
+            foreach (var deliveryParts in deliveryPartsDTO)
+            {
+                if (_partRepository.Exist(deliveryParts.Id) == false)
+                    throw new NotFoundException("Part connot found");
+            }
+
+            List<Part> parts = new List<Part>();
+            List<PartTransaction> partsTransactions = new List<PartTransaction>();
+
+            foreach (var deliveryParts in deliveryPartsDTO)
+            {
+                var part = _partRepository.Get(deliveryParts.Id);
+                part.Quantity += deliveryParts.Quantity;
+                parts.Add(part);
+
+                partsTransactions.Add(new PartTransaction()
+                {
+                    PartId = deliveryParts.Id,
+                    Quantity = deliveryParts.Quantity,
+                    UnitPrice = deliveryParts.UnitPrice,
+                    MarginValue = 0,
+                });
+            }
+
+            OperationalDocument operationalDocument = new OperationalDocument()
+            {
+                DocumentNumber = "XYZ",
+                TransactionDate = DateTime.Now,
+                Type = TransactionType.D.ToString(),
+                PartTransactions = partsTransactions
+            };
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocument = operationalDocument,
+                StartDate = DateTime.Now,
+                Status = "Wprowadzono"
+            };
+
+            _partRepository.UpdateRange(parts);
+            _transactionStatusRepository.Add(status);
         }
     }
 }

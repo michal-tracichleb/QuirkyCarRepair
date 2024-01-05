@@ -71,6 +71,18 @@ namespace QuirkyCarRepair.DAL.Areas.Shared
             _context.SaveChanges();
         }
 
+        public async Task UpdateRangeAsync(ICollection<T> model)
+        {
+            _context.UpdateRange(model);
+            await _context.SaveChangesAsync();
+        }
+
+        public void UpdateRange(ICollection<T> model)
+        {
+            _context.UpdateRange(model);
+            _context.SaveChanges();
+        }
+
         public async Task DeleteAsync(T model)
         {
             _context.Remove(model);
