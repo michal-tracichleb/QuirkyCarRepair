@@ -69,7 +69,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             var categoryIds = ExtractCategoryIds(_partCategoryRepository.GetWithSubcategories(getPartsPageDTO.CategoryId));
 
-            PageList<Part> partPageList = _partRepository.GetPartsByCategories(categoryIds).GetPagedList<Part>(getPartsPageDTO.Page, getPartsPageDTO.PageSize);
+            PageList<Part> partPageList = _partRepository.GetPartsByCategories(categoryIds, getPartsPageDTO.SortDirection,
+                getPartsPageDTO.SearchPhrase, getPartsPageDTO.SortBy).GetPagedList<Part>(getPartsPageDTO.Page, getPartsPageDTO.PageSize);
 
             return new PageList<PartEntity>()
             {
