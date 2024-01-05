@@ -16,7 +16,7 @@ export function WarehouseSidebarContent(){
     const [,setAlert] = useContext(AlertStateContext);
     const [userData] = useContext(UserStateContext);
 
-    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
+    const managementPermissions = userData.role.toLocaleLowerCase() === 'admin' || userData.role.toLocaleLowerCase() === 'storekeeper';
 
 
     useEffect(() => {

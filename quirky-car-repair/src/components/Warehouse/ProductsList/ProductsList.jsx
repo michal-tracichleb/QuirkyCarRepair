@@ -8,8 +8,7 @@ import {ProductManageBox} from "../../ProductManageBox/ProductManageBox.jsx";
 
 export function ProductsList({productsData, removeAction}){
     const [userData] = useContext(UserStateContext);
-    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
-
+    const managementPermissions = userData.role.toLocaleLowerCase() === 'admin' || userData.role.toLocaleLowerCase() === 'storekeeper';
 
     return(
         <div className={styles.container}>

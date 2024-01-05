@@ -18,7 +18,7 @@ export function ProductsPanel (){
 
     const [userData] = useContext(UserStateContext);
     const [,setAlert] = useContext(AlertStateContext)
-    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
+    const managementPermissions = userData.role.toLocaleLowerCase() === 'admin' || userData.role.toLocaleLowerCase() === 'storekeeper';
 
     const [productsData, setProductsData] = useState([]);
     const scroll = useRef();

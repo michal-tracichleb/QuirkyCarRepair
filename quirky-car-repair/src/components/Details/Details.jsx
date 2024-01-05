@@ -10,7 +10,7 @@ import {AlertStateContext} from "../../context/AlertStateContext.js";
 export function Details({product}){
     const [userData] = useContext(UserStateContext);
     const [,setAlert] = useContext(AlertStateContext);
-    const managementPermissions = userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper');
+    const managementPermissions = userData.role.toLocaleLowerCase() === 'admin' || userData.role.toLocaleLowerCase() === 'storekeeper';
     const navigate = useNavigate();
     const lengthUnit=" mm.";
     const weightUnit=" kg.";
