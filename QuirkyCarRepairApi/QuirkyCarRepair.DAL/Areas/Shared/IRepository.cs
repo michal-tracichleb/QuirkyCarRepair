@@ -22,6 +22,10 @@
 
         public void Update(Model model);
 
+        public Task UpdateRangeAsync(ICollection<Model> model);
+
+        public void UpdateRange(ICollection<Model> model);
+
         public Task DeleteAsync(Model model);
 
         public void Delete(Model model);

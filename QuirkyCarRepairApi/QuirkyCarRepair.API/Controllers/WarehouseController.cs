@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 
@@ -50,6 +51,22 @@ namespace QuirkyCarRepair.API.Controllers
             try
             {
                 return Ok(_warehouseService.GetPartsPage(getPartsPageDTO));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("DeliveryParts")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult DeliveryParts([FromBody] List<DeliveryPartsDTO> deliveryPartsDTO)
+        {
+            try
+            {
+                _warehouseService.DeliveryParts(deliveryPartsDTO);
+                return Ok();
             }
             catch (Exception ex)
             {
