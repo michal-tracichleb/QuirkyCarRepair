@@ -140,5 +140,64 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
         }
+
+        public void OrderParts(OrderDTO orderDTO)
+        {
+            // TODO: walidacja pod względem niewystarczającej ilości części, lepsza implementacja
+
+            TransactionType transactionType;
+            if (orderDTO.OrderType.Equals("WW"))
+                transactionType = TransactionType.WW;
+            else if (orderDTO.OrderType.Equals("WZ"))
+                transactionType = TransactionType.WZ;
+            else
+                throw new NotFoundException("Transaction type connot found");
+
+            foreach (var orderParts in orderDTO.OrderParts)
+            {
+                if (_partRepository.Exist(orderParts.Id) == false)
+                    throw new NotFoundException("Part connot found");
+            }
+
+            List<Part> parts = new List<Part>();
+            List<PartTransaction> partsTransactions = new List<PartTransaction>();
+
+            foreach (var orderParts in orderDTO.OrderParts)
+            {
+                var part = _partRepository.Get(orderParts.Id);
+
+                if (part.Quantity < orderParts.Quantity)
+                    throw new QuantityOutOfRangeException($"Part Id: {orderParts.Id}, there are no {orderParts.Quantity} in stock quantity.");
+
+                part.Quantity -= orderParts.Quantity;
+                parts.Add(part);
+
+                partsTransactions.Add(new PartTransaction()
+                {
+                    PartId = orderParts.Id,
+                    Quantity = orderParts.Quantity,
+                    UnitPrice = part.UnitPrice,
+                    MarginValue = 0,
+                });
+            }
+
+            OperationalDocument operationalDocument = new OperationalDocument()
+            {
+                DocumentNumber = "XYZ",
+                TransactionDate = DateTime.Now,
+                Type = transactionType.ToString(),
+                PartTransactions = partsTransactions
+            };
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocument = operationalDocument,
+                StartDate = DateTime.Now,
+                Status = "Oczekuje"
+            };
+
+            _partRepository.UpdateRange(parts);
+            _transactionStatusRepository.Add(status);
+        }
     }
 }

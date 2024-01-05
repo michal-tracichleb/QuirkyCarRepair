@@ -13,5 +13,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces
         public PageList<PartEntity> GetPartsPage(GetPartsPageDTO getPartsPageDTO);
 
         public void DeliveryParts(List<DeliveryPartsDTO> deliveryPartsDTO);
+
+        public void OrderParts(OrderDTO orderDTO);
     }
 }

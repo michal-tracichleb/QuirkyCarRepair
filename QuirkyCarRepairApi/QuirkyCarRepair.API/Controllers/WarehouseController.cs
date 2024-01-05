@@ -73,5 +73,21 @@ namespace QuirkyCarRepair.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("OrderParts")]
+        [Authorize]
+        public IActionResult OrderParts([FromBody] OrderDTO orderDTO)
+        {
+            try
+            {
+                _warehouseService.OrderParts(orderDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
