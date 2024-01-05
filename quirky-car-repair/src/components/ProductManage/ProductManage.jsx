@@ -68,6 +68,8 @@ export function ProductManage(){
                             value={value}
                             onChange={inputChangeHandler}
                             required={input.required}
+                            readOnly={key === 'quantity'}
+                            disabled={key === 'quantity'}
                         /></td>
                     </tr>
                 )
@@ -107,6 +109,5 @@ export function ProductManage(){
                 <button type="submit">Zapisz i wyślij</button>
             </Form>
         </FlexContainer>
-
     )
 }
