@@ -4,9 +4,9 @@ using QuirkyCarRepair.DAL.Areas.CarService.Models;
 
 namespace QuirkyCarRepair.BLL.Areas.Shared
 {
-    public class ServiceOrderProfile : Profile
+    public class CarServiceProfile : Profile
     {
-        public ServiceOrderProfile()
+        public CarServiceProfile()
         {
             CreateMap<ServiceOrder, ServiceOrderEntity>()
                 .ReverseMap();

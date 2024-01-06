@@ -2,11 +2,11 @@
 {
     public enum TransactionType
     {
-        WW,
-        WZ,
-        ZZ,
-        ZW,
-        R,
-        D
+        WW = 0,
+        WZ = 1,
+        ZZ = 2,
+        ZW = 3,
+        R = 4,
+        D = 5
     }
 }
