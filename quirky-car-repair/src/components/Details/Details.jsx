@@ -39,7 +39,7 @@ export function Details({product}){
             <div className={styles.details}>
                 <h2>{product.name}</h2>
                 <p>{product.manufacturer}</p>
-                {userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper') &&
+                {managementPermissions &&
                     <ProductQuantity quantity={product.quantity} minimumQuantity={product.minimumQuantity}/>
                 }
             </div>

@@ -21,7 +21,7 @@ export function ProductsList({productsData, removeAction}){
                                     <p className={styles.manufacturer}>Producent: {product.manufacturer}</p>
                                     <p>Model: {product.model}</p>
                                     <p className={styles.code}>Kod produktu: {product.productCode}</p>
-                                    {userData.role.toLocaleLowerCase() === ('admin' || 'storekeeper') &&
+                                    {managementPermissions &&
                                         <ProductQuantity quantity={product.quantity} minimumQuantity={product.minimumQuantity}/>
                                     }
                                 </div>
