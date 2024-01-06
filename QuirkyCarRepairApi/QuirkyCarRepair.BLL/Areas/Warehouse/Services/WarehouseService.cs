@@ -17,16 +17,19 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IPartRepository _partRepository;
         private readonly ITransactionStatusRepository _transactionStatusRepository;
+        private readonly IOperationalDocumentRepository _operationalDocumentRepository;
 
         public WarehouseService(IMapper mapper,
             IPartCategoryRepository partCategoryRepository,
             IPartRepository partRepository,
-            ITransactionStatusRepository transactionStatusRepository)
+            ITransactionStatusRepository transactionStatusRepository,
+            IOperationalDocumentRepository operationalDocumentRepository)
         {
             _mapper = mapper;
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
             _transactionStatusRepository = transactionStatusRepository;
+            _operationalDocumentRepository = operationalDocumentRepository;
         }
 
         public List<PartCategoryEntity> GetPrimaryCategories()
@@ -135,7 +138,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = "Wprowadzono"
+                Status = TransactionState.Ready.ToString()
             };
 
             _partRepository.UpdateRange(parts);
@@ -194,11 +197,30 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = "Oczekuje"
+                Status = TransactionState.Pending.ToString()
             };
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+        }
+
+        public PageList<OperationalDocumentDTO> GetOrdersPage(GetOrdersPageDTO getOrdersPageDTO)
+        {
+            var orders = _operationalDocumentRepository.GetOperationalDocumentsWithLatestTransactionStatus(
+                getOrdersPageDTO.TransactionTypes, getOrdersPageDTO.TransactionStates);
+
+            PageList<OperationalDocument> ordersPageList = orders.GetPagedList<OperationalDocument>(getOrdersPageDTO.Page, getOrdersPageDTO.PageSize);
+
+            var result = new PageList<OperationalDocumentDTO>()
+            {
+                CurrentPage = ordersPageList.CurrentPage,
+                PageCount = ordersPageList.PageCount,
+                PageSize = ordersPageList.PageSize,
+                ItemCount = ordersPageList.ItemCount,
+                Items = _mapper.Map<List<OperationalDocumentDTO>>(ordersPageList.Items)
+            };
+
+            return result;
         }
     }
 }
