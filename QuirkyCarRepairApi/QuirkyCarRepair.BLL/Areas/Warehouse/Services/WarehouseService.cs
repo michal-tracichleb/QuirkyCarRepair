@@ -17,16 +17,19 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IPartRepository _partRepository;
         private readonly ITransactionStatusRepository _transactionStatusRepository;
+        private readonly IOperationalDocumentRepository _operationalDocumentRepository;
 
         public WarehouseService(IMapper mapper,
             IPartCategoryRepository partCategoryRepository,
             IPartRepository partRepository,
-            ITransactionStatusRepository transactionStatusRepository)
+            ITransactionStatusRepository transactionStatusRepository,
+            IOperationalDocumentRepository operationalDocumentRepository)
         {
             _mapper = mapper;
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
             _transactionStatusRepository = transactionStatusRepository;
+            _operationalDocumentRepository = operationalDocumentRepository;
         }
 
         public List<PartCategoryEntity> GetPrimaryCategories()
@@ -69,7 +72,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             var categoryIds = ExtractCategoryIds(_partCategoryRepository.GetWithSubcategories(getPartsPageDTO.CategoryId));
 
-            PageList<Part> partPageList = _partRepository.GetPartsByCategories(categoryIds).GetPagedList<Part>(getPartsPageDTO.Page, getPartsPageDTO.PageSize);
+            PageList<Part> partPageList = _partRepository.GetPartsByCategories(categoryIds, getPartsPageDTO.SortDirection,
+                getPartsPageDTO.SearchPhrase, getPartsPageDTO.SortBy).GetPagedList<Part>(getPartsPageDTO.Page, getPartsPageDTO.PageSize);
 
             return new PageList<PartEntity>()
             {
@@ -134,11 +138,89 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = "Wprowadzono"
+                Status = TransactionState.Ready.ToString()
             };
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+        }
+
+        public void OrderParts(OrderDTO orderDTO)
+        {
+            // TODO: walidacja pod względem niewystarczającej ilości części, lepsza implementacja
+
+            TransactionType transactionType;
+            if (orderDTO.OrderType.Equals("WW"))
+                transactionType = TransactionType.WW;
+            else if (orderDTO.OrderType.Equals("WZ"))
+                transactionType = TransactionType.WZ;
+            else
+                throw new NotFoundException("Transaction type connot found");
+
+            foreach (var orderParts in orderDTO.OrderParts)
+            {
+                if (_partRepository.Exist(orderParts.Id) == false)
+                    throw new NotFoundException("Part connot found");
+            }
+
+            List<Part> parts = new List<Part>();
+            List<PartTransaction> partsTransactions = new List<PartTransaction>();
+
+            foreach (var orderParts in orderDTO.OrderParts)
+            {
+                var part = _partRepository.Get(orderParts.Id);
+
+                if (part.Quantity < orderParts.Quantity)
+                    throw new QuantityOutOfRangeException($"Part Id: {orderParts.Id}, there are no {orderParts.Quantity} in stock quantity.");
+
+                part.Quantity -= orderParts.Quantity;
+                parts.Add(part);
+
+                partsTransactions.Add(new PartTransaction()
+                {
+                    PartId = orderParts.Id,
+                    Quantity = orderParts.Quantity,
+                    UnitPrice = part.UnitPrice,
+                    MarginValue = 0,
+                });
+            }
+
+            OperationalDocument operationalDocument = new OperationalDocument()
+            {
+                DocumentNumber = "XYZ",
+                TransactionDate = DateTime.Now,
+                Type = transactionType.ToString(),
+                PartTransactions = partsTransactions
+            };
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocument = operationalDocument,
+                StartDate = DateTime.Now,
+                Status = TransactionState.Pending.ToString()
+            };
+
+            _partRepository.UpdateRange(parts);
+            _transactionStatusRepository.Add(status);
+        }
+
+        public PageList<OperationalDocumentDTO> GetOrdersPage(GetOrdersPageDTO getOrdersPageDTO)
+        {
+            var orders = _operationalDocumentRepository.GetOperationalDocumentsWithLatestTransactionStatus(
+                getOrdersPageDTO.TransactionTypes, getOrdersPageDTO.TransactionStates);
+
+            PageList<OperationalDocument> ordersPageList = orders.GetPagedList<OperationalDocument>(getOrdersPageDTO.Page, getOrdersPageDTO.PageSize);
+
+            var result = new PageList<OperationalDocumentDTO>()
+            {
+                CurrentPage = ordersPageList.CurrentPage,
+                PageCount = ordersPageList.PageCount,
+                PageSize = ordersPageList.PageSize,
+                ItemCount = ordersPageList.ItemCount,
+                Items = _mapper.Map<List<OperationalDocumentDTO>>(ordersPageList.Items)
+            };
+
+            return result;
         }
     }
 }

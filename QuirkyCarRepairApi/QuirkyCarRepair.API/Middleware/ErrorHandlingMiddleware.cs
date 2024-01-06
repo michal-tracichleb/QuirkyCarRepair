@@ -29,6 +29,11 @@ namespace QuirkyCarRepair.API.Middleware
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(notFoundException.Message);
             }
+            catch (QuantityOutOfRangeException quantityOutOfRangeException)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(quantityOutOfRangeException.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
