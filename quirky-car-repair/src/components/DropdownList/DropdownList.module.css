@@ -1,0 +1,26 @@
+.dropdown_menu{
+    position: absolute;
+    top: 2.5rem;
+    right: -1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    min-width: 200px;
+    max-width: 350px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.dropdown_menu.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: 500ms ease;
+}
+
+.dropdown_menu.inactive{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 500ms ease;
+}

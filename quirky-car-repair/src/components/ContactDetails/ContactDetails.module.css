@@ -1,0 +1,32 @@
+.container{
+    padding: 2rem;
+    display: flex;
+}
+.wrapper{
+    width: 60vw;
+}
+.wrapper section{
+    padding: 1rem;
+}
+.wrapper p{
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--color-text-grey)
+}
+.img{
+    height: 338px;
+    width: 338px;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 775px) {
+    .container{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 386px) {
+    .img{
+        height: 250px;
+        width: 250px;
+    }
+}

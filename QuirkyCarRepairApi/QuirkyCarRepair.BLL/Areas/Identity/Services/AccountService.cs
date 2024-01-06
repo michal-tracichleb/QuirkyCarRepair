@@ -59,15 +59,8 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, $"{user.Role.Name}"),
                 new Claim("UserId", user.Id.ToString()),
-                new Claim("UserName", $"{user.UserName}"),
-                new Claim("Email", $"{user.Email}"),
-                new Claim("PhoneNumber", $"{user.PhoneNumber}"),
-                new Claim("Role", $"{user.Role.Name}"),
-                new Claim("FirstName", user.FirstName ?? ""),
-                new Claim("LastName", user.LastName ?? "")
+                new Claim("UserRole", $"{user.Role.Name}")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

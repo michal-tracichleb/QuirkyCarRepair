@@ -1,0 +1,19 @@
+.wrapper{
+    margin: 0 auto;
+    padding: 2rem;
+    width: 80vw;
+}
+.wrapper section{
+    margin-bottom: 1rem;
+}
+.wrapper p,
+ul{
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color:var(--color-text-grey)
+}
+.wrapper h1{
+    text-align: center;
+    text-decoration: underline;
+}
