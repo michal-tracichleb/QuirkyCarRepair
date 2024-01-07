@@ -266,5 +266,42 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             return false;
         }
+
+        public DetailsOrderDTO DetailsOrder(int id)
+        {
+            var operationalDocument = _operationalDocumentRepository.Get(id);
+            var latestTransactionStatus = _transactionStatusRepository.GetLatestStatus(id);
+            var partsTransactions = _partTransactionRepository.GetByOperationalDocument(id);
+
+            var result = new DetailsOrderDTO()
+            {
+                OperationalDocumentId = id,
+                DocumentNumber = operationalDocument.DocumentNumber,
+                TransactionStartDate = operationalDocument.TransactionDate,
+                Type = operationalDocument.Type,
+                StatusStartDate = latestTransactionStatus.StartDate,
+                Status = latestTransactionStatus.Status,
+                Description = latestTransactionStatus.Description,
+                OrderedParts = new List<OrderedPartDTO>()
+            };
+
+            foreach (var partTransaction in partsTransactions)
+            {
+                var part = _partRepository.Get(partTransaction.PartId);
+
+                result.OrderedParts.Add(
+                    new OrderedPartDTO()
+                    {
+                        PartId = partTransaction.PartId,
+                        Name = part.Name,
+                        Quantity = partTransaction.Quantity,
+                        UnitType = part.UnitType,
+                        UnitPrice = partTransaction.UnitPrice,
+                        MarginValue = partTransaction.MarginValue,
+                    });
+            }
+
+            return result;
+        }
     }
 }

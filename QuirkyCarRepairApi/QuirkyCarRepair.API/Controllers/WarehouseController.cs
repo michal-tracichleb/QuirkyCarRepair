@@ -92,7 +92,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("GetOrdersPage")]
-        [Authorize(Roles = "Admin,Storekeeper")]
+        [Authorize]
         public IActionResult GetOrdersPage([FromBody] GetOrdersPageDTO getOrdersPageDTO)
         {
             try
@@ -114,6 +114,21 @@ namespace QuirkyCarRepair.API.Controllers
             {
                 _warehouseService.CancelOrder(id);
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("DetailsOrder")]
+        [Authorize]
+        public IActionResult DetailsOrder(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.DetailsOrder(id));
             }
             catch (Exception ex)
             {

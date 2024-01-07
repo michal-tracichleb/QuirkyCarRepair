@@ -19,5 +19,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces
         public void OrderParts(OrderDTO orderDTO);
 
         public void CancelOrder(int id);
+
+        public DetailsOrderDTO DetailsOrder(int id);
     }
 }
