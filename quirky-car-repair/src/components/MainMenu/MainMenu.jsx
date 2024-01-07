@@ -2,9 +2,10 @@ import styles from "./MainMenu.module.css"
 import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGripLines} from "@fortawesome/free-solid-svg-icons";
-import {SUBPAGES} from "../../constans/subpages.js";
+import {getSubpages} from "../../utlis/getSubpages.js";
 
 export function MainMenu({setSidebarIsShown}){
+    const subpages = getSubpages();
     return(
         <>
             <div className={styles.menu}>
@@ -19,7 +20,7 @@ export function MainMenu({setSidebarIsShown}){
             </div>
 
             <ul className={styles.mainMenu}>
-                {SUBPAGES.map((subpage)=>(
+                {subpages && subpages.map((subpage)=>(
                     <li key={subpage.name}>
                         <NavLink to={subpage.path}>{subpage.name}</NavLink>
                     </li>

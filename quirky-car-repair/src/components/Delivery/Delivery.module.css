@@ -1,0 +1,53 @@
+.stockDelivery {
+    padding: 20px;
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+}
+.deliveryForm {
+    margin-top: 20px;
+}
+.formGroup {
+    margin-bottom: 15px;
+}
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #c3c3c3;
+    border-radius: 4px;
+}
+
+.stockDelivery button {
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+
+    border: 1px solid var(--color-orange);
+    background-color: #e7e7e7;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: var(--color-white);
+    }
+}
+.deliveryList {
+    margin-top: 20px;
+}
+.deliveryTable{
+    width: 100%;
+}
+.deliveryTable th,
+.deliveryTable td {
+    border: 1px solid #c3c3c3;
+    padding: 10px;
+    text-align: left;
+}
+.deliveryTable th {
+    background-color: #f2f2f2;
+}
+.deliveryTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

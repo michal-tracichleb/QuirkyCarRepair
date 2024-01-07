@@ -1,0 +1,36 @@
+.form,
+.productTable{
+    width: 100%;
+}
+
+.productTable th,
+.productTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.productTable th {
+    background-color: #f2f2f2;
+}
+
+.productTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.specyfication{
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+input{
+    width: 100%;
+}
+.form button{
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+.form button:hover{
+    background-color: var(--color-white);
+}
+
