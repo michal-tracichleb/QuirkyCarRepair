@@ -70,7 +70,10 @@ export function WarehouseSidebarContent(){
             }
 
             {managementPermissions &&
-                <SubNav title='Dostawa' to='/warehouse/delivery'/>
+                <>
+                    <SubNav title='Dostawa' to='/warehouse/delivery'/>
+                    <SubNav title='Zamówienia' to='/warehouse/orders?page=1'/>
+                </>
             }
         </>
 
