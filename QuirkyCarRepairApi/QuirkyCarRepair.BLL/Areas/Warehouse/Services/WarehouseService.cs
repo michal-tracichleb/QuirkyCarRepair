@@ -232,7 +232,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         public void CancelOrder(int id)
         {
             if (_operationalDocumentRepository.Exist(id) == false)
-                throw new NotFoundException("Part category connot found");
+                throw new NotFoundException("Operational document connot found");
 
             if (StatusPending(id) == false)
                 throw new NotFoundException("Status is other than pending");
