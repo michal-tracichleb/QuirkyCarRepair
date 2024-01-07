@@ -104,5 +104,21 @@ namespace QuirkyCarRepair.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("CancelOrder")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult CancelOrder(int id)
+        {
+            try
+            {
+                _warehouseService.CancelOrder(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -18,18 +18,21 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IPartRepository _partRepository;
         private readonly ITransactionStatusRepository _transactionStatusRepository;
         private readonly IOperationalDocumentRepository _operationalDocumentRepository;
+        private readonly IPartTransactionRepository _partTransactionRepository;
 
         public WarehouseService(IMapper mapper,
             IPartCategoryRepository partCategoryRepository,
             IPartRepository partRepository,
             ITransactionStatusRepository transactionStatusRepository,
-            IOperationalDocumentRepository operationalDocumentRepository)
+            IOperationalDocumentRepository operationalDocumentRepository,
+            IPartTransactionRepository partTransactionRepository)
         {
             _mapper = mapper;
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
             _transactionStatusRepository = transactionStatusRepository;
             _operationalDocumentRepository = operationalDocumentRepository;
+            _partTransactionRepository = partTransactionRepository;
         }
 
         public List<PartCategoryEntity> GetPrimaryCategories()
@@ -39,7 +42,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public PartCategoryStructureDTO GetPartCategoryStructure(int id)
         {
-            if (!_partCategoryRepository.Exist(id))
+            if (_partCategoryRepository.Exist(id) == false)
                 throw new NotFoundException("Part category connot found");
 
             PartCategory partCategory = _partCategoryRepository.GetWithInclude(id);
@@ -47,7 +50,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             if (partCategory.ParentCategoryId != null && partCategory.ParentCategoryId != 0)
             {
-                if (!_partCategoryRepository.Exist((int)partCategory.ParentCategoryId))
+                if (_partCategoryRepository.Exist((int)partCategory.ParentCategoryId) == false)
                     throw new NotFoundException("Parent for part category connot found");
 
                 PartCategory parentPartCategory = _partCategoryRepository.GetWithInclude((int)partCategory.ParentCategoryId);
@@ -67,7 +70,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
         public PageList<PartEntity> GetPartsPage(GetPartsPageDTO getPartsPageDTO)
         {
-            if (!_partCategoryRepository.Exist(getPartsPageDTO.CategoryId))
+            if (_partCategoryRepository.Exist(getPartsPageDTO.CategoryId) == false)
                 throw new NotFoundException("Part category connot found");
 
             var categoryIds = ExtractCategoryIds(_partCategoryRepository.GetWithSubcategories(getPartsPageDTO.CategoryId));
@@ -149,6 +152,9 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         {
             // TODO: walidacja pod względem niewystarczającej ilości części, lepsza implementacja
 
+            if (orderDTO.OrderParts.Any() == false)
+                throw new QuantityOutOfRangeException("OrderParts cannot be equal to 0");
+
             TransactionType transactionType;
             if (orderDTO.OrderType.Equals("WW"))
                 transactionType = TransactionType.WW;
@@ -221,6 +227,44 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             };
 
             return result;
+        }
+
+        public void CancelOrder(int id)
+        {
+            if (_operationalDocumentRepository.Exist(id) == false)
+                throw new NotFoundException("Part category connot found");
+
+            if (StatusPending(id) == false)
+                throw new NotFoundException("Status is other than pending");
+
+            var partsTransactions = _partTransactionRepository.GetByOperationalDocument(id);
+            List<Part> parts = new List<Part>();
+
+            foreach (var partTransaction in partsTransactions)
+            {
+                var part = _partRepository.Get(partTransaction.PartId);
+                part.Quantity += partTransaction.Quantity;
+                parts.Add(part);
+            }
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocumentid = id,
+                StartDate = DateTime.Now,
+                Status = TransactionState.Canceled.ToString()
+            };
+
+            _partRepository.UpdateRange(parts);
+            _transactionStatusRepository.Add(status);
+        }
+
+        private bool StatusPending(int operationalDocumentId)
+        {
+            var transactionStatus = _transactionStatusRepository.GetLatestStatus(operationalDocumentId);
+            if (transactionStatus.Status == TransactionState.Pending.ToString())
+                return true;
+
+            return false;
         }
     }
 }
