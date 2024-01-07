@@ -135,5 +135,20 @@ namespace QuirkyCarRepair.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("ArrangeOrder")]
+        [Authorize]
+        public IActionResult ArrangeOrder(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.ArrangeOrder(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -303,5 +303,25 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             return result;
         }
+
+        public DetailsOrderDTO ArrangeOrder(int id)
+        {
+            if (_operationalDocumentRepository.Exist(id) == false)
+                throw new NotFoundException("Operational document connot found");
+
+            if (StatusPending(id) == false)
+                throw new NotFoundException("Status is other than pending");
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocumentid = id,
+                StartDate = DateTime.Now,
+                Status = TransactionState.ArrangeOrder.ToString()
+            };
+
+            _transactionStatusRepository.Add(status);
+
+            return DetailsOrder(id);
+        }
     }
 }
