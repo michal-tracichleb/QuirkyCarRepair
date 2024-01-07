@@ -25,5 +25,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces
         public DetailsOrderDTO ArrangeOrder(int id);
 
         public DetailsOrderDTO ReadyForPickup(int id);
+
+        public DetailsOrderDTO OrderCompleted(int id);
     }
 }

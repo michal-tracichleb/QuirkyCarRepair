@@ -138,7 +138,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ArrangeOrder")]
-        [Authorize]
+        [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult ArrangeOrder(int id)
         {
             try
@@ -153,12 +153,27 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ReadyForPickup")]
-        [Authorize]
+        [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult ReadyForPickup(int id)
         {
             try
             {
                 return Ok(_warehouseService.ReadyForPickup(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("OrderCompleted")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult OrderCompleted(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.OrderCompleted(id));
             }
             catch (Exception ex)
             {
