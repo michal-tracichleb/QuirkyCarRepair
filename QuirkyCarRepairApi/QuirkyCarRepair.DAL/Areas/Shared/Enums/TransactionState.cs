@@ -4,9 +4,9 @@
     {
         Pending = 0,
         Canceled = 1,
-        OrderCompletion = 2,
+        ArrangeOrder = 2,
         ReadyForPickup = 3,
-        Received = 4,
+        OrderCompleted = 4,
         Return = 5,
         AcceptedReturn = 6,
         Complaint = 7,

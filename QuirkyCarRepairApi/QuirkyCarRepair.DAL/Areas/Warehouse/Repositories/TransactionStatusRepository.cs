@@ -9,5 +9,12 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
         public TransactionStatusRepository(QuirkyCarRepairContext context) : base(context)
         {
         }
+
+        public TransactionStatus GetLatestStatus(int operationalDocumentId)
+        {
+            return _context.TransactionStatuses
+                .Where(x => x.OperationalDocumentid == operationalDocumentId)
+                .OrderByDescending(x => x.StartDate).First();
+        }
     }
 }
