@@ -234,7 +234,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (StatusPending(id) == false)
+            if (CheckStatus(id, TransactionState.Pending) == false)
                 throw new NotFoundException("Status is other than pending");
 
             var partsTransactions = _partTransactionRepository.GetByOperationalDocument(id);
@@ -256,15 +256,6 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
-        }
-
-        private bool StatusPending(int operationalDocumentId)
-        {
-            var transactionStatus = _transactionStatusRepository.GetLatestStatus(operationalDocumentId);
-            if (transactionStatus.Status == TransactionState.Pending.ToString())
-                return true;
-
-            return false;
         }
 
         public DetailsOrderDTO DetailsOrder(int id)
@@ -309,7 +300,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (StatusPending(id) == false)
+            if (CheckStatus(id, TransactionState.Pending) == false)
                 throw new NotFoundException("Status is other than pending");
 
             TransactionStatus status = new TransactionStatus()
@@ -322,6 +313,35 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             _transactionStatusRepository.Add(status);
 
             return DetailsOrder(id);
+        }
+
+        public DetailsOrderDTO ReadyForPickup(int id)
+        {
+            if (_operationalDocumentRepository.Exist(id) == false)
+                throw new NotFoundException("Operational document connot found");
+
+            if (CheckStatus(id, TransactionState.ArrangeOrder) == false)
+                throw new NotFoundException("Status is other than arrange order");
+
+            TransactionStatus status = new TransactionStatus()
+            {
+                OperationalDocumentid = id,
+                StartDate = DateTime.Now,
+                Status = TransactionState.ReadyForPickup.ToString()
+            };
+
+            _transactionStatusRepository.Add(status);
+
+            return DetailsOrder(id);
+        }
+
+        private bool CheckStatus(int operationalDocumentId, TransactionState expectedStatus)
+        {
+            var transactionStatus = _transactionStatusRepository.GetLatestStatus(operationalDocumentId);
+            if (transactionStatus.Status == expectedStatus.ToString())
+                return true;
+
+            return false;
         }
     }
 }

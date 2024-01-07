@@ -150,5 +150,20 @@ namespace QuirkyCarRepair.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("ReadyForPickup")]
+        [Authorize]
+        public IActionResult ReadyForPickup(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.ReadyForPickup(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
