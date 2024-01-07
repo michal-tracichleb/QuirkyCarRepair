@@ -92,12 +92,88 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("GetOrdersPage")]
-        [Authorize(Roles = "Admin,Storekeeper")]
+        [Authorize]
         public IActionResult GetOrdersPage([FromBody] GetOrdersPageDTO getOrdersPageDTO)
         {
             try
             {
                 return Ok(_warehouseService.GetOrdersPage(getOrdersPageDTO));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("CancelOrder")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult CancelOrder(int id)
+        {
+            try
+            {
+                _warehouseService.CancelOrder(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("DetailsOrder")]
+        [Authorize]
+        public IActionResult DetailsOrder(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.DetailsOrder(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("ArrangeOrder")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult ArrangeOrder(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.ArrangeOrder(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("ReadyForPickup")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult ReadyForPickup(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.ReadyForPickup(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("OrderCompleted")]
+        [Authorize(Roles = "Admin,Storekeeper")]
+        public IActionResult OrderCompleted(int id)
+        {
+            try
+            {
+                return Ok(_warehouseService.OrderCompleted(id));
             }
             catch (Exception ex)
             {

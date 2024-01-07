@@ -5,5 +5,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
 {
     public interface IPartTransactionRepository : IRepository<PartTransaction>
     {
+        public List<PartTransaction> GetByOperationalDocument(int operationalDocumentId);
     }
 }

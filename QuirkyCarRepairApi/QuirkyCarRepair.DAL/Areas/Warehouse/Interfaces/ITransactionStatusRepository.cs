@@ -5,5 +5,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
 {
     public interface ITransactionStatusRepository : IRepository<TransactionStatus>
     {
+        public TransactionStatus GetLatestStatus(int operationalDocumentId);
     }
 }

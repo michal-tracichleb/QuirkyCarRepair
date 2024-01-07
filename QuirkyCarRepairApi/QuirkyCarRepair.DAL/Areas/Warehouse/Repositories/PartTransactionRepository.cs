@@ -9,5 +9,11 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
         public PartTransactionRepository(QuirkyCarRepairContext context) : base(context)
         {
         }
+
+        public List<PartTransaction> GetByOperationalDocument(int operationalDocumentId)
+        {
+            return _context.PartTransactions
+                .Where(x => x.OperationalDocumentId == operationalDocumentId).ToList();
+        }
     }
 }
