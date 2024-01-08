@@ -19,6 +19,7 @@ import {Delivery} from "./components/Delivery/Delivery.jsx";
 import {getAllProducts} from "./api/getAllProducts.js";
 import {Orders} from "./components/Orders/Orders.jsx";
 import {OrderDetails} from "./components/OrderDetails/OrderDetails.jsx";
+import {getOrderDetails} from "./api/getOrderDetails.js";
 
 const router = createBrowserRouter([
     {
@@ -61,8 +62,9 @@ const router = createBrowserRouter([
                         element: <Orders/>
                     },
                     {
-                        path: 'details/:orderId',
-                        element: <OrderDetails/>
+                        path: 'orders/details/:orderId',
+                        element: <OrderDetails/>,
+                        loader: getOrderDetails
                     },
                 ]
             },
