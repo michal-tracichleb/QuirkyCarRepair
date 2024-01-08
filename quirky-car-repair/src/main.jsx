@@ -17,6 +17,9 @@ import {ProductManage} from "./components/ProductManage/ProductManage.jsx";
 import {categoriesLoader} from "./api/categoriesLoader.js";
 import {Delivery} from "./components/Delivery/Delivery.jsx";
 import {getAllProducts} from "./api/getAllProducts.js";
+import {Orders} from "./components/Orders/Orders.jsx";
+import {OrderDetails} from "./components/OrderDetails/OrderDetails.jsx";
+import {getOrderDetails} from "./api/getOrderDetails.js";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +56,15 @@ const router = createBrowserRouter([
                         path: 'delivery',
                         element: <Delivery/>,
                         loader: getAllProducts,
+                    },
+                    {
+                        path: 'orders',
+                        element: <Orders/>
+                    },
+                    {
+                        path: 'orders/details/:orderId',
+                        element: <OrderDetails/>,
+                        loader: getOrderDetails
                     },
                 ]
             },
