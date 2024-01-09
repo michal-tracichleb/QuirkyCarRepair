@@ -4,12 +4,12 @@ import axios from "axios";
 export async function arrangeOrder(orderId) {
     const user = sessionStorage["user"] ? JSON.parse(sessionStorage["user"]) : [];
     try {
-        await axios.get(`${BACK_END_URL}/Warehouse/ArrangeOrder?id=${orderId}`, {
+        const response = await axios.get(`${BACK_END_URL}/Warehouse/ArrangeOrder?id=${orderId}`, {
             headers: {
                 Authorization: `Bearer ${user.token}`,
             },
         });
-        return { success: true, message: 'Podjęto zamówienie' };
+        return { success: true, message: 'Podjęto zamówienie', data: response.data };
 
     } catch (error) {
         console.error('Błąd podczas pobierania danych:', error);

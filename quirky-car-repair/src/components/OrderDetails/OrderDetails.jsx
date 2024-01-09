@@ -35,34 +35,28 @@ export function OrderDetails(){
 
         if(userConfirmed) {
             const response = await cancelOrder(orderDetails.operationalDocumentId);
-            setAlert({text: response.message, color: response.success ? 'success' : 'warning'});
-            setTimeout(() => {
-                setAlert();
-            }, 3000);
+            getResponse(response);
         }
     }
     const arrangeOrderOnClick = async () =>{
             const response = await arrangeOrder(orderDetails.operationalDocumentId);
-            setAlert({text: response.message, color: response.success ? 'success' : 'warning'});
-            setTimeout(() => {
-                setAlert();
-                window.location.reload();
-            }, 3000);
+            getResponse(response);
     }
     const readyForPickupOnClick = async () =>{
         const response = await readyForPickup(orderDetails.operationalDocumentId);
-        setAlert({text: response.message, color: response.success ? 'success' : 'warning'});
-        setTimeout(() => {
-            setAlert();
-            window.location.reload();
-        }, 3000);
+        getResponse(response);
     }
     const orderCompletedupOnClick = async () =>{
         const response = await orderCompleted(orderDetails.operationalDocumentId);
+        getResponse(response);
+    }
+    const getResponse = (response) =>{
+        if(response.success){
+            setOrderDetails(response.data);
+        }
         setAlert({text: response.message, color: response.success ? 'success' : 'warning'});
         setTimeout(() => {
             setAlert();
-            window.location.reload();
         }, 3000);
     }
     const updatePackedProducts = (productId, isChecked) => {
@@ -137,18 +131,26 @@ export function OrderDetails(){
                                     <table className={styles.detailsTable}>
                                         <thead>
                                         <tr>
-                                            <th>Cena</th>
-                                            {managementPermissions &&
-                                                <th>Marża</th>
+                                            {orderDetails.status.toLowerCase() !== "arrangeorder" &&
+                                                <>
+                                                    <th>Cena</th>
+                                                    {managementPermissions &&
+                                                        <th>Marża</th>
+                                                    }
+                                                </>
                                             }
                                             <th>Ilość</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr key={part.partId}>
-                                            <td>{part.unitPrice}</td>
-                                            {managementPermissions &&
-                                                <td>{part.marginValue}</td>
+                                            {orderDetails.status.toLowerCase() !== "arrangeorder" &&
+                                                <>
+                                                    <td>{part.unitPrice}</td>
+                                                    {managementPermissions &&
+                                                        <td>{part.marginValue}</td>
+                                                    }
+                                                </>
                                             }
                                             <td>{part.quantity} ({part.unitType})</td>
                                         </tr>
