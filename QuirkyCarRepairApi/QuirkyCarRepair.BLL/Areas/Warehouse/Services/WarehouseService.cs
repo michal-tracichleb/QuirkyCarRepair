@@ -88,21 +88,6 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             };
         }
 
-        private List<int> ExtractCategoryIds(PartCategory category)
-        {
-            var categoryIds = new List<int> { category.Id };
-
-            if (category.Subcategories != null && category.Subcategories.Any())
-            {
-                foreach (var subcategory in category.Subcategories)
-                {
-                    categoryIds.AddRange(ExtractCategoryIds(subcategory));
-                }
-            }
-
-            return categoryIds;
-        }
-
         public void DeliveryParts(List<DeliveryPartsDTO> deliveryPartsDTO)
         {
             foreach (var deliveryParts in deliveryPartsDTO)
@@ -146,6 +131,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+
+            AssignOperationalDocumentNumber(operationalDocument);
         }
 
         public void OrderParts(OrderDTO orderDTO)
@@ -208,6 +195,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+
+            AssignOperationalDocumentNumber(operationalDocument);
         }
 
         public PageList<OperationalDocumentDTO> GetOrdersPage(GetOrdersPageDTO getOrdersPageDTO)
@@ -353,6 +342,31 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             _transactionStatusRepository.Add(status);
 
             return DetailsOrder(id);
+        }
+
+        private void AssignOperationalDocumentNumber(OperationalDocument document)
+        {
+            var prefix = document.Type;
+            var date = $"{document.TransactionDate.Year}-{document.TransactionDate.Month.ToString($"D2")}-{document.TransactionDate.Day.ToString($"D2")}";
+            var number = document.Id.ToString($"D9");
+
+            document.DocumentNumber = $"{prefix}/{date}/{number}";
+            _operationalDocumentRepository.Update(document);
+        }
+
+        private List<int> ExtractCategoryIds(PartCategory category)
+        {
+            var categoryIds = new List<int> { category.Id };
+
+            if (category.Subcategories != null && category.Subcategories.Any())
+            {
+                foreach (var subcategory in category.Subcategories)
+                {
+                    categoryIds.AddRange(ExtractCategoryIds(subcategory));
+                }
+            }
+
+            return categoryIds;
         }
 
         private bool CheckStatus(int operationalDocumentId, TransactionState expectedStatus)
