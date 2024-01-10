@@ -1,4 +1,5 @@
-﻿using QuirkyCarRepair.DAL.Areas.Shared;
+﻿using QuirkyCarRepair.DAL.Areas.Identity.Models;
+using QuirkyCarRepair.DAL.Areas.Shared;
 
 namespace QuirkyCarRepair.DAL.Areas.CarService.Models
 {
@@ -10,13 +11,15 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Models
         }
 
         public int Id { get; set; }
+        public int? UserId { get; set; }
 
-        public string? VIN { get; set; }
+        public string VIN { get; set; }
         public string PlateNumber { get; set; }
-        public string? Brand { get; set; }
-        public string? Model { get; set; }
-        public int? Year { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
 
+        public virtual User? User { get; set; }
         public virtual ICollection<ServiceOrder> ServiceOrders { get; set; }
     }
 }
