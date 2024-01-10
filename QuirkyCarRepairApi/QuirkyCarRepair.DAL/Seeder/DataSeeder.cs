@@ -26,11 +26,7 @@ namespace QuirkyCarRepair.DAL.Seeder
         public void SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
-            SeedPartCategoryWithParts(folderPath);
-        }
 
-        private void SeedPartCategoryWithParts(string folderPath)
-        {
             if (_context.Database.CanConnect())
             {
                 if (!_context.Roles.Any())
