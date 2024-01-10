@@ -17,12 +17,6 @@ namespace QuirkyCarRepair.DAL.Seeder
             _passwordHasher = passwordHasher;
         }
 
-        public List<T> LoadDataFromJsonFile<T>(string filePath)
-        {
-            var json = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-        }
-
         public void SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
@@ -59,6 +53,12 @@ namespace QuirkyCarRepair.DAL.Seeder
                     _context.SaveChanges();
                 }
             }
+        }
+
+        private List<T> LoadDataFromJsonFile<T>(string filePath)
+        {
+            var json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
 
         private IEnumerable<Role> GetRoles()
