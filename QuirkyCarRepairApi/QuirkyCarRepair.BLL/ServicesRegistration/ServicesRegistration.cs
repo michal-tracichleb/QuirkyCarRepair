@@ -30,6 +30,7 @@ namespace QuirkyCarRepair.BLL.ServicesRegistration
             services.AddScoped<IServiceOrderService, ServiceOrderService>();
             services.AddScoped<IServiceOrderStatusService, ServiceOrderStatusService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<ICarServiceService, CarServiceService>();
 
             #endregion CarService
 
