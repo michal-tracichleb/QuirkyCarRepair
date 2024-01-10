@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Shared;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -14,6 +15,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
     internal class WarehouseService : IWarehouseService
     {
         private readonly IMapper _mapper;
+        private readonly IUserContextService _userContextService;
+
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IPartRepository _partRepository;
         private readonly ITransactionStatusRepository _transactionStatusRepository;
@@ -21,6 +24,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IPartTransactionRepository _partTransactionRepository;
 
         public WarehouseService(IMapper mapper,
+            IUserContextService userContextService,
             IPartCategoryRepository partCategoryRepository,
             IPartRepository partRepository,
             ITransactionStatusRepository transactionStatusRepository,
@@ -28,6 +32,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             IPartTransactionRepository partTransactionRepository)
         {
             _mapper = mapper;
+            _userContextService = userContextService;
+
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
             _transactionStatusRepository = transactionStatusRepository;
@@ -126,7 +132,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Ready.ToString()
+                Status = TransactionState.Ready.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
@@ -190,7 +197,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Pending.ToString()
+                Status = TransactionState.Pending.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
@@ -240,7 +248,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Canceled.ToString()
+                Status = TransactionState.Canceled.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
@@ -296,7 +305,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ArrangeOrder.ToString()
+                Status = TransactionState.ArrangeOrder.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
@@ -316,7 +326,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ReadyForPickup.ToString()
+                Status = TransactionState.ReadyForPickup.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
@@ -336,7 +347,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.OrderCompleted.ToString()
+                Status = TransactionState.OrderCompleted.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
