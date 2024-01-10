@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.BLL.Areas.Shared

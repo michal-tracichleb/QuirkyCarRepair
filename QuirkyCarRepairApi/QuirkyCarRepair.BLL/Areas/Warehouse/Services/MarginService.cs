@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
-using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
-using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
+using QuirkyCarRepair.DAL.Areas.Shared.Interfaces;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 using QuirkyCarRepair.DAL.Exceptions;
 
 namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
