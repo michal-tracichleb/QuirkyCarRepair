@@ -24,6 +24,9 @@
 	  <None Update="Seeder\Data\PartCategoryWithParts.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Seeder\Data\ServiceCategories.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 	
 </Project>

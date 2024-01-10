@@ -1,0 +1,144 @@
+[
+  {
+    "name": "Komora silnika",
+    "maringId": null,
+    "serviceOffers": [
+      {
+        "name": "Wymiana paska rozrządu",
+        "price": 400
+      },
+      {
+        "name": "Wymiana paska klinowego",
+        "price": 50
+      },
+      {
+        "name": "Wymiana sprzęgła",
+        "price": 400
+      },
+      {
+        "name": "Wymiana koła dwumasowego",
+        "price": 400
+      },
+      {
+        "name": "Regulacja zaworów",
+        "price": 120
+      },
+      {
+        "name": "Wymiana uszczelki pod głowicą",
+        "price": 800
+      },
+      {
+        "name": "Wymiana koła dwumasowego",
+        "price": 400
+      }
+    ]
+  },
+  {
+    "name": "Podwozie",
+    "maringId": null,
+    "serviceOffers": [
+      {
+        "name": "Wymiana amortyzatorów przód",
+        "price": 200
+      },
+      {
+        "name": "Wymiana amortyzatorów tył",
+        "price": 100
+      },
+      {
+        "name": "Wymiana łożyska koła",
+        "price": 150
+      },
+      {
+        "name": "Wymiana wahacza zawieszenia",
+        "price": 125
+      },
+      {
+        "name": "Wymiana katalizatora spalin",
+        "price": 200
+      },
+      {
+        "name": "Wymiana tarcz hamulcowych 1 oś",
+        "price": 150
+      },
+      {
+        "name": "Wymiana klocków hamulcowych 1 oś",
+        "price": 100
+      },
+      {
+        "name": "Wymiana łączników stabilizatora",
+        "price": 100
+      },
+      {
+        "name": "Wymiana osłony przegubu",
+        "price": 150
+      },
+      {
+        "name": "Wymiana opon",
+        "price": 100
+      },
+      {
+        "name": "Wymiana belki tylnego zawieszenia",
+        "price": 400
+      },
+      {
+        "name": "Wymiana tłumika wydechu",
+        "price": 80
+      }
+    ]
+  },
+  {
+    "name": "Dodatkowe czynności",
+    "maringId": null,
+    "serviceOffers": [
+      {
+        "name": "Badanie techniczne",
+        "price": 100
+      },
+      {
+        "name": "Badanie techniczne instalacji LPG",
+        "price": 62
+      },
+      {
+        "name": "Diagnostyka komputerowa",
+        "price": 125
+      },
+      {
+        "name": "Geometria zawieszenia",
+        "price": 100
+      },
+      {
+        "name": "Wymiana oleju w skrzyni automatycznej",
+        "price": 200
+      },
+      {
+        "name": "Wymiana płynu chłodniczego",
+        "price": 50
+      },
+      {
+        "name": "Wymiana oleju silnikowego",
+        "price": 50
+      },
+      {
+        "name": "Diagnostyka silnika",
+        "price": 50
+      },
+      {
+        "name": "Nabicie klimatyzacji",
+        "price": 150
+      },
+      {
+        "name": "Hamownia - pomiar mocy silnika",
+        "price": 150
+      },
+      {
+        "name": "Regulacja świateł",
+        "price": 40
+      },
+      {
+        "name": "Wymiana szyby przedniej",
+        "price": 150
+      }
+    ]
+  }
+]

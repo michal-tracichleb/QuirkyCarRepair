@@ -180,5 +180,20 @@ namespace QuirkyCarRepair.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //[HttpPost]
+        //[Route("")]
+        //[Authorize(Roles = "Admin,Storekeeper")]
+        //public IActionResult OrderCompleted([FromBody] )
+        //{
+        //    try
+        //    {
+        //        return Ok(_warehouseService.OrderCompleted());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

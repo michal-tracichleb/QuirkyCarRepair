@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
@@ -51,6 +52,14 @@ namespace QuirkyCarRepair.DAL.Seeder
                     string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
                     var partCategories = LoadDataFromJsonFile<PartCategory>(filePath);
                     _context.AddRange(partCategories);
+                    _context.SaveChanges();
+                }
+
+                if (!_context.MainCategoriesServices.Any())
+                {
+                    string filePath = Path.Combine(folderPath, "ServiceCategories.json");
+                    var mainCategoriesServices = LoadDataFromJsonFile<MainCategoryService>(filePath);
+                    _context.AddRange(mainCategoriesServices);
                     _context.SaveChanges();
                 }
             }
