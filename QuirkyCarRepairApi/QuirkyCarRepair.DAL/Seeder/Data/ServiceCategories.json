@@ -1,7 +1,7 @@
 [
   {
     "name": "Komora silnika",
-    "maringId": null,
+    "maringId": 2,
     "serviceOffers": [
       {
         "name": "Wymiana paska rozrządu",
@@ -35,7 +35,7 @@
   },
   {
     "name": "Podwozie",
-    "maringId": null,
+    "maringId": 1,
     "serviceOffers": [
       {
         "name": "Wymiana amortyzatorów przód",
@@ -89,7 +89,7 @@
   },
   {
     "name": "Dodatkowe czynności",
-    "maringId": null,
+    "maringId": 3,
     "serviceOffers": [
       {
         "name": "Badanie techniczne",

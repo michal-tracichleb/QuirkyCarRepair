@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Seeder
@@ -34,6 +35,14 @@ namespace QuirkyCarRepair.DAL.Seeder
                 {
                     var users = GetUsers();
                     _context.Users.AddRange(users);
+                    _context.SaveChanges();
+                }
+
+                if (!_context.Margins.Any())
+                {
+                    string filePath = Path.Combine(folderPath, "Margins.json");
+                    var margins = LoadDataFromJsonFile<Margin>(filePath);
+                    _context.AddRange(margins);
                     _context.SaveChanges();
                 }
 
