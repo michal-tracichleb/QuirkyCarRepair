@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using QuirkyCarRepair.BLL.Areas.Admin.Interfaces;
+using QuirkyCarRepair.BLL.Areas.Admin.Services;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.CarService.Services;
 using QuirkyCarRepair.BLL.Areas.Identity.DTO;
@@ -17,6 +19,8 @@ namespace QuirkyCarRepair.BLL.ServicesRegistration
     {
         public static void AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IAdminService, AdminServie>();
+
             #region Identity
 
             services.AddScoped<IAccountService, AccountService>();
