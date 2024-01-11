@@ -10,6 +10,11 @@ export const SUBPAGES = [
         permission: ['admin', 'user', 'mechanic'],
     },
     {
+        name: "Admin",
+        path: "/admin",
+        permission: ['admin'],
+    },
+    {
         name: "O nas",
         path: "/about",
     },
