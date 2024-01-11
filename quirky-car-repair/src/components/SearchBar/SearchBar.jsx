@@ -1,12 +1,12 @@
 import styles from "./SearchBar.module.css";
 import {useEffect, useState} from "react";
 
-export function SearchBar({list, itemToDisplay, callback, required, value}){
+export function SearchBar({list, itemToDisplay, callback, required, value, returnValue = 'id'}){
     const [inputValue, setInputValue] = useState('');
     const [selectedItemId, setSelectedItemId] = useState(null);
 
     useEffect(() => {
-        const selectedItem = list.find(item => item.id === value);
+        const selectedItem = list.find(item => item[returnValue] === value);
         if(selectedItem){
             setInputValue(selectedItem[itemToDisplay]);
             setSelectedItemId(selectedItem.id);
@@ -22,7 +22,7 @@ export function SearchBar({list, itemToDisplay, callback, required, value}){
         const selectedItem = list.find(item => item[itemToDisplay].toLowerCase() === searchTerm.toLowerCase());
         if (selectedItem) {
             setSelectedItemId(selectedItem.id);
-            callback(selectedItem.id);
+            callback(selectedItem[returnValue]);
         } else {
             callback(null);
             setSelectedItemId(null);
@@ -43,7 +43,7 @@ export function SearchBar({list, itemToDisplay, callback, required, value}){
                     .map((item)=>(
                         <div onClick={()=>onSearch(item[itemToDisplay])}
                              className={styles.dropdown_row}
-                             key={item.id}
+                             key={item.id ? item.id : item[itemToDisplay]}
                         >
                             {item[itemToDisplay]}
                         </div>
