@@ -108,14 +108,20 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
                 StatusStartDate = newServiceOrderStatus.StartDate,
                 Status = newServiceOrderStatus.Status,
                 OrderDescription = newServiceOrderStatus.Description,
-                FirstName = newOrderOwner.FirstName,
-                LastName = newOrderOwner.LastName,
-                PhoneNumber = newOrderOwner.PhoneNumber,
-                Vin = vehicle.VIN,
-                PlateNumber = vehicle.PlateNumber,
-                Brand = vehicle.Brand,
-                Model = vehicle.Model,
-                Year = vehicle.Year,
+                UserData = new UserDataDTO()
+                {
+                    FirstName = newOrderOwner.FirstName,
+                    LastName = newOrderOwner.LastName,
+                    PhoneNumber = newOrderOwner.PhoneNumber
+                },
+                VehicleData = new VehicleDataDTO()
+                {
+                    Vin = vehicle.VIN,
+                    PlateNumber = vehicle.PlateNumber,
+                    Brand = vehicle.Brand,
+                    Model = vehicle.Model,
+                    Year = vehicle.Year
+                },
                 ServiceOrderStatuses = new List<ServiceOrderStatusEntity> { _mapper.Map<ServiceOrderStatusEntity>(newServiceOrderStatus) }
             };
         }
