@@ -28,6 +28,7 @@ namespace QuirkyCarRepair.DAL
         public DbSet<ServiceOffer> ServiceOffers { get; set; }
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
         public DbSet<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
+        public DbSet<ServiceTransaction> ServiceTransactions { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
 
         #endregion CarService
@@ -152,6 +153,11 @@ namespace QuirkyCarRepair.DAL
                     .HasForeignKey(p => p.UserId)
                     .HasConstraintName("FK_User_OrderOwners")
                     .IsRequired(false);
+
+                entity.HasOne(d => d.ServiceOrder)
+                    .WithOne(p => p.OrderOwner)
+                    .HasForeignKey<ServiceOrder>(so => so.OrderOwnerId)
+                    .IsRequired(false);
             });
 
             #endregion Shared
@@ -200,6 +206,31 @@ namespace QuirkyCarRepair.DAL
                     .HasForeignKey(p => p.UserId)
                     .HasConstraintName("FK_User_ServiceOrderStatuses")
                     .IsRequired();
+            });
+
+            modelBuilder.Entity<ServiceTransaction>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Price)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.Property(e => e.MarginValue)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.HasOne(d => d.ServiceOrder)
+                    .WithMany(p => p.ServiceTransactions)
+                    .HasForeignKey(d => d.ServiceOrderId)
+                    .HasConstraintName("FK_ServiceOrder_ServiceTransactions");
+
+                entity.HasOne(d => d.ServiceOffer)
+                    .WithMany(p => p.ServiceTransactions)
+                    .HasForeignKey(d => d.ServiceOfferId)
+                    .HasConstraintName("FK_ServiceOffer_ServiceTransactions");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>

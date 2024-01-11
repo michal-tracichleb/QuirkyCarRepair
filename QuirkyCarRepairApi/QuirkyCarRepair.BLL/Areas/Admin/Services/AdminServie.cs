@@ -23,28 +23,28 @@ namespace QuirkyCarRepair.BLL.Areas.Admin.Services
 
         public void AssignMarginToPartCategory(int marginId, int partCategoryId)
         {
-            if (_marginRepository.Exist(marginId) == false)
+            if (marginId != 0 && _marginRepository.Exist(marginId) == false)
                 throw new NotFoundException("Margin connot found");
 
-            if (_partCategoryRepository.Exist(partCategoryId) == false)
+            var partCategory = _partCategoryRepository.Get(partCategoryId);
+            if (partCategory is null)
                 throw new NotFoundException("Part category connot found");
 
-            var partCategory = _partCategoryRepository.Get(partCategoryId);
-            partCategory.MarginId = marginId;
+            partCategory.MarginId = marginId == 0 ? null : marginId;
 
             _partCategoryRepository.Update(partCategory);
         }
 
         public void AssignMarginToMainCategoryService(int marginId, int mainCategoryServiceId)
         {
-            if (_marginRepository.Exist(marginId) == false)
+            if (marginId != 0 && _marginRepository.Exist(marginId) == false)
                 throw new NotFoundException("Margin connot found");
 
-            if (_mainCategoryServiceRepository.Exist(mainCategoryServiceId) == false)
-                throw new NotFoundException("Part category connot found");
-
             var mainCategoryService = _mainCategoryServiceRepository.Get(mainCategoryServiceId);
-            mainCategoryService.MarginId = marginId;
+            if (mainCategoryService is null)
+                throw new NotFoundException("Main category service connot found");
+
+            mainCategoryService.MarginId = marginId == 0 ? null : marginId;
 
             _mainCategoryServiceRepository.Update(mainCategoryService);
         }

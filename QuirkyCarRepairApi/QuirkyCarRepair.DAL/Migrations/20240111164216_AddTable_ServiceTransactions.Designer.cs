@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuirkyCarRepair.DAL;
 
@@ -11,9 +12,11 @@ using QuirkyCarRepair.DAL;
 namespace QuirkyCarRepair.DAL.Migrations
 {
     [DbContext(typeof(QuirkyCarRepairContext))]
-    partial class QuirkyCarRepairContextModelSnapshot : ModelSnapshot
+    [Migration("20240111164216_AddTable_ServiceTransactions")]
+    partial class AddTable_ServiceTransactions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,16 +90,10 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int>("OrderOwnerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderOwnerId")
-                        .IsUnique();
 
                     b.HasIndex("VehicleId");
 
@@ -338,6 +335,8 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     b.HasIndex("OperationalDocumentId");
 
+                    b.HasIndex("ServiceOrderId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("OrderOwners");
@@ -566,18 +565,12 @@ namespace QuirkyCarRepair.DAL.Migrations
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
-                    b.HasOne("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", "OrderOwner")
-                        .WithOne("ServiceOrder")
-                        .HasForeignKey("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "OrderOwnerId");
-
                     b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", "Vehicle")
                         .WithMany("ServiceOrders")
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_ServiceOrder_Vehicle");
-
-                    b.Navigation("OrderOwner");
 
                     b.Navigation("Vehicle");
                 });
@@ -652,12 +645,18 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("OperationalDocumentId");
 
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "ServiceOrder")
+                        .WithMany()
+                        .HasForeignKey("ServiceOrderId");
+
                     b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.User", "User")
                         .WithMany("OrderOwners")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_User_OrderOwners");
 
                     b.Navigation("OperationalDocument");
+
+                    b.Navigation("ServiceOrder");
 
                     b.Navigation("User");
                 });
@@ -788,11 +787,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("MainCategoriesServices");
 
                     b.Navigation("PartCategories");
-                });
-
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", b =>
-                {
-                    b.Navigation("ServiceOrder");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>

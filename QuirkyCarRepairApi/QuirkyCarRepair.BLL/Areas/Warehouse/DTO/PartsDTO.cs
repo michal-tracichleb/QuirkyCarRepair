@@ -1,6 +1,6 @@
 ﻿namespace QuirkyCarRepair.BLL.Areas.Warehouse.DTO
 {
-    public class DeliveryPartsDTO
+    public class PartsDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
