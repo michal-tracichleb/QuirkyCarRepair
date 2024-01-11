@@ -11,7 +11,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
 
         public int Id { get; set; }
         public int PartCategoryId { get; set; }
-        public int? MarginId { get; set; }
 
         public string Name { get; set; }
         public string? Description { get; set; }
@@ -30,7 +29,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Models
         public double? Depth { get; set; }
 
         public virtual PartCategory PartCategory { get; set; }
-        public virtual Margin Margin { get; set; }
         public virtual ICollection<PartTransaction> PartTransactions { get; set; }
     }
 }

@@ -6,5 +6,14 @@ namespace QuirkyCarRepair.API.Controllers
     [ApiController]
     public class CarServiceController : ControllerBase
     {
+        ////private readonly IService _warehouseService;
+
+        //[HttpPost]
+        //[Route("ServiceOrder")]
+        //[Authorize]
+        //public IActionResult ServiceOrder(int id)
+        //{
+        //    return Ok();
+        //}
     }
 }

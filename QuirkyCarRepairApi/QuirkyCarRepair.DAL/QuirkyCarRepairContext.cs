@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL
@@ -19,9 +20,12 @@ namespace QuirkyCarRepair.DAL
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<OrderOwner> OrderOwners { get; set; }
 
         #region CarService
 
+        public DbSet<MainCategoryService> MainCategoriesServices { get; set; }
+        public DbSet<ServiceOffer> ServiceOffers { get; set; }
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
         public DbSet<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
@@ -98,6 +102,60 @@ namespace QuirkyCarRepair.DAL
 
             #endregion Identity
 
+            #region Shared
+
+            modelBuilder.Entity<Margin>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(64)
+                    .IsRequired();
+
+                entity.Property(e => e.Value)
+                    .HasColumnType("decimal(18, 2)")
+                    .IsRequired();
+
+                entity.HasMany(d => d.PartCategories)
+                    .WithOne(p => p.Margin)
+                    .HasForeignKey(p => p.MarginId)
+                    .HasConstraintName("FK_Margin_PartCategories");
+
+                entity.HasMany(d => d.MainCategoriesServices)
+                    .WithOne(p => p.Margin)
+                    .HasForeignKey(p => p.MarginId)
+                    .HasConstraintName("FK_Margin_MainCategoriesServices");
+            });
+
+            modelBuilder.Entity<OrderOwner>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(128)
+                    .IsRequired(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(128)
+                    .IsRequired(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(12)
+                    .IsRequired(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.OrderOwners)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_User_OrderOwners")
+                    .IsRequired(false);
+            });
+
+            #endregion Shared
+
             #region CarService
 
             modelBuilder.Entity<ServiceOrder>(entity =>
@@ -136,6 +194,12 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.ServiceOrderStatuses)
                     .HasForeignKey(p => p.ServiceOrderId)
                     .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ServiceOrderStatuses)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_User_ServiceOrderStatuses")
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
@@ -146,7 +210,7 @@ namespace QuirkyCarRepair.DAL
 
                 entity.Property(e => e.VIN)
                     .HasMaxLength(64)
-                    .IsRequired(false);
+                    .IsRequired();
 
                 entity.Property(e => e.PlateNumber)
                     .HasMaxLength(64)
@@ -154,38 +218,24 @@ namespace QuirkyCarRepair.DAL
 
                 entity.Property(e => e.Brand)
                     .HasMaxLength(64)
-                    .IsRequired(false);
+                    .IsRequired();
 
                 entity.Property(e => e.Model)
                     .HasMaxLength(64);
 
                 entity.Property(e => e.Year)
+                    .IsRequired();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Vehicles)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_User_Vehicles")
                     .IsRequired(false);
             });
 
             #endregion CarService
 
             #region WarehouseManagement
-
-            modelBuilder.Entity<Margin>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(64)
-                    .IsRequired();
-
-                entity.Property(e => e.Value)
-                    .HasColumnType("decimal(18, 2)")
-                    .IsRequired();
-
-                entity.HasMany(d => d.Parts)
-                    .WithOne(p => p.Margin)
-                    .HasForeignKey(p => p.MarginId)
-                    .HasConstraintName("FK_Margin_Parts");
-            });
 
             modelBuilder.Entity<OperationalDocument>(entity =>
             {
@@ -347,6 +397,12 @@ namespace QuirkyCarRepair.DAL
                     .WithMany(p => p.TransactionStatuses)
                     .HasForeignKey(p => p.OperationalDocumentid)
                     .HasConstraintName("FK_TransactionStatus_OperationalDocument");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TransactionStatuses)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_User_TransactionStatuses")
+                    .IsRequired();
             });
 
             #endregion WarehouseManagement
