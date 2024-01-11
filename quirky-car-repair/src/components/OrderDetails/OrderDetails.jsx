@@ -132,12 +132,7 @@ export function OrderDetails(){
                                         <thead>
                                         <tr>
                                             {orderDetails.status.toLowerCase() !== "arrangeorder" &&
-                                                <>
-                                                    <th>Cena</th>
-                                                    {managementPermissions &&
-                                                        <th>Marża</th>
-                                                    }
-                                                </>
+                                                <th>Cena</th>
                                             }
                                             <th>Ilość</th>
                                         </tr>
@@ -145,12 +140,7 @@ export function OrderDetails(){
                                         <tbody>
                                         <tr key={part.partId}>
                                             {orderDetails.status.toLowerCase() !== "arrangeorder" &&
-                                                <>
-                                                    <td>{part.unitPrice}</td>
-                                                    {managementPermissions &&
-                                                        <td>{part.marginValue}</td>
-                                                    }
-                                                </>
+                                                <td>{part.unitPrice}</td>
                                             }
                                             <td>{part.quantity} ({part.unitType})</td>
                                         </tr>
