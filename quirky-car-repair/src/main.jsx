@@ -20,6 +20,12 @@ import {getAllProducts} from "./api/getAllProducts.js";
 import {Orders} from "./components/Orders/Orders.jsx";
 import {OrderDetails} from "./components/OrderDetails/OrderDetails.jsx";
 import {getOrderDetails} from "./api/getOrderDetails.js";
+import {Service} from "./views/Service.jsx";
+import {VehicleRegistration} from "./components/VehicleRegistration/VehicleRegistration.jsx";
+import {NewServiceOrder} from "./components/NewServiceOrder/NewServiceOrder.jsx";
+import {ServiceOrders} from "./components/ServiceOrders/ServiceOrders.jsx";
+import {ServiceOrderDetails} from "./components/ServiceOrderDetails/ServiceOrderDetails.jsx";
+import {Cart} from "./views/Cart.jsx";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +75,24 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path: '/service',
+                element: <Service/>,
+                children:[
+                    {
+                        path: 'order/new',
+                        element: <NewServiceOrder/>
+                    },
+                    {
+                        path: 'orders',
+                        element: <ServiceOrders/>
+                    },
+                    {
+                        path: 'orders/details/:orderId',
+                        element: <ServiceOrderDetails/>,
+                    },
+                ]
+            },
+            {
                 path: '/contact',
                 element: <Contact/>,
             },
@@ -80,6 +104,14 @@ const router = createBrowserRouter([
                 path: '/authentication',
                 element: <Authentication/>,
             },
+            {
+                path: 'vehicle/registration',
+                element: <VehicleRegistration/>,
+            },
+            {
+                path: 'cart',
+                element: <Cart/>,
+            }
         ]
     }
 ])
