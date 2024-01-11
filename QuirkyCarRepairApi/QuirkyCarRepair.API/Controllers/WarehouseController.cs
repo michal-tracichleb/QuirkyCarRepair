@@ -40,7 +40,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpPost]
         [Route("DeliveryParts")]
         [Authorize(Roles = "Admin,Storekeeper")]
-        public IActionResult DeliveryParts([FromBody] List<DeliveryPartsDTO> deliveryPartsDTO)
+        public IActionResult DeliveryParts([FromBody] List<PartsDTO> deliveryPartsDTO)
         {
             _warehouseService.DeliveryParts(deliveryPartsDTO);
             return Ok();
