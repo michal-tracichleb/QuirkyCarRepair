@@ -6,7 +6,7 @@ export const SUBPAGES = [
     },
     {
         name: "Serwis",
-        path: "/serwis",
+        path: "/service",
         permission: ['admin', 'user', 'mechanic'],
     },
     {
