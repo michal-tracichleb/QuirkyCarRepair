@@ -1,7 +1,6 @@
-import React from 'react';
 import InputMask from 'react-input-mask';
 
-const PhoneNumberInput = ({ value, onBlur, className, onChange}) => {
+const PhoneNumberInput = ({ value, onBlur, className, onChange, required}) => {
     return (
         <InputMask
             mask="+48999999999"
@@ -16,6 +15,7 @@ const PhoneNumberInput = ({ value, onBlur, className, onChange}) => {
                     type="tel"
                     name="phoneNumber"
                     className={className}
+                    required={required}
                 />
             )}
         </InputMask>
