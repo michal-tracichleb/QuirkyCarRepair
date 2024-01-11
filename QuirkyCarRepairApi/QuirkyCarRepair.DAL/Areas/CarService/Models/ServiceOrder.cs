@@ -9,6 +9,7 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Models
         {
             ServiceOrderStatuses = new HashSet<ServiceOrderStatus>();
             OperationalDocuments = new HashSet<OperationalDocument>();
+            ServiceTransactions = new HashSet<ServiceTransaction>();
         }
 
         public int Id { get; set; }
@@ -20,5 +21,6 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Models
         public virtual Vehicle Vehicle { get; set; }
         public virtual ICollection<ServiceOrderStatus> ServiceOrderStatuses { get; set; }
         public virtual ICollection<OperationalDocument> OperationalDocuments { get; set; }
+        public virtual ICollection<ServiceTransaction> ServiceTransactions { get; set; }
     }
 }

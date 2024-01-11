@@ -33,6 +33,7 @@ namespace QuirkyCarRepair.DAL.RepositoriesRegistration
             services.AddScoped<IServiceOfferRepository, ServiceOfferRepository>();
             services.AddScoped<IServiceOrderRepository, ServiceOrderRepository>();
             services.AddScoped<IServiceOrderStatusRepository, ServiceOrderStatusRepository>();
+            services.AddScoped<IServiceTransactionRepository, ServiceTransactionRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
 
             #endregion CarService
