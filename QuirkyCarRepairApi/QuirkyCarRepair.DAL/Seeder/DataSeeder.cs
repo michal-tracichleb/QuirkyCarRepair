@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
 
 namespace QuirkyCarRepair.DAL.Seeder
@@ -16,20 +18,10 @@ namespace QuirkyCarRepair.DAL.Seeder
             _passwordHasher = passwordHasher;
         }
 
-        public List<T> LoadDataFromJsonFile<T>(string filePath)
-        {
-            var json = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-        }
-
         public void SeedDatabase()
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Seeder", "Data");
-            SeedPartCategoryWithParts(folderPath);
-        }
 
-        private void SeedPartCategoryWithParts(string folderPath)
-        {
             if (_context.Database.CanConnect())
             {
                 if (!_context.Roles.Any())
@@ -46,6 +38,14 @@ namespace QuirkyCarRepair.DAL.Seeder
                     _context.SaveChanges();
                 }
 
+                if (!_context.Margins.Any())
+                {
+                    string filePath = Path.Combine(folderPath, "Margins.json");
+                    var margins = LoadDataFromJsonFile<Margin>(filePath);
+                    _context.AddRange(margins);
+                    _context.SaveChanges();
+                }
+
                 if (!_context.PartCategories.Any())
                 {
                     string filePath = Path.Combine(folderPath, "PartCategoryWithParts.json");
@@ -53,7 +53,21 @@ namespace QuirkyCarRepair.DAL.Seeder
                     _context.AddRange(partCategories);
                     _context.SaveChanges();
                 }
+
+                if (!_context.MainCategoriesServices.Any())
+                {
+                    string filePath = Path.Combine(folderPath, "ServiceCategories.json");
+                    var mainCategoriesServices = LoadDataFromJsonFile<MainCategoryService>(filePath);
+                    _context.AddRange(mainCategoriesServices);
+                    _context.SaveChanges();
+                }
             }
+        }
+
+        private List<T> LoadDataFromJsonFile<T>(string filePath)
+        {
+            var json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
 
         private IEnumerable<Role> GetRoles()

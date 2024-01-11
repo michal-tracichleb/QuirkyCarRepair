@@ -15,6 +15,7 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Models
         public int VehicleId { get; set; }
 
         public string OrderNumber { get; set; }
+        public DateTime DateStartRepair { get; set; }
 
         public virtual Vehicle Vehicle { get; set; }
         public virtual ICollection<ServiceOrderStatus> ServiceOrderStatuses { get; set; }

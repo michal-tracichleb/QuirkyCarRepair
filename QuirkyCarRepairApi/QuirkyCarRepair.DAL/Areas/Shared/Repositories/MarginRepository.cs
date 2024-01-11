@@ -1,8 +1,8 @@
 ﻿using QuirkyCarRepair.DAL.Areas.Shared;
-using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
-using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
+using QuirkyCarRepair.DAL.Areas.Shared.Interfaces;
+using QuirkyCarRepair.DAL.Areas.Shared.Models;
 
-namespace QuirkyCarRepair.DAL.Areas.Warehouse.Repositories
+namespace QuirkyCarRepair.DAL.Areas.Shared.Repositories
 {
     internal class MarginRepository : Repository<Margin>, IMarginRepository
     {

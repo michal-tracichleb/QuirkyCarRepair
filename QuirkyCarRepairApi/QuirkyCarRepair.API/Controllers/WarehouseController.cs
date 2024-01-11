@@ -20,42 +20,21 @@ namespace QuirkyCarRepair.API.Controllers
         [Route("GetPrimaryCategories")]
         public IActionResult GetPrimaryCategories()
         {
-            try
-            {
-                return Ok(_warehouseService.GetPrimaryCategories());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.GetPrimaryCategories());
         }
 
         [HttpGet]
         [Route("GetPartCategoryStructure")]
         public IActionResult GetPartCategoryStructure(int id)
         {
-            try
-            {
-                return Ok(_warehouseService.GetPartCategoryStructure(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.GetPartCategoryStructure(id));
         }
 
         [HttpPost]
         [Route("GetPartsPage")]
         public IActionResult GetPartsPage([FromBody] GetPartsPageDTO getPartsPageDTO)
         {
-            try
-            {
-                return Ok(_warehouseService.GetPartsPage(getPartsPageDTO));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.GetPartsPage(getPartsPageDTO));
         }
 
         [HttpPost]
@@ -63,15 +42,8 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult DeliveryParts([FromBody] List<DeliveryPartsDTO> deliveryPartsDTO)
         {
-            try
-            {
-                _warehouseService.DeliveryParts(deliveryPartsDTO);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _warehouseService.DeliveryParts(deliveryPartsDTO);
+            return Ok();
         }
 
         [HttpPost]
@@ -79,15 +51,8 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize]
         public IActionResult OrderParts([FromBody] OrderDTO orderDTO)
         {
-            try
-            {
-                _warehouseService.OrderParts(orderDTO);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _warehouseService.OrderParts(orderDTO);
+            return Ok();
         }
 
         [HttpPost]
@@ -95,14 +60,7 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize]
         public IActionResult GetOrdersPage([FromBody] GetOrdersPageDTO getOrdersPageDTO)
         {
-            try
-            {
-                return Ok(_warehouseService.GetOrdersPage(getOrdersPageDTO));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.GetOrdersPage(getOrdersPageDTO));
         }
 
         [HttpGet]
@@ -110,15 +68,8 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult CancelOrder(int id)
         {
-            try
-            {
-                _warehouseService.CancelOrder(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _warehouseService.CancelOrder(id);
+            return Ok();
         }
 
         [HttpGet]
@@ -126,14 +77,7 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize]
         public IActionResult DetailsOrder(int id)
         {
-            try
-            {
-                return Ok(_warehouseService.DetailsOrder(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.DetailsOrder(id));
         }
 
         [HttpGet]
@@ -141,14 +85,7 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult ArrangeOrder(int id)
         {
-            try
-            {
-                return Ok(_warehouseService.ArrangeOrder(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.ArrangeOrder(id));
         }
 
         [HttpGet]
@@ -156,14 +93,7 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult ReadyForPickup(int id)
         {
-            try
-            {
-                return Ok(_warehouseService.ReadyForPickup(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.ReadyForPickup(id));
         }
 
         [HttpGet]
@@ -171,14 +101,22 @@ namespace QuirkyCarRepair.API.Controllers
         [Authorize(Roles = "Admin,Storekeeper")]
         public IActionResult OrderCompleted(int id)
         {
-            try
-            {
-                return Ok(_warehouseService.OrderCompleted(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_warehouseService.OrderCompleted(id));
         }
+
+        //[HttpPost]
+        //[Route("")]
+        //[Authorize(Roles = "Admin,Storekeeper")]
+        //public IActionResult OrderCompleted([FromBody] )
+        //{
+        //    try
+        //    {
+        //        return Ok(_warehouseService.OrderCompleted());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

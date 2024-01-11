@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Shared;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
@@ -14,6 +15,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
     internal class WarehouseService : IWarehouseService
     {
         private readonly IMapper _mapper;
+        private readonly IUserContextService _userContextService;
+
         private readonly IPartCategoryRepository _partCategoryRepository;
         private readonly IPartRepository _partRepository;
         private readonly ITransactionStatusRepository _transactionStatusRepository;
@@ -21,6 +24,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly IPartTransactionRepository _partTransactionRepository;
 
         public WarehouseService(IMapper mapper,
+            IUserContextService userContextService,
             IPartCategoryRepository partCategoryRepository,
             IPartRepository partRepository,
             ITransactionStatusRepository transactionStatusRepository,
@@ -28,6 +32,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             IPartTransactionRepository partTransactionRepository)
         {
             _mapper = mapper;
+            _userContextService = userContextService;
+
             _partCategoryRepository = partCategoryRepository;
             _partRepository = partRepository;
             _transactionStatusRepository = transactionStatusRepository;
@@ -88,21 +94,6 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             };
         }
 
-        private List<int> ExtractCategoryIds(PartCategory category)
-        {
-            var categoryIds = new List<int> { category.Id };
-
-            if (category.Subcategories != null && category.Subcategories.Any())
-            {
-                foreach (var subcategory in category.Subcategories)
-                {
-                    categoryIds.AddRange(ExtractCategoryIds(subcategory));
-                }
-            }
-
-            return categoryIds;
-        }
-
         public void DeliveryParts(List<DeliveryPartsDTO> deliveryPartsDTO)
         {
             foreach (var deliveryParts in deliveryPartsDTO)
@@ -141,11 +132,14 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Ready.ToString()
+                Status = TransactionState.Ready.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+
+            AssignOperationalDocumentNumber(operationalDocument);
         }
 
         public void OrderParts(OrderDTO orderDTO)
@@ -203,11 +197,14 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Pending.ToString()
+                Status = TransactionState.Pending.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
             _transactionStatusRepository.Add(status);
+
+            AssignOperationalDocumentNumber(operationalDocument);
         }
 
         public PageList<OperationalDocumentDTO> GetOrdersPage(GetOrdersPageDTO getOrdersPageDTO)
@@ -251,7 +248,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Canceled.ToString()
+                Status = TransactionState.Canceled.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _partRepository.UpdateRange(parts);
@@ -307,7 +305,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ArrangeOrder.ToString()
+                Status = TransactionState.ArrangeOrder.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
@@ -327,7 +326,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ReadyForPickup.ToString()
+                Status = TransactionState.ReadyForPickup.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
@@ -347,12 +347,38 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.OrderCompleted.ToString()
+                Status = TransactionState.OrderCompleted.ToString(),
+                UserId = _userContextService.GetUserId
             };
 
             _transactionStatusRepository.Add(status);
 
             return DetailsOrder(id);
+        }
+
+        private void AssignOperationalDocumentNumber(OperationalDocument document)
+        {
+            var prefix = document.Type;
+            var date = $"{document.TransactionDate.Year}-{document.TransactionDate.Month.ToString($"D2")}-{document.TransactionDate.Day.ToString($"D2")}";
+            var number = document.Id.ToString($"D9");
+
+            document.DocumentNumber = $"{prefix}/{date}/{number}";
+            _operationalDocumentRepository.Update(document);
+        }
+
+        private List<int> ExtractCategoryIds(PartCategory category)
+        {
+            var categoryIds = new List<int> { category.Id };
+
+            if (category.Subcategories != null && category.Subcategories.Any())
+            {
+                foreach (var subcategory in category.Subcategories)
+                {
+                    categoryIds.AddRange(ExtractCategoryIds(subcategory));
+                }
+            }
+
+            return categoryIds;
         }
 
         private bool CheckStatus(int operationalDocumentId, TransactionState expectedStatus)
