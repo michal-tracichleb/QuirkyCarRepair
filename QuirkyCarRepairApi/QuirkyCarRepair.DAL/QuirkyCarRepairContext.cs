@@ -153,6 +153,11 @@ namespace QuirkyCarRepair.DAL
                     .HasForeignKey(p => p.UserId)
                     .HasConstraintName("FK_User_OrderOwners")
                     .IsRequired(false);
+
+                entity.HasOne(d => d.ServiceOrder)
+                    .WithOne(p => p.OrderOwner)
+                    .HasForeignKey<ServiceOrder>(so => so.OrderOwnerId)
+                    .IsRequired(false);
             });
 
             #endregion Shared
