@@ -2,6 +2,7 @@
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.Shared;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
+using QuirkyCarRepair.DAL.Areas.Shared.Enums;
 
 namespace QuirkyCarRepair.BLL.Areas.CarService.Interfaces
 {
@@ -18,5 +19,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Interfaces
         public List<ServiceOfferEntity> GetServiceOfferByMainCategory(int mainCategoryId);
 
         public List<ServiceOfferEntity> GetAllServiceOffer();
+
+        public DetailsServiceOrderDTO ChangeStatus(int id, string description, OrderStatus newStatus);
     }
 }
