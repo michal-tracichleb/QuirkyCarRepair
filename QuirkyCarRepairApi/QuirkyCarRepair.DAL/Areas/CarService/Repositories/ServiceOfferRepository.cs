@@ -9,5 +9,10 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
         public ServiceOfferRepository(QuirkyCarRepairContext context) : base(context)
         {
         }
+
+        public ICollection<ServiceOffer> GetByMainCategoryId(int mainCategoryId)
+        {
+            return _context.ServiceOffers.Where(x => x.MainCategoryServiceId == mainCategoryId).ToList();
+        }
     }
 }

@@ -10,6 +10,10 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
     {
         public CarServiceProfile()
         {
+            CreateMap<MainCategoryService, MainCategoryServiceEntity>();
+
+            CreateMap<ServiceOffer, ServiceOfferEntity>();
+
             CreateMap<ServiceOrder, ServiceOrderEntity>()
                 .ReverseMap();
 
