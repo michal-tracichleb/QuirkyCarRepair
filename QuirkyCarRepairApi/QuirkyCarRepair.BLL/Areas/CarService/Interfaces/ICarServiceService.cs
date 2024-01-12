@@ -9,5 +9,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Interfaces
         public DetailsServiceOrderDTO NewOrderService(CreateServiceOrderDTO createServiceOrder);
 
         public PageList<ServiceOrderDTO> GetOrdersPage(GetServiceOrderPage getOrdersServicePageDTO);
+
+        public DetailsServiceOrderDTO GetDetailsServiceOrder(int id);
     }
 }
