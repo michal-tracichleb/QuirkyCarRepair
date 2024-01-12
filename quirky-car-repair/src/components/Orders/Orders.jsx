@@ -6,8 +6,7 @@ import {getOrdersPage} from "../../api/getOrdersPage.js";
 import {PaginationSmall} from "../PaginationSmall/PaginationSmall.jsx";
 import {Pagination} from "../Pagination/Pagination.jsx";
 import {OrdersList} from "../OrdersList/OrdersList.jsx";
-import {TransactionType} from "../../constans/transactionType.js";
-import {TransactionState} from "../../constans/transactionState.js";
+import {orderType, orderStatus} from "../../constans/warehouseEnums.js";
 
 export function Orders(){
     const navigate = useNavigate();
@@ -39,10 +38,10 @@ export function Orders(){
         body.pageSize = pageSize;
 
         if (type) {
-            body.transactionTypes = [Number(type)];
+            body.orderTypes = [Number(type)];
         }
         if (state){
-            body.transactionStates = [Number(state)];
+            body.orderStates = [Number(state)];
         }
 
         const response = await getOrdersPage(body);
@@ -68,7 +67,7 @@ export function Orders(){
                     <label>Status zamówienia</label>
                     <select id="stateSelect" onChange={(e) => setState(e.target.value)}>
                         <option value=''>Wszystkie</option>
-                        {Object.keys(TransactionState).map((stateName, index) => (
+                        {Object.keys(orderStatus).map((stateName, index) => (
                             <option key={stateName} value={index}>{stateName}</option>
                         ))}
                     </select>
@@ -77,7 +76,7 @@ export function Orders(){
                     <label>Typ zamówienia</label>
                     <select id="typeSelect" onChange={(e) => setType(e.target.value)}>
                         <option value=''>Wszystkie</option>
-                        {Object.keys(TransactionType).map((stateName, index) => (
+                        {Object.keys(orderType).map((stateName, index) => (
                             <option key={stateName} value={index}>{stateName}</option>
                         ))}
                     </select>
