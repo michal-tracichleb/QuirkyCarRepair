@@ -1,0 +1,21 @@
+.toolbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #e7e7e7;
+    padding:3px;
+    gap: 1rem
+}
+.select{
+    display: flex;
+    flex-direction: column;
+}
+.select select{
+    width: auto;
+    border-radius: 5px;
+    border: 1px solid var(--color-grey)
+}
+.select label{
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+}

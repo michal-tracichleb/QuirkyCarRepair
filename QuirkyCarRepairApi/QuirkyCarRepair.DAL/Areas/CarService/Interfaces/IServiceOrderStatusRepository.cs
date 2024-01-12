@@ -5,5 +5,6 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Interfaces
 {
     public interface IServiceOrderStatusRepository : IRepository<ServiceOrderStatus>
     {
+        public ServiceOrderStatus GetLatestStatus(int serviceOrderId);
     }
 }

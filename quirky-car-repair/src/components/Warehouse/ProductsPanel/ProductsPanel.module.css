@@ -1,0 +1,8 @@
+.toolbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #e7e7e7;
+    padding:3px;
+    gap: 5px
+}

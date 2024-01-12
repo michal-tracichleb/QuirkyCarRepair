@@ -1,6 +1,7 @@
 [
   {
     "name": "Części samochodowe",
+    "marginId": 1,
     "subcategories": [
       {
         "name": "Części karoserii",
@@ -3297,6 +3298,7 @@
   },
   {
     "name": "Akcesoria samochodowe",
+    "marginId": 3,
     "subcategories": [
       { "name": "Apteczki, gaśnice, kamizelki, trójkąty" },
       { "name": "Bagażniki" },
@@ -3327,6 +3329,7 @@
   },
   {
     "name": "Opony i felgi",
+    "marginId": 1,
     "subcategories": [
       {
         "name": "Opony do aut osobowych",
@@ -3577,6 +3580,7 @@
   },
   {
     "name": "Warsztat",
+    "marginId": 3,
     "subcategories": [
       { "name": "Blacharstwo i lakiernictwo" },
       { "name": "Diagnostyka i pomiary" },

@@ -18,16 +18,19 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
         private readonly IAccountRepostiory _accountRepostiory;
         private readonly IMapper _mapper;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly IUserContextService _userContextService;
 
         public AccountService(IPasswordHasher<User> passwordHasher,
             IAccountRepostiory accountRepostiory,
             IMapper mapper,
-            AuthenticationSettings authenticationSettings)
+            AuthenticationSettings authenticationSettings,
+            IUserContextService userContextService)
         {
             _passwordHasher = passwordHasher;
             _accountRepostiory = accountRepostiory;
             _mapper = mapper;
             _authenticationSettings = authenticationSettings;
+            _userContextService = userContextService;
         }
 
         public void RegisterUser(RegisterUserDto dto)
@@ -62,12 +65,7 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Role, $"{user.Role.Name}"),
                 new Claim("UserId", user.Id.ToString()),
-                new Claim("UserName", $"{user.UserName}"),
-                new Claim("Email", $"{user.Email}"),
-                new Claim("PhoneNumber", $"{user.PhoneNumber}"),
-                new Claim("Role", $"{user.Role.Name}"),
-                new Claim("FirstName", user.FirstName ?? ""),
-                new Claim("LastName", user.LastName ?? "")
+                new Claim("UserRole", $"{user.Role.Name}")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
@@ -83,6 +81,61 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
             var tokenHandler = new JwtSecurityTokenHandler();
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public UserDetailsDto GetUserDetails(int id)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            if (user == null)
+                throw new NotFoundException("User cannot found");
+
+            return new UserDetailsDto()
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
+
+        public void Edit(int id, UserDetailsDto userDetails)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            if (user == null)
+                throw new NotFoundException("User cannot found");
+
+            user.UserName = userDetails.UserName;
+            user.Email = userDetails.Email;
+            user.FirstName = userDetails.FirstName;
+            user.LastName = userDetails.LastName;
+            user.PhoneNumber = userDetails.PhoneNumber;
+
+            _accountRepostiory.Update(user);
+        }
+
+        public void ChangePassword(int id, ChangePasswordDto changePassword)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            if (string.Equals(changePassword.NewPassword, changePassword.ConfirmPassword) == false)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, changePassword.OldPassword);
+            if (result == PasswordVerificationResult.Failed)
+                throw new BadRequestException("Invalid password");
+
+            user.PasswordHash = _passwordHasher.HashPassword(user, changePassword.NewPassword);
+
+            _accountRepostiory.Update(user);
         }
     }
 }

@@ -18,10 +18,57 @@ namespace QuirkyCarRepair.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("Polish_100_CI_AI")
-                .HasAnnotation("ProductVersion", "8.0.0-rc.2.23480.1")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.MainCategoryService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("MarginId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MarginId");
+
+                    b.ToTable("MainCategoriesServices");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOffer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MainCategoryServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCategoryServiceId");
+
+                    b.ToTable("ServiceOffers");
+                });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
@@ -32,15 +79,29 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DateStartRepair")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderDescription")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
                     b.Property<string>("OrderNumber")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int>("OrderOwnerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderOwnerId")
+                        .IsUnique();
 
                     b.HasIndex("VehicleId");
 
@@ -71,11 +132,49 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ServiceOrderId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("ServiceOrderStatuses");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("MarginValue")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceOfferId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceOrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceOfferId");
+
+                    b.HasIndex("ServiceOrderId");
+
+                    b.ToTable("ServiceTransactions");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", b =>
@@ -88,10 +187,12 @@ namespace QuirkyCarRepair.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Brand")
+                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Model")
+                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
@@ -100,14 +201,20 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("VIN")
+                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int?>("Year")
+                    b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Vehicles");
                 });
@@ -180,7 +287,7 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.Margin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -200,6 +307,45 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Margins");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int?>("OperationalDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<int?>("ServiceOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OperationalDocumentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OrderOwners");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>
@@ -261,9 +407,6 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int?>("MarginId")
-                        .HasColumnType("int");
-
                     b.Property<decimal?>("MinimumQuantity")
                         .HasColumnType("decimal(18, 2)");
 
@@ -302,8 +445,6 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MarginId");
-
                     b.HasIndex("PartCategoryId");
 
                     b.ToTable("Parts");
@@ -318,6 +459,9 @@ namespace QuirkyCarRepair.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("MarginId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -327,6 +471,8 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MarginId");
 
                     b.HasIndex("ParentCategoryId");
 
@@ -390,21 +536,53 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OperationalDocumentid");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("TransactionStatuses");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.MainCategoryService", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Shared.Models.Margin", "Margin")
+                        .WithMany("MainCategoriesServices")
+                        .HasForeignKey("MarginId")
+                        .HasConstraintName("FK_Margin_MainCategoriesServices");
+
+                    b.Navigation("Margin");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOffer", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.MainCategoryService", "MainCategoryService")
+                        .WithMany("ServiceOffers")
+                        .HasForeignKey("MainCategoryServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MainCategoryService");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
                 {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", "OrderOwner")
+                        .WithOne("ServiceOrder")
+                        .HasForeignKey("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "OrderOwnerId");
+
                     b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", "Vehicle")
                         .WithMany("ServiceOrders")
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_ServiceOrder_Vehicle");
+
+                    b.Navigation("OrderOwner");
 
                     b.Navigation("Vehicle");
                 });
@@ -418,7 +596,47 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ServiceOrder_ServiceOrderStatus");
 
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.User", "User")
+                        .WithMany("ServiceOrderStatuses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_User_ServiceOrderStatuses");
+
                     b.Navigation("ServiceOrder");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceTransaction", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOffer", "ServiceOffer")
+                        .WithMany("ServiceTransactions")
+                        .HasForeignKey("ServiceOfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_ServiceOffer_ServiceTransactions");
+
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "ServiceOrder")
+                        .WithMany("ServiceTransactions")
+                        .HasForeignKey("ServiceOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_ServiceOrder_ServiceTransactions");
+
+                    b.Navigation("ServiceOffer");
+
+                    b.Navigation("ServiceOrder");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.User", "User")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_User_Vehicles");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.User", b =>
@@ -433,6 +651,22 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", b =>
+                {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", "OperationalDocument")
+                        .WithMany()
+                        .HasForeignKey("OperationalDocumentId");
+
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.User", "User")
+                        .WithMany("OrderOwners")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_User_OrderOwners");
+
+                    b.Navigation("OperationalDocument");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>
                 {
                     b.HasOne("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", "ServiceOrder")
@@ -445,11 +679,6 @@ namespace QuirkyCarRepair.DAL.Migrations
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Part", b =>
                 {
-                    b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", "Margin")
-                        .WithMany("Parts")
-                        .HasForeignKey("MarginId")
-                        .HasConstraintName("FK_Margin_Parts");
-
                     b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.PartCategory", "PartCategory")
                         .WithMany("Parts")
                         .HasForeignKey("PartCategoryId")
@@ -457,17 +686,22 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_PartCategory_Part");
 
-                    b.Navigation("Margin");
-
                     b.Navigation("PartCategory");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.PartCategory", b =>
                 {
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Shared.Models.Margin", "Margin")
+                        .WithMany("PartCategories")
+                        .HasForeignKey("MarginId")
+                        .HasConstraintName("FK_Margin_PartCategories");
+
                     b.HasOne("QuirkyCarRepair.DAL.Areas.Warehouse.Models.PartCategory", "ParentCategory")
                         .WithMany("Subcategories")
                         .HasForeignKey("ParentCategoryId")
                         .HasConstraintName("FK_ParentCategory_Subcategories");
+
+                    b.Navigation("Margin");
 
                     b.Navigation("ParentCategory");
                 });
@@ -502,7 +736,26 @@ namespace QuirkyCarRepair.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_TransactionStatus_OperationalDocument");
 
+                    b.HasOne("QuirkyCarRepair.DAL.Areas.Identity.Models.User", "User")
+                        .WithMany("TransactionStatuses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_User_TransactionStatuses");
+
                     b.Navigation("OperationalDocument");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.MainCategoryService", b =>
+                {
+                    b.Navigation("ServiceOffers");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOffer", b =>
+                {
+                    b.Navigation("ServiceTransactions");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.ServiceOrder", b =>
@@ -510,6 +763,8 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("OperationalDocuments");
 
                     b.Navigation("ServiceOrderStatuses");
+
+                    b.Navigation("ServiceTransactions");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.CarService.Models.Vehicle", b =>
@@ -522,9 +777,27 @@ namespace QuirkyCarRepair.DAL.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.Margin", b =>
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Identity.Models.User", b =>
                 {
-                    b.Navigation("Parts");
+                    b.Navigation("OrderOwners");
+
+                    b.Navigation("ServiceOrderStatuses");
+
+                    b.Navigation("TransactionStatuses");
+
+                    b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.Margin", b =>
+                {
+                    b.Navigation("MainCategoriesServices");
+
+                    b.Navigation("PartCategories");
+                });
+
+            modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Shared.Models.OrderOwner", b =>
+                {
+                    b.Navigation("ServiceOrder");
                 });
 
             modelBuilder.Entity("QuirkyCarRepair.DAL.Areas.Warehouse.Models.OperationalDocument", b =>

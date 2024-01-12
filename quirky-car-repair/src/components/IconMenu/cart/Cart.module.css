@@ -1,0 +1,47 @@
+.numberOfProducts{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+
+    background-color: var(--color-blue);
+    width: 1.3rem;
+    height: 1.4rem;
+    border-radius: 50%;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart svg{
+    color: var(--color-text-lightgrey);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.cart svg:hover{
+    color: var(--color-text-grey);
+}
+.item{
+    padding: 2px;
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.item:hover{
+    background-color: #cccccc;
+}
+.price{
+    float: right;
+    font-size: 15px;
+    color: #008000;
+}
+.quantity{
+    font-size: 15px;
+    color: #707070;
+}
+.summary{
+    padding: 5px;
+}
