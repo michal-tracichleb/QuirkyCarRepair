@@ -74,7 +74,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ServiceOrderCanceled")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize(Roles = "Admin,Mechanic,User")]
         public IActionResult ServiceOrderCanceled(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Canceled);
@@ -110,7 +110,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ServiceOrderAcceptedByClient")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize(Roles = "Admin,Mechanic,User")]
         public IActionResult ServiceOrderAcceptedByClient(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.AcceptedByClient);
@@ -119,7 +119,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ServiceOrderCanceledByclient")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize(Roles = "Admin,Mechanic,User")]
         public IActionResult ServiceOrderCanceledByclient(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.CanceledByclient);
@@ -146,7 +146,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("ServiceOrderComplaint")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize(Roles = "Admin,Mechanic,User")]
         public IActionResult ServiceOrderComplaint(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Complaint);
