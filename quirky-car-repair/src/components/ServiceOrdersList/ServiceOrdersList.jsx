@@ -5,7 +5,7 @@ export function ServiceOrdersList({ordersList}){
     return(
         <div className={styles.container}>
             {ordersList && ordersList.map((order) =>(
-                <Link key={order.serviceOrderId} to={`details/${order.id}`}>
+                <Link key={order.serviceOrderId} to={`details/${order.serviceOrderId}`}>
                     <div className={styles.orderContainer}>
                         <div className={styles.order}>
                             <h3>Numer dokumentu: {order.documentNumber}</h3>

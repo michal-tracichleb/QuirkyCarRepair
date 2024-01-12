@@ -1,4 +1,3 @@
-import {useLoaderData} from "react-router-dom";
 import styles from "./MarginList.module.css";
 import {ProductManageLink} from "../ProductManageLink/ProductManageLink.jsx";
 import {useContext, useEffect, useState} from "react";

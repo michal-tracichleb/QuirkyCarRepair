@@ -6,7 +6,9 @@ import {CategoryMarginList} from "../CategoryMarginList/CategoryMarginList.jsx";
 import {getPrimaryCategories} from "../../api/getPrimaryCategories.js";
 import {getPartCategoryStructure} from "../../api/getPartCategoryStructure.js";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {assignToPartCategory} from "../../api/assignToPartCategory.js";
+import {assignMarginToPartCategory} from "../../api/assignMarginToPartCategory.js";
+import {getServiceMainCategories} from "../../api/getServiceMainCategories.js";
+import {assignMarginToServiceCategory} from "../../api/assignMarginToServiceCategory.js";
 
 export function CategoryMarginSetter(){
     const navigate = useNavigate();
@@ -24,15 +26,13 @@ export function CategoryMarginSetter(){
     useEffect(()=>{
         fetchMargins();
 
-        if(mode === 3){
-            //Kategorie serwisowe
-            fetchProductPrimaryCategories();
+        if(Number(mode) === 3){
+            fetchServiceCategories();
         }else{
             fetchProductPrimaryCategories();
         }
 
-    },[mode])
-
+    },[mode]);
     const fetchProductPrimaryCategories = async () =>{
         const response = await getPrimaryCategories();
         if(response.success){
@@ -53,14 +53,14 @@ export function CategoryMarginSetter(){
             Error({text: response.message, color: 'warning'})
         }
     }
-    /*const fetchServiceCategories = async () =>{
-        const response = await getPartCategoryStructure();
+    const fetchServiceCategories = async () =>{
+        const response = await getServiceMainCategories();
         if(response.success){
-            setCategories(response.data.subcategories)
+            setCategories(response.data)
         }else{
             Error({text: response.message, color: 'warning'})
         }
-    }*/
+    }
     const fetchMargins = async () =>{
         const response = await getAllMargin();
         if(response.success){
@@ -70,7 +70,23 @@ export function CategoryMarginSetter(){
         }
     }
     const onMarginSelect = async (categoryId, marginId) =>{
-        const response = await assignToPartCategory(categoryId, marginId);
+        let response;
+        if(Number(mode) === 3){
+            response = await assignMarginToServiceCategory(categoryId, marginId);
+        }else{
+            response = await assignMarginToPartCategory(categoryId, marginId);
+        }
+        if(response.success){
+            setCategories(prevState => {
+                const updatedCategories = prevState.map(item => {
+                    if (item.id === categoryId) {
+                        return { ...item, marginId: marginId };
+                    }
+                    return item;
+                });
+                return updatedCategories;
+            });
+        }
         Error({text: response.message, color: response.success ? 'success' : 'warning'})
     }
     const onPrimaryCategorySelect = (e) =>{
