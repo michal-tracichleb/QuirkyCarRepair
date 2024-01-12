@@ -7,6 +7,6 @@ namespace QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces
     public interface IOperationalDocumentRepository : IRepository<OperationalDocument>
     {
         public IQueryable<OperationalDocument> GetOperationalDocumentsWithLatestTransactionStatus(
-            List<TransactionType> transactionTypes, List<TransactionState> transactionStates);
+            List<OrderType> orderTypes, List<OrderStatus> orderStates);
     }
 }
