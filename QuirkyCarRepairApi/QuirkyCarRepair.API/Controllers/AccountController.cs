@@ -49,5 +49,14 @@ namespace QuirkyCarRepair.API.Controllers
             _accountService.Edit(id, userDetails);
             return Ok(userDetails);
         }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        [Authorize]
+        public ActionResult ChangePassword(int id, [FromBody] ChangePasswordDto changePassword)
+        {
+            _accountService.ChangePassword(id, changePassword);
+            return Ok();
+        }
     }
 }

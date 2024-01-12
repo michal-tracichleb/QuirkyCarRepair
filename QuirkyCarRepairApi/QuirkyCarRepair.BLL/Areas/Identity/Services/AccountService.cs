@@ -119,5 +119,23 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
 
             _accountRepostiory.Update(user);
         }
+
+        public void ChangePassword(int id, ChangePasswordDto changePassword)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            if (string.Equals(changePassword.NewPassword, changePassword.ConfirmPassword) == false)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, changePassword.OldPassword);
+            if (result == PasswordVerificationResult.Failed)
+                throw new BadRequestException("Invalid password");
+
+            user.PasswordHash = _passwordHasher.HashPassword(user, changePassword.NewPassword);
+
+            _accountRepostiory.Update(user);
+        }
     }
 }

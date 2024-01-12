@@ -11,5 +11,7 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Interfaces
         public UserDetailsDto GetUserDetails(int id);
 
         public void Edit(int id, UserDetailsDto userDetails);
+
+        public void ChangePassword(int id, ChangePasswordDto changePassword);
     }
 }
