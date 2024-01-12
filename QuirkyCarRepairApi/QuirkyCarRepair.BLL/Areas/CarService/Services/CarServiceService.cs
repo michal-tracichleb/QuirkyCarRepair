@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.BLL.Areas.CarService.DTO;
+using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Shared;
@@ -26,6 +27,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
         private readonly IServiceOrderRepository _serviceOrderRepository;
         private readonly IOrderOwnerRepository _orderOwnerRepository;
         private readonly IServiceOrderStatusRepository _serviceOrderStatusRepository;
+        private readonly IMainCategoryServiceRepository _mainCategoryServiceRepository;
+        private readonly IServiceOfferRepository _serviceOfferRepository;
 
         public CarServiceService(IMapper mapper,
             IUserContextService userContextService,
@@ -33,7 +36,9 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             IVehicleRepository vehicleRepository,
             IServiceOrderRepository serviceOrderRepository,
             IOrderOwnerRepository orderOwnerRepository,
-            IServiceOrderStatusRepository serviceOrderStatusRepository)
+            IServiceOrderStatusRepository serviceOrderStatusRepository,
+            IMainCategoryServiceRepository mainCategoryServiceRepository,
+            IServiceOfferRepository serviceOfferRepository)
         {
             _mapper = mapper;
             _userContextService = userContextService;
@@ -43,6 +48,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             _serviceOrderRepository = serviceOrderRepository;
             _orderOwnerRepository = orderOwnerRepository;
             _serviceOrderStatusRepository = serviceOrderStatusRepository;
+            _mainCategoryServiceRepository = mainCategoryServiceRepository;
+            _serviceOfferRepository = serviceOfferRepository;
         }
 
         public DetailsServiceOrderDTO NewOrderService(CreateServiceOrderDTO createServiceOrder)
@@ -142,6 +149,21 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             result.Parts = new List<PartsDTO>(); //TODO
 
             return result;
+        }
+
+        public List<MainCategoryServiceEntity> GetAllMainCategoryService()
+        {
+            return _mapper.Map<List<MainCategoryServiceEntity>>(_mainCategoryServiceRepository.GetAll());
+        }
+
+        public List<ServiceOfferEntity> GetServiceOfferByMainCategory(int mainCategoryId)
+        {
+            return _mapper.Map<List<ServiceOfferEntity>>(_serviceOfferRepository.GetByMainCategoryId(mainCategoryId));
+        }
+
+        public List<ServiceOfferEntity> GetAllServiceOffer()
+        {
+            return _mapper.Map<List<ServiceOfferEntity>>(_serviceOfferRepository.GetAll());
         }
     }
 }

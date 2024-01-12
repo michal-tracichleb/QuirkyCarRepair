@@ -28,7 +28,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("GetServiceOrderPage")]
-        [Authorize]
+        [Authorize(Roles = "Admin,Mechanic")]
         public IActionResult GetServiceOrderPage([FromBody] GetServiceOrderPage getServiceOrderPage)
         {
             var result = _carServiceService.GetOrdersPage(getServiceOrderPage);
@@ -41,6 +41,33 @@ namespace QuirkyCarRepair.API.Controllers
         public IActionResult GetDetailsServiceOrder(int id)
         {
             var result = _carServiceService.GetDetailsServiceOrder(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetAllMainCategoryService")]
+        [Authorize(Roles = "Admin,Mechanic")]
+        public IActionResult GetAllMainCategoryService()
+        {
+            var result = _carServiceService.GetAllMainCategoryService();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetServiceOfferByMainCategory")]
+        [Authorize(Roles = "Admin,Mechanic")]
+        public IActionResult GetServiceOfferByMainCategory(int mainCategoryId)
+        {
+            var result = _carServiceService.GetServiceOfferByMainCategory(mainCategoryId);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetAllServiceOffer")]
+        [Authorize(Roles = "Admin,Mechanic")]
+        public IActionResult GetAllServiceOffer()
+        {
+            var result = _carServiceService.GetAllServiceOffer();
             return Ok(result);
         }
     }

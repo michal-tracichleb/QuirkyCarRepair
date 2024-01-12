@@ -5,5 +5,6 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Interfaces
 {
     public interface IServiceOfferRepository : IRepository<ServiceOffer>
     {
+        public ICollection<ServiceOffer> GetByMainCategoryId(int mainCategoryId);
     }
 }
