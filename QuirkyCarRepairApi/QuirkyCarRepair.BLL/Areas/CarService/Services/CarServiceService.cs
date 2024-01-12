@@ -54,17 +54,6 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
                 && _vehicleRepository.Exist(createServiceOrder.VehicleId) == false)
                 throw new NotFoundException("Vehicle cannot found");
 
-            var vehicle = new Vehicle()
-            {
-                Id = createServiceOrder.VehicleId,
-                UserId = createServiceOrder.UserId == 0 ? null : createServiceOrder.UserId,
-                VIN = createServiceOrder.Vin,
-                PlateNumber = createServiceOrder.PlateNumber,
-                Model = createServiceOrder.Model,
-                Brand = createServiceOrder.Brand,
-                Year = createServiceOrder.Year
-            };
-
             var newServiceOrderStatus = new ServiceOrderStatus()
             {
                 UserId = _userContextService.GetUserId,
@@ -85,10 +74,26 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             {
                 OrderNumber = $"ZS/{newServiceOrderStatus.StartDate.Year}-{newServiceOrderStatus.StartDate.Month.ToString($"D2")}-{newServiceOrderStatus.StartDate.Month.ToString($"D2")}/",
                 DateStartRepair = createServiceOrder.DateStartRepair,
-                Vehicle = vehicle,
                 OrderOwner = newOrderOwner,
                 ServiceOrderStatuses = new List<ServiceOrderStatus>() { newServiceOrderStatus }
             };
+
+            if (createServiceOrder.VehicleId == 0)
+            {
+                newServiceOrder.Vehicle = new Vehicle()
+                {
+                    UserId = createServiceOrder.UserId == 0 ? null : createServiceOrder.UserId,
+                    VIN = createServiceOrder.Vin,
+                    PlateNumber = createServiceOrder.PlateNumber,
+                    Model = createServiceOrder.Model,
+                    Brand = createServiceOrder.Brand,
+                    Year = createServiceOrder.Year
+                };
+            }
+            else
+            {
+                newServiceOrder.VehicleId = createServiceOrder.VehicleId;
+            }
 
             _serviceOrderRepository.Add(newServiceOrder);
 
@@ -99,6 +104,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             newServiceOrder.OrderNumber = builder.ToString();
 
             _serviceOrderRepository.Update(newServiceOrder);
+            var vehicleRepository = _vehicleRepository.Get(newServiceOrder.VehicleId);
 
             return new DetailsServiceOrderDTO()
             {
@@ -116,11 +122,11 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
                 },
                 VehicleData = new VehicleDataDTO()
                 {
-                    Vin = vehicle.VIN,
-                    PlateNumber = vehicle.PlateNumber,
-                    Brand = vehicle.Brand,
-                    Model = vehicle.Model,
-                    Year = vehicle.Year
+                    Vin = vehicleRepository.VIN,
+                    PlateNumber = vehicleRepository.PlateNumber,
+                    Brand = vehicleRepository.Brand,
+                    Model = vehicleRepository.Model,
+                    Year = vehicleRepository.Year
                 },
                 ServiceOrderStatuses = new List<ServiceOrderStatusEntity> { _mapper.Map<ServiceOrderStatusEntity>(newServiceOrderStatus) }
             };
