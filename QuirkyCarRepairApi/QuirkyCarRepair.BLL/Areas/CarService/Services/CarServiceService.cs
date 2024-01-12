@@ -165,5 +165,83 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
         {
             return _mapper.Map<List<ServiceOfferEntity>>(_serviceOfferRepository.GetAll());
         }
+
+        public DetailsServiceOrderDTO ChangeStatus(int id, string description, OrderStatus newStatus)
+        {
+            if (_serviceOrderRepository.Exist(id) == false)
+                throw new NotFoundException("Service order cannot found");
+
+            CheckStatusNewStatus(id, newStatus);
+
+            _serviceOrderStatusRepository.Add(new ServiceOrderStatus()
+            {
+                UserId = _userContextService.GetUserId,
+                ServiceOrderId = id,
+                StartDate = DateTime.Now,
+                Description = description,
+                Status = newStatus.ToString()
+            });
+
+            return GetDetailsServiceOrder(id);
+        }
+
+        private void CheckStatusNewStatus(int serviceOrderId, OrderStatus newStatus)
+        {
+            var latestStatus = _serviceOrderStatusRepository.GetLatestStatus(serviceOrderId);
+
+            switch (newStatus)
+            {
+                case OrderStatus.Canceled:
+                    if (latestStatus.Status != OrderStatus.Pending.ToString())
+                        throw new NotFoundException("Status is other than Pending");
+                    break;
+
+                case OrderStatus.AcceptedDate:
+                    if (latestStatus.Status != OrderStatus.Pending.ToString())
+                        throw new NotFoundException("Status is other than Pending");
+                    break;
+
+                case OrderStatus.RepairAnalysis:
+                    if (latestStatus.Status != OrderStatus.AcceptedDate.ToString())
+                        throw new NotFoundException("Status is other than AcceptedDate");
+                    break;
+
+                case OrderStatus.PendingForClientAccepting:
+                    if (latestStatus.Status != OrderStatus.RepairAnalysis.ToString())
+                        throw new NotFoundException("Status is other than RepairAnalysis");
+                    break;
+
+                case OrderStatus.AcceptedByClient:
+                    if (latestStatus.Status != OrderStatus.PendingForClientAccepting.ToString())
+                        throw new NotFoundException("Status is other than PendingForClientAccepting");
+                    break;
+
+                case OrderStatus.CanceledByclient:
+                    if (latestStatus.Status != OrderStatus.PendingForClientAccepting.ToString())
+                        throw new NotFoundException("Status is other than PendingForClientAccepting");
+                    break;
+
+                case OrderStatus.Repair:
+                    if (latestStatus.Status != OrderStatus.AcceptedByClient.ToString()
+                        && latestStatus.Status != OrderStatus.Complaint.ToString())
+                        throw new NotFoundException("Status is other than AcceptedByClient or Complaint");
+                    break;
+
+                case OrderStatus.Ready:
+                    if (latestStatus.Status != OrderStatus.Repair.ToString())
+                        throw new NotFoundException("Status is other than Repair");
+                    break;
+
+                case OrderStatus.Complaint:
+                    if (latestStatus.Status != OrderStatus.Ready.ToString())
+                        throw new NotFoundException("Status is other than Ready");
+                    break;
+
+                default:
+                    if (latestStatus.Status != OrderStatus.Pending.ToString())
+                        throw new NotFoundException("Status is other than expected");
+                    break;
+            }
+        }
     }
 }
