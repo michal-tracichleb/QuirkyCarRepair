@@ -26,6 +26,11 @@ import {NewServiceOrder} from "./components/NewServiceOrder/NewServiceOrder.jsx"
 import {ServiceOrders} from "./components/ServiceOrders/ServiceOrders.jsx";
 import {ServiceOrderDetails} from "./components/ServiceOrderDetails/ServiceOrderDetails.jsx";
 import {Cart} from "./views/Cart.jsx";
+import {Admin} from "./views/Admin.jsx";
+import {MarginList} from "./components/MarginList/MarginList.jsx";
+import {CategoryMarginSetter} from "./components/CategoryMarginSetter/CategoryMarginSetter.jsx";
+import {ServiceOrderSchedule} from "./components/ServiceOrderSchedule/ServiceOrderSchedule.jsx";
+import {getServiceOrderDetails} from "./api/getServiceOrderDetails.js";
 
 const router = createBrowserRouter([
     {
@@ -89,7 +94,26 @@ const router = createBrowserRouter([
                     {
                         path: 'orders/details/:orderId',
                         element: <ServiceOrderDetails/>,
+                        loader: getServiceOrderDetails
                     },
+                    {
+                        path: 'orders/schedule',
+                        element: <ServiceOrderSchedule/>,
+                    },
+                ]
+            },
+            {
+                path: '/admin',
+                element: <Admin/>,
+                children:[
+                    {
+                        path: 'margin/manage',
+                        element: <MarginList/>
+                    },
+                    {
+                        path: 'margin/setter',
+                        element: <CategoryMarginSetter/>
+                    }
                 ]
             },
             {
