@@ -1,0 +1,35 @@
+.cartSummary {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    gap: 1rem;
+    width: 28rem;
+}
+
+.cartSummary h2 {
+    border-bottom: 1px solid var(--color-text-grey);
+    padding-bottom: 1rem;
+}
+
+.cartRow {
+    display: flex;
+    gap: 2rem;
+}
+.btn{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
+    background-color: var(--color-orange);
+
+    transition: background-color 0.3s ease-in-out;
+
+    &:not([disabled]):hover{
+        background-color: rgba(253, 111, 31, 0.71);
+    }
+    &:disabled{
+        background-color: rgba(253, 111, 31, 0.51);
+    }
+}
