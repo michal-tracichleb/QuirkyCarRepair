@@ -20,6 +20,17 @@ import {getAllProducts} from "./api/getAllProducts.js";
 import {Orders} from "./components/Orders/Orders.jsx";
 import {OrderDetails} from "./components/OrderDetails/OrderDetails.jsx";
 import {getOrderDetails} from "./api/getOrderDetails.js";
+import {Service} from "./views/Service.jsx";
+import {VehicleRegistration} from "./components/VehicleRegistration/VehicleRegistration.jsx";
+import {NewServiceOrder} from "./components/NewServiceOrder/NewServiceOrder.jsx";
+import {ServiceOrders} from "./components/ServiceOrders/ServiceOrders.jsx";
+import {ServiceOrderDetails} from "./components/ServiceOrderDetails/ServiceOrderDetails.jsx";
+import {Cart} from "./views/Cart.jsx";
+import {Admin} from "./views/Admin.jsx";
+import {MarginList} from "./components/MarginList/MarginList.jsx";
+import {CategoryMarginSetter} from "./components/CategoryMarginSetter/CategoryMarginSetter.jsx";
+import {ServiceOrderSchedule} from "./components/ServiceOrderSchedule/ServiceOrderSchedule.jsx";
+import {getServiceOrderDetails} from "./api/getServiceOrderDetails.js";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +80,43 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path: '/service',
+                element: <Service/>,
+                children:[
+                    {
+                        path: 'order/new',
+                        element: <NewServiceOrder/>
+                    },
+                    {
+                        path: 'orders',
+                        element: <ServiceOrders/>
+                    },
+                    {
+                        path: 'orders/details/:orderId',
+                        element: <ServiceOrderDetails/>,
+                        loader: getServiceOrderDetails
+                    },
+                    {
+                        path: 'orders/schedule',
+                        element: <ServiceOrderSchedule/>,
+                    },
+                ]
+            },
+            {
+                path: '/admin',
+                element: <Admin/>,
+                children:[
+                    {
+                        path: 'margin/manage',
+                        element: <MarginList/>
+                    },
+                    {
+                        path: 'margin/setter',
+                        element: <CategoryMarginSetter/>
+                    }
+                ]
+            },
+            {
                 path: '/contact',
                 element: <Contact/>,
             },
@@ -80,6 +128,14 @@ const router = createBrowserRouter([
                 path: '/authentication',
                 element: <Authentication/>,
             },
+            {
+                path: 'vehicle/registration',
+                element: <VehicleRegistration/>,
+            },
+            {
+                path: 'cart',
+                element: <Cart/>,
+            }
         ]
     }
 ])

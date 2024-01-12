@@ -28,7 +28,7 @@ export function Delivery(){
         setItemId(id);
     };
     const handleAddItem = () => {
-        if (itemId && quantity) {
+        if (itemId && quantity && price) {
             const item = products.find(item => Number(item.id) === Number(itemId));
             const newItem = { id:itemId, quantity: parseFloat(quantity), name: item.name, unitPrice: parseFloat(price)};
             setDeliveryItems([...deliveryItems, newItem]);

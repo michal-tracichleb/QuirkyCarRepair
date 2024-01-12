@@ -6,8 +6,13 @@ export const SUBPAGES = [
     },
     {
         name: "Serwis",
-        path: "/serwis",
+        path: "/service",
         permission: ['admin', 'user', 'mechanic'],
+    },
+    {
+        name: "Admin",
+        path: "/admin",
+        permission: ['admin'],
     },
     {
         name: "O nas",

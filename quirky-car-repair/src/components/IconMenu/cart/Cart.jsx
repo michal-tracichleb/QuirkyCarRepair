@@ -2,9 +2,12 @@ import styles from "./Cart.module.css"
 import {DropdownList} from "../../DropdownList/DropdownList.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingBasket} from "@fortawesome/free-solid-svg-icons";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {getCartPrice} from "../../../utlis/getCartPrice.js";
+import {UserStateContext} from "../../../context/UserStateContext.js";
+import {ProductManageLink} from "../../ProductManageLink/ProductManageLink.jsx";
 export function Cart(){
+    const [user] = useContext(UserStateContext);
     const [cartItems, setCartItems] = useState([]);
     const [cartPrice, setCartPrice] = useState(0);
 
@@ -44,11 +47,13 @@ export function Cart(){
             <li className={styles.summary}>
                 {cartItems.length > 0 ?
                     <>
-                        <p>
-                            <span>Do zapłaty:</span>
-                            <span>{cartPrice} zł</span>
-                        </p>
-                        <button>Przejdź do koszyka</button>
+                        {!user || (user && user.role === 'user') &&
+                            <p>
+                                <span>Do zapłaty:</span>
+                                <span>{cartPrice} zł</span>
+                            </p>
+                        }
+                        <ProductManageLink to="/cart">Podsumowanie</ProductManageLink>
                     </>
                     :
                     <span>Twój koszyk jest pusty</span>
