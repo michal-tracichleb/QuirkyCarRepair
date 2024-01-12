@@ -167,7 +167,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             return _mapper.Map<List<ServiceOfferEntity>>(_serviceOfferRepository.GetAll());
         }
 
-        public DetailsServiceOrderDTO ChangeStatus(int id, string description, OrderStatus newStatus)
+        public DetailsServiceOrderDTO ChangeStatus(int id, string? description, OrderStatus newStatus)
         {
             if (_serviceOrderRepository.Exist(id) == false)
                 throw new NotFoundException("Service order cannot found");

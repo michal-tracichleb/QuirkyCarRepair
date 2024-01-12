@@ -75,7 +75,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderCanceled")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderCanceled(int id, string description)
+        public IActionResult ServiceOrderCanceled(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Canceled);
             return Ok(result);
@@ -84,7 +84,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderAcceptedDate")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderAcceptedDate(int id, string description)
+        public IActionResult ServiceOrderAcceptedDate(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.AcceptedDate);
             return Ok(result);
@@ -93,7 +93,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderRepairAnalysis")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderRepairAnalysis(int id, string description)
+        public IActionResult ServiceOrderRepairAnalysis(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.RepairAnalysis);
             return Ok(result);
@@ -102,7 +102,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderPendingForClientAccepting")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderPendingForClientAccepting(int id, string description)
+        public IActionResult ServiceOrderPendingForClientAccepting(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.PendingForClientAccepting);
             return Ok(result);
@@ -111,7 +111,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderAcceptedByClient")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderAcceptedByClient(int id, string description)
+        public IActionResult ServiceOrderAcceptedByClient(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.AcceptedByClient);
             return Ok(result);
@@ -120,7 +120,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderCanceledByclient")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderCanceledByclient(int id, string description)
+        public IActionResult ServiceOrderCanceledByclient(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.CanceledByclient);
             return Ok(result);
@@ -129,7 +129,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderRepair")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderRepair(int id, string description)
+        public IActionResult ServiceOrderRepair(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Repair);
             return Ok(result);
@@ -138,7 +138,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderReady")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderReady(int id, string description)
+        public IActionResult ServiceOrderReady(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Ready);
             return Ok(result);
@@ -147,7 +147,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("ServiceOrderComplaint")]
         [Authorize(Roles = "Admin,Mechanic")]
-        public IActionResult ServiceOrderComplaint(int id, string description)
+        public IActionResult ServiceOrderComplaint(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Complaint);
             return Ok(result);
