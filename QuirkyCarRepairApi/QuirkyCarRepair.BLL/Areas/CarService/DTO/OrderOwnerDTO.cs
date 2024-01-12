@@ -1,6 +1,6 @@
 ﻿namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
 {
-    public class UserDataDTO
+    public class OrderOwnerDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

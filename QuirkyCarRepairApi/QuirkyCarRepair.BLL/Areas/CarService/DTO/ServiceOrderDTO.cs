@@ -1,9 +1,6 @@
-﻿using QuirkyCarRepair.BLL.Areas.CarService.Entities;
-using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
-
-namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
+﻿namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
 {
-    public class DetailsServiceOrderDTO
+    public class ServiceOrderDTO
     {
         public int ServiceOrderId { get; set; }
 
@@ -16,9 +13,5 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
 
         public OrderOwnerDTO UserData { get; set; }
         public VehicleDataDTO VehicleData { get; set; }
-
-        public List<PartsDTO> Parts { get; set; }
-        public List<ServiceTransactionDTO> ServiceTransactions { get; set; }
-        public List<ServiceOrderStatusEntity> ServiceOrderStatuses { get; set; }
     }
 }

@@ -124,7 +124,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 DocumentNumber = "XYZ",
                 TransactionDate = DateTime.Now,
-                Type = TransactionType.D.ToString(),
+                Type = OrderType.D.ToString(),
                 PartTransactions = partsTransactions
             };
 
@@ -132,7 +132,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Ready.ToString(),
+                Status = OrderStatus.Ready.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -149,11 +149,11 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (orderDTO.OrderParts.Any() == false)
                 throw new QuantityOutOfRangeException("OrderParts cannot be equal to 0");
 
-            TransactionType transactionType;
+            OrderType transactionType;
             if (orderDTO.OrderType.Equals("WW"))
-                transactionType = TransactionType.WW;
+                transactionType = OrderType.WW;
             else if (orderDTO.OrderType.Equals("WZ"))
-                transactionType = TransactionType.WZ;
+                transactionType = OrderType.WZ;
             else
                 throw new NotFoundException("Transaction type connot found");
 
@@ -197,7 +197,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocument = operationalDocument,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Pending.ToString(),
+                Status = OrderStatus.Pending.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -210,7 +210,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         public PageList<OperationalDocumentDTO> GetOrdersPage(GetOrdersPageDTO getOrdersPageDTO)
         {
             var orders = _operationalDocumentRepository.GetOperationalDocumentsWithLatestTransactionStatus(
-                getOrdersPageDTO.TransactionTypes, getOrdersPageDTO.TransactionStates);
+                getOrdersPageDTO.OrderTypes, getOrdersPageDTO.OrderStates);
 
             PageList<OperationalDocument> ordersPageList = orders.GetPagedList<OperationalDocument>(getOrdersPageDTO.Page, getOrdersPageDTO.PageSize);
 
@@ -231,7 +231,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (CheckStatus(id, TransactionState.Pending) == false)
+            if (CheckStatus(id, OrderStatus.Pending) == false)
                 throw new NotFoundException("Status is other than pending");
 
             var partsTransactions = _partTransactionRepository.GetByOperationalDocument(id);
@@ -248,7 +248,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.Canceled.ToString(),
+                Status = OrderStatus.Canceled.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -298,14 +298,14 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (CheckStatus(id, TransactionState.Pending) == false)
+            if (CheckStatus(id, OrderStatus.Pending) == false)
                 throw new NotFoundException("Status is other than pending");
 
             TransactionStatus status = new TransactionStatus()
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ArrangeOrder.ToString(),
+                Status = OrderStatus.ArrangeOrder.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -319,14 +319,14 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (CheckStatus(id, TransactionState.ArrangeOrder) == false)
+            if (CheckStatus(id, OrderStatus.ArrangeOrder) == false)
                 throw new NotFoundException("Status is other than arrange order");
 
             TransactionStatus status = new TransactionStatus()
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.ReadyForPickup.ToString(),
+                Status = OrderStatus.ReadyForPickup.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -340,14 +340,14 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             if (_operationalDocumentRepository.Exist(id) == false)
                 throw new NotFoundException("Operational document connot found");
 
-            if (CheckStatus(id, TransactionState.ReadyForPickup) == false)
+            if (CheckStatus(id, OrderStatus.ReadyForPickup) == false)
                 throw new NotFoundException("Status is other than ready for pickup");
 
             TransactionStatus status = new TransactionStatus()
             {
                 OperationalDocumentid = id,
                 StartDate = DateTime.Now,
-                Status = TransactionState.OrderCompleted.ToString(),
+                Status = OrderStatus.OrderCompleted.ToString(),
                 UserId = _userContextService.GetUserId
             };
 
@@ -381,7 +381,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             return categoryIds;
         }
 
-        private bool CheckStatus(int operationalDocumentId, TransactionState expectedStatus)
+        private bool CheckStatus(int operationalDocumentId, OrderStatus expectedStatus)
         {
             var transactionStatus = _transactionStatusRepository.GetLatestStatus(operationalDocumentId);
             if (transactionStatus.Status == expectedStatus.ToString())
