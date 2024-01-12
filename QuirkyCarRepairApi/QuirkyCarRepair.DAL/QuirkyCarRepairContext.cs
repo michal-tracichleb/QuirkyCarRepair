@@ -165,20 +165,24 @@ namespace QuirkyCarRepair.DAL
             #region CarService
 
             modelBuilder.Entity<ServiceOrder>(entity =>
-        {
-            entity.HasKey(e => e.Id);
+            {
+                entity.HasKey(e => e.Id);
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-            entity.Property(e => e.OrderNumber)
-                .HasMaxLength(64)
-                .IsRequired();
+                entity.Property(e => e.OrderNumber)
+                    .HasMaxLength(64)
+                    .IsRequired();
 
-            entity.HasOne(d => d.Vehicle)
-                .WithMany(p => p.ServiceOrders)
-                .HasForeignKey(p => p.VehicleId)
-                .HasConstraintName("FK_ServiceOrder_Vehicle");
-        });
+                entity.Property(e => e.OrderDescription)
+                    .HasMaxLength(512)
+                    .IsRequired();
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.ServiceOrders)
+                    .HasForeignKey(p => p.VehicleId)
+                    .HasConstraintName("FK_ServiceOrder_Vehicle");
+            });
 
             modelBuilder.Entity<ServiceOrderStatus>(entity =>
             {

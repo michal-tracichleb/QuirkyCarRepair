@@ -40,9 +40,7 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
                 .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom(src =>
                     src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
-                .ForMember(dest => dest.OrderDescription, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Description));
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status));
 
             CreateMap<ServiceOrder, DetailsServiceOrderDTO>()
                 .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src =>
@@ -57,8 +55,6 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
                     src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
                     src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
-                .ForMember(dest => dest.OrderDescription, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Description))
                 .ForMember(dest => dest.Parts, opt => opt.Ignore());
         }
     }

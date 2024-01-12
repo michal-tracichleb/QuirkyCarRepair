@@ -83,6 +83,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
                 OrderNumber = $"{OrderType.ZS.ToString()}/{newServiceOrderStatus.StartDate.Year}-{newServiceOrderStatus.StartDate.Month.ToString($"D2")}-{newServiceOrderStatus.StartDate.Month.ToString($"D2")}/",
                 DateStartRepair = createServiceOrder.DateStartRepair,
                 OrderOwner = newOrderOwner,
+                OrderDescription = createServiceOrder.OrderDescription,
                 ServiceOrderStatuses = new List<ServiceOrderStatus>() { newServiceOrderStatus }
             };
 
