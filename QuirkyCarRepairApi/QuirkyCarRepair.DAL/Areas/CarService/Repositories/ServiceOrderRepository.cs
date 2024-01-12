@@ -55,6 +55,7 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
                     .ThenInclude(x => x.ServiceOffer)
                 .Include(x => x.OperationalDocuments)
                     .ThenInclude(x => x.PartTransactions)
+                .Include(x => x.ServiceOrderStatuses)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

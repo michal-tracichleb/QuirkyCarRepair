@@ -35,7 +35,7 @@ namespace QuirkyCarRepair.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetDetailsServiceOrder")]
         [Authorize]
         public IActionResult GetDetailsServiceOrder(int id)
