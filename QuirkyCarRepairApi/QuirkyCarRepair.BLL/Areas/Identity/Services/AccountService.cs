@@ -18,16 +18,19 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
         private readonly IAccountRepostiory _accountRepostiory;
         private readonly IMapper _mapper;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly IUserContextService _userContextService;
 
         public AccountService(IPasswordHasher<User> passwordHasher,
             IAccountRepostiory accountRepostiory,
             IMapper mapper,
-            AuthenticationSettings authenticationSettings)
+            AuthenticationSettings authenticationSettings,
+            IUserContextService userContextService)
         {
             _passwordHasher = passwordHasher;
             _accountRepostiory = accountRepostiory;
             _mapper = mapper;
             _authenticationSettings = authenticationSettings;
+            _userContextService = userContextService;
         }
 
         public void RegisterUser(RegisterUserDto dto)
@@ -78,6 +81,25 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
             var tokenHandler = new JwtSecurityTokenHandler();
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public UserDetailsDto GetUserDetails(int id)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            if (user == null)
+                throw new NotFoundException("User cannot found");
+
+            return new UserDetailsDto()
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
+            };
         }
     }
 }

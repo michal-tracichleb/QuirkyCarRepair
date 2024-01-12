@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuirkyCarRepair.BLL.Areas.Identity.DTO;
 using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
 
@@ -29,6 +30,15 @@ namespace QuirkyCarRepair.API.Controllers
         {
             string token = _accountService.GenerateJwt(dto);
             return Ok(token);
+        }
+
+        [HttpGet]
+        [Route("Details")]
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            var userDetails = _accountService.GetUserDetails(id);
+            return Ok(userDetails);
         }
     }
 }
