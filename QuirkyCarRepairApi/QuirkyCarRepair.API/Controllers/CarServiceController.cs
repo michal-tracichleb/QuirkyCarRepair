@@ -34,5 +34,14 @@ namespace QuirkyCarRepair.API.Controllers
             var result = _carServiceService.GetOrdersPage(getServiceOrderPage);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("GetDetailsServiceOrder")]
+        [Authorize]
+        public IActionResult GetDetailsServiceOrder(int id)
+        {
+            var result = _carServiceService.GetDetailsServiceOrder(id);
+            return Ok(result);
+        }
     }
 }

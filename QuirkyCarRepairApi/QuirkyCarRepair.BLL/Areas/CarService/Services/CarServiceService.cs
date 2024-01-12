@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using QuirkyCarRepair.BLL.Areas.CarService.DTO;
-using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Shared;
@@ -108,30 +107,9 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             _serviceOrderRepository.Update(newServiceOrder);
             var vehicleRepository = _vehicleRepository.Get(newServiceOrder.VehicleId);
 
-            return new DetailsServiceOrderDTO()
-            {
-                ServiceOrderId = newServiceOrder.Id,
-                DocumentNumber = newServiceOrder.OrderNumber,
-                DateStartRepair = newServiceOrder.DateStartRepair,
-                StatusStartDate = newServiceOrderStatus.StartDate,
-                Status = newServiceOrderStatus.Status,
-                OrderDescription = newServiceOrderStatus.Description,
-                UserData = new OrderOwnerDTO()
-                {
-                    FirstName = newOrderOwner.FirstName,
-                    LastName = newOrderOwner.LastName,
-                    PhoneNumber = newOrderOwner.PhoneNumber
-                },
-                VehicleData = new VehicleDataDTO()
-                {
-                    Vin = vehicleRepository.VIN,
-                    PlateNumber = vehicleRepository.PlateNumber,
-                    Brand = vehicleRepository.Brand,
-                    Model = vehicleRepository.Model,
-                    Year = vehicleRepository.Year
-                },
-                ServiceOrderStatuses = new List<ServiceOrderStatusEntity> { _mapper.Map<ServiceOrderStatusEntity>(newServiceOrderStatus) }
-            };
+            newServiceOrder.Vehicle = vehicleRepository;
+
+            return _mapper.Map<DetailsServiceOrderDTO>(newServiceOrder);
         }
 
         public PageList<ServiceOrderDTO> GetOrdersPage(GetServiceOrderPage getOrdersServicePageDTO)
@@ -149,6 +127,19 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
                 ItemCount = ordersPageList.ItemCount,
                 Items = _mapper.Map<List<ServiceOrderDTO>>(ordersPageList.Items)
             };
+
+            return result;
+        }
+
+        public DetailsServiceOrderDTO GetDetailsServiceOrder(int id)
+        {
+            var serviceOrder = _serviceOrderRepository.GetWithInclude(id);
+            if (serviceOrder == null)
+                throw new NotFoundException("Service order cannot found");
+
+            var result = _mapper.Map<DetailsServiceOrderDTO>(serviceOrder);
+
+            result.Parts = new List<PartsDTO>(); //TODO
 
             return result;
         }

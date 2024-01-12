@@ -1,4 +1,5 @@
-﻿using QuirkyCarRepair.DAL.Areas.CarService.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using QuirkyCarRepair.DAL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Shared;
 using QuirkyCarRepair.DAL.Areas.Shared.Enums;
@@ -43,6 +44,19 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
             }
 
             return query;
+        }
+
+        public ServiceOrder? GetWithInclude(int id)
+        {
+            return _context.ServiceOrders
+                .Include(x => x.Vehicle)
+                .Include(x => x.OrderOwner)
+                .Include(x => x.ServiceTransactions)
+                    .ThenInclude(x => x.ServiceOffer)
+                .Include(x => x.OperationalDocuments)
+                    .ThenInclude(x => x.PartTransactions)
+                .Include(x => x.ServiceOrderStatuses)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }

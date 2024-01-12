@@ -19,6 +19,9 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
             CreateMap<Vehicle, VehicleEntity>()
                 .ReverseMap();
 
+            CreateMap<ServiceTransaction, ServiceTransactionDTO>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ServiceOffer.Name));
+
             CreateMap<Vehicle, VehicleDataDTO>();
             CreateMap<OrderOwner, OrderOwnerDTO>();
             CreateMap<ServiceOrder, ServiceOrderDTO>()
@@ -31,11 +34,28 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
                 .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src =>
                     src.Vehicle))
                 .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.FirstOrDefault().StartDate))
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.FirstOrDefault().Status))
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
                 .ForMember(dest => dest.OrderDescription, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.FirstOrDefault().Description));
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Description));
+
+            CreateMap<ServiceOrder, DetailsServiceOrderDTO>()
+                .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src =>
+                    src.Id))
+                .ForMember(dest => dest.DocumentNumber, opt => opt.MapFrom(src =>
+                    src.OrderNumber))
+                .ForMember(dest => dest.UserData, opt => opt.MapFrom(src =>
+                    src.OrderOwner))
+                .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src =>
+                    src.Vehicle))
+                .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom(src =>
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
+                .ForMember(dest => dest.OrderDescription, opt => opt.MapFrom(src =>
+                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Description))
+                .ForMember(dest => dest.Parts, opt => opt.Ignore());
         }
     }
 }
