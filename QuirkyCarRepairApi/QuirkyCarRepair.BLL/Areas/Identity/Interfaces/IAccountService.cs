@@ -9,5 +9,7 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Interfaces
         public string GenerateJwt(LoginDto dto);
 
         public UserDetailsDto GetUserDetails(int id);
+
+        public void Edit(int id, UserDetailsDto userDetails);
     }
 }

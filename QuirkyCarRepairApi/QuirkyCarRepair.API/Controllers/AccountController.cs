@@ -40,5 +40,14 @@ namespace QuirkyCarRepair.API.Controllers
             var userDetails = _accountService.GetUserDetails(id);
             return Ok(userDetails);
         }
+
+        [HttpPost]
+        [Route("Edit")]
+        [Authorize]
+        public ActionResult Edit(int id, [FromBody] UserDetailsDto userDetails)
+        {
+            _accountService.Edit(id, userDetails);
+            return Ok(userDetails);
+        }
     }
 }

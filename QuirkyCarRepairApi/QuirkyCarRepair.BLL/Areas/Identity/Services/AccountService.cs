@@ -101,5 +101,23 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
                 PhoneNumber = user.PhoneNumber
             };
         }
+
+        public void Edit(int id, UserDetailsDto userDetails)
+        {
+            if (_userContextService.GetUserId != id)
+                throw new BadRequestException("Invalid user Id");
+
+            var user = _accountRepostiory.Get(id);
+            if (user == null)
+                throw new NotFoundException("User cannot found");
+
+            user.UserName = userDetails.UserName;
+            user.Email = userDetails.Email;
+            user.FirstName = userDetails.FirstName;
+            user.LastName = userDetails.LastName;
+            user.PhoneNumber = userDetails.PhoneNumber;
+
+            _accountRepostiory.Update(user);
+        }
     }
 }
