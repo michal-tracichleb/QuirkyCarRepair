@@ -4,17 +4,28 @@ import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {dateFormatter} from "../../utlis/dateFormatter.js";
 import {UserStateContext} from "../../context/UserStateContext.js";
 import {ServiceOptionsPicker} from "../ServiceOptionsPicker/ServiceOptionsPicker.jsx";
-import {Link, useLoaderData} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
 import {ProductManageLink} from "../ProductManageLink/ProductManageLink.jsx";
+import {serviceOrderCanceled} from "../../api/serviceOrderStatusManagement/serviceOrderCanceled.js";
+import {orderStatus} from "../../constans/serviceEnums.js";
+import {serviceOrderAcceptedDate} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedDate.js";
+import {serviceOrderRepairAnalysis} from "../../api/serviceOrderStatusManagement/serviceOrderRepairAnalysis.js";
+import {serviceOrderCanceledByClient} from "../../api/serviceOrderStatusManagement/serviceOrderCanceledByclient.js";
+import {serviceOrderRepair} from "../../api/serviceOrderStatusManagement/serviceOrderRepair.js";
+import {serviceOrderReady} from "../../api/serviceOrderStatusManagement/serviceOrderReady.js";
+import {serviceOrderComplaint} from "../../api/serviceOrderStatusManagement/serviceOrderComplaint.js";
+import {serviceOrderPendingForClientAccepting} from "../../api/serviceOrderStatusManagement/serviceOrderPendingForClientAccepting.js";
+import {serviceOrderAcceptedByClient} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedByClient.js";
+
 
 export function ServiceOrderDetails(){
     const response = useLoaderData();
     const [,setAlert] = useContext(AlertStateContext);
     const [user] = useContext(UserStateContext);
 
-    const [orderDetails, setOrderDetails] = useState();
-    const [vehicleData, setVehicleData] = useState();
-    const [userData, setUserData] = useState();
+    const [orderDetails, setOrderDetails] = useState([]);
+    const [vehicleData, setVehicleData] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [orderedParts, setOrderedParts] = useState();
     const [services, setServices] = useState();
 
@@ -32,6 +43,52 @@ export function ServiceOrderDetails(){
         }
 
     }, []);
+    const updateOrderStatus = async (e) =>{
+        let cancel = e.target.name === 'cancel';
+        let response;
+        switch (orderStatus[orderDetails.status]){
+            case 0:
+                if(cancel){
+                    response = await serviceOrderCanceled(orderDetails.serviceOrderId, '');
+                }else{
+                    response = await serviceOrderAcceptedDate(orderDetails.serviceOrderId, '');
+                }
+                break;
+            case 8:
+                response = await serviceOrderComplaint(orderDetails.serviceOrderId, '');
+                break;
+            case 9:
+                response = await serviceOrderRepairAnalysis(orderDetails.serviceOrderId, '');
+                break;
+            case 10:
+                response = await serviceOrderPendingForClientAccepting(orderDetails.serviceOrderId, '');
+                break;
+            case 11:
+                if(cancel){
+                    response = await serviceOrderCanceledByClient(orderDetails.serviceOrderId, '');
+                }else{
+                    response = await serviceOrderAcceptedByClient(orderDetails.serviceOrderId, '');
+                }
+                break;
+            case 7:
+            case 12:
+                response = await serviceOrderRepair(orderDetails.serviceOrderId, 'asd');
+                break;
+            case 14:
+                response = await serviceOrderReady(orderDetails.serviceOrderId, '');
+                break;
+        }
+
+        if(response.success){
+            setOrderDetails(response.data);
+            setVehicleData(response.data.vehicleData);
+            setUserData(response.data.userData);
+            setOrderedParts(response.data.orderedParts);
+            setServices(response.data.services);
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+    }
 
     const Error = ({text, color}) =>{
         setAlert({text: text, color: color})
@@ -39,7 +96,6 @@ export function ServiceOrderDetails(){
             setAlert();
         }, 3000);
     }
-
     return (
         <div className={styles.container}>
             {orderDetails &&
@@ -52,20 +108,31 @@ export function ServiceOrderDetails(){
                         <div className={styles.toolbox}>
                             <h3>Status: {orderDetails.status}</h3>
                             <p>Data statusu: {dateFormatter(orderDetails.statusStartDate)}</p>
+
+                            {(orderStatus[orderDetails.status] === 0 || orderStatus[orderDetails.status] === 11) &&
+                                <>
+                                    <button type="button" name="accept" className={styles.btn} onClick={updateOrderStatus}>Zaakceptuj</button>
+                                    <button type="button" name="cancel" className={styles.cancel} onClick={updateOrderStatus}>Anuluj</button>
+                                </>
+                            }
+                            {(user && user.role.toLocaleLowerCase() === 'user') &&  orderStatus[orderDetails.status] === 8 &&
+                                <button type="button" className={styles.btn} onClick={updateOrderStatus}>Reklamacja</button>
+                            }
+
                             {managementPermissions &&
                                 <>
-                                    {/*{orderDetails.status.toLowerCase() === "pending" &&
-                                        <>
-                                            <button type="button" className={styles.btn} onClick={arrangeOrderOnClick}>Przyjmij zamówienie</button>
-                                            <button type="button" className={styles.cancel} onClick={cancelOrderOnClick}>Anuluj</button>
-                                        </>
+                                    {orderStatus[orderDetails.status] === 9 &&
+                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Diagnoza pojazdu</button>
                                     }
-                                    {orderDetails.status.toLowerCase() === "arrangeorder" &&
-                                        <button type="button" className={styles.btn} disabled={!orderIsReady} onClick={readyForPickupOnClick}>Gotowe do odbioru</button>
+                                    {orderStatus[orderDetails.status] === 10 &&
+                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Zakończ diagnoze</button>
                                     }
-                                    {orderDetails.status.toLowerCase() === "readyforpickup" &&
-                                        <button type="button" className={styles.btn} onClick={orderCompletedupOnClick}>Zamówienie wydane</button>
-                                    }*/}
+                                    {(orderStatus[orderDetails.status] === 7 || orderStatus[orderDetails.status] === 12) &&
+                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Rozpocznij naprawe</button>
+                                    }
+                                    {orderStatus[orderDetails.status] === 14 &&
+                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Zakończ naprawę</button>
+                                    }
                                 </>
                             }
                         </div>
@@ -152,10 +219,11 @@ export function ServiceOrderDetails(){
                             ))}
                             </tbody>
                         </table>
-                        <div className={styles.toolbox}>
-                            <Link className={styles.orderParts} to="/warehouse"></Link>
-                            <ProductManageLink to="/warehouse">Zamów części</ProductManageLink>
-                        </div>
+                        {managementPermissions &&
+                            <div className={styles.toolbox}>
+                                <ProductManageLink to="/warehouse">Zamów części</ProductManageLink>
+                            </div>
+                        }
                     </div>
                 </>
             }
