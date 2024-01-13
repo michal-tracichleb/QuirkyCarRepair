@@ -54,8 +54,8 @@ export function ServiceOrders(){
                     <label>Status zamówienia</label>
                     <select id="stateSelect" onChange={(e) => setState(e.target.value)} value={state ? state : ''}>
                         <option value=''>Wszystkie</option>
-                        {Object.keys(orderStatus).map((stateName, index) => (
-                            <option key={stateName} value={index}>{stateName}</option>
+                        {Object.keys(orderStatus).map((stateName) => (
+                            <option key={stateName} value={orderStatus[stateName]}>{stateName}</option>
                         ))}
                     </select>
                 </div>
