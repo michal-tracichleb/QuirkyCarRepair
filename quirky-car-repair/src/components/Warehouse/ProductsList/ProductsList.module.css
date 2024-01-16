@@ -41,18 +41,6 @@
     font-size: 1.2em;
     color: #008000;
 }
-.btn{
-    margin-top: 10px;
-    background-color: #e55204;
-    color: white;
-    font-size: 20px;
-    border-radius: 5px;
-    border: 1px solid #e55204;
-    transition: background-color 0.4s;
-}
-.btn:hover{
-    background-color: #e76421;
-}
 .toolbox a{
     margin-left: auto;
 }

@@ -16,6 +16,7 @@ import {serviceOrderReady} from "../../api/serviceOrderStatusManagement/serviceO
 import {serviceOrderComplaint} from "../../api/serviceOrderStatusManagement/serviceOrderComplaint.js";
 import {serviceOrderPendingForClientAccepting} from "../../api/serviceOrderStatusManagement/serviceOrderPendingForClientAccepting.js";
 import {serviceOrderAcceptedByClient} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedByClient.js";
+import {Button} from "../Button/Button.jsx";
 
 
 export function ServiceOrderDetails(){
@@ -111,27 +112,27 @@ export function ServiceOrderDetails(){
 
                             {(orderStatus[orderDetails.status] === 0 || orderStatus[orderDetails.status] === 11) &&
                                 <>
-                                    <button type="button" name="accept" className={styles.btn} onClick={updateOrderStatus}>Zaakceptuj</button>
-                                    <button type="button" name="cancel" className={styles.cancel} onClick={updateOrderStatus}>Anuluj</button>
+                                    <Button name="accept" onClick={updateOrderStatus} width="w10" type="button" color="blue">Zaakceptuj</Button>
+                                    <Button name="cancel" onClick={updateOrderStatus} width="w10" type="button" color="red">Anuluj</Button>
                                 </>
                             }
                             {(user && user.role.toLocaleLowerCase() === 'user') &&  orderStatus[orderDetails.status] === 8 &&
-                                <button type="button" className={styles.btn} onClick={updateOrderStatus}>Reklamacja</button>
+                                <Button onClick={updateOrderStatus} width="w10" type="button" color="orange">Reklamacja</Button>
                             }
 
                             {managementPermissions &&
                                 <>
                                     {orderStatus[orderDetails.status] === 9 &&
-                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Diagnoza pojazdu</button>
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Diagnoza pojazdu</Button>
                                     }
                                     {orderStatus[orderDetails.status] === 10 &&
-                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Zakończ diagnoze</button>
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Zakończ diagnoze</Button>
                                     }
                                     {(orderStatus[orderDetails.status] === 7 || orderStatus[orderDetails.status] === 12) &&
-                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Rozpocznij naprawe</button>
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Rozpocznij naprawe</Button>
                                     }
                                     {orderStatus[orderDetails.status] === 14 &&
-                                        <button type="button" className={styles.btn} onClick={updateOrderStatus}>Zakończ naprawę</button>
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Zakończ naprawę</Button>
                                     }
                                 </>
                             }

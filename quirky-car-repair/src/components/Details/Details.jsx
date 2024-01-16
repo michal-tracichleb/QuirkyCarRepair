@@ -7,6 +7,7 @@ import {ProductManageBox} from "../ProductManageBox/ProductManageBox.jsx";
 import {useNavigate} from "react-router-dom";
 import {removeProduct} from "../../api/removeProduct.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
+import {Button} from "../Button/Button.jsx";
 export function Details({product}){
     const [userData] = useContext(UserStateContext);
     const [,setAlert] = useContext(AlertStateContext);
@@ -45,13 +46,12 @@ export function Details({product}){
             </div>
             <div className={styles.toolbox}>
                 <p className={styles.price}>{product.unitPrice}zł</p>
+                <Button color="orange" width="w10" onClick={()=> {
+                    AddProductToCart(product.id, product.name, product.unitPrice);
+                }}>Dodaj do koszyka</Button>
+
                 {managementPermissions &&
                     <ProductManageBox productId={product.id} removeFunction={HandleRemoveProduct}/>
-                }
-                {!managementPermissions &&
-                    <button className={styles.btn} onClick={()=> {
-                        AddProductToCart(product.id, product.name, product.unitPrice);
-                    }}>Dodaj do koszyka</button>
                 }
             </div>
             <div className={styles.specyfication}>

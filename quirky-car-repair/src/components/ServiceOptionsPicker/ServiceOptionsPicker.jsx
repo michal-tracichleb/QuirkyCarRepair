@@ -6,6 +6,7 @@ import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {getServiceMainCategories} from "../../api/getServiceMainCategories.js";
 import {getServiceOfferByCategory} from "../../api/getServiceOfferByCategory.js";
+import {Button} from "../Button/Button.jsx";
 
 export function ServiceOptionsPicker(){
     const [,setAlert] = useContext(AlertStateContext);
@@ -57,7 +58,7 @@ export function ServiceOptionsPicker(){
         <>
             <div className={styles.toolbox}>
                 {!isShown ?
-                    <button onClick={()=>setIsShown(true)}>Dodaj usługę</button>
+                    <Button type="button" onClick={()=>setIsShown(true)} color="orange" width="w10">Dodaj usługę</Button>
                     :
                     <a onClick={()=>setIsShown(false)}><FontAwesomeIcon icon={faXmark} /></a>
                 }
@@ -67,7 +68,7 @@ export function ServiceOptionsPicker(){
                     <div className={styles.wrapper}>
                         <div>
                             <select onChange={(e) => setCategoryId(e.target.value)} defaultValue={categoryId}>
-                                <option value="" disabled>Typ dokumentu</option>
+                                <option value="" disabled>Kategoria</option>
                                 {categories && categories.map((category) =>(
                                     <option key={category.id} value={category.id}>{category.name}</option>
                                 ))}
@@ -83,7 +84,7 @@ export function ServiceOptionsPicker(){
 
                         </div>
                         <div className={styles.toolbox}>
-                            <button type="submit" disabled={!serviceId || !quantity}>Dodaj usługę</button>
+                            <Button type="submit" disabled={!serviceId || !quantity} color="orange" width="w10">Dodaj usługę</Button>
                         </div>
                     </div>
                 </form>

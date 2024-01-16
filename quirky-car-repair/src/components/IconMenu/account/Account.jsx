@@ -5,6 +5,7 @@ import {DropdownList} from "../../DropdownList/DropdownList.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {UserStateContext} from "../../../context/UserStateContext.js";
+import {Button} from "../../Button/Button.jsx";
 
 export function Account(){
     const navigate = useNavigate();
@@ -20,12 +21,11 @@ export function Account(){
         <ul>
             <li>
                 <h3>Masz już konto?</h3>
-                <button className={styles.btnSignin}><Link to="/authentication?mode=signin">Zaloguj się</Link></button>
-
+                <Button color="orange" width="w100"><Link to="/authentication?mode=signin">Zaloguj się</Link></Button>
             </li>
             <li>
                 <h3>Jesteś tutaj pierwszy raz?</h3>
-                <button className={styles.btnSignup}><Link to="/authentication?mode=singup">Zarejestruj się</Link></button>
+                <Button color="grey" width="w100"><Link to="/authentication?mode=singup">Zarejestruj się</Link></Button>
             </li>
         </ul>
     );
@@ -38,7 +38,7 @@ export function Account(){
                 <a>Zamówienia</a>
             </li>
             <li>
-                <button onClick={handleUserLogout} className={styles.btnLogout}>Wyloguj się</button>
+                <Button color="grey" onClick={handleUserLogout} width="w100">Wyloguj się</Button>
             </li>
         </ul>
     );

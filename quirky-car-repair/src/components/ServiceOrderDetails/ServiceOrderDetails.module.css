@@ -16,35 +16,6 @@
     align-items: end;
     gap: 0.5rem;
 }
-.toolbox button{
-    width: 10rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    color: white;
-
-    transition: background-color 0.3s ease-in-out;
-
-    &:not([disabled]):hover{
-        background-color: var(--color-white);
-        color: black;
-    }
-}
-.cancel{
-    background-color: var(--color-error);
-    border: 1px solid var(--color-error);
-}
-.btn{
-    background-color: var(--color-blue);
-    border: 1px solid var(--color-blue);
-
-    &:disabled{
-        background-color: #777777;
-    }
-}
-.orderParts{
-    background-color: var(--color-orange);
-    border: 1px solid var(--color-orange);
-}
 .details{
     margin-top: 1.5rem;
     display: flex;

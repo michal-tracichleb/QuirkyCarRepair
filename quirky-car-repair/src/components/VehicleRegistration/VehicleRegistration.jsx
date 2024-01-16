@@ -6,6 +6,7 @@ import {vehicleBrands} from "../../constans/vehicleBrands.js";
 import {useContext, useState} from "react";
 import {saveNewVehicle} from "../../api/saveNewVehicle.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
+import {Button} from "../Button/Button.jsx";
 export function VehicleRegistration(){
     const [vehicleData, setVehicleData] = useState({brand:'', model:'', vin:'', year:null, plateNumber:''});
     const [,setAlert] = useContext(AlertStateContext);
@@ -77,7 +78,7 @@ export function VehicleRegistration(){
                     <input type="text" name="plateNumber" required onChange={onInputChange}/>
                 </div>
                 <div className={styles.input_container}>
-                    <button type="submit" className={styles.submit}>Zapisz i wyślij</button>
+                    <Button type="submit" width="w100" color="orange">Zapisz i wyślij</Button>
                 </div>
             </form>
         </div>

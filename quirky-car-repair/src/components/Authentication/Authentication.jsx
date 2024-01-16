@@ -9,6 +9,7 @@ import {formFields, signUpFields, signUpTouched, signInFields, signInTouched} fr
 import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {UserStateContext} from "../../context/UserStateContext.js";
+import {Button} from "../Button/Button.jsx";
 
 export function Authentication(){
     const [searchParams] = useSearchParams();
@@ -148,13 +149,15 @@ export function Authentication(){
                             {isSignIn ? 'Zarejestruj się!' : 'Zaloguj się'}
                         </Link>
                     </p>
-                    <button
+                    <Button
                         type="submit"
                         form="authenticationForm"
                         disabled={anyErrors.length > 0 || !nothingIsTouched}
+                        color="orange"
+                        width="w100"
                     >
                         {isSignIn ? 'Zaloguj' : 'Zarejestruj'}
-                    </button>
+                    </Button>
                 </div>
             </form>
         </div>

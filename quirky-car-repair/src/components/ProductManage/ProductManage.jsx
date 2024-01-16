@@ -8,6 +8,7 @@ import {saveNewProduct} from "../../api/saveNewProduct.js";
 import {productLoader} from "../../api/productLoader.js";
 import {saveModifiedProduct} from "../../api/saveModifiedProduct.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
+import {Button} from "../Button/Button.jsx";
 export function ProductManage(){
     const categories = useLoaderData();
     const [searchParams] = useSearchParams();
@@ -106,7 +107,7 @@ export function ProductManage(){
                     {fields}
                     </tbody>
                 </table>
-                <button type="submit">Zapisz i wyślij</button>
+                <Button type="submit" color="grey" width="w10">Zapisz i wyślij</Button>
             </Form>
         </FlexContainer>
     )

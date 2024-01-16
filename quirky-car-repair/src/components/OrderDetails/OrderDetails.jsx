@@ -8,6 +8,7 @@ import {cancelOrder} from "../../api/cancelOrder.js";
 import {arrangeOrder} from "../../api/arrangeOrder.js";
 import {readyForPickup} from "../../api/readyForPickup.js";
 import {orderCompleted} from "../../api/orderCompleted.js";
+import {Button} from "../Button/Button.jsx";
 export function OrderDetails(){
     const response = useLoaderData();
     const [,setAlert] = useContext(AlertStateContext);
@@ -102,15 +103,15 @@ export function OrderDetails(){
                                 <>
                                     {orderDetails.status.toLowerCase() === "pending" &&
                                         <>
-                                            <button type="button" className={styles.btn} onClick={arrangeOrderOnClick}>Przyjmij zamówienie</button>
-                                            <button type="button" className={styles.cancel} onClick={cancelOrderOnClick}>Anuluj</button>
+                                            <Button type="button" color="blue" width="w10" onClick={arrangeOrderOnClick}>Przyjmij zamówienie</Button>
+                                            <Button type="button" color="red" width="w10" onClick={cancelOrderOnClick}>Anuluj</Button>
                                         </>
                                     }
                                     {orderDetails.status.toLowerCase() === "arrangeorder" &&
-                                        <button type="button" className={styles.btn} disabled={!orderIsReady} onClick={readyForPickupOnClick}>Gotowe do odbioru</button>
+                                        <Button type="button" color="blue" width="w10" disabled={!orderIsReady} onClick={readyForPickupOnClick}>Gotowe do odbioru</Button>
                                     }
                                     {orderDetails.status.toLowerCase() === "readyforpickup" &&
-                                        <button type="button" className={styles.btn} onClick={orderCompletedupOnClick}>Zamówienie wydane</button>
+                                        <Button type="button" color="blue" width="w10" onClick={orderCompletedupOnClick}>Zamówienie wydane</Button>
                                     }
                                 </>
                             }

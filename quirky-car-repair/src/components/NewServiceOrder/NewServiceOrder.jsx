@@ -13,6 +13,7 @@ import {useNavigate} from "react-router-dom";
 import {format} from 'date-fns';
 import {getAllVehicles} from "../../api/getAllVehicles.js";
 import {getUserDetails} from "../../api/getUserDetails.js";
+import {Button} from "../Button/Button.jsx";
 export function NewServiceOrder(){
     const navigate = useNavigate();
     const [userData] = useContext(UserStateContext);
@@ -236,7 +237,7 @@ export function NewServiceOrder(){
                     {errors && errors.userData && <p className={styles.error}>{errors.userData}</p>}
                 </div>
                 <div className={styles.footer}>
-                    <button type="submit">Wyślij</button>
+                    <Button type="submit" color="orange" width="w10">Wyślij</Button>
                 </div>
             </form>
         </div>
