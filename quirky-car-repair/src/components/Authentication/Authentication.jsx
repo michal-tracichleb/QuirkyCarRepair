@@ -24,12 +24,11 @@ export function Authentication(){
     const [passwordIsShown, setPasswordIsShown] = useState(false);
     const [initialFields, setInitialFields] = useState(getFormFields);
     const [touchedFields, setTouchedFields] = useState(getTouchedFields);
-    let errors = useValidation(initialFields, touchedFields, isSignIn);
+    let errors = useValidation(initialFields, isSignIn);
     const credentialsKeys = Object.keys(initialFields);
     const navigate = useNavigate();
 
-    const anyErrors = Object.values(errors).filter(({ isError }) => isError === true);
-    const nothingIsTouched = Object.values(touchedFields).includes(true);
+    const anyErrors = Object.values(errors).some(({ isError }) => isError === true);
 
     useEffect(() => {
         setInitialFields(getFormFields)
@@ -152,7 +151,7 @@ export function Authentication(){
                     <Button
                         type="submit"
                         form="authenticationForm"
-                        disabled={anyErrors.length > 0 || !nothingIsTouched}
+                        disabled={anyErrors}
                         color="orange"
                         width="w100"
                     >
