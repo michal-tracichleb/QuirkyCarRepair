@@ -154,7 +154,7 @@ export function NewServiceOrder(){
                 <div className={styles.input_container}>
                     <h2>Dane pojazdu</h2>
                     <p>Wyszukaj numer rejestracyjny</p>
-                    <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect}/>
+                    <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect} placeholder="Numer rejestracyjny"/>
 
                     <div className={styles.wrapper}>
                         <SearchBar
@@ -164,6 +164,7 @@ export function NewServiceOrder(){
                             itemToDisplay="name"
                             returnValue="name"
                             required
+                            placeholder="Marka"
                         />
                         <input
                             name="model"
