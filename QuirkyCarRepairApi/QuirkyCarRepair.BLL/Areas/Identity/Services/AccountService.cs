@@ -85,15 +85,20 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
 
         public UserDetailsDto GetUserDetails(int id)
         {
-            if (_userContextService.GetUserId != id)
+            if (_userContextService.GetUserId != id && _userContextService.GetRoleName != "Admin")
                 throw new BadRequestException("Invalid user Id");
 
             var user = _accountRepostiory.Get(id);
             if (user == null)
                 throw new NotFoundException("User cannot found");
 
+            var roles = _accountRepostiory.GetRoles();
             return new UserDetailsDto()
             {
+                UserId = user.Id,
+                RoleId = user.RoleId,
+                RoleName = roles.First(x => x.Id == user.RoleId).Name,
+
                 UserName = user.UserName,
                 Email = user.Email,
                 FirstName = user.FirstName,

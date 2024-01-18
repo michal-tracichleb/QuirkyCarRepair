@@ -86,5 +86,19 @@ namespace QuirkyCarRepair.API.Controllers
             _adminService.AssignMarginToMainCategoryService(marginId, mainCategoryServiceId);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("Account/GetAllUsers")]
+        public IActionResult GetUserList()
+        {
+            return Ok(_adminService.GetUsers());
+        }
+
+        [HttpGet]
+        [Route("Account/GetRoles")]
+        public IActionResult GetRoles()
+        {
+            return Ok(_adminService.GetRoles());
+        }
     }
 }
