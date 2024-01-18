@@ -109,7 +109,7 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
 
         public void Edit(int id, UserDetailsDto userDetails)
         {
-            if (_userContextService.GetUserId != id)
+            if (_userContextService.GetUserId != id && _userContextService.GetRoleName != "Admin")
                 throw new BadRequestException("Invalid user Id");
 
             var user = _accountRepostiory.Get(id);
