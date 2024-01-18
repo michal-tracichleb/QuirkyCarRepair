@@ -22,9 +22,13 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 builder.Host.UseNLog();
 
 // Add services to the container.
+var dbHost = "192.168.0.2"; // Environment.GetEnvironmentVariable("DB_HOST"); // TODO: konfiguracja
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+var connectionString = $"Server={dbHost}; Database={dbName}; User ID=SA; Password={dbPassword}; TrustServerCertificate=True";
 builder.Services.AddDbContext<QuirkyCarRepairContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("QuirkyCarRepair"));
+    options.UseSqlServer(connectionString);
     options.EnableSensitiveDataLogging(false);
 });
 
