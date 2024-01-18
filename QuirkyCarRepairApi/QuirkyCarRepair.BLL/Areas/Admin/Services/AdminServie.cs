@@ -86,5 +86,15 @@ namespace QuirkyCarRepair.BLL.Areas.Admin.Services
         {
             return _mapper.Map<List<RoleDto>>(_accountRepostiory.GetRoles());
         }
+
+        public void EditUserRole(int userId, int newRoleId)
+        {
+            var user = _accountRepostiory.Get(userId);
+            if (user == null)
+                throw new NotFoundException("User cannot found");
+
+            user.RoleId = newRoleId;
+            _accountRepostiory.Update(user);
+        }
     }
 }

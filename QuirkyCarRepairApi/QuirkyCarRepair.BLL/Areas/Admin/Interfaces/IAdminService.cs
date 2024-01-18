@@ -11,5 +11,7 @@ namespace QuirkyCarRepair.BLL.Areas.Admin.Interfaces
         public List<UserDetailsDto> GetUsers();
 
         public List<RoleDto> GetRoles();
+
+        public void EditUserRole(int userId, int newRoleId);
     }
 }

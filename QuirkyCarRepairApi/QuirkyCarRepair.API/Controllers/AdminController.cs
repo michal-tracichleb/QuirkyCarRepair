@@ -100,5 +100,13 @@ namespace QuirkyCarRepair.API.Controllers
         {
             return Ok(_adminService.GetRoles());
         }
+
+        [HttpGet]
+        [Route("Account/EditUserRole")]
+        public IActionResult EditUserRole([FromQuery] int userId, [FromQuery] int newRoleId)
+        {
+            _adminService.EditUserRole(userId, newRoleId);
+            return Ok();
+        }
     }
 }
