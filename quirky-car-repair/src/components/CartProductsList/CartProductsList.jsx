@@ -47,7 +47,7 @@ export function CartProductsList(){
                     </div>
                 </div>
             </CenteredContent>
-            <CartSummary cartItems={items}/>
+            <CartSummary cartItems={items} setCartItems={setItems}/>
         </FlexContainer>
 
     )
