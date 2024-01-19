@@ -4,10 +4,10 @@ import {useContext, useEffect, useState} from "react";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {dateFormatter} from "../../utlis/dateFormatter.js";
 import {UserStateContext} from "../../context/UserStateContext.js";
-import {cancelOrder} from "../../api/cancelOrder.js";
-import {arrangeOrder} from "../../api/arrangeOrder.js";
-import {readyForPickup} from "../../api/readyForPickup.js";
-import {orderCompleted} from "../../api/orderCompleted.js";
+import {cancelOrder} from "../../api/warehouseOrderStatusManagement/cancelOrder.js";
+import {arrangeOrder} from "../../api/warehouseOrderStatusManagement/arrangeOrder.js";
+import {readyForPickup} from "../../api/warehouseOrderStatusManagement/readyForPickup.js";
+import {orderCompleted} from "../../api/warehouseOrderStatusManagement/orderCompleted.js";
 import {Button} from "../Button/Button.jsx";
 export function OrderDetails(){
     const response = useLoaderData();

@@ -5,7 +5,7 @@ import styles from "./ServiceOrders.module.css";
 import {orderStatus} from "../../constans/serviceEnums.js";
 import {PaginationSmall} from "../PaginationSmall/PaginationSmall.jsx";
 import {Pagination} from "../Pagination/Pagination.jsx";
-import {getServiceOrderPage} from "../../api/getServiceOrderPage.js";
+import {getServiceOrderPage} from "../../api/service/getServiceOrderPage.js";
 import {ServiceOrdersList} from "../ServiceOrdersList/ServiceOrdersList.jsx";
 
 export function ServiceOrders(){

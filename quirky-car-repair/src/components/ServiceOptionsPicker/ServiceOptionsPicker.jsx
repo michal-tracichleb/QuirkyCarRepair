@@ -4,8 +4,8 @@ import {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {getServiceMainCategories} from "../../api/getServiceMainCategories.js";
-import {getServiceOfferByCategory} from "../../api/getServiceOfferByCategory.js";
+import {getServiceMainCategories} from "../../api/service/getServiceMainCategories.js";
+import {getServiceOfferByCategory} from "../../api/service/getServiceOfferByCategory.js";
 import {Button} from "../Button/Button.jsx";
 
 export function ServiceOptionsPicker(){

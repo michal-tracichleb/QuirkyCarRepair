@@ -4,7 +4,7 @@ import { format, addDays, subDays } from 'date-fns';
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import styles from "./ServiceOrderSchedule.module.css";
 import {Pagination} from "../Pagination/Pagination.jsx";
-import {getServiceOrderPage} from "../../api/getServiceOrderPage.js";
+import {getServiceOrderPage} from "../../api/service/getServiceOrderPage.js";
 import {ServiceOrdersList} from "../ServiceOrdersList/ServiceOrdersList.jsx";
 import {orderStatus} from "../../constans/serviceEnums.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

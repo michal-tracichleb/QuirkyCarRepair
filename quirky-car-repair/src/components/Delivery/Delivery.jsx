@@ -3,7 +3,7 @@ import {useLoaderData} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {postDeliveryProducts} from "../../api/postDeliveryProducts.js";
+import {postDeliveryProducts} from "../../api/warehouse/postDeliveryProducts.js";
 import {Button} from "../Button/Button.jsx";
 export function Delivery(){
     const data = useLoaderData();

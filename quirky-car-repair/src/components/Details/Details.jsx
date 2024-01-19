@@ -5,7 +5,7 @@ import {UserStateContext} from "../../context/UserStateContext.js";
 import {ProductQuantity} from "../ProductQuantity/ProductQuantity.jsx";
 import {ProductManageBox} from "../ProductManageBox/ProductManageBox.jsx";
 import {useNavigate} from "react-router-dom";
-import {removeProduct} from "../../api/removeProduct.js";
+import {removeProduct} from "../../api/productManage/removeProduct.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {Button} from "../Button/Button.jsx";
 export function Details({product}){

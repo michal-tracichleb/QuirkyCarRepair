@@ -1,14 +1,14 @@
 import styles from "../MarginList/MarginList.module.css";
-import {getAllMargin} from "../../api/getAllMargin.js";
+import {getAllMargin} from "../../api/margins/getAllMargin.js";
 import {useContext, useEffect, useState} from "react";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {CategoryMarginList} from "../CategoryMarginList/CategoryMarginList.jsx";
-import {getPrimaryCategories} from "../../api/getPrimaryCategories.js";
-import {getPartCategoryStructure} from "../../api/getPartCategoryStructure.js";
+import {getPrimaryCategories} from "../../api/warehouse/getPrimaryCategories.js";
+import {getPartCategoryStructure} from "../../api/warehouse/getPartCategoryStructure.js";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {assignMarginToPartCategory} from "../../api/assignMarginToPartCategory.js";
-import {getServiceMainCategories} from "../../api/getServiceMainCategories.js";
-import {assignMarginToServiceCategory} from "../../api/assignMarginToServiceCategory.js";
+import {assignMarginToPartCategory} from "../../api/margins/assignMarginToPartCategory.js";
+import {getServiceMainCategories} from "../../api/service/getServiceMainCategories.js";
+import {assignMarginToServiceCategory} from "../../api/margins/assignMarginToServiceCategory.js";
 
 export function CategoryMarginSetter(){
     const navigate = useNavigate();
