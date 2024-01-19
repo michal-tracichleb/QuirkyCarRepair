@@ -17,6 +17,8 @@ import {serviceOrderComplaint} from "../../api/serviceOrderStatusManagement/serv
 import {serviceOrderPendingForClientAccepting} from "../../api/serviceOrderStatusManagement/serviceOrderPendingForClientAccepting.js";
 import {serviceOrderAcceptedByClient} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedByClient.js";
 import {Button} from "../Button/Button.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFileInvoice} from "@fortawesome/free-solid-svg-icons";
 
 
 export function ServiceOrderDetails(){
@@ -29,21 +31,25 @@ export function ServiceOrderDetails(){
     const [userData, setUserData] = useState([]);
     const [orderedParts, setOrderedParts] = useState();
     const [services, setServices] = useState();
-
     const managementPermissions = user.role.toLocaleLowerCase() === 'admin' || user.role.toLocaleLowerCase() === 'mechanic';
+    const allowAddToOrder = orderStatus[orderDetails.status] > 9 && orderStatus[orderDetails.status] !==13;
 
     useEffect(() => {
         if(response.success){
-            setOrderDetails(response.data);
-            setVehicleData(response.data.vehicleData);
-            setUserData(response.data.userData);
-            setOrderedParts(response.data.orderedParts);
-            setServices(response.data.services);
+            prepareData(response.data)
         }else{
             Error({text: response.message, color: 'warning'})
         }
-
     }, []);
+
+    const prepareData = (data) =>{
+        setOrderDetails(data);
+        setVehicleData(data.vehicleData);
+        setUserData(data.userData);
+        setOrderedParts(data.parts);
+        setServices(data.serviceTransactions);
+    }
+
     const updateOrderStatus = async (e) =>{
         let cancel = e.target.name === 'cancel';
         let response;
@@ -81,11 +87,7 @@ export function ServiceOrderDetails(){
         }
 
         if(response.success){
-            setOrderDetails(response.data);
-            setVehicleData(response.data.vehicleData);
-            setUserData(response.data.userData);
-            setOrderedParts(response.data.orderedParts);
-            setServices(response.data.services);
+            prepareData(response.data)
         }else{
             Error({text: response.message, color: 'warning'})
         }
@@ -187,15 +189,15 @@ export function ServiceOrderDetails(){
                             {services && services.map((service) => (
                                 <tr key={service.name}>
                                     <td>{service.name}</td>
-                                    <td className={styles.right}>{service.unitPrice}</td>
+                                    <td className={styles.right}>{service.price}</td>
                                     <td className={styles.right}>{service.quantity} szt.</td>
                                     <td className={styles.right}>{service.totalPrice}</td>
                                 </tr>
                             ))}
                             </tbody>
                         </table>
-                        {managementPermissions && /*i stan naprawy*/
-                            <ServiceOptionsPicker/>
+                        {managementPermissions && allowAddToOrder &&
+                            <ServiceOptionsPicker setData={prepareData} orderId={orderDetails.serviceOrderId}/>
                         }
                         <table className={styles.orderTable}>
                             <thead>
@@ -211,7 +213,7 @@ export function ServiceOrderDetails(){
                             </thead>
                             <tbody>
                             {orderedParts && orderedParts.map((part) => (
-                                <tr key={part.partId}>
+                                <tr key={part.id}>
                                     <td>{part.name}</td>
                                     <td className={styles.right}>{part.unitPrice}</td>
                                     <td className={styles.right}>{part.quantity} szt.</td>
@@ -220,10 +222,14 @@ export function ServiceOrderDetails(){
                             ))}
                             </tbody>
                         </table>
-                        {managementPermissions &&
+                        {managementPermissions && allowAddToOrder &&
                             <div className={styles.toolbox}>
                                 <ProductManageLink to="/warehouse">Zamów części</ProductManageLink>
                             </div>
+                        }
+                        <h2>Koszt całkowity: {orderDetails.totalPrice} zł</h2>
+                        {orderStatus[orderDetails.status] === 8 &&
+                            <Button width="w10" color="grey" type="button"><FontAwesomeIcon icon={faFileInvoice}/> Pobierz FV</Button>
                         }
                     </div>
                 </>
