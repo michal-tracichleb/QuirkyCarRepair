@@ -152,5 +152,14 @@ namespace QuirkyCarRepair.API.Controllers
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Complaint);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("AddServiceToOrder")]
+        [Authorize(Roles = "Admin,Mechanic,User")]
+        public IActionResult AddServiceToOrder([FromQuery] int serviceOrderId, [FromQuery] int serviceOfferId, [FromQuery] int numberOfServices)
+        {
+            var result = _carServiceService.AddServiceToOrder(serviceOrderId, serviceOfferId, numberOfServices);
+            return Ok(result);
+        }
     }
 }

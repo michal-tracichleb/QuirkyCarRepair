@@ -29,6 +29,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
         private readonly IServiceOrderStatusRepository _serviceOrderStatusRepository;
         private readonly IMainCategoryServiceRepository _mainCategoryServiceRepository;
         private readonly IServiceOfferRepository _serviceOfferRepository;
+        private readonly IServiceTransactionRepository _serviceTransactionRepository;
 
         public CarServiceService(IMapper mapper,
             IUserContextService userContextService,
@@ -38,7 +39,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             IOrderOwnerRepository orderOwnerRepository,
             IServiceOrderStatusRepository serviceOrderStatusRepository,
             IMainCategoryServiceRepository mainCategoryServiceRepository,
-            IServiceOfferRepository serviceOfferRepository)
+            IServiceOfferRepository serviceOfferRepository,
+            IServiceTransactionRepository serviceTransactionRepository)
         {
             _mapper = mapper;
             _userContextService = userContextService;
@@ -50,6 +52,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             _serviceOrderStatusRepository = serviceOrderStatusRepository;
             _mainCategoryServiceRepository = mainCategoryServiceRepository;
             _serviceOfferRepository = serviceOfferRepository;
+            _serviceTransactionRepository = serviceTransactionRepository;
         }
 
         public DetailsServiceOrderDTO NewOrderService(CreateServiceOrderDTO createServiceOrder)
@@ -185,6 +188,31 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             });
 
             return GetDetailsServiceOrder(id);
+        }
+
+        public DetailsServiceOrderDTO AddServiceToOrder(int serviceOrderId, int serviceOfferId, int numberOfServices)
+        {
+            if (_serviceOrderRepository.Exist(serviceOrderId) == false)
+                throw new NotFoundException("Service order cannot found");
+
+            if (_serviceOfferRepository.Exist(serviceOfferId) == false)
+                throw new NotFoundException("Service offer cannot found");
+
+            if (numberOfServices <= 0)
+                throw new QuantityOutOfRangeException("Number of services cannot be below or equal 0");
+
+            var newServiceTransaction = new ServiceTransaction()
+            {
+                ServiceOfferId = serviceOfferId,
+                ServiceOrderId = serviceOrderId,
+                Quantity = numberOfServices,
+                Price = _serviceOfferRepository.Get(serviceOfferId).Price,
+                MarginValue = 0, //TODO
+            };
+
+            _serviceTransactionRepository.Add(newServiceTransaction);
+
+            return GetDetailsServiceOrder(serviceOrderId);
         }
 
         private void CheckStatusNewStatus(int serviceOrderId, OrderStatus newStatus)
