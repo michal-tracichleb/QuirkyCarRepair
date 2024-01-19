@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
 import {vehicleBrands} from "../../constans/vehicleBrands.js";
 import {useContext, useState} from "react";
-import {saveNewVehicle} from "../../api/saveNewVehicle.js";
+import {saveNewVehicle} from "../../api/service/saveNewVehicle.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {Button} from "../Button/Button.jsx";
 export function VehicleRegistration(){
