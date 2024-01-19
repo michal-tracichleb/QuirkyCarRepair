@@ -21,7 +21,17 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
         {
             get
             {
-                return Parts.Select(x => x.TotalPrice).Sum() + ServiceTransactions.Select(x => x.TotalPrice).Sum();
+                decimal partsPrice = 0;
+                decimal servicesPrice = 0;
+                if (Parts != null && Parts.Count != 0)
+                {
+                    partsPrice = Parts.Select(x => x.TotalPrice).Sum();
+                }
+                if (ServiceTransactions != null && ServiceTransactions.Count != 0)
+                {
+                    servicesPrice = ServiceTransactions.Select(x => x.TotalPrice).Sum();
+                }
+                return partsPrice + servicesPrice;
             }
         }
 

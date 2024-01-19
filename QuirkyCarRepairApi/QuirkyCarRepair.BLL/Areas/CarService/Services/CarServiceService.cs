@@ -75,7 +75,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
             var newOrderOwner = new OrderOwner()
             {
-                UserId = createServiceOrder.UserId == 0 ? null : createServiceOrder.UserId,
+                UserId = _userContextService.GetRoleName != "User" ? null : _userContextService.GetUserId,
                 FirstName = createServiceOrder.FirstName,
                 LastName = createServiceOrder.LastName,
                 PhoneNumber = createServiceOrder.PhoneNumber
