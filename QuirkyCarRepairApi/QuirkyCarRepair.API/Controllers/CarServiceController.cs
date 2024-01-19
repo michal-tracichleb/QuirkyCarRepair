@@ -29,7 +29,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("GetServiceOrderPage")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize]
         public IActionResult GetServiceOrderPage([FromBody] GetServiceOrderPage getServiceOrderPage)
         {
             var result = _carServiceService.GetOrdersPage(getServiceOrderPage);
