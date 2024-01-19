@@ -17,7 +17,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
         public OrderOwnerDTO UserData { get; set; }
         public VehicleDataDTO VehicleData { get; set; }
 
-        public List<PartsDTO> Parts { get; set; }
+        public List<PartDTO> Parts { get; set; }
         public List<ServiceTransactionDTO> ServiceTransactions { get; set; }
         public List<ServiceOrderStatusEntity> ServiceOrderStatuses { get; set; }
     }

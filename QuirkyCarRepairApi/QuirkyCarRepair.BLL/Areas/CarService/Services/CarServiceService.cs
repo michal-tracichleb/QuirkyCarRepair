@@ -147,7 +147,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
             var result = _mapper.Map<DetailsServiceOrderDTO>(serviceOrder);
 
-            result.Parts = new List<PartsDTO>(); //TODO
+            var partsTransaction = serviceOrder.OperationalDocuments.SelectMany(x => x.PartTransactions).ToList();
+            result.Parts = _mapper.Map<List<PartDTO>>(partsTransaction);
 
             return result;
         }
