@@ -17,6 +17,14 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.DTO
         public OrderOwnerDTO UserData { get; set; }
         public VehicleDataDTO VehicleData { get; set; }
 
+        public decimal TotalPrice
+        {
+            get
+            {
+                return Parts.Select(x => x.TotalPrice).Sum() + ServiceTransactions.Select(x => x.TotalPrice).Sum();
+            }
+        }
+
         public List<PartDTO> Parts { get; set; }
         public List<ServiceTransactionDTO> ServiceTransactions { get; set; }
         public List<ServiceOrderStatusEntity> ServiceOrderStatuses { get; set; }
