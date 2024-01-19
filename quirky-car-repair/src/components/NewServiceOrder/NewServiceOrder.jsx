@@ -27,9 +27,11 @@ export function NewServiceOrder(){
     const [orderDescription, setOrderDescription] = useState('');
 
     useEffect(() => {
-        fetchVehicles()
+
         if(!managementPermissions){
             fetchUserDetails(userData.id);
+        }else{
+            fetchVehicles()
         }
     }, []);
 
@@ -100,7 +102,7 @@ export function NewServiceOrder(){
             const data = {
                 dateStartRepair: format(date, 'yyyy-MM-dd'),
                 orderDescription:orderDescription,
-                userId: user.id ? user.id : 0,
+                userId: user.userId ? user.userId : 0,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 phoneNumber: user.phoneNumber,
@@ -154,8 +156,12 @@ export function NewServiceOrder(){
                 </div>
                 <div className={styles.input_container}>
                     <h2>Dane pojazdu</h2>
-                    <p>Wyszukaj numer rejestracyjny</p>
-                    <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect} placeholder="Wyszukaj po numerze rejestracyjnym"/>
+                    {managementPermissions &&
+                        <>
+                            <p>Wyszukaj numer rejestracyjny</p>
+                            <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect} placeholder="Wyszukaj po numerze rejestracyjnym"/>
+                        </>
+                    }
 
                     <div className={styles.wrapper}>
                         <SearchBar
