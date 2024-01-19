@@ -98,7 +98,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             };
         }
 
-        public void DeliveryParts(List<PartDTO> deliveryPartsDTO)
+        public void DeliveryParts(List<DeliveryPartDTO> deliveryPartsDTO)
         {
             foreach (var deliveryParts in deliveryPartsDTO)
             {

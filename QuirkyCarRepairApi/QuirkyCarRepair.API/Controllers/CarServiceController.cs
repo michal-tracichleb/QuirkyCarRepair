@@ -155,7 +155,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpGet]
         [Route("AddServiceToOrder")]
-        [Authorize(Roles = "Admin,Mechanic,User")]
+        [Authorize(Roles = "Admin,Mechanic")]
         public IActionResult AddServiceToOrder([FromQuery] int serviceOrderId, [FromQuery] int serviceOfferId, [FromQuery] int numberOfServices)
         {
             var result = _carServiceService.AddServiceToOrder(serviceOrderId, serviceOfferId, numberOfServices);
