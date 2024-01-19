@@ -5,6 +5,7 @@ using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Entities;
 using QuirkyCarRepair.BLL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.BLL.Extensions;
+using QuirkyCarRepair.DAL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Shared.Enums;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Interfaces;
 using QuirkyCarRepair.DAL.Areas.Warehouse.Models;
@@ -22,6 +23,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
         private readonly ITransactionStatusRepository _transactionStatusRepository;
         private readonly IOperationalDocumentRepository _operationalDocumentRepository;
         private readonly IPartTransactionRepository _partTransactionRepository;
+        private readonly IServiceOrderRepository _serviceOrderRepository;
 
         public WarehouseService(IMapper mapper,
             IUserContextService userContextService,
@@ -29,7 +31,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             IPartRepository partRepository,
             ITransactionStatusRepository transactionStatusRepository,
             IOperationalDocumentRepository operationalDocumentRepository,
-            IPartTransactionRepository partTransactionRepository)
+            IPartTransactionRepository partTransactionRepository,
+            IServiceOrderRepository serviceOrderRepository)
         {
             _mapper = mapper;
             _userContextService = userContextService;
@@ -39,6 +42,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             _transactionStatusRepository = transactionStatusRepository;
             _operationalDocumentRepository = operationalDocumentRepository;
             _partTransactionRepository = partTransactionRepository;
+            _serviceOrderRepository = serviceOrderRepository;
         }
 
         public List<PartCategoryEntity> GetPrimaryCategories()
@@ -94,7 +98,7 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
             };
         }
 
-        public void DeliveryParts(List<PartsDTO> deliveryPartsDTO)
+        public void DeliveryParts(List<DeliveryPartDTO> deliveryPartsDTO)
         {
             foreach (var deliveryParts in deliveryPartsDTO)
             {
@@ -150,12 +154,21 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
                 throw new QuantityOutOfRangeException("OrderParts cannot be equal to 0");
 
             OrderType transactionType;
-            if (orderDTO.OrderType.Equals("WW"))
+            if (orderDTO.OrderType.Equals("WW") && orderDTO.ServiceOrderId != 0)
+            {
+                if (_serviceOrderRepository.Exist(orderDTO.ServiceOrderId) == false)
+                    throw new NotFoundException("Service order Id connot found");
+
                 transactionType = OrderType.WW;
-            else if (orderDTO.OrderType.Equals("WZ"))
+            }
+            else if (orderDTO.OrderType.Equals("WZ") && orderDTO.ServiceOrderId == 0)
+            {
                 transactionType = OrderType.WZ;
+            }
             else
+            {
                 throw new NotFoundException("Transaction type connot found");
+            }
 
             foreach (var orderParts in orderDTO.OrderParts)
             {
@@ -190,7 +203,8 @@ namespace QuirkyCarRepair.BLL.Areas.Warehouse.Services
                 DocumentNumber = "XYZ",
                 TransactionDate = DateTime.Now,
                 Type = transactionType.ToString(),
-                PartTransactions = partsTransactions
+                PartTransactions = partsTransactions,
+                ServiceOrderId = orderDTO.ServiceOrderId == 0 ? null : orderDTO.ServiceOrderId,
             };
 
             TransactionStatus status = new TransactionStatus()

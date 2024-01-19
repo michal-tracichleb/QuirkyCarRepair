@@ -46,6 +46,40 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
             return query;
         }
 
+        public IQueryable<ServiceOrder> GetServicesOrdersWithLatestStatusByOwner(int userId, List<OrderStatus> orderStates, bool anyDate, DateTime? fromDate, DateTime? toDate)
+        {
+            List<string> orderStatesString = new List<string>();
+            if (orderStates != null && orderStates.Any())
+            {
+                orderStatesString = orderStates.Select(x => x.ToString()).ToList();
+            }
+
+            var query = _context.ServiceOrders
+                .Where(x => x.OrderOwner.UserId == userId && (anyDate
+                    || (x.DateStartRepair.AddHours(1) > fromDate && x.DateStartRepair.AddHours(-1) < toDate)))
+                .Select(od => new ServiceOrder
+                {
+                    Id = od.Id,
+                    VehicleId = od.VehicleId,
+                    OrderOwnerId = od.OrderOwnerId,
+                    OrderNumber = od.OrderNumber,
+                    DateStartRepair = od.DateStartRepair,
+                    Vehicle = od.Vehicle,
+                    OrderOwner = od.OrderOwner,
+                    ServiceOrderStatuses = od.ServiceOrderStatuses
+                        .OrderByDescending(ts => ts.StartDate)
+                        .Take(1)
+                        .ToList()
+                });
+
+            if (orderStatesString.Any())
+            {
+                return query.Where(od => od.ServiceOrderStatuses.Any(s => orderStatesString.Contains(s.Status)));
+            }
+
+            return query;
+        }
+
         public ServiceOrder? GetWithInclude(int id)
         {
             return _context.ServiceOrders
@@ -55,6 +89,7 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Repositories
                     .ThenInclude(x => x.ServiceOffer)
                 .Include(x => x.OperationalDocuments)
                     .ThenInclude(x => x.PartTransactions)
+                        .ThenInclude(x => x.Part)
                 .Include(x => x.ServiceOrderStatuses)
                 .FirstOrDefault(x => x.Id == id);
         }

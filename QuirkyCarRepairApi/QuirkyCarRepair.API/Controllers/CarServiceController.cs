@@ -29,7 +29,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("GetServiceOrderPage")]
-        [Authorize(Roles = "Admin,Mechanic")]
+        [Authorize]
         public IActionResult GetServiceOrderPage([FromBody] GetServiceOrderPage getServiceOrderPage)
         {
             var result = _carServiceService.GetOrdersPage(getServiceOrderPage);
@@ -150,6 +150,15 @@ namespace QuirkyCarRepair.API.Controllers
         public IActionResult ServiceOrderComplaint(int id, string? description)
         {
             var result = _carServiceService.ChangeStatus(id, description, OrderStatus.Complaint);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("AddServiceToOrder")]
+        [Authorize(Roles = "Admin,Mechanic")]
+        public IActionResult AddServiceToOrder([FromQuery] int serviceOrderId, [FromQuery] int serviceOfferId, [FromQuery] int numberOfServices)
+        {
+            var result = _carServiceService.AddServiceToOrder(serviceOrderId, serviceOfferId, numberOfServices);
             return Ok(result);
         }
     }

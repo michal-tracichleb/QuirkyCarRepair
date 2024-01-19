@@ -22,6 +22,9 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
             CreateMap<PartCategory, PartCategoryEntity>()
                 .ReverseMap();
 
+            CreateMap<PartTransaction, PartDTO>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Part.Name));
+
             CreateMap<PartTransaction, PartTransactionEntity>()
                 .ReverseMap();
 

@@ -9,11 +9,11 @@ import {getServiceOrderPage} from "../../api/service/getServiceOrderPage.js";
 import {orderStatus} from "../../constans/serviceEnums.js";
 import {Button} from "../Button/Button.jsx";
 
-export function CartSummary({cartItems}){
+export function CartSummary({cartItems, setCartItems}){
     const [user] = useContext(UserStateContext);
     const [,setAlert] = useContext(AlertStateContext);
 
-    const [documentId, setDocumentId] = useState(null);
+    const [documentId, setDocumentId] = useState(0);
     const [documentType, setDocumentType] = useState('');
     const [orders, setOrders] = useState([]);
 
@@ -45,6 +45,8 @@ export function CartSummary({cartItems}){
 
             if(response.success){
                 Error({text: response.message, color:'success'});
+                setCartItems([])
+                sessionStorage.removeItem('cart');
             }else{
                 Error({text: response.message, color:'warning'})
             }
@@ -82,7 +84,7 @@ export function CartSummary({cartItems}){
                     }
                 </>
             }
-            <Button type="submit" disabled={documentType !=="WW" || !documentId} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
+            <Button type="submit" disabled={documentType !=="WW" || !documentId || cartItems.length < 1} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
         </div>
     )
 }

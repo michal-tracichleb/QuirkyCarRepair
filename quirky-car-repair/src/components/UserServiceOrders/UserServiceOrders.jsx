@@ -17,7 +17,7 @@ export function UserServiceOrders(){
     const scroll = useRef();
 
     useEffect(() => {
-        /*fetchData();*/
+        fetchData();
         if (scroll.current) {
             scroll.current.scrollIntoView({behavior: 'smooth'});
         }

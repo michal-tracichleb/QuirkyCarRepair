@@ -7,8 +7,9 @@ import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {getServiceMainCategories} from "../../api/service/getServiceMainCategories.js";
 import {getServiceOfferByCategory} from "../../api/service/getServiceOfferByCategory.js";
 import {Button} from "../Button/Button.jsx";
+import {addServiceToOrder} from "../../api/service/addServiceToOrder.js";
 
-export function ServiceOptionsPicker(){
+export function ServiceOptionsPicker({setData, orderId}){
     const [,setAlert] = useContext(AlertStateContext);
     const [isShown, setIsShown] = useState(false);
     const [serviceId, setServiceId] = useState();
@@ -43,10 +44,16 @@ export function ServiceOptionsPicker(){
     const onServiceSelect = (value) =>{
         setServiceId(value)
     }
-    const onFormSubmit = (e) =>{
+    const onFormSubmit = async(e) =>{
         e.preventDefault();
-        console.log(serviceId, quantity);
-        setIsShown(false)
+        const response = await addServiceToOrder(orderId, serviceId, quantity);
+        if(response.success){
+            Error({text: response.message, color: 'success'})
+            setData(response.data);
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+        setIsShown(false);
     }
     const Error = ({text, color}) =>{
         setAlert({text: text, color: color})
