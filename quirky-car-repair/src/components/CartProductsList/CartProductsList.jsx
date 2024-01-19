@@ -14,6 +14,7 @@ export function CartProductsList(){
         const response = removeCartItem(id)
         if(response.success){
             setItems(response.data);
+            window.location.reload();
         }
     }
     return(

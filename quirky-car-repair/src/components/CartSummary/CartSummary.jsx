@@ -82,7 +82,7 @@ export function CartSummary({cartItems}){
                     }
                 </>
             }
-            <Button type="submit" disabled={documentType !=="WW" || !documentId} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
+            <Button type="submit" disabled={documentType !=="WW" || !documentId || cartItems.length < 1} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
         </div>
     )
 }
