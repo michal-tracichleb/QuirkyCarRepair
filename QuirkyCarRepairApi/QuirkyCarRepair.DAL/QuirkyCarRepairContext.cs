@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using QuirkyCarRepair.DAL.Areas.CarService.Models;
 using QuirkyCarRepair.DAL.Areas.Identity.Models;
 using QuirkyCarRepair.DAL.Areas.Shared.Models;
@@ -8,14 +10,24 @@ namespace QuirkyCarRepair.DAL
 {
     public class QuirkyCarRepairContext : DbContext
     {
-        public QuirkyCarRepairContext()
-        {
-        }
-
         public QuirkyCarRepairContext(DbContextOptions<QuirkyCarRepairContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
+
+            try
+            {
+                var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+                if (databaseCreator != null)
+                {
+                    if (!databaseCreator.CanConnect()) databaseCreator.Create();
+                    if (!databaseCreator.HasTables()) databaseCreator.CreateTables();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public DbSet<User> Users { get; set; }
