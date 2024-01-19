@@ -125,8 +125,17 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
         public PageList<ServiceOrderDTO> GetOrdersPage(GetServiceOrderPage getOrdersServicePageDTO)
         {
-            var orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatus(getOrdersServicePageDTO.OrderStates,
-                 getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            IQueryable<ServiceOrder> orders;
+            if (_userContextService.GetRoleName != "User")
+            {
+                orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatus(getOrdersServicePageDTO.OrderStates,
+                    getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            }
+            else
+            {
+                orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatusByOwner(_userContextService.GetUserId, getOrdersServicePageDTO.OrderStates,
+                    getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            }
 
             PageList<ServiceOrder> ordersPageList = orders.GetPagedList<ServiceOrder>(getOrdersServicePageDTO.Page, getOrdersServicePageDTO.PageSize);
 
@@ -147,6 +156,9 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             var serviceOrder = _serviceOrderRepository.GetWithInclude(id);
             if (serviceOrder == null)
                 throw new NotFoundException("Service order cannot found");
+
+            if (_userContextService.GetRoleName == "User" && serviceOrder.OrderOwner.UserId != _userContextService.GetUserId)
+                throw new BadRequestException("You don't have permission to see that");
 
             var result = _mapper.Map<DetailsServiceOrderDTO>(serviceOrder);
 
