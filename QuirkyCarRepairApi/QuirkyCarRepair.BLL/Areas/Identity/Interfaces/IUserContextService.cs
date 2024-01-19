@@ -6,5 +6,6 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Interfaces
     {
         ClaimsPrincipal User { get; }
         int GetUserId { get; }
+        public string GetRoleName { get; }
     }
 }

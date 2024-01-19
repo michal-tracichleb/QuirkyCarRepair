@@ -3,10 +3,11 @@ import {getCartPrice} from "../../utlis/getCartPrice.js";
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
 import {useContext, useEffect, useState} from "react";
 import {UserStateContext} from "../../context/UserStateContext.js";
-import {orderProducts} from "../../api/orderProducts.js";
+import {orderProducts} from "../../api/warehouse/orderProducts.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {getServiceOrderPage} from "../../api/getServiceOrderPage.js";
+import {getServiceOrderPage} from "../../api/service/getServiceOrderPage.js";
 import {orderStatus} from "../../constans/serviceEnums.js";
+import {Button} from "../Button/Button.jsx";
 
 export function CartSummary({cartItems}){
     const [user] = useContext(UserStateContext);
@@ -81,7 +82,7 @@ export function CartSummary({cartItems}){
                     }
                 </>
             }
-            <button type="submit" className={styles.btn} disabled={documentType !=="WW" || !documentId} onClick={onSubmit}>Złóż zamówienie</button>
+            <Button type="submit" disabled={documentType !=="WW" || !documentId} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
         </div>
     )
 }

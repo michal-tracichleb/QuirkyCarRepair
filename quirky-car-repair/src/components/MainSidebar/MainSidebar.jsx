@@ -13,7 +13,7 @@ export function MainSidebar({ sidebarIsShown, setSidebarIsShown}) {
             </div>
             <ul>
                 {subpages.map((subpage) => (
-                    <li key={subpage.name}>
+                    <li key={subpage.name} onClick={setSidebarIsShown}>
                         <NavLink to={subpage.path}>{subpage.name}</NavLink>
                     </li>
                 ))}

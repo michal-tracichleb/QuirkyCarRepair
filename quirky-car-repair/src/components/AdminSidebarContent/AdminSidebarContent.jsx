@@ -16,7 +16,7 @@ export function AdminSidebarContent(){
                     <span className={styles.SidebarLabel}>Serwis</span>
                 </a>
             </SubNav>
-            <SubNav title='Użytkownicy' />
+            <SubNav title='Użytkownicy' to='/admin/users'/>
         </>
     )
 }

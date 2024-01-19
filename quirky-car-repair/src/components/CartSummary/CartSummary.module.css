@@ -16,20 +16,3 @@
     display: flex;
     gap: 2rem;
 }
-.btn{
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    color: white;
-    font-size: 1.1rem;
-    background-color: var(--color-orange);
-
-    transition: background-color 0.3s ease-in-out;
-
-    &:not([disabled]):hover{
-        background-color: rgba(253, 111, 31, 0.71);
-    }
-    &:disabled{
-        background-color: rgba(253, 111, 31, 0.51);
-    }
-}

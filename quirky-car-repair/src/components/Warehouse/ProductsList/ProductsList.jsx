@@ -5,6 +5,7 @@ import {useContext} from "react";
 import {UserStateContext} from "../../../context/UserStateContext.js";
 import {ProductQuantity} from "../../ProductQuantity/ProductQuantity.jsx";
 import {ProductManageBox} from "../../ProductManageBox/ProductManageBox.jsx";
+import {Button} from "../../Button/Button.jsx";
 
 export function ProductsList({productsData, removeAction}){
     const [userData] = useContext(UserStateContext);
@@ -29,13 +30,11 @@ export function ProductsList({productsData, removeAction}){
                         </div>
                     <div className={styles.toolbox}>
                         <h3 className={styles.price}>{product.unitPrice} zł /szt.</h3>
+                        <Button color="orange" width="w10" onClick={()=> {
+                            AddProductToCart(product.id, product.name, product.unitPrice);
+                        }}>Dodaj do koszyka</Button>
                         {managementPermissions &&
                             <ProductManageBox productId={product.id} removeFunction={removeAction}/>
-                        }
-                        {!managementPermissions &&
-                            <button className={styles.btn} onClick={()=> {
-                                AddProductToCart(product.id, product.name, product.unitPrice);
-                            }}>Dodaj do koszyka</button>
                         }
                     </div>
                 </div>

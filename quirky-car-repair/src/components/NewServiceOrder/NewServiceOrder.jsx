@@ -8,11 +8,12 @@ import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
 import {vehicleBrands} from "../../constans/vehicleBrands.js";
 import PhoneNumberInput from "../PhoneNumberInput/PhoneNumberInput.jsx";
-import {createServiceOrder} from "../../api/createServiceOrder.js";
+import {createServiceOrder} from "../../api/service/createServiceOrder.js";
 import {useNavigate} from "react-router-dom";
 import {format} from 'date-fns';
-import {getAllVehicles} from "../../api/getAllVehicles.js";
-import {getUserDetails} from "../../api/getUserDetails.js";
+import {getAllVehicles} from "../../api/service/getAllVehicles.js";
+import {getUserDetails} from "../../api/userManage/getUserDetails.js";
+import {Button} from "../Button/Button.jsx";
 export function NewServiceOrder(){
     const navigate = useNavigate();
     const [userData] = useContext(UserStateContext);
@@ -146,7 +147,7 @@ export function NewServiceOrder(){
                             selected={date}
                             onChange={(date) => setDate(date)}
                             filterDate={isWeekend}
-
+                            required
                         />
                     </div>
                     {errors && errors.date && <p className={styles.error}>{errors.date}</p>}
@@ -154,7 +155,7 @@ export function NewServiceOrder(){
                 <div className={styles.input_container}>
                     <h2>Dane pojazdu</h2>
                     <p>Wyszukaj numer rejestracyjny</p>
-                    <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect}/>
+                    <SearchBar list={vehicles} itemToDisplay="plateNumber" callback={onVehicleSelect} placeholder="Wyszukaj po numerze rejestracyjnym"/>
 
                     <div className={styles.wrapper}>
                         <SearchBar
@@ -164,6 +165,7 @@ export function NewServiceOrder(){
                             itemToDisplay="name"
                             returnValue="name"
                             required
+                            placeholder="Marka"
                         />
                         <input
                             name="model"
@@ -235,7 +237,7 @@ export function NewServiceOrder(){
                     {errors && errors.userData && <p className={styles.error}>{errors.userData}</p>}
                 </div>
                 <div className={styles.footer}>
-                    <button type="submit">Wyślij</button>
+                    <Button type="submit" color="orange" width="w10">Wyślij</Button>
                 </div>
             </form>
         </div>

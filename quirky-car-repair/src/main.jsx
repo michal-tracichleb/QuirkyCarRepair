@@ -12,14 +12,14 @@ import {CategoriesPanel} from "./components/CategoriesPanel/CategoriesPanel.jsx"
 import {ProductsPanel} from "./components/Warehouse/ProductsPanel/ProductsPanel.jsx";
 import {Authentication} from "./components/Authentication/Authentication.jsx";
 import {ProductDetails} from "./views/ProductDetails.jsx";
-import {productLoader} from "./api/productLoader.js";
+import {productLoader} from "./api/warehouse/productLoader.js";
 import {ProductManage} from "./components/ProductManage/ProductManage.jsx";
-import {categoriesLoader} from "./api/categoriesLoader.js";
+import {categoriesLoader} from "./api/warehouse/categoriesLoader.js";
 import {Delivery} from "./components/Delivery/Delivery.jsx";
-import {getAllProducts} from "./api/getAllProducts.js";
+import {getAllProducts} from "./api/warehouse/getAllProducts.js";
 import {Orders} from "./components/Orders/Orders.jsx";
 import {OrderDetails} from "./components/OrderDetails/OrderDetails.jsx";
-import {getOrderDetails} from "./api/getOrderDetails.js";
+import {getOrderDetails} from "./api/warehouse/getOrderDetails.js";
 import {Service} from "./views/Service.jsx";
 import {VehicleRegistration} from "./components/VehicleRegistration/VehicleRegistration.jsx";
 import {NewServiceOrder} from "./components/NewServiceOrder/NewServiceOrder.jsx";
@@ -30,12 +30,19 @@ import {Admin} from "./views/Admin.jsx";
 import {MarginList} from "./components/MarginList/MarginList.jsx";
 import {CategoryMarginSetter} from "./components/CategoryMarginSetter/CategoryMarginSetter.jsx";
 import {ServiceOrderSchedule} from "./components/ServiceOrderSchedule/ServiceOrderSchedule.jsx";
-import {getServiceOrderDetails} from "./api/getServiceOrderDetails.js";
+import {getServiceOrderDetails} from "./api/service/getServiceOrderDetails.js";
+import {UserList} from "./components/UserList/UserList.jsx";
+import {UserDetails} from "./components/UserDetails/UserDetails.jsx";
+import {User} from "./views/User.jsx";
+import {UserServiceOrders} from "./components/UserServiceOrders/UserServiceOrders.jsx";
+import {ErrorView} from "./views/Error.jsx";
+import {getAllUsers} from "./api/userManage/getAllUsers.js";
 
 const router = createBrowserRouter([
     {
         path: '',
         element: <Layout/>,
+        errorElement:<ErrorView/>,
         children:[
             {
                 path: '/',
@@ -84,7 +91,7 @@ const router = createBrowserRouter([
                 element: <Service/>,
                 children:[
                     {
-                        path: 'order/new',
+                        path: '/service',
                         element: <NewServiceOrder/>
                     },
                     {
@@ -105,6 +112,7 @@ const router = createBrowserRouter([
             {
                 path: '/admin',
                 element: <Admin/>,
+
                 children:[
                     {
                         path: 'margin/manage',
@@ -113,7 +121,30 @@ const router = createBrowserRouter([
                     {
                         path: 'margin/setter',
                         element: <CategoryMarginSetter/>
+                    },
+                    {
+                        path: 'users',
+                        element: <UserList/>,
+                        loader: getAllUsers,
+                    },
+                    {
+                        path: 'users/details/:userId',
+                        element: <UserDetails/>
                     }
+                ]
+            },
+            {
+                path: '/user',
+                element: <User/>,
+                children:[
+                    {
+                        path: 'details/:userId',
+                        element: <UserDetails/>
+                    },
+                    {
+                        path: 'service/orders',
+                        element: <UserServiceOrders/>
+                    },
                 ]
             },
             {
