@@ -110,11 +110,11 @@ export function ServiceOrderDetails(){
                             <h3>Status: {orderDetails.status}</h3>
                             <p>Data statusu: {dateFormatter(orderDetails.statusStartDate)}</p>
 
+                            {((orderStatus[orderDetails.status] === 0 && managementPermissions) || orderStatus[orderDetails.status] === 11) &&
+                                <Button name="accept" onClick={updateOrderStatus} width="w10" type="button" color="blue">Zaakceptuj</Button>
+                            }
                             {(orderStatus[orderDetails.status] === 0 || orderStatus[orderDetails.status] === 11) &&
-                                <>
-                                    <Button name="accept" onClick={updateOrderStatus} width="w10" type="button" color="blue">Zaakceptuj</Button>
-                                    <Button name="cancel" onClick={updateOrderStatus} width="w10" type="button" color="red">Anuluj</Button>
-                                </>
+                                <Button name="cancel" onClick={updateOrderStatus} width="w10" type="button" color="red">Anuluj</Button>
                             }
                             {(user && user.role.toLocaleLowerCase() === 'user') &&  orderStatus[orderDetails.status] === 8 &&
                                 <Button onClick={updateOrderStatus} width="w10" type="button" color="orange">Reklamacja</Button>

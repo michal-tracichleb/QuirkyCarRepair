@@ -11,7 +11,7 @@ export function IconMenu(){
             <li>
                 <Account/>
             </li>
-            {user && user.token &&
+            {user && user.token && user.role.toLowerCase() !== 'user' &&
                 <li>
                     <Cart/>
                 </li>

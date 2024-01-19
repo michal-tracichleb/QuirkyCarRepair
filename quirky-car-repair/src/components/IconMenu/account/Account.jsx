@@ -14,6 +14,7 @@ export function Account(){
     const handleUserLogout=()=>{
         setUserData([]);
         sessionStorage.removeItem('user');
+        sessionStorage.removeItem('cart');
         navigate('/');
     }
 
@@ -32,11 +33,13 @@ export function Account(){
     const signedInContent=(
         <ul>
             <li>
-                <a>Twój profil</a>
+                <Link to={`user/details/${userData.id}`}>Twoje dane</Link>
             </li>
-            <li>
-                <a>Zamówienia</a>
-            </li>
+            {userData && userData.token && userData.role.toLowerCase() === 'user' &&
+                <li>
+                    <Link to={`user/service/orders?page=1`}>Zlecenia serwisowe</Link>
+                </li>
+            }
             <li>
                 <Button color="grey" onClick={handleUserLogout} width="w100">Wyloguj się</Button>
             </li>
