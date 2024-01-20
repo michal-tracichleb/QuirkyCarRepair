@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 using QuirkyCarRepair.BLL.Areas.CarService.DTO;
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
+using QuirkyCarRepair.BLL.Areas.InvoiceGenerator.Services;
 using QuirkyCarRepair.BLL.Areas.Shared;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Extensions;
@@ -157,8 +160,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             if (serviceOrder == null)
                 throw new NotFoundException("Service order cannot found");
 
-            if (_userContextService.GetRoleName == "User" && serviceOrder.OrderOwner.UserId != _userContextService.GetUserId)
-                throw new BadRequestException("You don't have permission to see that");
+            //if (_userContextService.GetRoleName == "User" && serviceOrder.OrderOwner.UserId != _userContextService.GetUserId)
+            //    throw new BadRequestException("You don't have permission to see that");
 
             var result = _mapper.Map<DetailsServiceOrderDTO>(serviceOrder);
 
@@ -225,6 +228,18 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             _serviceTransactionRepository.Add(newServiceTransaction);
 
             return GetDetailsServiceOrder(serviceOrderId);
+        }
+
+        public void GetInvoicePDF(int serviceOrderId)
+        {
+            QuestPDF.Settings.License = LicenseType.Community;
+
+            var dir = Directory.GetCurrentDirectory();
+            var filePath = Path.Combine(dir, $"InvoicPDF/invoice{serviceOrderId}.pdf");
+
+            var model = InvoiceDocumentDataSource.GetInvoiceDetails(GetDetailsServiceOrder(serviceOrderId));
+            var document = new InvoiceDocument(model);
+            document.GeneratePdf(filePath);
         }
 
         private void CheckStatusNewStatus(int serviceOrderId, OrderStatus newStatus)
