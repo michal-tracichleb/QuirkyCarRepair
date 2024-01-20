@@ -161,5 +161,28 @@ namespace QuirkyCarRepair.API.Controllers
             var result = _carServiceService.AddServiceToOrder(serviceOrderId, serviceOfferId, numberOfServices);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("GetInvoicePDF")]
+        public IActionResult GetInvoicePDF(int serviceOrderId)
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var pdfFilePath = Path.Combine(dir, $"InvoicPDF/invoice{serviceOrderId}.pdf");
+
+            if (!System.IO.File.Exists(pdfFilePath))
+            {
+                _carServiceService.GetInvoicePDF(serviceOrderId);
+
+                if (!System.IO.File.Exists(pdfFilePath))
+                {
+                    return NotFound($"Plik PDF dla zamówienia usługi o ID {serviceOrderId} nie został utworzony.");
+                }
+            }
+
+            var stream = new FileStream(pdfFilePath, FileMode.Open);
+            var contentType = "application/pdf";
+
+            return File(stream, contentType, Path.GetFileName(pdfFilePath));
+        }
     }
 }
