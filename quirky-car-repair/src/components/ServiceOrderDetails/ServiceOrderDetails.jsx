@@ -241,7 +241,7 @@ export function ServiceOrderDetails(){
                             </div>
                         }
                         <h2>Koszt całkowity: {orderDetails.totalPrice} zł</h2>
-                        {orderStatus[orderDetails.status] === 8 && !managementPermissions &&
+                        {orderStatus[orderDetails.status] === 8 &&
                             <Button width="w10" color="grey" type="button" onClick={getInvoiceHandler}><FontAwesomeIcon icon={faFileInvoice}/> Pobierz FV</Button>
                         }
                     </div>
