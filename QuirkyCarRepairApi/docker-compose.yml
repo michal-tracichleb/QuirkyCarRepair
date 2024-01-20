@@ -1,8 +1,12 @@
-version: '3.4'
+﻿version: '3.4'
 
 networks:
   qurikycarrepairapp:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16
+          gateway: 192.168.0.1
 
 services:
   qurikycarrepairdb:
@@ -30,5 +34,14 @@ services:
         - DB_HOST=quirky-car-db
         - DB_NAME=QuirkyCarRepair
         - DB_SA_PASSWORD=123qwerty!
+    networks:
+        - qurikycarrepairapp
+  quirkycarrepair.web:
+    container_name: quirky-car-web
+    image: quirkycarrepairweb
+    depends_on:
+        - quirkycarrepair.api
+    ports:
+      - 5173:5173
     networks:
         - qurikycarrepairapp
