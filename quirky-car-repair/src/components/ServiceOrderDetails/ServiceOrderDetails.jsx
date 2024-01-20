@@ -19,6 +19,7 @@ import {serviceOrderAcceptedByClient} from "../../api/serviceOrderStatusManageme
 import {Button} from "../Button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileInvoice} from "@fortawesome/free-solid-svg-icons";
+import {getInvoice} from "../../api/invoice/getInvoice.js";
 
 
 export function ServiceOrderDetails(){
@@ -88,6 +89,18 @@ export function ServiceOrderDetails(){
 
         if(response.success){
             prepareData(response.data)
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+    }
+    const getInvoiceHandler = async () =>{
+        const response = await getInvoice(orderDetails.serviceOrderId);
+        if(response.success){
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `invoice${orderDetails.serviceOrderId}.pdf`);
+            link.click();
         }else{
             Error({text: response.message, color: 'warning'})
         }
@@ -228,8 +241,8 @@ export function ServiceOrderDetails(){
                             </div>
                         }
                         <h2>Koszt całkowity: {orderDetails.totalPrice} zł</h2>
-                        {orderStatus[orderDetails.status] === 8 &&
-                            <Button width="w10" color="grey" type="button"><FontAwesomeIcon icon={faFileInvoice}/> Pobierz FV</Button>
+                        {orderStatus[orderDetails.status] === 8 && !managementPermissions &&
+                            <Button width="w10" color="grey" type="button" onClick={getInvoiceHandler}><FontAwesomeIcon icon={faFileInvoice}/> Pobierz FV</Button>
                         }
                     </div>
                 </>
