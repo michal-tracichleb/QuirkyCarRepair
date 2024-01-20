@@ -37,4 +37,8 @@
 	  <ProjectReference Include="..\QuirkyCarRepair.DAL\QuirkyCarRepair.DAL.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="InvoicPDF\" />
+	</ItemGroup>
+
 </Project>

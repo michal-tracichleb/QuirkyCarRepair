@@ -4,34 +4,107 @@ import {AlertStateContext} from "../../context/AlertStateContext.js";
 import {dateFormatter} from "../../utlis/dateFormatter.js";
 import {UserStateContext} from "../../context/UserStateContext.js";
 import {ServiceOptionsPicker} from "../ServiceOptionsPicker/ServiceOptionsPicker.jsx";
-import {Link, useLoaderData} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
 import {ProductManageLink} from "../ProductManageLink/ProductManageLink.jsx";
+import {serviceOrderCanceled} from "../../api/serviceOrderStatusManagement/serviceOrderCanceled.js";
+import {orderStatus} from "../../constans/serviceEnums.js";
+import {serviceOrderAcceptedDate} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedDate.js";
+import {serviceOrderRepairAnalysis} from "../../api/serviceOrderStatusManagement/serviceOrderRepairAnalysis.js";
+import {serviceOrderCanceledByClient} from "../../api/serviceOrderStatusManagement/serviceOrderCanceledByclient.js";
+import {serviceOrderRepair} from "../../api/serviceOrderStatusManagement/serviceOrderRepair.js";
+import {serviceOrderReady} from "../../api/serviceOrderStatusManagement/serviceOrderReady.js";
+import {serviceOrderComplaint} from "../../api/serviceOrderStatusManagement/serviceOrderComplaint.js";
+import {serviceOrderPendingForClientAccepting} from "../../api/serviceOrderStatusManagement/serviceOrderPendingForClientAccepting.js";
+import {serviceOrderAcceptedByClient} from "../../api/serviceOrderStatusManagement/serviceOrderAcceptedByClient.js";
+import {Button} from "../Button/Button.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFileInvoice} from "@fortawesome/free-solid-svg-icons";
+import {getInvoice} from "../../api/invoice/getInvoice.js";
+
 
 export function ServiceOrderDetails(){
     const response = useLoaderData();
     const [,setAlert] = useContext(AlertStateContext);
     const [user] = useContext(UserStateContext);
 
-    const [orderDetails, setOrderDetails] = useState();
-    const [vehicleData, setVehicleData] = useState();
-    const [userData, setUserData] = useState();
+    const [orderDetails, setOrderDetails] = useState([]);
+    const [vehicleData, setVehicleData] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [orderedParts, setOrderedParts] = useState();
     const [services, setServices] = useState();
-
     const managementPermissions = user.role.toLocaleLowerCase() === 'admin' || user.role.toLocaleLowerCase() === 'mechanic';
+    const allowAddToOrder = orderStatus[orderDetails.status] > 9 && orderStatus[orderDetails.status] !==13;
 
     useEffect(() => {
         if(response.success){
-            setOrderDetails(response.data);
-            setVehicleData(response.data.vehicleData);
-            setUserData(response.data.userData);
-            setOrderedParts(response.data.orderedParts);
-            setServices(response.data.services);
+            prepareData(response.data)
         }else{
             Error({text: response.message, color: 'warning'})
         }
-
     }, []);
+
+    const prepareData = (data) =>{
+        setOrderDetails(data);
+        setVehicleData(data.vehicleData);
+        setUserData(data.userData);
+        setOrderedParts(data.parts);
+        setServices(data.serviceTransactions);
+    }
+
+    const updateOrderStatus = async (e) =>{
+        let cancel = e.target.name === 'cancel';
+        let response;
+        switch (orderStatus[orderDetails.status]){
+            case 0:
+                if(cancel){
+                    response = await serviceOrderCanceled(orderDetails.serviceOrderId, '');
+                }else{
+                    response = await serviceOrderAcceptedDate(orderDetails.serviceOrderId, '');
+                }
+                break;
+            case 8:
+                response = await serviceOrderComplaint(orderDetails.serviceOrderId, '');
+                break;
+            case 9:
+                response = await serviceOrderRepairAnalysis(orderDetails.serviceOrderId, '');
+                break;
+            case 10:
+                response = await serviceOrderPendingForClientAccepting(orderDetails.serviceOrderId, '');
+                break;
+            case 11:
+                if(cancel){
+                    response = await serviceOrderCanceledByClient(orderDetails.serviceOrderId, '');
+                }else{
+                    response = await serviceOrderAcceptedByClient(orderDetails.serviceOrderId, '');
+                }
+                break;
+            case 7:
+            case 12:
+                response = await serviceOrderRepair(orderDetails.serviceOrderId, 'asd');
+                break;
+            case 14:
+                response = await serviceOrderReady(orderDetails.serviceOrderId, '');
+                break;
+        }
+
+        if(response.success){
+            prepareData(response.data)
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+    }
+    const getInvoiceHandler = async () =>{
+        const response = await getInvoice(orderDetails.serviceOrderId);
+        if(response.success){
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `invoice${orderDetails.serviceOrderId}.pdf`);
+            link.click();
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+    }
 
     const Error = ({text, color}) =>{
         setAlert({text: text, color: color})
@@ -39,7 +112,6 @@ export function ServiceOrderDetails(){
             setAlert();
         }, 3000);
     }
-
     return (
         <div className={styles.container}>
             {orderDetails &&
@@ -52,20 +124,31 @@ export function ServiceOrderDetails(){
                         <div className={styles.toolbox}>
                             <h3>Status: {orderDetails.status}</h3>
                             <p>Data statusu: {dateFormatter(orderDetails.statusStartDate)}</p>
+
+                            {((orderStatus[orderDetails.status] === 0 && managementPermissions) || orderStatus[orderDetails.status] === 11) &&
+                                <Button name="accept" onClick={updateOrderStatus} width="w10" type="button" color="blue">Zaakceptuj</Button>
+                            }
+                            {(orderStatus[orderDetails.status] === 0 || orderStatus[orderDetails.status] === 11) &&
+                                <Button name="cancel" onClick={updateOrderStatus} width="w10" type="button" color="red">Anuluj</Button>
+                            }
+                            {(user && user.role.toLocaleLowerCase() === 'user') &&  orderStatus[orderDetails.status] === 8 &&
+                                <Button onClick={updateOrderStatus} width="w10" type="button" color="orange">Reklamacja</Button>
+                            }
+
                             {managementPermissions &&
                                 <>
-                                    {/*{orderDetails.status.toLowerCase() === "pending" &&
-                                        <>
-                                            <button type="button" className={styles.btn} onClick={arrangeOrderOnClick}>Przyjmij zamówienie</button>
-                                            <button type="button" className={styles.cancel} onClick={cancelOrderOnClick}>Anuluj</button>
-                                        </>
+                                    {orderStatus[orderDetails.status] === 9 &&
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Diagnoza pojazdu</Button>
                                     }
-                                    {orderDetails.status.toLowerCase() === "arrangeorder" &&
-                                        <button type="button" className={styles.btn} disabled={!orderIsReady} onClick={readyForPickupOnClick}>Gotowe do odbioru</button>
+                                    {orderStatus[orderDetails.status] === 10 &&
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Zakończ diagnoze</Button>
                                     }
-                                    {orderDetails.status.toLowerCase() === "readyforpickup" &&
-                                        <button type="button" className={styles.btn} onClick={orderCompletedupOnClick}>Zamówienie wydane</button>
-                                    }*/}
+                                    {(orderStatus[orderDetails.status] === 7 || orderStatus[orderDetails.status] === 12) &&
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Rozpocznij naprawe</Button>
+                                    }
+                                    {orderStatus[orderDetails.status] === 14 &&
+                                        <Button onClick={updateOrderStatus} width="w10" type="button" color="blue">Zakończ naprawę</Button>
+                                    }
                                 </>
                             }
                         </div>
@@ -119,15 +202,15 @@ export function ServiceOrderDetails(){
                             {services && services.map((service) => (
                                 <tr key={service.name}>
                                     <td>{service.name}</td>
-                                    <td className={styles.right}>{service.unitPrice}</td>
+                                    <td className={styles.right}>{service.price}</td>
                                     <td className={styles.right}>{service.quantity} szt.</td>
                                     <td className={styles.right}>{service.totalPrice}</td>
                                 </tr>
                             ))}
                             </tbody>
                         </table>
-                        {managementPermissions && /*i stan naprawy*/
-                            <ServiceOptionsPicker/>
+                        {managementPermissions && allowAddToOrder &&
+                            <ServiceOptionsPicker setData={prepareData} orderId={orderDetails.serviceOrderId}/>
                         }
                         <table className={styles.orderTable}>
                             <thead>
@@ -143,7 +226,7 @@ export function ServiceOrderDetails(){
                             </thead>
                             <tbody>
                             {orderedParts && orderedParts.map((part) => (
-                                <tr key={part.partId}>
+                                <tr key={part.id}>
                                     <td>{part.name}</td>
                                     <td className={styles.right}>{part.unitPrice}</td>
                                     <td className={styles.right}>{part.quantity} szt.</td>
@@ -152,10 +235,15 @@ export function ServiceOrderDetails(){
                             ))}
                             </tbody>
                         </table>
-                        <div className={styles.toolbox}>
-                            <Link className={styles.orderParts} to="/warehouse"></Link>
-                            <ProductManageLink to="/warehouse">Zamów części</ProductManageLink>
-                        </div>
+                        {managementPermissions && allowAddToOrder &&
+                            <div className={styles.toolbox}>
+                                <ProductManageLink to="/warehouse">Zamów części</ProductManageLink>
+                            </div>
+                        }
+                        <h2>Koszt całkowity: {orderDetails.totalPrice} zł</h2>
+                        {orderStatus[orderDetails.status] === 8 && !managementPermissions &&
+                            <Button width="w10" color="grey" type="button" onClick={getInvoiceHandler}><FontAwesomeIcon icon={faFileInvoice}/> Pobierz FV</Button>
+                        }
                     </div>
                 </>
             }

@@ -14,6 +14,7 @@ export function CartProductsList(){
         const response = removeCartItem(id)
         if(response.success){
             setItems(response.data);
+            window.location.reload();
         }
     }
     return(
@@ -46,7 +47,7 @@ export function CartProductsList(){
                     </div>
                 </div>
             </CenteredContent>
-            <CartSummary cartItems={items}/>
+            <CartSummary cartItems={items} setCartItems={setItems}/>
         </FlexContainer>
 
     )

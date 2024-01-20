@@ -21,5 +21,9 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Interfaces
         public List<ServiceOfferEntity> GetAllServiceOffer();
 
         public DetailsServiceOrderDTO ChangeStatus(int id, string? description, OrderStatus newStatus);
+
+        public DetailsServiceOrderDTO AddServiceToOrder(int serviceOrderId, int serviceOfferId, int numberOfServices);
+
+        public void GetInvoicePDF(int serviceOrderId);
     }
 }

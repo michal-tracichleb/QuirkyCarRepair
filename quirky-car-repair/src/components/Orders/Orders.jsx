@@ -2,7 +2,7 @@ import styles from "./Orders.module.css";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useContext, useEffect, useRef, useState} from "react";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {getOrdersPage} from "../../api/getOrdersPage.js";
+import {getOrdersPage} from "../../api/warehouse/getOrdersPage.js";
 import {PaginationSmall} from "../PaginationSmall/PaginationSmall.jsx";
 import {Pagination} from "../Pagination/Pagination.jsx";
 import {OrdersList} from "../OrdersList/OrdersList.jsx";

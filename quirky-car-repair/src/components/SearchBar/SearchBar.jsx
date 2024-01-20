@@ -1,7 +1,7 @@
 import styles from "./SearchBar.module.css";
 import {useEffect, useState} from "react";
 
-export function SearchBar({list, itemToDisplay, callback, required, value, returnValue = 'id'}){
+export function SearchBar({list, itemToDisplay, callback, required, value, returnValue = 'id', placeholder}){
     const [inputValue, setInputValue] = useState('');
     const [selectedItemId, setSelectedItemId] = useState(null);
 
@@ -31,14 +31,13 @@ export function SearchBar({list, itemToDisplay, callback, required, value, retur
     return(
         <div className={styles.container}>
             <div className={styles.inner}>
-                <input type="text" value={inputValue} onChange={onChange} required={required}/>
-                <button type="button" onClick={()=>onSearch(inputValue)}>Szukaj</button>
+                <input type="text" value={inputValue} onChange={onChange} required={required} placeholder={placeholder}/>
             </div>
             <div className={styles.dropdown}>
                 {list.filter(item => {
                     const searchTerm = inputValue.toLowerCase();
                     const name = item[itemToDisplay].toLowerCase();
-                    return searchTerm && name.startsWith(searchTerm) && searchTerm !== name;
+                    return searchTerm && name.includes(searchTerm) && searchTerm !== name;
                 })
                     .map((item)=>(
                         <div onClick={()=>onSearch(item[itemToDisplay])}

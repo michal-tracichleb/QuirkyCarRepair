@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+.marginContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #a4a4a4;
+    padding: 10px;
+    transition: background-color 0.4s;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #c3c3c3;
+    }
+}
+.manage{
+    flex: 1;
+    text-align: right;
+}

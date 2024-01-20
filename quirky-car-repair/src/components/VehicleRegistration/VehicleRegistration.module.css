@@ -19,18 +19,3 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-.submit{
-    background-color: var(--color-orange);
-    border-radius: 8px;
-    border-color: var(--color-orange);
-    color: var(--color-white);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-top: 0.6rem;
-    padding: 0.8rem 1.2rem;
-    transition: background-color 0.3s;
-
-    &:hover{
-        background-color: #f5a174;
-    }
-}

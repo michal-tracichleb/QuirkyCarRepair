@@ -2,9 +2,9 @@ import styles from "./MarginList.module.css";
 import {ProductManageLink} from "../ProductManageLink/ProductManageLink.jsx";
 import {useContext, useEffect, useState} from "react";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {saveNewMargin} from "../../api/saveNewMargin.js";
-import {updateMargin} from "../../api/updateMargin.js";
-import {getAllMargin} from "../../api/getAllMargin.js";
+import {saveNewMargin} from "../../api/margins/saveNewMargin.js";
+import {updateMargin} from "../../api/margins/updateMargin.js";
+import {getAllMargin} from "../../api/margins/getAllMargin.js";
 
 export function MarginList(){
     const [margins, setMargins] = useState([])

@@ -33,9 +33,6 @@
     padding: 0.3rem 0.6rem;
     width: 75%;
 }
-.authentication button{
-    width: 100%;
-}
 .actions{
     display: flex;
     flex-direction: column;
@@ -54,25 +51,6 @@
     padding: 0.4rem 0.4rem 0.4rem 0;
     transition: color 0.3s;
 }
-.actions button{
-    background-color: var(--color-orange);
-    border-radius: 8px;
-    border-color: var(--color-orange);
-    color: var(--color-white);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-top: 0.6rem;
-    padding: 0.8rem 1.2rem;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-}
-.actions button:hover{
-    background-color: #f5a174;
-}
-.actions button:disabled{
-    background-color: #f8d6be;
-}
-
 .toogler{
     display: flex;
     gap: 0.5rem;
@@ -84,7 +62,6 @@
 .toogler input{
     width: auto;
 }
-
 .error{
     color: var(--color-error);
     font-weight: 700;
