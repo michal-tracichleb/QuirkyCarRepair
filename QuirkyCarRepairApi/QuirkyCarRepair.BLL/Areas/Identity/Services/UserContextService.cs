@@ -17,5 +17,8 @@ namespace QuirkyCarRepair.BLL.Areas.Identity.Services
 
         public int GetUserId =>
             User is null ? 0 : int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+        public string GetRoleName =>
+            User is null ? "" : User.FindFirst(c => c.Type == ClaimTypes.Role).Value;
     }
 }

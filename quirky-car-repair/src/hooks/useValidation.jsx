@@ -48,7 +48,7 @@ function validateInput(key, value, isSignIn, secondValue){
             return [true, 'Nieznany błąd, proszę spróbować później.'];
     }
 }
-export function useValidation (inputs, touchedFields, isSignIn){
+export function useValidation (inputs, isSignIn){
     const [errors, setErrors] = useState({});
     useEffect(() => {
         const inputsKeys = Object.keys(inputs);
@@ -71,20 +71,17 @@ export function useValidation (inputs, touchedFields, isSignIn){
             if (key === "password") {
                 secondValue = value;
             }
-            const timeout = setTimeout(() => {
-                const [isError, errorFeedback] = validateInput(key, value, isSignIn, secondValue);
+            const validate = async () =>{
+                const [isError, errorFeedback] = await validateInput(key, value, isSignIn, secondValue);
 
                 setErrors(prevErrors => ({
                     ...prevErrors,
                     [key]: { isError, errorFeedback },
                 }));
-            }, 500);
-            return () => {
-                clearTimeout(timeout);
-            };
-
+            }
+            validate();
         });
-    }, [inputs, touchedFields]);
+    }, [inputs]);
 
     return errors;
 }

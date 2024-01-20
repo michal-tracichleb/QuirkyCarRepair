@@ -4,10 +4,12 @@ import {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {getServiceMainCategories} from "../../api/getServiceMainCategories.js";
-import {getServiceOfferByCategory} from "../../api/getServiceOfferByCategory.js";
+import {getServiceMainCategories} from "../../api/service/getServiceMainCategories.js";
+import {getServiceOfferByCategory} from "../../api/service/getServiceOfferByCategory.js";
+import {Button} from "../Button/Button.jsx";
+import {addServiceToOrder} from "../../api/service/addServiceToOrder.js";
 
-export function ServiceOptionsPicker(){
+export function ServiceOptionsPicker({setData, orderId}){
     const [,setAlert] = useContext(AlertStateContext);
     const [isShown, setIsShown] = useState(false);
     const [serviceId, setServiceId] = useState();
@@ -42,10 +44,16 @@ export function ServiceOptionsPicker(){
     const onServiceSelect = (value) =>{
         setServiceId(value)
     }
-    const onFormSubmit = (e) =>{
+    const onFormSubmit = async(e) =>{
         e.preventDefault();
-        console.log(serviceId, quantity);
-        setIsShown(false)
+        const response = await addServiceToOrder(orderId, serviceId, quantity);
+        if(response.success){
+            Error({text: response.message, color: 'success'})
+            setData(response.data);
+        }else{
+            Error({text: response.message, color: 'warning'})
+        }
+        setIsShown(false);
     }
     const Error = ({text, color}) =>{
         setAlert({text: text, color: color})
@@ -57,7 +65,7 @@ export function ServiceOptionsPicker(){
         <>
             <div className={styles.toolbox}>
                 {!isShown ?
-                    <button onClick={()=>setIsShown(true)}>Dodaj usługę</button>
+                    <Button type="button" onClick={()=>setIsShown(true)} color="orange" width="w10">Dodaj usługę</Button>
                     :
                     <a onClick={()=>setIsShown(false)}><FontAwesomeIcon icon={faXmark} /></a>
                 }
@@ -67,7 +75,7 @@ export function ServiceOptionsPicker(){
                     <div className={styles.wrapper}>
                         <div>
                             <select onChange={(e) => setCategoryId(e.target.value)} defaultValue={categoryId}>
-                                <option value="" disabled>Typ dokumentu</option>
+                                <option value="" disabled>Kategoria</option>
                                 {categories && categories.map((category) =>(
                                     <option key={category.id} value={category.id}>{category.name}</option>
                                 ))}
@@ -83,7 +91,7 @@ export function ServiceOptionsPicker(){
 
                         </div>
                         <div className={styles.toolbox}>
-                            <button type="submit" disabled={!serviceId || !quantity}>Dodaj usługę</button>
+                            <Button type="submit" disabled={!serviceId || !quantity} color="orange" width="w10">Dodaj usługę</Button>
                         </div>
                     </div>
                 </form>

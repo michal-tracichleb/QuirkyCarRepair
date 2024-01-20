@@ -22,12 +22,6 @@
 .inner{
     display: flex;
 }
-.inner button{
-    background-color: transparent;
-    width: auto;
-    padding: 3px;
-    border-radius: 6px;
-}
 .dropdown div:nth-child(even) {
     background-color: var(--color-grey);
 }

@@ -1,9 +1,9 @@
 import styles from "./WarehouseSidebarContent.module.css"
 import {useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
-import {getPrimaryCategories} from "../../api/getPrimaryCategories.js";
+import {getPrimaryCategories} from "../../api/warehouse/getPrimaryCategories.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {getPartCategoryStructure} from "../../api/getPartCategoryStructure.js";
+import {getPartCategoryStructure} from "../../api/warehouse/getPartCategoryStructure.js";
 import {SubNav} from "../SubNav/SubNav.jsx";
 import {UserStateContext} from "../../context/UserStateContext.js";
 

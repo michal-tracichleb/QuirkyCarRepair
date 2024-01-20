@@ -29,32 +29,24 @@ namespace QuirkyCarRepair.BLL.Areas.Shared
             CreateMap<Vehicle, VehicleDataDTO>();
             CreateMap<OrderOwner, OrderOwnerDTO>();
             CreateMap<ServiceOrder, ServiceOrderDTO>()
-                .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src =>
-                    src.Id))
-                .ForMember(dest => dest.DocumentNumber, opt => opt.MapFrom(src =>
-                    src.OrderNumber))
-                .ForMember(dest => dest.UserData, opt => opt.MapFrom(src =>
-                    src.OrderOwner))
-                .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src =>
-                    src.Vehicle))
-                .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status));
+                .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.DocumentNumber, opt => opt.MapFrom(src => src.OrderNumber))
+                .ForMember(dest => dest.UserData, opt => opt.MapFrom(src => src.OrderOwner))
+                .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src => src.Vehicle))
+                .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom
+                    (src => src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom
+                    (src => src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status));
 
             CreateMap<ServiceOrder, DetailsServiceOrderDTO>()
-                .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src =>
-                    src.Id))
-                .ForMember(dest => dest.DocumentNumber, opt => opt.MapFrom(src =>
-                    src.OrderNumber))
-                .ForMember(dest => dest.UserData, opt => opt.MapFrom(src =>
-                    src.OrderOwner))
-                .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src =>
-                    src.Vehicle))
-                .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src =>
-                    src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
+                .ForMember(dest => dest.ServiceOrderId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.DocumentNumber, opt => opt.MapFrom(src => src.OrderNumber))
+                .ForMember(dest => dest.UserData, opt => opt.MapFrom(src => src.OrderOwner))
+                .ForMember(dest => dest.VehicleData, opt => opt.MapFrom(src => src.Vehicle))
+                .ForMember(dest => dest.StatusStartDate, opt => opt.MapFrom
+                    (src => src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().StartDate))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom
+                    (src => src.ServiceOrderStatuses.OrderByDescending(x => x.StartDate).FirstOrDefault().Status))
                 .ForMember(dest => dest.Parts, opt => opt.Ignore());
         }
     }

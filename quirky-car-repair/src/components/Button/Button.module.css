@@ -1,0 +1,64 @@
+.btn{
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease-in-out;
+}
+.orange{
+    color: white;
+    background-color: var(--color-orange);
+    border: 1px solid var(--color-orange);
+
+    &:disabled{
+        background-color: rgba(248, 137, 79, 0.7);
+    }
+}
+.red{
+    color: white;
+    background-color: var(--color-error);
+    border: 1px solid var(--color-error);
+
+    &:disabled{
+        background-color: rgba(252, 2, 2, 0.59);
+    }
+}
+.blue{
+    color: white;
+    background-color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+
+    &:disabled{
+        background-color: rgba(3, 131, 250, 0.56);
+    }
+}
+.green{
+    color: white;
+    background-color: #03BE03FF;
+    border: 1px solid #03BE03FF;
+
+    &:disabled{
+        background-color: rgba(3, 190, 3, 0.57);
+    }
+}
+.grey{
+    color: black;
+    background-color: #dadada;
+    border: 1px solid var(--color-orange);
+
+    &:disabled{
+        background-color: rgba(218, 218, 218, 0.38);
+    }
+}
+.btn:not([disabled]):hover{
+    background-color: var(--color-white);
+    color: black;
+}
+.w5{
+    width: 5rem;
+}
+.w10{
+    width: 10rem;
+}
+.w100{
+    width: 100%;
+}

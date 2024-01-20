@@ -9,7 +9,7 @@ import {BACK_END_URL} from "../../../constans/backEndUrl.js";
 import {ProductManageLink} from "../../ProductManageLink/ProductManageLink.jsx";
 import {UserStateContext} from "../../../context/UserStateContext.js";
 import {AlertStateContext} from "../../../context/AlertStateContext.js";
-import {removeProduct} from "../../../api/removeProduct.js";
+import {removeProduct} from "../../../api/productManage/removeProduct.js";
 
 export function ProductsPanel (){
     const { categoryId } = useParams();

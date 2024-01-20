@@ -17,5 +17,10 @@ namespace QuirkyCarRepair.DAL.Areas.Identity.Repositories
                 .Include(u => u.Role)
                 .FirstOrDefault(u => u.Email == email);
         }
+
+        public List<Role> GetRoles()
+        {
+            return _context.Roles.ToList();
+        }
     }
 }

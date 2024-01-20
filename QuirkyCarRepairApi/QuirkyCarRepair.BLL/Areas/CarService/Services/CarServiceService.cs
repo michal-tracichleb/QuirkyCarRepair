@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 using QuirkyCarRepair.BLL.Areas.CarService.DTO;
 using QuirkyCarRepair.BLL.Areas.CarService.Entities;
 using QuirkyCarRepair.BLL.Areas.CarService.Interfaces;
 using QuirkyCarRepair.BLL.Areas.Identity.Interfaces;
+using QuirkyCarRepair.BLL.Areas.InvoiceGenerator.Services;
 using QuirkyCarRepair.BLL.Areas.Shared;
 using QuirkyCarRepair.BLL.Areas.Warehouse.DTO;
 using QuirkyCarRepair.BLL.Extensions;
@@ -29,6 +32,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
         private readonly IServiceOrderStatusRepository _serviceOrderStatusRepository;
         private readonly IMainCategoryServiceRepository _mainCategoryServiceRepository;
         private readonly IServiceOfferRepository _serviceOfferRepository;
+        private readonly IServiceTransactionRepository _serviceTransactionRepository;
 
         public CarServiceService(IMapper mapper,
             IUserContextService userContextService,
@@ -38,7 +42,8 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             IOrderOwnerRepository orderOwnerRepository,
             IServiceOrderStatusRepository serviceOrderStatusRepository,
             IMainCategoryServiceRepository mainCategoryServiceRepository,
-            IServiceOfferRepository serviceOfferRepository)
+            IServiceOfferRepository serviceOfferRepository,
+            IServiceTransactionRepository serviceTransactionRepository)
         {
             _mapper = mapper;
             _userContextService = userContextService;
@@ -50,6 +55,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             _serviceOrderStatusRepository = serviceOrderStatusRepository;
             _mainCategoryServiceRepository = mainCategoryServiceRepository;
             _serviceOfferRepository = serviceOfferRepository;
+            _serviceTransactionRepository = serviceTransactionRepository;
         }
 
         public DetailsServiceOrderDTO NewOrderService(CreateServiceOrderDTO createServiceOrder)
@@ -72,7 +78,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
             var newOrderOwner = new OrderOwner()
             {
-                UserId = createServiceOrder.UserId == 0 ? null : createServiceOrder.UserId,
+                UserId = _userContextService.GetRoleName != "User" ? null : _userContextService.GetUserId,
                 FirstName = createServiceOrder.FirstName,
                 LastName = createServiceOrder.LastName,
                 PhoneNumber = createServiceOrder.PhoneNumber
@@ -122,8 +128,17 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
 
         public PageList<ServiceOrderDTO> GetOrdersPage(GetServiceOrderPage getOrdersServicePageDTO)
         {
-            var orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatus(getOrdersServicePageDTO.OrderStates,
-                 getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            IQueryable<ServiceOrder> orders;
+            if (_userContextService.GetRoleName != "User")
+            {
+                orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatus(getOrdersServicePageDTO.OrderStates,
+                    getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            }
+            else
+            {
+                orders = _serviceOrderRepository.GetServicesOrdersWithLatestStatusByOwner(_userContextService.GetUserId, getOrdersServicePageDTO.OrderStates,
+                    getOrdersServicePageDTO.AnyDate, getOrdersServicePageDTO.FromDate, getOrdersServicePageDTO.ToDate);
+            }
 
             PageList<ServiceOrder> ordersPageList = orders.GetPagedList<ServiceOrder>(getOrdersServicePageDTO.Page, getOrdersServicePageDTO.PageSize);
 
@@ -145,9 +160,13 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             if (serviceOrder == null)
                 throw new NotFoundException("Service order cannot found");
 
+            //if (_userContextService.GetRoleName == "User" && serviceOrder.OrderOwner.UserId != _userContextService.GetUserId)
+            //    throw new BadRequestException("You don't have permission to see that");
+
             var result = _mapper.Map<DetailsServiceOrderDTO>(serviceOrder);
 
-            result.Parts = new List<PartsDTO>(); //TODO
+            var partsTransaction = serviceOrder.OperationalDocuments.SelectMany(x => x.PartTransactions).ToList();
+            result.Parts = _mapper.Map<List<PartDTO>>(partsTransaction);
 
             return result;
         }
@@ -167,7 +186,7 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             return _mapper.Map<List<ServiceOfferEntity>>(_serviceOfferRepository.GetAll());
         }
 
-        public DetailsServiceOrderDTO ChangeStatus(int id, string description, OrderStatus newStatus)
+        public DetailsServiceOrderDTO ChangeStatus(int id, string? description, OrderStatus newStatus)
         {
             if (_serviceOrderRepository.Exist(id) == false)
                 throw new NotFoundException("Service order cannot found");
@@ -184,6 +203,43 @@ namespace QuirkyCarRepair.BLL.Areas.CarService.Services
             });
 
             return GetDetailsServiceOrder(id);
+        }
+
+        public DetailsServiceOrderDTO AddServiceToOrder(int serviceOrderId, int serviceOfferId, int numberOfServices)
+        {
+            if (_serviceOrderRepository.Exist(serviceOrderId) == false)
+                throw new NotFoundException("Service order cannot found");
+
+            if (_serviceOfferRepository.Exist(serviceOfferId) == false)
+                throw new NotFoundException("Service offer cannot found");
+
+            if (numberOfServices <= 0)
+                throw new QuantityOutOfRangeException("Number of services cannot be below or equal 0");
+
+            var newServiceTransaction = new ServiceTransaction()
+            {
+                ServiceOfferId = serviceOfferId,
+                ServiceOrderId = serviceOrderId,
+                Quantity = numberOfServices,
+                Price = _serviceOfferRepository.Get(serviceOfferId).Price,
+                MarginValue = 0, //TODO
+            };
+
+            _serviceTransactionRepository.Add(newServiceTransaction);
+
+            return GetDetailsServiceOrder(serviceOrderId);
+        }
+
+        public void GetInvoicePDF(int serviceOrderId)
+        {
+            QuestPDF.Settings.License = LicenseType.Community;
+
+            var dir = Directory.GetCurrentDirectory();
+            var filePath = Path.Combine(dir, $"InvoicPDF/invoice{serviceOrderId}.pdf");
+
+            var model = InvoiceDocumentDataSource.GetInvoiceDetails(GetDetailsServiceOrder(serviceOrderId));
+            var document = new InvoiceDocument(model);
+            document.GeneratePdf(filePath);
         }
 
         private void CheckStatusNewStatus(int serviceOrderId, OrderStatus newStatus)

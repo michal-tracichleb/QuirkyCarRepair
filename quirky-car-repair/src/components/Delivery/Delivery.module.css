@@ -19,20 +19,6 @@ input {
     border: 1px solid #c3c3c3;
     border-radius: 4px;
 }
-
-.stockDelivery button {
-    padding: 10px;
-    border-radius: 5px;
-    color: black;
-
-    border: 1px solid var(--color-orange);
-    background-color: #e7e7e7;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background: var(--color-white);
-    }
-}
 .deliveryList {
     margin-top: 20px;
 }

@@ -4,10 +4,11 @@ import {productFields} from "../../constans/productFields.js";
 import {Form, useLoaderData, useSearchParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
-import {saveNewProduct} from "../../api/saveNewProduct.js";
-import {productLoader} from "../../api/productLoader.js";
-import {saveModifiedProduct} from "../../api/saveModifiedProduct.js";
+import {saveNewProduct} from "../../api/productManage/saveNewProduct.js";
+import {productLoader} from "../../api/warehouse/productLoader.js";
+import {saveModifiedProduct} from "../../api/productManage/saveModifiedProduct.js";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
+import {Button} from "../Button/Button.jsx";
 export function ProductManage(){
     const categories = useLoaderData();
     const [searchParams] = useSearchParams();
@@ -106,7 +107,7 @@ export function ProductManage(){
                     {fields}
                     </tbody>
                 </table>
-                <button type="submit">Zapisz i wyślij</button>
+                <Button type="submit" color="grey" width="w10">Zapisz i wyślij</Button>
             </Form>
         </FlexContainer>
     )

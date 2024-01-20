@@ -5,7 +5,7 @@ import styles from "./ServiceOrders.module.css";
 import {orderStatus} from "../../constans/serviceEnums.js";
 import {PaginationSmall} from "../PaginationSmall/PaginationSmall.jsx";
 import {Pagination} from "../Pagination/Pagination.jsx";
-import {getServiceOrderPage} from "../../api/getServiceOrderPage.js";
+import {getServiceOrderPage} from "../../api/service/getServiceOrderPage.js";
 import {ServiceOrdersList} from "../ServiceOrdersList/ServiceOrdersList.jsx";
 
 export function ServiceOrders(){
@@ -54,8 +54,8 @@ export function ServiceOrders(){
                     <label>Status zamówienia</label>
                     <select id="stateSelect" onChange={(e) => setState(e.target.value)} value={state ? state : ''}>
                         <option value=''>Wszystkie</option>
-                        {Object.keys(orderStatus).map((stateName, index) => (
-                            <option key={stateName} value={index}>{stateName}</option>
+                        {Object.keys(orderStatus).map((stateName) => (
+                            <option key={stateName} value={orderStatus[stateName]}>{stateName}</option>
                         ))}
                     </select>
                 </div>

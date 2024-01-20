@@ -8,6 +8,8 @@ namespace QuirkyCarRepair.DAL.Areas.CarService.Interfaces
     {
         public IQueryable<ServiceOrder> GetServicesOrdersWithLatestStatus(List<OrderStatus> orderStates, bool anyDate, DateTime? fromDate, DateTime? toDate);
 
+        public IQueryable<ServiceOrder> GetServicesOrdersWithLatestStatusByOwner(int userId, List<OrderStatus> orderStates, bool anyDate, DateTime? fromDate, DateTime? toDate);
+
         public ServiceOrder? GetWithInclude(int id);
     }
 }

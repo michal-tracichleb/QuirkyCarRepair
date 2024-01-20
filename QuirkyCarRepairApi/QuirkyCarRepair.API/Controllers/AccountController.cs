@@ -18,7 +18,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public ActionResult RegisterUser([FromBody] RegisterUserDto dto)
+        public IActionResult RegisterUser([FromBody] RegisterUserDto dto)
         {
             _accountService.RegisterUser(dto);
             return Ok();
@@ -26,7 +26,7 @@ namespace QuirkyCarRepair.API.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login([FromBody] LoginDto dto)
+        public IActionResult Login([FromBody] LoginDto dto)
         {
             string token = _accountService.GenerateJwt(dto);
             return Ok(token);
@@ -35,7 +35,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpGet]
         [Route("Details")]
         [Authorize]
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             var userDetails = _accountService.GetUserDetails(id);
             return Ok(userDetails);
@@ -44,7 +44,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpPost]
         [Route("Edit")]
         [Authorize]
-        public ActionResult Edit(int id, [FromBody] UserDetailsDto userDetails)
+        public IActionResult Edit(int id, [FromBody] UserDetailsDto userDetails)
         {
             _accountService.Edit(id, userDetails);
             return Ok(userDetails);
@@ -53,7 +53,7 @@ namespace QuirkyCarRepair.API.Controllers
         [HttpPost]
         [Route("ChangePassword")]
         [Authorize]
-        public ActionResult ChangePassword(int id, [FromBody] ChangePasswordDto changePassword)
+        public IActionResult ChangePassword(int id, [FromBody] ChangePasswordDto changePassword)
         {
             _accountService.ChangePassword(id, changePassword);
             return Ok();

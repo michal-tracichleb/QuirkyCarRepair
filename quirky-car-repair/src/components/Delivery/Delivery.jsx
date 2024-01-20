@@ -3,7 +3,8 @@ import {useLoaderData} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {SearchBar} from "../SearchBar/SearchBar.jsx";
 import {AlertStateContext} from "../../context/AlertStateContext.js";
-import {postDeliveryProducts} from "../../api/postDeliveryProducts.js";
+import {postDeliveryProducts} from "../../api/warehouse/postDeliveryProducts.js";
+import {Button} from "../Button/Button.jsx";
 export function Delivery(){
     const data = useLoaderData();
     const [products] = useState(data.data);
@@ -65,7 +66,7 @@ export function Delivery(){
                         <label htmlFor="price">Cena:</label>
                         <input type="number" name="unitPrice" value={price} onChange={(e)=>setPrice(e.target.value)} />
                     </div>
-                    <button onClick={handleAddItem}>Dodaj Produkt</button>
+                    <Button color="grey" width="w10" onClick={handleAddItem}>Dodaj Produkt</Button>
                 </div>
                 <div className={styles.deliveryList}>
                     <h3>Lista przyjętych produktów:</h3>
@@ -87,7 +88,7 @@ export function Delivery(){
                         ))}
                         </tbody>
                     </table>
-                    <button onClick={onSubmit} disabled={deliveryItems.length < 1}>Zapisz i wyślij</button>
+                    <Button color="grey" width="w10" onClick={onSubmit} disabled={deliveryItems.length < 1}>Wyślij</Button>
                 </div>
             </div>
         </>
