@@ -28,7 +28,8 @@ export function ServiceOrders(){
         }
     }, [pageId, state]);
     const fetchData = async () =>{
-        const body = {page: pageId, pageSize: 10, anyDate: true, orderStates: [Number(state)]}
+        const orderState = state === '' ? [] : [Number(state)];
+        const body = {page: pageId, pageSize: 10, anyDate: true, orderStates: orderState}
         const response = await getServiceOrderPage(body);
         if(response.success){
             setServiceOrdersData(response.data);
