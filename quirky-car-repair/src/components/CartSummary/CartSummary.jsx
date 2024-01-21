@@ -36,7 +36,7 @@ export function CartSummary({cartItems, setCartItems}){
         }
     }
     const onSubmit = async () =>{
-        if(documentType==="WW" && documentId && cartItems.length > 0){
+        if(cartItems.length > 0){
             const data ={};
             data.orderType = documentType;
             data.ServiceOrderId = Number(documentId);
@@ -52,6 +52,17 @@ export function CartSummary({cartItems, setCartItems}){
             }
         }
     }
+    const onSelectValueChange = (e) => {
+        const value = e.target.value;
+        setDocumentType(value);
+        if(value === 'WZ'){
+            setDocumentId(0);
+        }
+    };
+
+    const isButtonDisabled = () => {
+        return !documentType || (cartItems.length < 1) || (documentType === "WW" && !documentId);
+    };
     const Error = ({text, color}) =>{
         setAlert({text: text, color: color});
         setTimeout(() => {
@@ -71,10 +82,10 @@ export function CartSummary({cartItems, setCartItems}){
                 <>
                     <div className={styles.cartRow}>
                         <label htmlFor="documentType">Typ dokumentu</label>
-                        <select name="documentType" onChange={(e)=>setDocumentType(e.target.value)} defaultValue={documentType}>
+                        <select name="documentType" onChange={onSelectValueChange} defaultValue={documentType}>
                             <option value="" disabled>Typ dokumentu</option>
                             <option value="WW">WW</option>
-                            <option value="WZ">ZZ</option>
+                            <option value="WZ">WZ</option>
                         </select>
                     </div>
                     {documentType === "WW" &&
@@ -84,7 +95,7 @@ export function CartSummary({cartItems, setCartItems}){
                     }
                 </>
             }
-            <Button type="submit" disabled={documentType !=="WW" || !documentId || cartItems.length < 1} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
+            <Button type="submit" disabled={isButtonDisabled()} onClick={onSubmit} color="orange" width="w100">Złóż zamówienie</Button>
         </div>
     )
 }
