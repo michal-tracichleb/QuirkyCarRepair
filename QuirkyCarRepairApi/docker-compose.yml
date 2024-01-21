@@ -1,0 +1,47 @@
+﻿version: '3.4'
+
+networks:
+  qurikycarrepairapp:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16
+          gateway: 192.168.0.1
+
+services:
+  qurikycarrepairdb:
+    container_name: quirky-car-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+        - 1433:1433
+    environment: 
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=123qwerty!
+    networks:
+        - qurikycarrepairapp
+  quirkycarrepair.api:
+    container_name: quirky-car-api
+    image: ${DOCKER_REGISTRY-}quirkycarrepairapi
+    build:
+      context: .
+      dockerfile: QuirkyCarRepair.API/Dockerfile
+    ports:
+        - 8080:8080
+        - 8081:8081
+    depends_on:
+        - qurikycarrepairdb
+    environment: 
+        - DB_HOST=quirky-car-db
+        - DB_NAME=QuirkyCarRepair
+        - DB_SA_PASSWORD=123qwerty!
+    networks:
+        - qurikycarrepairapp
+  quirkycarrepair.web:
+    container_name: quirky-car-web
+    image: quirkycarrepairweb
+    depends_on:
+        - quirkycarrepair.api
+    ports:
+      - 5173:5173
+    networks:
+        - qurikycarrepairapp
